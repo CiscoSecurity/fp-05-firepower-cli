@@ -567,7 +567,7 @@ class View( object ):
                         d3 = str(int(extraData[28:30].decode('utf-8'),16))
                         d4 = str(int(extraData[30:32].decode('utf-8'),16))
                         ipv4 = d1 + '.' + d2 + '.' + d3 + '.' + d4
-                        self.__addValue( View.ORIGINAL_SRC_IP, ipv4)
+                        self.__addValue( View.ORIGINAL_CLIENT_SRC_IP, ipv4)
                  
                     else :
                         if len(extraData) > 32 :
@@ -581,7 +581,7 @@ class View( object ):
                             h8 = extraData[28:32].decode('utf-8')
                             ipv6 = h1 + ':' + h2 + ':' + h3 + ':' + h4 + ':' + h5 + ':' + h6 + ':' + h7 +  ':' + h8
 
-                            self.__addValue( View.ORIGINAL_SRC_IP, ipv6)
+                            self.__addValue( View.ORIGINAL_CLIENT_SRC_IP, ipv6)
 
                 elif record['type'] == 9 :
                     self.__addValue (View.XFF_HTTP_URI, extraData)
