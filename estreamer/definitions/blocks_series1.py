@@ -370,19 +370,39 @@ BLOCKS_SERIES_1 = {
         { 'block': BLOCK_STRING, 'name': 'email' },
         { 'block': BLOCK_STRING, 'name': 'department' },
         { 'block': BLOCK_STRING, 'name': 'phone' }],
-
-    # 121
-
+ # 121
     BLOCK_USER_LOGIN_INFORMATION_DATA_50: [
+        { 'type': TYPE_UINT32, 'name': 'loginBlockType' },
+        { 'type': TYPE_UINT32, 'name': 'loginBlockLength' },
+        { 'type': TYPE_UINT32, 'name': 'timeStamp' },
+        { 'type': TYPE_UINT32, 'name': 'ipv4Address' },
         { 'type': TYPE_UINT32, 'name': 'blockType' },
         { 'type': TYPE_UINT32, 'name': 'blockLength' },
-        { 'type': TYPE_UINT32, 'name': 'timestamp' },
-        { 'type': TYPE_UINT32, 'name': 'ipv4Address' },
         { 'block': BLOCK_STRING, 'name': 'username' },
-        { 'type': TYPE_UINT32, 'name': 'userId' },
-        { 'type': TYPE_UINT32, 'name': 'applicationId' },
-        { 'block': BLOCK_STRING, 'name': 'email' }],
+        { 'block': BLOCK_STRING, 'name': 'domain' },
+        { 'block': TYPE_UINT32, 'name': 'userId' },
+        { 'type': TYPE_UINT32, 'name': 'realmId' },
+        { 'type': TYPE_UINT32, 'name': 'endpointProfileId' },
+        { 'type': TYPE_UINT32, 'name': 'securityGroupId' },
+        { 'type': TYPE_UINT32, 'name': 'protocol' },
+        { 'type': TYPE_UINT16, 'name': 'port' },
+        { 'type': TYPE_UINT16, 'name': 'portRangeStart' },
+        { 'type': TYPE_UINT16, 'name': 'portRangeEnd' },
+        { 'type': TYPE_UINT32, 'name': 'email' },
+        { 'type': TYPE_UINT32, 'name': 'emailSizeBytes' },
+        { 'type': TYPE_IPV6, 'name': 'ipv6Address' },
+        { 'type': BLOCK_STRING, 'name': 'ipLocation' },
+        { 'type': TYPE_UINT16, 'name': 'loginType' },
+        { 'type': TYPE_UINT16, 'name': 'authType' },
+        { 'type': TYPE_UINT32, 'name': 'reportedByType' },
+        { 'type': TYPE_UINT16, 'name': 'reportedByLength' },
+        { 'block': BLOCK_STRING, 'name': 'reportedBy' },
+        { 'block': BLOCK_STRING, 'name': 'description' },
+        { 'block': BLOCK_STRING, 'name': 'VPNSessionBlockType' },
+        { 'block': BLOCK_STRING, 'name': 'VPNSessionBlockLength' },
+        { 'block': BLOCK_STRING, 'name': 'VPNSessionData' }],
 
+    # 122
     BLOCK_HOST_CLIENT_APPLICATION_50: [
         { 'type': TYPE_UINT32, 'name': 'blockType' },
         { 'type': TYPE_UINT32, 'name': 'blockLength' },
