@@ -407,20 +407,20 @@ class Binary( object ):
                     else:
                         raise ParsingException( 'Unknown type: {0}'.format( attributeType ) )                   
     
-            try:
-                self.logger.log( logging.TRACE, 'unpacking binary data: recordType: {0}, attributeName: {1}'.format(recordType, attributeName) )
+                try:
+                    self.logger.log( logging.TRACE, 'unpacking binary data: recordType: {0}, attributeName: {1}'.format(recordType, attributeName) )
 
-                context[ attributeName ] = struct.unpack(
-                     '>' + attributeType, data[ offset : offset + byteLength ] )[ 0 ]
-                offset += byteLength
+                    context[ attributeName ] = struct.unpack(
+                         '>' + attributeType, data[ offset : offset + byteLength ] )[ 0 ]
+                    offset += byteLength
 
-                self.logger.log( logging.TRACE, "unpacking complete binary data") 
+                    self.logger.log( logging.TRACE, "unpacking complete binary data") 
 
-            except struct.error:
-                hData = binascii.hexlify( data[ offset: offset + byteLength ] )
-                hexData = binascii.hexlify( data )
+                except struct.error:
+                    hData = binascii.hexlify( data[ offset: offset + byteLength ] )
+                    hexData = binascii.hexlify( data )
 
-                raise ParsingException('Error Decoding binary for rec_type={0} attr={1} type={2} data={3} data_full={4}'.format( recordType, attributeName, attributeType, hData, hexData ) )
+                    raise ParsingException('Error Decoding binary for rec_type={0} attr={1} type={2} data={3} data_full={4}'.format( recordType, attributeName, attributeType, hData, hexData ) )
 
 
             elif 'list' in attribute:
