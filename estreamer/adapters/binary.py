@@ -503,7 +503,7 @@ class Binary( object ):
             self.logger.log(logging.TRACE, '_parse: identifying blockType: recordType={0} '.format(recordType))
             #Dynamic according to blocktype
 
-                        if recordType == 71 or recordType == 210:
+            if recordType == 71 or recordType == 210:
                 blockSubType = struct.unpack(
                                 '>' + TYPE_UINT32,
                                 data[ 72 : 76 ] )[ 0 ]
