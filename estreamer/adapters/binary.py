@@ -408,7 +408,7 @@ class Binary( object ):
                         raise ParsingException( 'Unknown type: {0}'.format( attributeType ) )                   
     
                 try:
-                    self.logger.log( logging.TRACE, 'unpacking binary data: recordType: attributeName: {0}'.format(recordType, attributeName) )
+                    self.logger.log( logging.TRACE, 'unpacking binary data: recordType: {0}, attributeName: {1}'.format(recordType, attributeName) )
 
                     context[ attributeName ] = struct.unpack(
                          '>' + attributeType, data[ offset : offset + byteLength ] )[ 0 ]
