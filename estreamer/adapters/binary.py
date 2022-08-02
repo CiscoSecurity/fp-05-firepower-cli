@@ -1,10 +1,10 @@
 
 #********************************************************************
-#      File:    binary.py
+#      File:    records.py
 #      Author:  Sam Strachan / Huxley Barbee
 #
 #      Description:
-#       Handles binary parsing of message and record data
+#       This file contains all record types which estreamer can send
 #
 #      Copyright (c) 2017 by Cisco Systems, Inc.
 #
@@ -15,753 +15,1180 @@
 #       CISCO SYSTEMS, Inc. IS STRICTLY PROHIBITED.
 #
 #*********************************************************************/
-from __future__ import absolute_import
-import binascii
-import os
-import pickle
-import socket
-import struct
-import uuid
-
-#pylint: disable=E1101,W0612,C0413
-if os.name == 'nt':
-    import win_inet_pton
-
-import estreamer.definitions as definitions
-import estreamer.crossprocesslogging as logging
-from estreamer import ParsingException
 
-from estreamer.definitions import TYPE_BYTE
-from estreamer.definitions import TYPE_UINT8
-from estreamer.definitions import TYPE_UINT16
-from estreamer.definitions import TYPE_UINT32
-from estreamer.definitions import TYPE_UINT64
-from estreamer.definitions import TYPE_UINT128
-from estreamer.definitions import TYPE_UINT160
-from estreamer.definitions import TYPE_UINT256
-from estreamer.definitions import TYPE_VARIABLE
-from estreamer.definitions import TYPE_UUID
-from estreamer.definitions import TYPE_IPV4
-from estreamer.definitions import TYPE_IPV6
-from estreamer.definitions import TYPE_MAC
-from estreamer.definitions import RECORDS
-from estreamer.definitions import BLOCK_AUTO
-from estreamer.definitions import BLOCK_SERIES_2_SHIM
-from estreamer.definitions import BLOCKS_SERIES_1
-from estreamer.definitions import BLOCKS_SERIES_2
-
-
-class Binary( object ):
-    """
-    The Binary class deserializes raw estreamer wire messages into a native
-    structured dictionary
-    """
-    def __init__( self, source ):
-        self.source = source
-        self.logger = logging.getLogger( __name__ )
-        self.data = None
-        self.length = 0
-        self.recordType = 0
-        self.blockType = 0
-        self.offset = 0
-        self.record = None
-        self.isParsed = False
-
-        self.inetNtop = socket.inet_ntop
-        if os.name == 'nt':
-            self.inetNtop = win_inet_pton.inet_ntop
-
-        # Do not touch source. Leave it alone.
-        if 'data' not in source:
-            self.logger.info('loads(): data not in response')
-            self.logger.info( source )
-
-        else:
-            self.data = source['data']
-
-        if source['messageType'] == definitions.MESSAGE_TYPE_EVENT_DATA:
-            self._eventHeader( self.data )
-
-        elif source['messageType'] == definitions.MESSAGE_TYPE_ERROR:
-            self._errorMessage( source )
-
-        else:
-            raise ParsingException(
-                'Unexpected message type: {0}'.format( source['messageType']))
-
-
-
-    # Function pointers
-    unpackDiscovery = struct.Struct('>LLBBBBBBBBLLLLLL').unpack
-    unpackUint32 = struct.Struct('>L').unpack
-    unpackMac = struct.Struct('>BBBBBB').unpack
-
-
-
-    @staticmethod
-    def _formatMacAddress( *byteArray ):
-        return ':'.join( format( byte, '02x' ) for byte in byteArray)
-
-
-
-    @staticmethod
-    def getImpact( bits ):
-        """Returns a simple integer impact value from a bitfield"""
-        impact = 0 # Default to unknown impact
-
-        # Compare bits to the corresponding masks
-        if bits & 0b11011000:
-            impact = 1
-
-        elif (bits & 0b00000110) == 0b00000110:
-            impact = 2
-
-        elif bits & 0b00000010:
-            impact = 3
-
-        elif bits & 0b00000001:
-            impact = 4
-
-        # Return the resulting impact score
-        return impact
-
-
-
-    def _ip2str( self, addressFamily, packedIp ):
-        ipAddress = self.inetNtop( addressFamily, packedIp )
-
-        if ipAddress.startswith('::ffff:'):
-            return ipAddress[7:]
-
-        return ipAddress
-
-
-
-    def _parseDiscoveryHeader( self, data, offset, record ):
-
-        (deviceId, legacyIpAddress, mac1, mac2, mac3, mac4, mac5, mac6,
-         hasIpv6, ignore1, eventSecond, eventMicrosecond, eventType,
-         eventSubtype, ignore2, ignore3 ) = Binary.unpackDiscovery(
-             data[ offset : offset + ( 4 * 10 ) ] )
-
-        recordLength = len( data )
-        recordType =  record[ 'recordType' ]
-        blockType = record[ 'blockType' ]
-        record[ 'deviceId' ] = deviceId
-
-        headerLength = int( record[ 'recordLength' ] )
-       
-        if self.logger.isEnabledFor( logging.TRACE ):
-            self.logger.log( logging.TRACE, "data value for host ip in bytes")
-
-        record[ 'hostIpAddr'] = self._ip2str( socket.AF_INET6, data[56:72] )
-
-        if self.logger.isEnabledFor( logging.TRACE ):
-
-            self.logger.log( logging.TRACE, "rec type :-:{0}, block type:={1} ip host: {2}".format(recordType, eventSubtype, record[ 'hostIpAddr' ]) )
-
-        record[ 'macAddress' ] = Binary._formatMacAddress(
-            mac1, mac2, mac3, mac4, mac5, mac6 )
-
-        record[ 'eventSecond' ] = eventSecond
-        record[ 'eventMicrosecond' ] = eventMicrosecond
-        record[ 'eventType' ] = eventType
-        record[ 'eventSubtype' ] = eventSubtype
-        offset += 40
-
-        if hasIpv6 == 1:
-            offset += 16
-            
-        return offset
-
-
-
-    @staticmethod
-    def _blockDefinition( key ):
-        if key is None:
-            raise ParsingException('Unknown block definition: {0}', key )
-
-        if not key & BLOCK_SERIES_2_SHIM:
-            if key not in BLOCKS_SERIES_1:
-                raise ParsingException('Unknown block definition: {0}', key )
-
-            else:
-                return BLOCKS_SERIES_1[ key ]
-
-        else:
-            if key not in BLOCKS_SERIES_2:
-                raise ParsingException('Unknown block definition: {0}', key )
-
-            else:
-                return BLOCKS_SERIES_2[ key ]
-
-
-
-    def _parseBlock( self, data, offset, attribute, context ):
-
-        blockKey = None
-
-        if 'block' in attribute:
-            if attribute['block'] == BLOCK_AUTO:
-                ( blockKey, ) = Binary.unpackUint32( data[ offset : ( offset + 4 ) ] )
-
-            elif isinstance( attribute['block'], int ):
-                blockKey = attribute['block']
-
-        elif 'list' in attribute:
-            if attribute['list'] == BLOCK_AUTO:
-                ( blockKey, ) = Binary.unpackUint32( data[ offset : ( offset + 4 ) ] )
-
-            elif isinstance( attribute['list'], int ):
-                blockKey = attribute['list']
-
-        if self.logger.isEnabledFor( logging.TRACE ):
-            self.logger.log(logging.TRACE, '_parseBlock: recordType: {0} blockKey: {1} '.format(self.recordType, blockKey))
-
-        if blockKey != 0 :
-            self.blockType = blockKey
-
-        blockDefinition = Binary._blockDefinition( blockKey )
-        offset = self._parseAttributes( data, offset, blockDefinition, context )
-        return offset
-
-
-
-    def _parseVariable( self, data, offset, attribute, context ):
-
-        lengthSource = attribute[ 'length' ]
-        blockLength = context[ lengthSource ]
-
-        if self.logger.isEnabledFor( logging.TRACE ):
-           binhex = data[offset:blockLength]
-           self.logger.log(
-              logging.TRACE,
-              'offset= {0}/{1} |  attribute={1} | context={2} | data[{0}:{1}]={3}'.format(
-                 offset, blockLength,
-                 attribute,
-                 context, binhex ))
-
-        attributeName = attribute[ 'name' ]
-
-        if 'adjustment' in attribute:
-            lengthAdjustment = attribute[ 'adjustment' ]
-
-            if self.logger.isEnabledFor( logging.TRACE ):
-               binhex = data[offset:( offset + 8 ) ]
-               self.logger.log(
-                  logging.TRACE,
-                  'length adjustment= {0} | block size={1} | attribute={2} | blockLength={3}'.format(
-                     lengthAdjustment, binhex,
-                     attribute,blockLength))
-        else:
-            lengthAdjustment = 0
-
-        length = blockLength + lengthAdjustment
-
-        if length > 0:
-            value = data[ offset : ( offset + length ) ]
-
-            try:
-                # Most of the time value will be a string which means it will be UTF8
-                value = value.decode('utf-8')
-
-                # Since here, remove nulls
-                context[ attributeName ] = value.replace('\0', '')
-
-            except UnicodeDecodeError:
-                # But sometimes we have blobs or just "variable" data as in a packet
-                context[ attributeName ] = binascii.hexlify( value )
-
-            offset += length
-
-        elif length == 0:
-            context[ attributeName ] = ''
-
-        else:
-            value = data[ offset : ( offset + length ) ]
-            raise ParsingException(
-                'Invalid block length ({0}) length2: {1} at pos {7}. RecordType={2}, BlockType={3}, Field={4} Length={5} Value={6}'.format(
-                    blockLength,
-                    length,
-                    self.recordType,
-                    self.blockType,
-                    attribute['name'] ,
-                    attribute['length'],
-                    value,
-                    offset))
-
-        return offset
-
-
-
-    def _parseAttributes( self, data, offset, attributes, context ):
-        recordType = self.recordType
-        blockType = self.blockType
-        recordLength = len( data )
-
-        for attribute in attributes:
-            attributeName = attribute[ 'name' ] if 'name' in attribute else None
-
-            if self.logger.isEnabledFor( logging.TRACE ):
-                binhex = data[offset:recordLength]
-                self.logger.log(
-                    logging.TRACE,
-                    'offset={0}/{1} | attribute={2} | data[{0}:{1}]={3}'.format(
-                        offset,
-                        recordLength,
-                        attribute, binhex ))
-
-            if offset > recordLength:
-                raise ParsingException(
-                    '_attributes() | offset ({0}) > length ({1}) | blockType={2} recordType={3}'.format(
-                        offset,
-                        recordLength,
-                        blockType,
-                        recordType ))
-
-            elif offset == recordLength:
-                if 'type' in attribute and attribute['type'] == TYPE_VARIABLE:
-                    context[ attributeName ] = ''
-
-                return offset
-
-            if 'discovery' in attribute:
-                offset = self._parseDiscoveryHeader( data, offset, context )
-
-            elif 'type' in attribute:
-                attributeType = attribute[ 'type' ]
-
-                if attributeType == TYPE_UUID:
-                    byteLength = 16
-                    guid = uuid.UUID( bytes = data[ offset : offset + byteLength ] )
-                    context[ attributeName ] = str(guid)
-                    offset += byteLength
-
-                elif attributeType == TYPE_IPV6:
-                    byteLength = 16
-                    context[ attributeName ] = self._ip2str(
-                        socket.AF_INET6,
-                        data[ offset : offset + byteLength ] )
-
-                    offset += byteLength
-
-                elif attributeType == TYPE_IPV4:
-                    byteLength = 4
-                    context[ attributeName ] = self._ip2str(
-                        socket.AF_INET,
-                        data[ offset : offset + byteLength ] )
-
-                    offset += byteLength
-
-                elif attributeType == TYPE_MAC:
-                    byteLength = 6
-                    macX = Binary.unpackMac(
-                        data[ offset : offset + byteLength ] )
-
-                    context[ attributeName ] = Binary._formatMacAddress( *macX )
-                    offset += byteLength
-
-                elif attributeType == TYPE_VARIABLE:
-                    if self.logger.isEnabledFor( logging.TRACE ):
-                        self.logger.log(
-                        logging.TRACE,
-                        'attributeVariable: data={0} | offset={1} | attribute={2} | context={3}'.format(
-                            data,
-                            offset, attribute, context ))
-
-                    offset = self._parseVariable( data, offset, attribute, context )
-
-                elif attributeType == TYPE_UINT128 or \
-                    attributeType == TYPE_UINT160 or \
-                    attributeType == TYPE_UINT256:
-
-                    byteLength = len( attributeType )
-
-                    #Unpack as network big-endian
-                    value = struct.unpack(
-                        '>' + attributeType,
-                        data[ offset : offset + byteLength ])
-
-                    if self.logger.isEnabledFor( logging.TRACE ):
-                        self.logger.log(
-                        logging.TRACE,
-                        'offset={0}/{1} | attribute={2} | value={3} | data={4}'.format(
-                            offset,
-                            byteLength,
-                            attribute, value, data[offset : offset + byteLength] ))
-
-                    # repack native. This step is probably not necessary as
-                    # endianness should only apply to bytes, not bits and we're
-                    # pulling out raw groups of bytes. TODO
-                    value = struct.pack( attributeType, *value )
-
-                    context[ attributeName ] = binascii.hexlify( value )
-                    offset += byteLength
-
-                else:
-                    if attributeType == TYPE_BYTE:
-                        byteLength = 1
-                        
-                    elif attributeType == TYPE_UINT8:
-                        byteLength = 1
-                        
-                    elif attributeType == TYPE_UINT16:
-                        byteLength = 2
-
-                    elif attributeType == TYPE_UINT32:
-                        byteLength = 4
-
-                    elif attributeType == TYPE_UINT64:
-                        byteLength = 8
-
-                    else:
-                        raise ParsingException( 'Unknown type: {0}'.format( attributeType ) )
-                   
-
-                    if recordType == 98 :
-                        maxLen = len(data)
-
-                        context['id'] = struct.unpack('>'+TYPE_UINT32, data[16:20])[0]
-                        context['protocol'] = struct.unpack('>'+TYPE_UINT32, data[20:24])[0]
-
-                        #24-28  Type always 0
-                        recLenBytes = struct.unpack('>'+TYPE_UINT32, data[28:32])[0]
-                        nameLength = int( recLenBytes - 8 )  # 24 - 8
-                        maxLength = int(nameLength + 32)
-                        name = struct.unpack('>'+str(nameLength)+'s',data[32: maxLength])[0]
-                        self.logger.log ( logging.TRACE, 'username(len): {0}|size: {1}|data: {1}'.format (recLenBytes, nameLength, data[32: maxLength])  )
-
-                        context['username'] = name.decode('utf-8')
-                        if (len(name) > 0 ) :
-                            username = str(context['username'])
-                            context['username'] = username.rstrip(username[-1])
-
-                        self.logger.log( logging.TRACE, 'username : {0}'.format(name) )
-                        offset = maxLength
-
-                    else:     
-                        try:
-                            self.logger.log( logging.TRACE, 'unpacking binary data {0}'.format(attributeName) )
-                            context[ attributeName ] = struct.unpack(
-                                 '>' + attributeType, data[ offset : offset + byteLength ] )[ 0 ]
-                            offset += byteLength
-
-                        except struct.error:
-                            hData = binascii.hexlify( data[ offset: offset + byteLength ] )
-                            hexData = binascii.hexlify( data )
-
-                            raise ParsingException('Error Decoding binary for rec_type={0} attr={1} type={2} data={3} data_full={4}'.format( recordType, attributeName, attributeType, hData, hexData ) )
-
-
-            elif 'list' in attribute:
-                oldOffset = offset
-
-                ( listType, listLength ) = struct.unpack(
-                    '>LL',
-                    data[  offset : ( offset + 8 ) ] )
-
-                offset += 8
-
-                container = {
-                    'listType': listType,
-                    'listLength': listLength,
-                    'items': []
-                }
-
-                while ( offset - oldOffset ) < listLength:
-                    block = {}
-                    offset = self._parseBlock( data, offset, attribute, block )
-                    container[ 'items' ].append( block )
-
-                context[ attributeName ] = container
-
-            elif 'block' in attribute:
-                block = context
-                if attributeName is not None:
-                    context[ attributeName ] = {}
-                    block = context[ attributeName ]
-
-                self.logger.log( logging.TRACE, 'Parsing Attribute (Block Type) :-: attr name={0}:attr={1}:attr_type={2}:value={3}'.format(attributeName, attribute, block, offset) )
-                offset = self._parseBlock( data, offset, attribute, block )
-
-        return offset
-
-
-
-    def _parse( self, data, offset, record ):
-        recordType = record[ 'recordType' ]
-        blockType = self.blockType
-        recordLength = len( data )
-
-        if self.logger.isEnabledFor( logging.TRACE ):
-            self.logger.log(
-                logging.TRACE,
-                '_parse recordType={2} offset={0}/{1} | '.format(
-                    offset,
-                    recordLength, recordType))
-        try:
-            self.logger.log(logging.TRACE, '_parse: identifying blockType: recordType={0} '.format(recordType))
-            #Dynamic according to blocktype
-
-            if recordType == 71 or recordType == 210:
-                blockSubType = struct.unpack(
-                                '>' + TYPE_UINT32,
-                                data[ 72 : 76 ] )[ 0 ]
-
-                self.logger.log(logging.TRACE, 'parsing start {0} offset: {1} parsing: {2}'.format(data, offset, data[72:76]))
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
-
-                if blockSubType == 160 :
-                    attributes = RECORDS[  1060 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'IPS BLOCK {0} attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 163 :
-                    attributes = RECORDS[ 1061 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 168 :
-                    attributes = RECORDS[ 1067 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 169 :
-                    attributes = RECORDS[ 1069 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 170 :
-                    attributes = RECORDS[ 1070 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 171 :
-                    attributes = RECORDS[ 1071 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 173 :
-                    attributes = RECORDS[ 1073 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 174 :
-                    attributes = RECORDS[ 1074 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-                else :
-                    attributes = RECORDS[ 1071 ][ 'attributes' ]
-
-                    self.logger.error( 'Unsupported Record/Block Type: Record={0} BlockType={1}'.format( recordType, blockType ) )
-                
-
-            elif recordType == 400 :
-                blockSubType = struct.unpack(
-                                '>' + TYPE_UINT32,
-                                data[ 16 : 20 ] )[ 0 ] 
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
-
-                if blockSubType == 60 :
-                    attributes = RECORDS[  401 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'IPS BLOCK {0} attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 81 :
-                    attributes = RECORDS[ 402 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 85 :
-                    attributes = RECORDS[ 400 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                else :
-                    attributes = RECORDS[ recordType ][ 'attributes' ]
-
-                    self.logger.error( 'Unsupported Record/Block Type: Record={0} BlockType={1}'.format( recordType, blockType ) )
-
-            elif recordType == 500 :
-
-                blockSubType = struct.unpack(
-                                '>' + TYPE_UINT32,
-                                data[ 16 : 20 ] )[ 0 ] 
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
-
-                if blockSubType == 79 :
-                    attributes = RECORDS[ 501 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing FILE event {0} : attributes={1}'.format(blockType, attributes))
-
-                else :
-                    attributes = RECORDS[ recordType ][ 'attributes' ]
-
-            elif recordType == 502 :
-
-                blockSubType = struct.unpack(
-                                '>' + TYPE_UINT32,
-                                data[ 16 : 20 ] )[ 0 ] 
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
-
-                if blockSubType == 79 :
-                    attributes = RECORDS[ 503 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing FILE_MALWARE event {0} : attributes={1}'.format(blockType, attributes))
-
-                else :
-                    attributes = RECORDS[ recordType ][ 'attributes' ]
-            else :
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType unknown'.format(recordType))
-
-                attributes = RECORDS[ recordType ][ 'attributes' ] 
-            
-            self.logger.log(logging.TRACE, '_parse: block type identified : parsing attributes: recordType: {0}, blockType unknown'.format(recordType))
-
-            offset = self._parseAttributes( data, offset, attributes, record )
-
-        except (AttributeError, ValueError) as ex:
-            hexRecord = binascii.hexlify( data )
-            self.logger.error( 'AttributeError: Record={0}'.format( hexRecord ) )
-            self.logger.exception(ex)
-            return
-
-        if offset != recordLength:
-            msg = '__parse(): Offset ({0}) != recordLength ({1}) for recordType {2} blockType {3}'.format(
-                offset,
-                recordLength,
-                recordType, blockType)
-
-            if offset < recordLength:
-                self.logger.warning( msg )
-
-            else:
-                raise ParsingException( msg )
-
-
-
-    def _eventHeader( self, data ):
-        ( recordType, recordLength ) = struct.unpack( '>LL', data[0:8] )
-
-        self.recordType = recordType
-        blockType = 0
-
-        if self.logger.isEnabledFor( logging.TRACE ):
-            self.logger.log(
-                logging.TRACE,
-                '_eventHeader: start of event header: recordType={0} blockType={1} | data={2} | hex={3}'.format(
-                    recordType,
-                    blockType, data,  binascii.hexlify( data ) ))
-
-        offset = 0
-
-        record = {
-            'recordType': recordType,
-            'recordLength': recordLength,
-            'blockType': blockType
-        }
-
-        if len( data ) == ( 8 + recordLength ):
-            record[ 'archiveTimestamp' ] = 0
-            record[ 'checksum' ] = 0
-            offset = 8
-
-        elif len( data ) == ( 16 + recordLength ):
-            ( archiveTimestamp, checksum ) = struct.unpack( '>LL', data[ 8:16 ] )
-            record[ 'archiveTimestamp' ] = archiveTimestamp
-            record[ 'checksum' ] = checksum
-            offset = 16
-
-        else:
-            raise ParsingException('Invalid length')
-
-        if self.logger.isEnabledFor( logging.TRACE ):
-            self.logger.log(
-                logging.TRACE,
-                '_eventHeader : exiting event header: recordType={0} blockType={1} | data={2} | hex={3}'.format(
-                    recordType,
-                    blockType, data,  binascii.hexlify( data ) ))
-
-        self.offset = offset
-        self.record = record
-
-
-
-    def _errorMessage( self, source ):
-        ( errorCode, length ) = struct.unpack( '>lH', source['data'][0:6] )
-        offset = 6
-
-        expectedLength = offset + length
-        actualLength = len( source['data'] )
-
-        if expectedLength != actualLength:
-            raise ParsingException(
-                'Expected error message length is {0} but actual is {1}'.format(
-                    expectedLength,
-                    actualLength ))
-
-
-        value = source[ 'data' ][ offset : ( offset + length ) ]
-
-        try:
-            # Most of the time value will be a string which means it will be UTF8
-            value = value.decode('utf-8')
-
-            # Since here, remove nulls
-            value = value.replace('\0', '')
-
-        except UnicodeDecodeError:
-            # If this is happening here then something seriously bad is going on
-            value = binascii.hexlify( value )
-
-        self.record = {
-            'code': errorCode,
-            'text': value
-        }
-
-        self.offset = actualLength
-        self.isParsed = True
-
-
-
-    def parse( self ):
-        """
-        This is the core of this project. Takes a binary message from
-        eStreamer and loads it into a common dict format which is used
-        everywhere else
-        """
-        if not self.isParsed:
-            if self.recordType not in RECORDS:
-                self.logger.warning( '__decode(): Unknown record type {0}.'.format(
-                    self.recordType ))
-                return
-
-            if self.logger.isEnabledFor( logging.TRACE ):
-                self.logger.log( logging.TRACE, binascii.hexlify( self.data ) )
-
-            self._parse( self.data, self.offset, self.record )
-            self.isParsed = True
-
-
-
-
-
-def loads( source ):
-    """
-    Converts an incoming raw binary response into native structured
-    dictionary
-    """
-    parser = Binary( source )
-    parser.parse()
-    return parser.record
-
-
-
-def dumps( source ):
-    """Returns the source parameter as bytes"""
-    # data should already be bytes. But if not...
-    if isinstance( source, dict ):
-        return pickle.dumps( source )
-
-    # do nothing
-    return source
+#pylint: disable=W0401,W0614
+from estreamer.definitions.blocks_series1 import *
+from estreamer.definitions.blocks_series2 import *
+from estreamer.definitions.core import *
+
+RECORDS = {
+    # 2
+    RECORD_PACKET: {
+        'name': u'Packet Data',
+        'attributes': [
+            { 'type': TYPE_UINT32, 'name': 'deviceId' },
+            { 'type': TYPE_UINT32, 'name': 'eventId' },
+            { 'type': TYPE_UINT32, 'name': 'eventSecond' },
+            { 'type': TYPE_UINT32, 'name': 'packetSecond' },
+            { 'type': TYPE_UINT32, 'name': 'packetMicrosecond' },
+            { 'type': TYPE_UINT32, 'name': 'linkType' },
+            { 'type': TYPE_UINT32, 'name': 'packetLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'packetLength', 'name': 'packetData'}],
+        'category': u'PACKET' },
+
+    # 4
+    RECORD_PRIORITY: {
+        'name': u'Priority Metadata',
+        'attributes': [
+            { 'type': TYPE_UINT32, 'name': 'id' },
+            { 'type': TYPE_UINT16, 'name': 'length' },
+            { 'type': TYPE_VARIABLE, 'length': 'length', 'name': 'name' }
+        ],
+        'category': u'PRIORITY' },
+
+    # 9
+    RECORD_INTRUSION_IMPACT_ALERT: {
+        'name': u'Intrusion Impact Alert',
+        'attributes': [ { 'block': BLOCK_INTRUSION_IMPACT_ALERT_53 }],
+        'category': u'IMPACT' },
+
+    # 10
+    RECORD_RNA_NEW_HOST: {
+        'name': u'New Host Detected',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_PROFILE_DATA_52, 'name': 'hostProfile' }],
+        'category': u'RNA' },
+
+    # 11
+    RECORD_RNA_NEW_TCP_SERVICE: {
+        'name': u'New TCP Server',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_SERVER_DATA_41, 'name': 'hostServer'}],
+        'category': u'RNA' },
+
+    # 12
+    RECORD_RNA_NEW_UDP_SERVICE: {
+        'name': u'New UDP Server',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_SERVER_DATA_41, 'name': 'hostServer'}],
+        'category': u'RNA' },
+
+    # 13
+    RECORD_RNA_NEW_NET_PROTOCOL: {
+        'name': u'New Network Protocol',
+        'attributes': [
+            { 'discovery': True },
+            { 'type': TYPE_UINT16, 'name': 'networkProtocol'}],
+        'category': u'RNA' },
+
+    # 14
+    RECORD_RNA_NEW_XPORT_PROTOCOL: {
+        'name': u'New Transport Protocol',
+        'attributes': [
+            { 'discovery': True },
+            { 'type': TYPE_BYTE, 'name': 'transportProtocol'}],
+        'category': u'RNA' },
+
+    # 15
+    RECORD_RNA_NEW_CLIENT_APP: {
+        'name': u'New Client Application',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_CLIENT_APPLICATION_50, 'name': 'client' }],
+        'category': u'RNA' },
+
+    # 16
+    RECORD_RNA_CHANGE_TCP_SERVICE_INFO: {
+        'name': u'TCP Server Information Update',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_SERVER_DATA_41, 'name': 'hostServer'}],
+        'category': u'RNA' },
+
+    # 17
+    RECORD_RNA_CHANGE_UDP_SERVICE_INFO: {
+        'name': u'UDP Server Information Update',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_SERVER_DATA_41, 'name': 'hostServer'}],
+        'category': u'RNA' },
+
+    # 18
+    RECORD_RNA_CHANGE_OS: {
+        'name': u'OS Information Update',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_OPERATING_SYSTEM_DATA_35 }],
+        'category': u'RNA' },
+
+    # 19
+    RECORD_RNA_CHANGE_HOST_TIMEOUT: {
+        'name': u'Host Timeout',
+        'attributes': [ { 'discovery': True }],
+        'category': u'RNA' },
+
+    # 20
+    RECORD_RNA_CHANGE_HOST_REMOVE: {
+        'name': u'Host IP Address Reused',
+        'attributes': [ { 'discovery': True }],
+        'category': u'RNA' },
+
+    # 21
+    RECORD_RNA_CHANGE_HOST_ANR_DELETE: {
+        'name': u'Host Deleted: Host Limit Reached',
+        'attributes': [ { 'discovery': True }],
+        'category': u'RNA' },
+
+    # 22
+    RECORD_RNA_CHANGE_HOPS: {
+        'name': u'Hops Change',
+        'attributes': [
+            { 'discovery': True },
+            { 'type': TYPE_BYTE, 'name': 'hops'}],
+        'category': u'RNA' },
+
+    # 23
+    RECORD_RNA_CHANGE_TCP_PORT_CLOSED: {
+        'name': u'TCP Port Closed',
+        'attributes': [
+            { 'discovery': True },
+            { 'type': TYPE_UINT16, 'name': 'port'}],
+        'category': u'RNA' },
+
+    # 24
+    RECORD_RNA_CHANGE_UDP_PORT_CLOSED: {
+        'name': u'UDP Port Closed',
+        'attributes': [
+            { 'discovery': True },
+            { 'type': TYPE_UINT16, 'name': 'port'}],
+        'category': u'RNA' },
+
+    # 25
+    RECORD_RNA_CHANGE_TCP_PORT_TIMEOUT: {
+        'name': u'TCP Port Timeout',
+        'attributes': [
+            { 'discovery': True },
+            { 'type': TYPE_UINT16, 'name': 'port'}],
+        'category': u'RNA' },
+
+    # 26
+    RECORD_RNA_CHANGE_UDP_PORT_TIMEOUT: {
+        'name': u'UDP Port Timeout',
+        'attributes': [
+            { 'discovery': True },
+            { 'type': TYPE_UINT16, 'name': 'port' }],
+        'category': u'RNA' },
+
+    # 27
+    RECORD_RNA_CHANGE_MAC_INFO: {
+        'name': u'MAC Information Change',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_MAC_ADDRESS_49, 'name': 'mac' }],
+        'category': u'RNA' },
+
+    # 28
+    RECORD_RNA_CHANGE_MAC_ADD: {
+        'name': u'Additional MAC Detected for Host',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_MAC_ADDRESS_49, 'name': 'mac' }],
+        'category': u'RNA' },
+
+    # 29
+    RECORD_RNA_CHANGE_HOST_IP: {
+        'name': u'Host IP Address Changed',
+        'attributes': [
+            { 'discovery': True },
+            { 'type': TYPE_IPV6, 'name': 'ipAddress' }],
+        'category': u'RNA' },
+
+    # 31
+    RECORD_RNA_CHANGE_HOST_TYPE: {
+        'name': u'Host Identified as Router/Bridge',
+        'attributes': [
+            { 'discovery': True },
+            { 'type': TYPE_UINT32, 'name': 'hostType'}],
+        'category': u'RNA' },
+
+    # 34
+    RECORD_RNA_CHANGE_VLAN_TAG: {
+        'name': u'VLAN Tag Information Update',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_VLAN_DATA }],
+        'category': u'RNA' },
+
+    # 35
+    RECORD_RNA_CHANGE_CLIENT_APP_TIMEOUT: {
+        'name': u'Client Application Timeout',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_CLIENT_APPLICATION_50, 'name': 'client' }],
+        'category': u'RNA' },
+
+    # 42
+    RECORD_RNA_CHANGE_NETBIOS_NAME: {
+        'name': u'NetBIOS Name Change',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_STRING_INFORMATION }],
+        'category': u'RNA' },
+
+    # 44
+    RECORD_RNA_CHANGE_HOST_DROPPED: {
+        'name': u'Host Dropped: Host Limit Reached',
+        'attributes': [ { 'discovery': True }],
+        'category': u'RNA' },
+
+    # 45
+    RECORD_RNA_CHANGE_BANNER_UPDATE: {
+        'name': u'Update Banner',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_SERVER_BANNER }],
+        'category': u'RNA' },
+
+    # 46
+    RECORD_RNA_USER_ADD_ATTRIBUTE: {
+        'name': u'Add Host Attribute',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_ATTRIBUTE_DEFINITION_47 }],
+        'category': u'RNA' },
+
+    # 47
+    RECORD_RNA_USER_UPDATE_ATTRIBUTE: {
+        'name': u'Update Host Attribute',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_ATTRIBUTE_DEFINITION_47 }],
+        'category': u'RNA' },
+
+    # 48
+    RECORD_RNA_USER_DELETE_ATTRIBUTE: {
+        'name': u'Delete Host Attribute',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_ATTRIBUTE_DEFINITION_47 }],
+        'category': u'RNA' },
+
+    # 51
+    RECORD_RNA_CHANGE_TCP_SERVICE_CONFIDENCE: {
+        'name': u'TCP Server Confidence Update',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_SERVER_DATA_41 }],
+        'category': u'RNA' },
+
+    # 52
+    RECORD_RNA_CHANGE_UDP_SERVICE_CONFIDENCE: {
+        'name': u'UDP Server Confidence Update',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_SERVER_DATA_41 }],
+        'category': u'RNA' },
+
+    # 53
+    RECORD_RNA_CHANGE_OS_CONFIDENCE: {
+        'name': u'OS Confidence Update',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_OPERATING_SYSTEM_DATA_35 }],
+        'category': u'RNA' },
+
+    # 54
+    METADATA_RNA_FINGERPRINT: {
+        'name': u'Fingerprint Metadata',
+        'attributes': [
+            { 'type': TYPE_UUID, 'name': 'uuid' },
+            { 'type': TYPE_UINT32, 'name': 'nameLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'nameLength', 'name': 'name' },
+            { 'type': TYPE_UINT32, 'name': 'vendorLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'vendorLength', 'name': 'vendor' },
+            { 'type': TYPE_UINT32, 'name': 'versionLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'versionLength', 'name': 'version'}],
+        'category': u'FINGERPRINT' },
+
+    # 55
+    METADATA_RNA_CLIENT_APPLICATION: {
+        'name': u'Client Application Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'CLIENT APP' },
+
+    # 57
+    METADATA_RNA_VULNERABILITY: {
+        'name': u'Vulnerability Metadata',
+        'attributes': [
+            { 'type': TYPE_UINT32, 'name': 'id' },
+            { 'type': TYPE_UINT32, 'name': 'impact' },
+            { 'type': TYPE_BYTE, 'name': 'exploits' },
+            { 'type': TYPE_BYTE, 'name': 'remote' },
+            { 'type': TYPE_UINT32, 'name': 'entryDateLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'entryDateLength', 'name': 'entryDate' },
+            { 'type': TYPE_UINT32, 'name': 'publishedDateLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'publishedDateLength', 'name': 'publishedDate' },
+            { 'type': TYPE_UINT32, 'name': 'modifiedDateLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'modifiedDateLength', 'name': 'modifiedDate' },
+            { 'type': TYPE_UINT32, 'name': 'titleLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'titleLength', 'name': 'title' },
+            { 'type': TYPE_UINT32, 'name': 'shortDescriptionLength' },
+            {
+                'type': TYPE_VARIABLE,
+                'length': 'shortDescriptionLength',
+                'name': 'shortDescription' },
+            { 'type': TYPE_UINT32, 'name': 'descriptionLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'descriptionLength', 'name': 'description' },
+            { 'type': TYPE_UINT32, 'name': 'technicalDescriptionLength' },
+            {
+                'type': TYPE_VARIABLE,
+                'length': 'technicalDescriptionLength',
+                'name': 'technicalDescription' },
+            { 'type': TYPE_UINT32, 'name': 'solutionLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'solutionLength', 'name': 'solution' } ],
+        'category': u'VULNERABILITY' },
+
+    # 58
+    METADATA_RNA_CRITICALITY: {
+        'name': u'Criticality Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'CRITICALITY' },
+
+    # 59
+    METADATA_RNA_NETWORK_PROTOCOL: {
+        'name': u'Network Protocol Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'NETWORK' },
+
+    # 60
+    METADATA_RNA_ATTRIBUTE: {
+        'name': u'Attribute Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'ATTRIBUTE' },
+
+    # 61
+    METADATA_RNA_SCAN_TYPE: {
+        'name': u'Scan Type Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SCAN TYPE' },
+
+    # 62
+    RECORD_USER: {
+        'name': u'User Metadata',
+        'attributes': [ { 'block': BLOCK_USER_60 } ],
+        'category': u'SYSTEM USER' },
+
+    # 63
+    METADATA_RNA_SERVICE: {
+        'name': u'Server Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SERVICE' },
+
+    # 66
+    METADATA_RULE_MESSAGE: {
+        'name': u'Rule Message Metadata',
+        'attributes': [
+            { 'type': TYPE_UINT32, 'name': 'generatorId' },
+            { 'type': TYPE_UINT32, 'name': 'ruleId' },
+            { 'type': TYPE_UINT32, 'name': 'ruleRevision' },
+            { 'type': TYPE_UINT32, 'name': 'signatureId' },
+            { 'type': TYPE_UINT16, 'name': 'messageLength' },
+            { 'type': TYPE_UUID, 'name': 'ruleUuid' },
+            { 'type': TYPE_UUID, 'name': 'ruleRevisionUuid' },
+            { 'type': TYPE_VARIABLE, 'length': 'messageLength', 'name': 'message'}],
+        'category': u'RULE' },
+
+    # 67
+    METADATA_CLASSIFICATION: {
+        'name': u'Classification Metadata',
+        'attributes': [
+            { 'type': TYPE_UINT32, 'name': 'id' },
+            { 'type': TYPE_UINT16, 'name': 'nameLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'nameLength', 'name': 'name'},
+            { 'type': TYPE_UINT16, 'name': 'descriptionLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'descriptionLength', 'name': 'description'},
+            { 'type': TYPE_UUID, 'name': 'uuid' },
+            { 'type': TYPE_UUID, 'name': 'revisionUuid' }],
+        'category': u'CLASSIFICATION' },
+
+    # 69
+    METADATA_CORRELATION_POLICY: {
+        'name': u'Correlation Policy Metadata',
+        'attributes': [
+            # Documentation diagram is incorrect. See sizes in notes
+            { 'type': TYPE_UINT32, 'name': 'id' },
+            { 'type': TYPE_UINT16, 'name': 'nameLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'nameLength', 'name': 'name' },
+            { 'type': TYPE_UINT16, 'name': 'descriptionLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'descriptionLength', 'name': 'description' },
+            { 'type': TYPE_UUID, 'name': 'uuid' },
+            { 'type': TYPE_UUID, 'name': 'revisionUuid' }],
+        'category': u'POLICY' },
+
+    # 70
+    METADATA_CORRELATION_RULE: {
+        'name': u'Correlation Rule Metadata',
+        'attributes': [
+            { 'type': TYPE_UINT32, 'name': 'id' },
+            { 'type': TYPE_UINT16, 'name': 'nameLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'nameLength', 'name': 'name' },
+            { 'type': TYPE_UINT16, 'name': 'descriptionLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'descriptionLength', 'name': 'description' },
+            { 'type': TYPE_UINT16, 'name': 'eventTypeLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'eventTypeLength', 'name': 'eventType' },
+            { 'type': TYPE_UUID, 'name': 'correlationRuleUuid' },
+            { 'type': TYPE_UUID, 'name': 'correlationRevisionUuid' },
+            { 'type': TYPE_UUID, 'name': 'whitelistUuid' }],
+        'category': u'RULE' },
+
+    # 71
+
+    RECORD_RNA_CONNECTION_STATISTICS: {
+        'name': u'Connection Statistics',
+        'attributes': [
+            { 'discovery': True },
+            # This will be 160, 163, 168, 173 or 174
+            { 'block': BLOCK_CONNECTION_STATISTICS_171 }],
+        'category': u'RNA' },
+
+    RECORD_RNA_CONNECTION_STATISTICS_V160: {
+        'name': u'Connection Statistics',
+        'attributes': [
+            { 'discovery': True },
+            # This will be 160, 163, 168, 173 or 174
+            { 'block': BLOCK_CONNECTION_STATISTICS_160 }],
+        'category': u'RNA' },
+
+    RECORD_RNA_CONNECTION_STATISTICS_V161: {
+        'name': u'Connection Statistics',
+        'attributes': [
+            { 'discovery': True },
+            # This will be 160, 163, 168, 173 or 174
+            { 'block': BLOCK_CONNECTION_STATISTICS_161 }],
+        'category': u'RNA' },
+
+    RECORD_RNA_CONNECTION_STATISTICS_V169: {
+        'name': u'Connection Statistics',
+        'attributes': [
+            { 'discovery': True },
+            # This will be 160, 163, 168, 173 or 174
+            { 'block': BLOCK_CONNECTION_STATISTICS_169 }],
+        'category': u'RNA' },
+
+    RECORD_RNA_CONNECTION_STATISTICS_V170: {
+        'name': u'Connection Statistics',
+        'attributes': [
+            { 'discovery': True },
+            # This will be 160, 163, 168, 173 or 174
+            { 'block': BLOCK_CONNECTION_STATISTICS_170 }],
+        'category': u'RNA' },
+
+    RECORD_RNA_CONNECTION_STATISTICS_V171: {
+        'name': u'Connection Statistics',
+        'attributes': [
+            { 'discovery': True },
+            # This will be 160, 163, 168, 173 or 174
+            { 'block': BLOCK_CONNECTION_STATISTICS_171 }],
+        'category': u'RNA' },
+
+    RECORD_RNA_CONNECTION_STATISTICS_V173: {
+        'name': u'Connection Statistics',
+        'attributes': [
+            { 'discovery': True },
+            # This will be 160, 163, 168, 173 or 174
+            { 'block': BLOCK_CONNECTION_STATISTICS_173 }],
+        'category': u'RNA' },
+
+    RECORD_RNA_CONNECTION_STATISTICS_V174: {
+        'name': u'Connection Statistics',
+        'attributes': [
+            { 'discovery': True },
+            # This will be 160, 163, 168, 173 or 174
+            { 'block': BLOCK_CONNECTION_STATISTICS_174 }],
+        'category': u'RNA' },
+
+    # 73
+    RECORD_RNA_CONNECTION_CHUNK: {
+        'name': u'Connection Chunk',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_CONNECTION_CHUNK_511 }],
+        'category': u'RNA' },
+
+    # 74
+    RECORD_RNA_USER_SET_OS: {
+        'name': u'User Set OS',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_PRODUCT_DATA_51 }],
+        'category': u'RNA' },
+
+    # 75
+    RECORD_RNA_USER_SET_SERVICE: {
+        'name': u'User Set Server',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_PRODUCT_DATA_51 }],
+        'category': u'RNA' },
+
+    # 76
+    RECORD_RNA_USER_DELETE_PROTOCOL: {
+        'name': u'User Delete Protocol',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_PROTOCOL_LIST_47 }],
+        'category': u'RNA' },
+
+    # 77
+    RECORD_RNA_USER_DELETE_CLIENT_APP: {
+        'name': u'User Delete Client Application',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_CLIENT_APPLICATION_LIST }],
+        'category': u'RNA' },
+
+    # 78
+    RECORD_RNA_USER_DELETE_ADDRESS: {
+        'name': u'User Delete Address',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_HOSTS_47 }],
+        'category': u'RNA' },
+
+    # 79
+    RECORD_RNA_USER_DELETE_SERVICE: {
+        'name': u'User Delete Server',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_SERVER_LIST }],
+        'category': u'RNA' },
+
+    # 80
+    RECORD_RNA_USER_VULNERABILITIES_VALID: {
+        'name': u'User Set Valid Vulnerabilities',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_VULNERABILITY_CHANGE_47 }],
+        'category': u'RNA' },
+
+    # 81
+    RECORD_RNA_USER_VULNERABILITIES_INVALID: {
+        'name': u'User Set Invalid Vulnerabilities',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_VULNERABILITY_CHANGE_47 }],
+        'category': u'RNA' },
+
+    # 82
+    RECORD_RNA_USER_SET_CRITICALITY: {
+        'name': u'User Set Host Criticality',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_CRITICALITY_CHANGE_47 }],
+        'category': u'RNA' },
+
+    # 83
+    RECORD_RNA_USER_SET_ATTRIBUTE_VALUE: {
+        'name': u'User Set Attribute Value',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_ATTRIBUTE_VALUE_47 }],
+        'category': u'RNA' },
+
+    # 84
+    RECORD_RNA_USER_DELETE_ATTRIBUTE_VALUE: {
+        'name': u'User Delete Attribute Value',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_ATTRIBUTE_VALUE_47 }],
+        'category': u'RNA' },
+
+    # 85
+    RECORD_RNA_USER_ADD_HOST: {
+        'name': u'User Add Host',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_HOSTS_47 }],
+        'category': u'RNA' },
+
+    # 86
+    RECORD_RNA_USER_ADD_SERVICE: {
+        'name': u'User Add Server',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_PRODUCT_DATA_51 }],
+        'category': u'RNA' },
+
+    # 87
+    RECORD_RNA_USER_ADD_CLIENT_APP: {
+        'name': u'User Add Client Application',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_CLIENT_APPLICATION_LIST }],
+        'category': u'RNA' },
+
+    # 88
+    RECORD_RNA_USER_ADD_PROTOCOL: {
+        'name': u'User Add Protocol',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_PROTOCOL_LIST_47 }],
+        'category': u'RNA' },
+
+    # 89
+    RECORD_RNA_USER_ADD_SCAN_RESULT: {
+        'name': u'User Add Scan Result',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_SCAN_RESULT_DATA_52 }],
+        'category': u'RNA' },
+
+    # 90
+    METADATA_RNA_SOURCE_TYPE: {
+        'name': u'Source Type',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SOURCE TYPE' },
+
+    # 91
+    METADATA_RNA_SOURCE_APP: {
+        'name': u'Source Application',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SOURCE APP' },
+
+    # 92
+    RUA_EVENT_CHANGE_USER_DROPPED: {
+        'name': u'User Dropped Change Event',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_INFORMATION_DATA_50, 'name': 'user'}],
+        'category': u'RUA' },
+
+    # 93
+    RUA_EVENT_CHANGE_USER_REMOVE: {
+        'name': u'User Removed Change Event',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_INFORMATION_VPN_LOGOFF_62, 'name': 'user'}],
+        'category': u'RUA' },
+
+    # 94
+    RUA_EVENT_NEW_USER: {
+        'name': u'New User Identification Event',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_INFORMATION_VPN_LOGOFF_62, 'name': 'user'}],
+        'category': u'RUA' },
+
+    # 95
+    RUA_EVENT_CHANGE_USER_LOGIN: {
+        'name': u'User Login Change Event',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_INFORMATION_VPN_LOGOFF_62, 'name': 'user' },
+        ],
+        'category': u'RUA' },
+
+    # 96
+    METADATA_RNA_SOURCE_DETECTOR: {
+        'name': u'Source Detector',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SOURCE DETECTOR' },
+
+    # 98
+    RECORD_RUA_USER: {
+        'name': u'User',
+        'attributes': [ { 'block': BLOCK_USER_60 } ],
+        'category': u'RUA USER' },
+
+    # 101
+    RECORD_RNA_NEW_OS: {
+        'name': u'New OS Event',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_OPERATING_SYSTEM_FINGERPRINT_51, 'name': 'osfingerprint' }],
+        'category': u'RNA' },
+
+    # 102
+    RECORD_RNA_CHANGE_IDENTITY_CONFLICT: {
+        'name': u'Identity Conflict Event',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_IDENTITY_DATA, 'name': 'identity' }],
+        'category': u'RNA' },
+
+    # 103
+    RECORD_RNA_CHANGE_IDENTITY_TIMEOUT: {
+        'name': u'Identity Timeout Event',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_IDENTITY_DATA, 'name': 'identity' }],
+        'category': u'RNA' },
+
+    # 106
+    RECORD_THIRD_PARTY_SCAN_VULNERABILITY: {
+        'name': u'Third Party Scanner Vulnerability',
+        'attributes': [
+            { 'type': TYPE_UINT32, 'name': 'id' },
+            { 'type': TYPE_UINT32, 'name': 'scannerType' },
+            { 'type': TYPE_UINT32, 'name': 'titleLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'titleLength', 'name': 'title' },
+            { 'type': TYPE_UINT32, 'name': 'descriptionLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'descriptionLength', 'description': 'title' },
+            { 'type': TYPE_UINT32, 'name': 'cveIdLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'cveIdLength', 'name': 'cveId' },
+            { 'type': TYPE_UINT32, 'name': 'bugtraqIdLength' },
+            { 'type': TYPE_VARIABLE, 'length': 'bugtraqLength', 'name': 'bugtraqId' } ],
+        'category': u'VULNERABILITY' },
+
+    # 107
+    RECORD_RNA_CHANGE_CLIENT_APP_UPDATE: {
+        'name': u'Client Application Update',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_HOST_CLIENT_APPLICATION_50, 'name': 'client'}],
+        'category': u'RNA' },
+
+    # 109
+    RECORD_RNA_WEB_APPLICATION_PAYLOAD: {
+        'name': u'Web Application',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'PAYLOAD' },
+
+    # 110
+    RECORD_INTRUSION_EXTRA_DATA: {
+        'name': u'Intrusion Event Extra Data',
+        'attributes': [ { 'block': BLOCK_EVENT_EXTRA_DATA } ],
+        'category': u'EXTRA DATA' },
+
+    # 111
+    METADATA_INTRUSION_EXTRA_DATA: {
+        'name': u'Intrusion Event Extra Data Metadata',
+        'attributes': [ { 'block': BLOCK_EVENT_EXTRA_DATA_METADATA } ],
+        'category': u'EXTRA DATA TYPE' },
+
+    # 112
+    RECORD_CORRELATION_EVENT: {
+        'name': u'Correlation Event',
+        'attributes': [ { 'block': BLOCK_CORRELATION_EVENT_54 } ],
+        'category': u'POLICY' },
+
+    # 115
+    METADATA_SECURITY_ZONE_NAME: {
+        'name': u'Security Zone Name Metadata',
+        'attributes': [ { 'block': BLOCK_UUID_STRING } ],
+        'category': u'ZONE' },
+
+    # 116
+    METADATA_INTERFACE_NAME: {
+        'name': u'Interface Name Metadata',
+        'attributes': [ { 'block': BLOCK_UUID_STRING } ],
+        'category': u'INTERFACE' },
+
+    # 117
+    METADATA_ACCESS_CONTROL_POLICY_NAME: {
+        'name': u'Access Control Policy Name Metadata',
+        'attributes': [ { 'block': BLOCK_UUID_STRING } ],
+        'category': u'FIREWALL POLICY' },
+
+    # 118
+    METADATA_INTRUSION_POLICY_NAME: {
+        'name': u'Intrusion Policy Name Metadata',
+        'attributes': [ { 'block': BLOCK_UUID_STRING } ],
+        'category': u'INTRUSION POLICY' },
+
+    # 119
+    METADATA_ACCESS_CONTROL_RULE_ID: {
+        'name': u'Access Control Rule ID Metadata',
+        'attributes': [ { 'block': BLOCK_ACCESS_CONTROL_RULE } ],
+        'category': u'FIREWALL RULE' },
+
+    # 120
+    METADATA_ACCESS_CONTROL_RULE_ACTION: {
+        'name': u'Access Control Rule Action Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'FIREWALL RULE ACTION' },
+
+    # 121
+    METADATA_URL_CATEGORY: {
+        'name': u'URL Category Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'FIREWALL URL CATEGORY' },
+
+    # 122
+    METADATA_URL_REPUTATION: {
+        'name': u'URL Reputation Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'FIREWALL URL REPUTATION' },
+
+    # 123
+    METADATA_SENSOR: {
+        'name': u'Managed Device Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SENSOR' },
+
+    # 124
+    METADATA_ACCESS_CONTROL_POLICY_RULE_REASON: {
+        'name': u'Access Control Policy Rule Reason Data',
+        'attributes': [ { 'block': BLOCK_ACCESS_CONTROL_POLICY_RULE_REASON_60 } ],
+        'category': u'FIREWALL RULE REASON' },
+
+    # 125
+    RECORD_MALWARE_EVENT: {
+        'name': u'Malware Event Record',
+        'attributes': [ { 'block': BLOCK_MALWARE_EVENT_60 }],
+        'category': u'MALWARE EVENT' },
+
+    # 127
+    METADATA_FIREAMP_CLOUD_NAME: {
+        'name': u'Cisco AMP Cloud Name Metadata',
+        'attributes': [ { 'block': BLOCK_UUID_STRING } ],
+        'category': u'FIREAMP CLOUD' },
+
+    # 128
+    METADATA_FIREAMP_EVENT_TYPE: {
+        'name': u'Malware Event Type Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'MALWARE EVENT TYPE' },
+
+    # 129
+    METADATA_FIREAMP_EVENT_SUBTYPE: {
+        'name': u'Malware Event Subtype Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'MALWARE EVENT SUBTYPE' },
+
+    # 130
+    METADATA_FIREAMP_DETECTOR_TYPE: {
+        'name': u'AMP for Endpoints Detector Type Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'MALWARE DETECTOR TYPE' },
+
+    # 131
+    METADATA_FIREAMP_FILE_TYPE: {
+        'name': u'AMP for Endpoints File Type Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'MALWARE FILE TYPE' },
+
+    # 132
+    METADATA_SECURITY_CONTEXT_NAME: {
+        'name': u'Security Context Name',
+        'attributes': [
+            { 'type': TYPE_UUID, 'name': 'uuid' },
+            { 'block': BLOCK_STRING, 'name': 'name' }],
+        'category': u'CONTEXT ID' },
+
+    # 140
+    RECORD_RULE_DOCUMENTATION_DATA: {
+        'name': u'Rule Documentation Data',
+        'attributes': [ { 'block': BLOCK_RULE_DOCUMENTATION_DATA_52 } ],
+        'category': u'IPS RULE DOC' },
+
+    # 145
+    METADATA_ACCESS_CONTROL_POLICY: {
+        'name': u'Access Control Policy Metadata',
+        'attributes': [ { 'block': BLOCK_ACCESS_CONTROL_POLICY_METADATA } ],
+        'category': u'ACCESS CONTROL POLICY' },
+
+    # 146
+    METADATA_PREFILTER_POLICY: {
+        'name': u'Prefilter Policy Metadata',
+        'attributes': [ { 'block': BLOCK_ACCESS_CONTROL_POLICY_METADATA } ],
+        'category': u'ACCESS CONTROL POLICY' },
+
+    # 147
+    METADATA_TUNNEL_OR_PREFILTER_RULE: {
+        'name': u'Tunnel or Prefilter Rule Metadata',
+        'attributes': [ { 'block': BLOCK_ACCESS_CONTROL_POLICY_METADATA } ],
+        'category': u'ACCESS CONTROL POLICY' },
+
+    # 160 - Big difference between version 6 & 6.1
+    # Version 6 points at BLOCK_IOC_STATE_53 and is for IOC State
+    # where as 6.1 is IOC Set
+    RECORD_RNA_IOC_SET: {
+        'name': u'Host IOC Set Messages',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_INTEGER, 'name': 'id' }],
+        'category': u'RNA' },
+
+    # 161
+    METADATA_IOC_NAME: {
+        'name': u'IOC Name Data',
+        'attributes': [ { 'block': BLOCK_IOC_NAME_53 } ],
+        'category': u'IOC' },
+
+    # 170 6.2+
+    RECORD_NEW_VPN_LOGIN: {
+        'name': u'New VPN Device Login',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_INFORMATION_VPN_LOGOFF_62, 'name': 'userLogin' }],
+        'category': u'VPN' },
+
+    # 171 6.2+
+    RECORD_NEW_VPN_LOGOFF: {
+        'name': u'New VPN Device Logoff',
+        'attributes': [
+            { 'discovery': True },
+            { 'block': BLOCK_USER_INFORMATION_VPN_LOGOFF_62, 'name': 'userLogoff' }],
+        'category': u'VPN' },
+
+    # 260
+    METADATA_ICMP_TYPE: {
+        'name': u'ICMP Type Data',
+        'attributes': [ { 'block': BLOCK_ICMP_TYPE_DATA } ],
+        'category': u'ICMP TYPE' },
+
+    # 270
+    METADATA_ICMP_CODE: {
+        'name': u'ICMP Code Data',
+        'attributes': [ { 'block': BLOCK_ICMP_CODE_DATA } ],
+        'category': u'ICMP CODE' },
+
+    # 280
+    METADATA_SECURITY_INTELLIGENCE_CATEGORY_DISCOVERY: {
+        'name': u'Security Intelligence Category Metadata',
+        'attributes': [ { 'block': BLOCK_IP_REPUTATION_CATEGORY } ],
+        'category': u'SECURITY INTELLIGENCE CATEGORY' },
+
+    # 281
+    METADATA_SECURITY_INTELLIGENCE_SRCDEST: {
+        'name': u'Security Intelligence Source/Destination ',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SECURITY INTELLIGENCE SOURCE/DEST' },
+
+    # 282
+    METADATA_SECURITY_INTELLIGENCE_CATEGORY_GENERAL: {
+        'name': u'Security Intelligence Category Metadata',
+        'attributes': [
+            { 'type': TYPE_UUID, 'name': 'uuid' },
+            { 'block': BLOCK_STRING, 'name': 'name' }],
+        'category': u'SECURITY INTELLIGENCE CATEGORY' },
+
+    # 300
+    METADATA_REALM: {
+        'name': u'Realm Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'REALM DATA' },
+
+    # 301
+    RECORD_ENDPOINT_PROFILE_DATA: {
+        'name': u'Endpoint Profile',
+        'attributes': [ { 'block': BLOCK_ENDPOINT_PROFILE_60 } ],
+        'category': u'ENDPOINT PROFILE' },
+
+    # 302
+    METADATA_SECURITY_GROUP: {
+        'name': u'Security Group Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SECURITY GROUP' },
+
+    # 320
+    METADATA_DNS_RECORD: {
+        'name': u'DNS Record Type Metadata',
+        'attributes': [ { 'block': BLOCK_ID_NAME_DESCRIPTION } ],
+        'category': u'DNS' },
+
+    # 321
+    METADATA_DNS_RESPONSE: {
+        'name': u'DNS Response Type Metadata',
+        'attributes': [ { 'block': BLOCK_ID_NAME_DESCRIPTION } ],
+        'category': u'DNS' },
+
+    # 322
+    METADATA_SINKHOLE: {
+        'name': u'Sinkhole Metadata',
+        'attributes': [ { 'block': BLOCK_UUID_STRING } ],
+        'category': u'SINKHOLE' },
+
+    # 350
+    METADATA_NETMAP_DOMAIN: {
+        'name': u'Netmap Domain Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'NETMAP DOMAIN' },
+
+    # 400 V9
+    #RECORD_INTRUSION_EVENT: {
+    #    'name': u'Intrusion Event',
+    #    'attributes': [ { 'block': BLOCK_INTRUSION_EVENT_60 } ],
+    #    'category': u'IPS EVENT' },
+
+    # 401 V9
+    RECORD_INTRUSION_EVENT_V9: {
+        'name': u'Intrusion Event',
+        'attributes': [ { 'block': BLOCK_INTRUSION_EVENT_60 } ],
+        'category': u'IPS EVENT' },
+
+    # 402 V10
+    RECORD_INTRUSION_EVENT_V10: {
+        'name': u'Intrusion Event',
+        'attributes': [ { 'block': BLOCK_INTRUSION_EVENT_81 } ],
+        'category': u'IPS EVENT' },
+
+    # 400 V11
+    RECORD_INTRUSION_EVENT: {
+        'name': u'Intrusion Event',
+        'attributes': [ { 'block': BLOCK_INTRUSION_EVENT_85 } ],
+        'category': u'IPS EVENT' },
+
+    # 500
+    RECORD_FILELOG_EVENT: {
+        'name': u'File Event',
+        'attributes': [ { 'block': BLOCK_FILE_EVENT_60 } ],
+        'category': u'FILELOG EVENT' },
+
+    # 502
+    RECORD_FILELOG_MALWARE_EVENT: {
+        'name': u'File Malware Event',
+        'attributes': [ { 'block': BLOCK_FILE_EVENT_60 } ],
+        'category': u'FILELOG MALWARE EVENT' },
+
+    # 501 V11
+    RECORD_FILELOG_EVENT_V11: {
+        'name': u'File Event',
+        'attributes': [ { 'block': BLOCK_FILE_EVENT_79 } ],
+        'category': u'FILELOG EVENT' },
+
+    # 503 V11
+    RECORD_FILELOG_MALWARE_EVENT_V11: {
+        'name': u'File Malware Event',
+        'attributes': [ { 'block': BLOCK_FILE_EVENT_79 } ],
+        'category': u'FILELOG MALWARE EVENT' },
+
+    # 510
+    METADATA_FILELOG_FILE_TYPE: {
+        'name': u'File Type ID Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'FILELOG FILE TYPE' },
+
+    # 511
+    METADATA_FILELOG_SHA: {
+        'name': u'File Event SHA Hash',
+        'attributes': [ { 'block': BLOCK_FILE_EVENT_SHA_HASH_53 } ],
+        'category': u'FILELOG SHA' },
+
+    # 515
+    METADATA_FILELOG_STORAGE: {
+        'name': u'Filelog Storage Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'FILELOG STORAGE' },
+
+    # 516
+    METADATA_FILELOG_SANDBOX: {
+        'name': u'Filelog Sandbox Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'FILELOG SANDBOX' },
+
+    # 517
+    METADATA_FILELOG_SPERO: {
+        'name': u'Filelog Spero Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'FILELOG SPERO' },
+
+    # 518
+    METADATA_FILELOG_ARCHIVE: {
+        'name': u'Filelog Archive Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'FILELOG ARCHIVE' },
+
+    # 519
+    METADATA_FILELOG_STATIC_ANALYSIS: {
+        'name': u'Filelog Static Analysis Metadata',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'FILELOG STATIC ANALYSIS' },
+
+    # 520
+    METADATA_GEOLOCATION: {
+        'name': u'Geolocation Data',
+        'attributes': [ { 'block': BLOCK_GEOLOCATION_52 } ],
+        'category': u'GEOLOCATION' },
+
+    # 530
+    METADATA_FILE_POLICY_NAME: {
+        'name': u'File Policy Name',
+        'attributes': [
+            # Documentation diagram *and* text wrong!
+            { 'type': TYPE_UINT32, 'name': 'blockType' },
+            { 'type': TYPE_UINT32, 'name': 'blockLength' },
+            { 'type': TYPE_UUID, 'name': 'uuid' },
+            { 'block': BLOCK_STRING, 'name': 'name' }],
+        'category': u'FILE POLICY NAME' },
+
+    # 600
+    METADATA_SSL_POLICY: {
+        'name': u'SSL Policy Name',
+        'attributes': [
+            { 'type': TYPE_UUID, 'name': 'uuid' },
+            { 'block': BLOCK_STRING, 'name': 'name' }],
+        'category': u'SSL POLICY NAME' },
+
+    # 601
+    METADATA_SSL_RULE_ID: {
+        'name': u'SSL Rule ID',
+        'attributes': [
+            { 'type': TYPE_UINT128, 'name': 'revision' },
+            { 'type': TYPE_UINT32, 'name': 'id' },
+            { 'block': BLOCK_STRING, 'name': 'name' }],
+        'category': u'SSL RULE ID' },
+
+    # 602
+    METADATA_SSL_CIPHER_SUITE: {
+        'name': u'SSL Cipher Suite',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SSL CIPHER SUITE' },
+
+    # 604
+    METADATA_SSL_VERSION: {
+        'name': u'SSL Version',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SSL VERSION' },
+
+    # 605
+    METADATA_SSL_SERVER_CERTIFICATE_STATUS: {
+        'name': u'SSL Server Certificate Status',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SSL SERVER CERT STATUS' },
+
+    # 606
+    METADATA_SSL_ACTUAL_ACTION: {
+        'name': u'SSL Actual Action',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SSL ACTION' },
+
+    # 607
+    METADATA_SSL_EXPECTED_ACTION: {
+        'name': u'SSL Expected Action',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SSL ACTION' },
+
+    # 608
+    METADATA_SSL_FLOW_STATUS: {
+        'name': u'SSL Flow Status',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SSL FLOW STATUS' },
+
+    # 613
+    METADATA_SSL_URL_CATEGORY: {
+        'name': u'SSL URL Category',
+        'attributes': [ { 'block': BLOCK_METADATA_ID_LENGTH_NAME } ],
+        'category': u'SSL URL CATEGORY' },
+
+    # 614
+    METADATA_SSL_CERTIFICATE_DETAILS_DATA: {
+        'name': u'SSL Certificate Details Data',
+        'attributes': [ { 'block': BLOCK_SSL_CERTIFICATION_DETAILS_54 } ],
+        'category': u'SSL CERTIFICATE DETAILS' },
+
+    # 700
+    METADATA_RECORD_NETWORK_ANALYSIS_POLICY: {
+        'name': u'Network Analysis Policy',
+        'attributes': [
+            # Documentation diagram *and* text wrong!
+            { 'type': TYPE_UINT32, 'name': 'blockType' },
+            { 'type': TYPE_UINT32, 'name': 'blockLength' },
+            { 'type': TYPE_UUID, 'name': 'uuid' },
+            { 'block': BLOCK_STRING, 'name': 'name' }],
+        'category': u'NAP NAME'}
+}
