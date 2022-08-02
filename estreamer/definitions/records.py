@@ -924,7 +924,7 @@ RECORDS = {
         'name': u'New VPN Device Login',
         'attributes': [
             { 'discovery': True },
-            { 'block': BLOCK_USER_INFORMATION_VPN_LOGOFF_62, 'name': 'userLogin' }],
+            { 'block': BLOCK_USER_INFORMATION_VPN_LOGIN_62, 'name': 'userLogin' }],
         'category': u'VPN' },
 
     # 171 6.2+
