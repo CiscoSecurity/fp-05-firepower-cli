@@ -413,6 +413,8 @@ class Binary( object ):
                     context[ attributeName ] = struct.unpack(
                          '>' + attributeType, data[ offset : offset + byteLength ] )[ 0 ]
                     offset += byteLength
+                    
+                    self.logger.log( logging.TRACE, "unpacking complete binary data") 
 
                 except struct.error:
                     hData = binascii.hexlify( data[ offset: offset + byteLength ] )
@@ -705,10 +707,6 @@ class Binary( object ):
             self._parse( self.data, self.offset, self.record )
             self.isParsed = True
 
-
-
-
-
 def loads( source ):
     """
     Converts an incoming raw binary response into native structured
@@ -717,8 +715,6 @@ def loads( source ):
     parser = Binary( source )
     parser.parse()
     return parser.record
-
-
 
 def dumps( source ):
     """Returns the source parameter as bytes"""
