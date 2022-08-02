@@ -642,8 +642,6 @@ class Binary( object ):
 
         self.recordType = recordType
         blockType = 0
-        #struct.unpack('>'+TYPE_UINT32, data[8:12])[0] epoch time for IPS events
-        #struct.unpack('>'+TYPE_UINT32, data[12:16])[0]  reserved IPS events
 
         if self.logger.isEnabledFor( logging.TRACE ):
             self.logger.log(
@@ -671,17 +669,9 @@ class Binary( object ):
             record[ 'archiveTimestamp' ] = archiveTimestamp
             record[ 'checksum' ] = checksum
             offset = 16
-            #record[ 'record' ] = data[ 16 : 16 + recordLength ]
 
         else:
             raise ParsingException('Invalid length')
-
- #       if self.recordType == 400 :
- #           (blockType, ) = struct.unpack('>'+TYPE_UINT32, data[16:20])
- #       else :
- #           (blockType, ) = struct.unpack('>'+TYPE_UINT32, data[offset: (offset + 4) ])
-
-#        self.blockType = blockType
 
         if self.logger.isEnabledFor( logging.TRACE ):
             self.logger.log(
@@ -689,8 +679,6 @@ class Binary( object ):
                 '_eventHeader recordType={0} blockType={1} | data={2} | hex={3}'.format(
                     recordType,
                     blockType, data,  binascii.hexlify( data ) ))
-
-#        record[ 'blockType' ]  = blockType
 
         self.offset = offset
         self.record = record
