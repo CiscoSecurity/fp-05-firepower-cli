@@ -502,119 +502,8 @@ class Binary( object ):
         try:
             self.logger.log(logging.TRACE, '_parse: identifying blockType: recordType={0} '.format(recordType))
             #Dynamic according to blocktype
-            if recordType == 71 or recordType == 210:
-                blockSubType = struct.unpack(
-                                '>' + TYPE_UINT32,
-                                data[ 72 : 76 ] )[ 0 ]
 
-                self.logger.log(logging.TRACE, 'parsing start {0} offset: {1} parsing: {2}'.format(data, offset, data[72:76]))
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
-
-                if blockSubType == 160 :
-                    attributes = RECORDS[  1060 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'IPS BLOCK {0} attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 163 :
-                    attributes = RECORDS[ 1061 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 168 :
-                    attributes = RECORDS[ 1067 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 169 :
-                    attributes = RECORDS[ 1069 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 170 :
-                    attributes = RECORDS[ 1070 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 171 :
-                    attributes = RECORDS[ 1071 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 173 :
-                    attributes = RECORDS[ 1073 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 174 :
-                    attributes = RECORDS[ 1074 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-                else :
-                    attributes = RECORDS[ 1071 ][ 'attributes' ]
-
-                    self.logger.error( 'Unsupported Record/Block Type: Record={0} BlockType={1}'.format( recordType, blockType ) )
-                
-
-            elif recordType == 400 :
-                blockSubType = struct.unpack(
-                                '>' + TYPE_UINT32,
-                                data[ 16 : 20 ] )[ 0 ] 
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
-
-                if blockSubType == 60 :
-                    attributes = RECORDS[  401 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'IPS BLOCK {0} attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 81 :
-                    attributes = RECORDS[ 402 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                elif blockSubType == 85 :
-                    attributes = RECORDS[ 400 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing IPS event {0} : attributes={1}'.format(blockType, attributes))
-
-                else :
-                    attributes = RECORDS[ recordType ][ 'attributes' ]
-
-                    self.logger.error( 'Unsupported Record/Block Type: Record={0} BlockType={1}'.format( recordType, blockType ) )
-
-            elif recordType == 500 :
-
-                blockSubType = struct.unpack(
-                                '>' + TYPE_UINT32,
-                                data[ 16 : 20 ] )[ 0 ] 
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
-
-                if blockSubType == 79 :
-                    attributes = RECORDS[ 501 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing FILE event {0} : attributes={1}'.format(blockType, attributes))
-
-                else :
-                    attributes = RECORDS[ recordType ][ 'attributes' ]
-
-            elif recordType == 502 :
-
-                blockSubType = struct.unpack(
-                                '>' + TYPE_UINT32,
-                                data[ 16 : 20 ] )[ 0 ] 
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
-
-                if blockSubType == 79 :
-                    attributes = RECORDS[ 503 ]['attributes']
-
-                    self.logger.log(logging.TRACE, 'parsing FILE_MALWARE event {0} : attributes={1}'.format(blockType, attributes))
-
-                else :
-                    attributes = RECORDS[ recordType ][ 'attributes' ]
-            else :
-                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType unknown'.format(recordType))
-
-                attributes = RECORDS[ recordType ][ 'attributes' ]
-
+            attributes = RECORDS[ recordType ][ 'attributes' ]
             offset = self._parseAttributes( data, offset, attributes, record )
 
         except (AttributeError, ValueError) as ex:
@@ -646,7 +535,7 @@ class Binary( object ):
         if self.logger.isEnabledFor( logging.TRACE ):
             self.logger.log(
                 logging.TRACE,
-                '_eventHeader recordType={0} blockType={1} | data={2} | hex={3}'.format(
+                '_eventHeader: start of event header: recordType={0} blockType={1} | data={2} | hex={3}'.format(
                     recordType,
                     blockType, data,  binascii.hexlify( data ) ))
 
@@ -662,7 +551,6 @@ class Binary( object ):
             record[ 'archiveTimestamp' ] = 0
             record[ 'checksum' ] = 0
             offset = 8
-            #record[ 'record' ] = data[ 8 : 8 + recordLength ]
 
         elif len( data ) == ( 16 + recordLength ):
             ( archiveTimestamp, checksum ) = struct.unpack( '>LL', data[ 8:16 ] )
@@ -676,7 +564,7 @@ class Binary( object ):
         if self.logger.isEnabledFor( logging.TRACE ):
             self.logger.log(
                 logging.TRACE,
-                '_eventHeader recordType={0} blockType={1} | data={2} | hex={3}'.format(
+                '_eventHeader : exiting event header: recordType={0} blockType={1} | data={2} | hex={3}'.format(
                     recordType,
                     blockType, data,  binascii.hexlify( data ) ))
 
