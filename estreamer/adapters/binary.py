@@ -496,12 +496,11 @@ class Binary( object ):
         if self.logger.isEnabledFor( logging.TRACE ):
             self.logger.log(
                 logging.TRACE,
-                '_parse offset={0}/{1} | recordType={2}  '.format(
+                '_parse recordType={2} offset={0}/{1} | '.format(
                     offset,
                     recordLength, recordType))
         try:
-            attributes = RECORDS[ recordType ][ 'attributes' ]
-
+            self.logger.log(logging.TRACE, '_parse: identifying blockType: recordType={0} '.format(recordType))
             #Dynamic according to blocktype
             if recordType == 71 or recordType == 210:
                 blockSubType = struct.unpack(
@@ -509,8 +508,7 @@ class Binary( object ):
                                 data[ 72 : 76 ] )[ 0 ]
 
                 self.logger.log(logging.TRACE, 'parsing start {0} offset: {1} parsing: {2}'.format(data, offset, data[72:76]))
-                self.logger.log(logging.TRACE, 'parsing blockType {0}'.format(blockSubType))
-                self.logger.log(logging.TRACE, 'parsing recordTypeType {0}'.format(recordType))
+                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
 
                 if blockSubType == 160 :
                     attributes = RECORDS[  1060 ]['attributes']
@@ -561,7 +559,7 @@ class Binary( object ):
                 blockSubType = struct.unpack(
                                 '>' + TYPE_UINT32,
                                 data[ 16 : 20 ] )[ 0 ] 
-                self.logger.log(logging.TRACE, 'parsing IPS_EVENT blockType {0}'.format(blockSubType))
+                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
 
                 if blockSubType == 60 :
                     attributes = RECORDS[  401 ]['attributes']
@@ -588,7 +586,7 @@ class Binary( object ):
                 blockSubType = struct.unpack(
                                 '>' + TYPE_UINT32,
                                 data[ 16 : 20 ] )[ 0 ] 
-                self.logger.log(logging.TRACE, 'parsing FILE_EVENT blockType {0}'.format(blockSubType))
+                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
 
                 if blockSubType == 79 :
                     attributes = RECORDS[ 501 ]['attributes']
@@ -603,7 +601,7 @@ class Binary( object ):
                 blockSubType = struct.unpack(
                                 '>' + TYPE_UINT32,
                                 data[ 16 : 20 ] )[ 0 ] 
-                self.logger.log(logging.TRACE, 'parsing FILE_MALWARE_EVENT blockType {0}'.format(blockSubType))
+                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType {1}'.format(recordType, blockSubType))
 
                 if blockSubType == 79 :
                     attributes = RECORDS[ 503 ]['attributes']
@@ -612,6 +610,10 @@ class Binary( object ):
 
                 else :
                     attributes = RECORDS[ recordType ][ 'attributes' ]
+            else :
+                self.logger.log(logging.TRACE, '_parse: block type identified: recordType: {0}, blockType unknown'.format(recordType))
+
+                attributes = RECORDS[ recordType ][ 'attributes' ]
 
             offset = self._parseAttributes( data, offset, attributes, record )
 
