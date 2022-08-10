@@ -64,6 +64,10 @@ def _shouldParse( record, settings ):
         if settings.writeRna:
             result = True
 
+    elif recordTypeId in definitions.TYPES['VPN']:
+        if settings.writeVPN:
+            result = True
+
     elif recordTypeId in definitions.TYPES['RUA']:
         if settings.writeRua:
             result = True
