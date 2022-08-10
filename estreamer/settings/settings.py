@@ -113,6 +113,7 @@ class Settings( object ):
         self.writeCore = handlerRecords['core']
         self.writeMetadata = handlerRecords['metadata']
         self.writeConnections = True
+        self.writeVPN = True
         if 'connections' in handlerRecords:
             self.writeConnections = handlerRecords['connections']
 
