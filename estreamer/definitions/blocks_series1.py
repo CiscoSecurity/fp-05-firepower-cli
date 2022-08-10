@@ -84,8 +84,10 @@ BLOCK_USER_INFORMATION_DATA_60 = 155
 BLOCK_CORRELATION_EVENT_54 = 156
 BLOCK_USER_LOGIN_INFORMATION_60 = 159
 BLOCK_USER_LOGIN_INFORMATION_61 = 165
-BLOCK_USER_INFORMATION_VPN_LOGIN_62 = 166
-BLOCK_USER_INFORMATION_VPN_LOGOFF_62 = 167
+BLOCK_USER_LOGIN_INFORMATION_DATA_62 = 158
+BLOCK_USER_LOGIN_INFORMATION_61 = 165
+BLOCK_USER_INFORMATION_VPN_SESSION_62 = 166
+BLOCK_USER_UPDATE_MSG_INFORMATION_62 = 167
 
 BLOCK_CONNECTION_STATISTICS_160 = 160
 BLOCK_CONNECTION_STATISTICS_161 = 161
@@ -372,12 +374,10 @@ BLOCKS_SERIES_1 = {
         { 'block': BLOCK_STRING, 'name': 'phone' }],
  # 121
     BLOCK_USER_LOGIN_INFORMATION_DATA_50: [
-        { 'type': TYPE_UINT32, 'name': 'loginBlockType' },
-        { 'type': TYPE_UINT32, 'name': 'loginBlockLength' },
-        { 'type': TYPE_UINT32, 'name': 'timeStamp' },
-        { 'type': TYPE_UINT32, 'name': 'ipv4Address' },
         { 'type': TYPE_UINT32, 'name': 'blockType' },
         { 'type': TYPE_UINT32, 'name': 'blockLength' },
+        { 'type': TYPE_UINT32, 'name': 'timeStamp' },
+        { 'type': TYPE_UINT32, 'name': 'ipv4Address' },
         { 'block': BLOCK_STRING, 'name': 'username' },
         { 'block': BLOCK_STRING, 'name': 'domain' },
         { 'block': TYPE_UINT32, 'name': 'userId' },
@@ -392,8 +392,8 @@ BLOCKS_SERIES_1 = {
         { 'type': TYPE_UINT32, 'name': 'emailSizeBytes' },
         { 'type': TYPE_IPV6, 'name': 'ipv6Address' },
         { 'type': BLOCK_STRING, 'name': 'ipLocation' },
-        { 'type': TYPE_UINT16, 'name': 'loginType' },
-        { 'type': TYPE_UINT16, 'name': 'authType' },
+        { 'type': TYPE_UINT8, 'name': 'loginType' },
+        { 'type': TYPE_UINT8, 'name': 'authType' },
         { 'type': TYPE_UINT32, 'name': 'reportedByType' },
         { 'type': TYPE_UINT16, 'name': 'reportedByLength' },
         { 'block': BLOCK_STRING, 'name': 'reportedBy' },
@@ -1628,9 +1628,9 @@ BLOCKS_SERIES_1 = {
         { 'block': BLOCK_STRING, 'name': 'reportedBy' }],
 
     # 166
-    BLOCK_USER_INFORMATION_VPN_LOGIN_62: [
+    BLOCK_USER_INFORMATION_VPN_SESSION_62: [
         { 'type': TYPE_UINT32, 'name': 'index' },
-        { 'type': TYPE_BYTE, 'name': 'vpnType'},
+        { 'type': TYPE_BYTE, 'name': 'vpnType' },
         { 'block': BLOCK_STRING, 'name': 'groupPolicy' },
         { 'block': BLOCK_STRING, 'name': 'vpnConnectionProfile' },
         { 'type': TYPE_UINT128, 'name': 'clientIP' },
@@ -1642,7 +1642,7 @@ BLOCKS_SERIES_1 = {
         { 'type': TYPE_UINT64, 'name': 'bytesReceived' }],
 
     # 167
-    BLOCK_USER_INFORMATION_VPN_LOGOFF_62: [
+    BLOCK_USER_UPDATE_MSG_INFORMATION_62: [
         { 'type': TYPE_UINT32, 'name': 'blockType' },
         { 'type': TYPE_UINT32, 'name': 'blockLength' },
         { 'type': TYPE_UINT32, 'name': 'timestamp' },
@@ -1659,13 +1659,13 @@ BLOCKS_SERIES_1 = {
         { 'type': TYPE_UINT16, 'name': 'startPort' },
         { 'type': TYPE_UINT16, 'name': 'endPort' },
         { 'block': BLOCK_STRING, 'name': 'email' },
-        { 'type': TYPE_UINT128, 'name': 'ipv6Address' },
-        { 'type': TYPE_UINT128, 'name': 'locationIpv6Address' },
+        { 'type': TYPE_IPV6, 'name': 'ipv6Address' },
+        { 'type': TYPE_IPV6, 'name': 'locationIpv6Address' },
         { 'type': TYPE_BYTE, 'name': 'loginType' },
         { 'type': TYPE_BYTE, 'name': 'authType' },
         { 'block': BLOCK_STRING, 'name': 'reportedBy' },
         { 'block': BLOCK_STRING, 'name': 'description' },
-        { 'list': BLOCK_USER_INFORMATION_VPN_LOGIN_62, 'name': 'vpnSession' }
+        { 'list': BLOCK_USER_INFORMATION_VPN_SESSION_62, 'name': 'vpnSession' },
 ],
 
 
