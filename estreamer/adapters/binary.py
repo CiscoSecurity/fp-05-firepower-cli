@@ -82,6 +82,11 @@ class Binary( object ):
         if source['messageType'] == definitions.MESSAGE_TYPE_EVENT_DATA:
             self._eventHeader( self.data )
 
+        if self.logger.isEnabledFor( logging.TRACE ):
+            self.logger.log(
+                logging.TRACE, '_init : end of header: recordType={0} | messageType={1}, isParsed={2} '.format( self.recordType, source['messageType'], self.isParsed ))
+
+
         elif source['messageType'] == definitions.MESSAGE_TYPE_ERROR:
             self._errorMessage( source )
 
@@ -423,6 +428,7 @@ class Binary( object ):
                              '>' + attributeType, data[ offset : offset + byteLength ] )[ 0 ]
                         offset += byteLength
 
+                        self.logger.log( logging.TRACE, 'attribute unpacked value: {0} byteLength: {1}/{2}'.format(context[attributeName], byteLength, offset) )
                     except struct.error:
                         hData = binascii.hexlify( data[ offset: offset + byteLength ] )
                         hexData = binascii.hexlify( data )
@@ -473,14 +479,14 @@ class Binary( object ):
         if self.logger.isEnabledFor( logging.TRACE ):
             self.logger.log(
                 logging.TRACE,
-                '_parse offset={0}/{1} | recordType={2}  '.format(
+                '_parse: detailed dynamic attribute identification and parse assignment: offset={0}/{1} | recordType={2}  '.format(
                     offset,
                     recordLength, recordType))
         try:
             attributes = RECORDS[ recordType ][ 'attributes' ]
 
             #Dynamic according to blocktype
-            if recordType == 71 or recordType == 210:
+            if recordType == 71 :
                 blockSubType = struct.unpack(
                                 '>' + TYPE_UINT32,
                                 data[ 72 : 76 ] )[ 0 ]
@@ -532,15 +538,16 @@ class Binary( object ):
                     attributes = RECORDS[ 1071 ][ 'attributes' ]
 
                     self.logger.error( 'Unsupported Record/Block Type: Record={0} BlockType={1}'.format( recordType, blockType ) )
-                
 
             elif recordType == 400 :
                 blockSubType = struct.unpack(
                                 '>' + TYPE_UINT32,
                                 data[ 16 : 20 ] )[ 0 ] 
+
                 self.logger.log(logging.TRACE, 'parsing IPS_EVENT blockType {0}'.format(blockSubType))
 
                 if blockSubType == 60 :
+
                     attributes = RECORDS[  401 ]['attributes']
 
                     self.logger.log(logging.TRACE, 'IPS BLOCK {0} attributes={1}'.format(blockType, attributes))
@@ -625,6 +632,12 @@ class Binary( object ):
                     recordType,
                     blockType, data,  binascii.hexlify( data ) ))
 
+        if self.logger.isEnabledFor( logging.TRACE ):
+            self.logger.log(
+                logging.TRACE,
+                '_eventHeader length(s) | recordType={0} | recordLength={1}:len(data)={2}  '.format(
+                    recordType,
+                    recordLength, len(data)))
         offset = 0
 
         record = {
@@ -650,9 +663,9 @@ class Binary( object ):
         if self.logger.isEnabledFor( logging.TRACE ):
             self.logger.log(
                 logging.TRACE,
-                '_eventHeader : end of header: recordType={0} blockType={1} | len={4}/offset={5} | data={2} | hex={3}'.format(
+                '_eventHeader : end of header: recordType={0} blockType={1} | len={3}/offset={4} | data={2}'.format(
                     recordType,
-                    blockType, data,  binascii.hexlify( data ), recordLength, offset ))
+                    blockType, binascii.hexlify( data ), recordLength, offset ))
 
         self.offset = offset
         self.record = record
@@ -666,9 +679,13 @@ class Binary( object ):
         expectedLength = offset + length
         actualLength = len( source['data'] )
 
+#        if self.logger.isEnabledFor( logging.TRACE ):
+#            self.logger.log(logging.TRACE, '_errorMessage : recordType={0} actualLength={1}:expectedLength={2}'.format(
+#                        recordType, actualLength, expectedLength))
+
         if expectedLength != actualLength:
             raise ParsingException(
-                'Expected error message length is {0} but actual is {1}'.format(
+                '_errorMessage: Expected error message length is {0} but actual is {1}'.format(
                     expectedLength,
                     actualLength ))
 
@@ -702,14 +719,18 @@ class Binary( object ):
         eStreamer and loads it into a common dict format which is used
         everywhere else
         """
+
+ #       if self.logger.isEnabledFor( logging.TRACE ):
+ #           self.logger.log(
+ #               logging.TRACE,
+ #               '_parse : start of parse: isParsed={3} recordType={0} blockType={1} offset={4} | data={2}'.format(
+ #                   recordType, blockType, binascii.hexlify( data ), self.isParsed, offset ))
+
         if not self.isParsed:
             if self.recordType not in RECORDS:
                 self.logger.warning( '__decode(): Unknown record type {0}.'.format(
                     self.recordType ))
                 return
-
-            if self.logger.isEnabledFor( logging.TRACE ):
-                self.logger.log( logging.TRACE, binascii.hexlify( self.data ) )
 
             self._parse( self.data, self.offset, self.record )
             self.isParsed = True
