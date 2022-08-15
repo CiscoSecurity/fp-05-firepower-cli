@@ -84,7 +84,7 @@ class Binary( object ):
 
         if self.logger.isEnabledFor( logging.TRACE ):
             self.logger.log(
-                logging.TRACE, '_init : end of header: recordType={0} | messageType={1}, isParsed={2} '.format( self.recordType, source['messageType'], self.isParsed ))
+                logging.TRACE, '_init : end of header: recordType={0} | messageType={1}'.format( self.recordType, source['messageType']))
 
 
         elif source['messageType'] == definitions.MESSAGE_TYPE_ERROR:
