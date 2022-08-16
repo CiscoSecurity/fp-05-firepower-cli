@@ -501,7 +501,100 @@ MAPPING = {
             'httpResponse': '',
         },
     },
+   # 170
+    definitions.RECORD_NEW_VPN_LOGIN: {
+        'sig_id': lambda rec: 'USER:1004:8',
 
+        'name': lambda rec: 'VPN Login',
+
+        'severity': lambda rec: rec['index'],
+
+        'constants': {
+            'cs1Label': 'sensor',
+            'cs2Label': 'vpnType',
+            'cs3Label': 'clientOS',
+            'cs4Label': 'clientApplication',
+            'cs5Label': 'vpnProfile'
+        },
+
+        'lambdas': {
+            'rt': lambda rec: rec['eventSecond'] * 1000,
+            'start': lambda rec: rec['eventSecond'] * 1000,
+            'end': lambda rec: rec['eventSecond'] * 1000,
+            'host': lambda rec: __ipv4( rec['hostIpAddr'] ),
+            'deviceExternalId': lambda rec: rec['deviceId'],
+        },
+
+        'fields': {
+            'deviceId': 'dvchost',
+            'userLogin.username.data': 'suser',
+            'userLogin.userId': 'suid',
+            'vpnConnectionProfile.data': 'vpnProfile',
+            'userLogin.startPort': 'spt',
+            'userLogin.endPort': 'dpt',
+            'userLogin.protocol': 'proto',
+            'instanceId': 'dvcpid',
+            'eventSec': '', # Used to generate rt and start
+            'macAddress': 'dvcmac',
+            'clientIp': 'src',
+            'clientApplicationId': 'requestClientApplication'
+        },
+
+        'viewdata': {
+            View.SENSOR: 'dvchost',
+            View.PROTOCOL: 'proto',
+            View.USER: 'suser',
+        },
+    },
+    
+    # 171
+    definitions.RECORD_NEW_VPN_LOGOFF: {
+        'sig_id': lambda rec: 'USER:1004:2',
+
+        'name': lambda rec: 'VPN',
+
+        'severity': lambda rec: rec['index'],
+
+        'constants': {
+            'cs1Label': 'sensor',
+            'cs2Label': 'vpnType',
+            'cs3Label': 'clientOS',
+            'cs4Label': 'clientApplication',
+            'cs5Label': 'vpnProfile'
+        },
+
+        'lambdas': {
+            'rt': lambda rec: rec['eventSecond'] * 1000,
+            'start': lambda rec: rec['eventSecond'] * 1000,
+            'end': lambda rec: rec['eventSecond'] * 1000,
+            'host': lambda rec: __ipv4( rec['hostIpAddr'] ),
+            'deviceExternalId': lambda rec: rec['deviceId'],
+        },
+
+        'fields': {
+            'deviceId': 'dvchost',
+            'userLogoff.username.data': 'suser',
+            'userLogoff.userId': 'suid',
+            'vpnConnectionProfile.data': 'vpnProfile',
+            'userLogoff.startPort': 'spt',
+            'userLogoff.endPort': 'dpt',
+            'userLogoff.protocol': 'proto',
+            'bytesReceived': 'in',
+            'bytesTransmitted': 'out',
+            'instanceId': 'dvcpid',
+            'eventSec': '', # Used to generate rt and start
+            'macAddress': 'dvcmac',
+            'clientIp': 'src',
+            'clientApplicationId': 'requestClientApplication'
+        },
+
+        'viewdata': {
+            View.SENSOR: 'dvchost',
+            View.PROTOCOL: 'proto',
+            View.USER: 'suser'
+        },
+    },
+    
     # 400
     definitions.RECORD_INTRUSION_EVENT: {
         'sig_id': lambda rec: 'INTRUSION:400:{0}:{1}'.format(
