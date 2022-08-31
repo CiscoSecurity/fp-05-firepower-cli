@@ -174,7 +174,8 @@ MAPPING = {
             'cs2Label': 'fwRule',
             'cs3Label': 'ingressZone',
             'cs4Label': 'egressZone',
-            'cs5Label': 'secIntelCategory'
+            'cs5Label': 'urlCategory',
+            'cs6Label': 'urlReputation'
         },
 
         'lambdas': {
@@ -223,8 +224,8 @@ MAPPING = {
             'qosRuleId': '',
             'userId': 'suser',
             'applicationId': 'app',
-            'urlCategory': 'urlCategory',
-            'urlReputation': 'urlReputation',
+            'urlCategory': 'cs5',
+            'urlReputation': 'cs6',
             'clientApplicationId': 'requestClientApplication',
             'webApplicationId': '',
             'clientUrl.data': 'request',
@@ -287,7 +288,7 @@ MAPPING = {
             'dnsResponseType': '',
             'dnsTtl': '',
             'sinkholeUuid': '',
-            'securityIntelligenceList1': 'cs5',
+            'securityIntelligenceList1': 'secIntelCategory',
             'securityIntelligenceList2': ''
         },
 
@@ -295,7 +296,7 @@ MAPPING = {
             View.SENSOR: 'dvchost',
             View.SEC_ZONE_INGRESS: 'cs3',
             View.SEC_ZONE_EGRESS: 'cs4',
-            View.SEC_INTEL_LIST1: 'cs5',
+            View.SEC_INTEL_LIST1: 'secIntelCategory',
             View.IFACE_INGRESS: 'deviceInboundInterface',
             View.IFACE_EGRESS: 'deviceOutboundInterface',
             View.FW_POLICY: 'cs1',
@@ -303,8 +304,8 @@ MAPPING = {
             View.FW_RULE_ACTION: 'act',
             View.FW_RULE_REASON: 'reason',
             View.PROTOCOL: 'proto',
-            View.URL_CATEGORY: 'urlCategory',
-            View.URL_REPUTATION: 'urlReputation',
+            View.URL_CATEGORY: 'cs5',
+            View.URL_REPUTATION: 'cs6',
             View.USER: 'suser',
             View.APP_PROTO: 'app',
             View.CLIENT_APP: 'requestClientApplication',
