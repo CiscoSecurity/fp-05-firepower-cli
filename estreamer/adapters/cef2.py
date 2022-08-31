@@ -214,8 +214,8 @@ MAPPING = {
             'lastPacketTimestamp': '', # Used to generate end
             'initiatorTransmittedPackets': '',
             'responderTransmittedPackets': '',
-            'initiatorTransmittedBytes': 'bytesOut',
-            'responderTransmittedBytes': 'bytesIn',
+            'initiatorTransmittedBytes': 'out',
+            'responderTransmittedBytes': 'in',
             'initiatorPacketsDropped': '',
             'responderPacketsDropped': '',
             'initiatorBytesDropped': '',
