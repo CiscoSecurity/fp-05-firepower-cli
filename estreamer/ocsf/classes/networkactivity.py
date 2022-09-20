@@ -16,6 +16,11 @@
 #
 #*********************************************************************/
 from __future__ import absolute_import
+from estreamer.ocsf.objects import NetworkEndpoint
+from estreamer.ocsf.objects import NetworkProxy
+from estreamer.ocsf.objects import Metadata
+import estreamer.crossprocesslogging as logging
+
 import binascii
 import struct
 
@@ -23,15 +28,63 @@ class NetworkActivity( object ):
     """
     Helper class for OCSF network activity classes
     """
-    NETWORK_TRAFFIC = 6
+
+    ACTIVITIES = {
+        -1: 'Other',
+        0 : 'Unknown',
+        1 : 'Established',
+        2 : 'Closed',
+        3 : 'Reset',
+        4 : 'Failed',
+        5 : 'Refused',
+        6 : 'Traffic'
+    },
+
+    TYPES =  {
+        -1 : 'Network Activity: Other',
+        400100 : 'Network Activity: Unknown',
+        400101 : 'Network Activity: Established',
+        400102 : 'Network Activity: Closed',
+        400103 : 'Network Activity: Reset',
+        400104 : 'Network Activity: Failed',
+        400105 : 'Network Activity: Refused',
+        400106 : 'Network Activity: Traffic'
+    },
+
+    SEVERITIES = {
+        -1: 'Other',
+        0 : 'Unknown',
+        1 : 'Information',
+        2 : 'Low',
+        3 : 'Medium',
+        4 : 'High',
+        5 : 'Critical',
+        6 : 'Fatal'
+    },
+
+    STATUSES = {
+        -1: 'Other',
+        0 : 'Unknown',
+        1 : 'Success',
+        2 : 'Failure'
+    }
+
+    def __activityMap (action):
+        if action == "Blocked" :
+            return NetworkActivty.ACTIVITIES.REFUSED
+
+        elif action == "Allowed" :
+            return NetworkActivty.ACTIVITIES.TRAFFIC
+
+        return NetworkActivty.ACTIVITIES.UNKNOWN
+
 
     def __init__( self, data ):
-        self.activity = data.activity
+        self.logger = logging.getLogger( __name__ )
+        self.data = NetworkActivty.__default()
 
-
-        # https://schema.ocsf.io/classes/network_activity?extensions=, -1 to 6, for Secure Firewall Default is  Network Traffic
-        # todo:  helper function to determine network activity classification
-        self.activity_id = NETWORK_TRAFFIC
+        self.activity = ""
+        self.activity_id = __activityMap("Allowed")
         self.app_name = ""
         self.category_name = ""
         self.class_name = ""
@@ -39,13 +92,13 @@ class NetworkActivity( object ):
         self.unmapped = ['']
         self.connection_info = "" # connection_info object
         self.count = ""
-        self.dst_endpoint = "" # network_endpoint object
+        self.dst_endpoint = NetworkEndpoint(data) # network_endpoint object
         self.duration = ""
         self.end_time = ""
         self.enrichments = ['']
         self._time = ""
         self.message = ""
-        self.metadata = "" # metadata object
+        self.metadata = Metadata(data) # metadata object
         self.observables = ""
         self.ref_time = ""
         self.product = "" # product object
@@ -55,7 +108,7 @@ class NetworkActivity( object ):
         self.ref_event_name = ""
         self.severity = ""
         self.severity_id = ""
-        self.src_endpoint = "" # endpoint object
+        self.src_endpoint = NetworkEndpoint(data) 
         self.status = ""
         self.status_code = ""
         self.status_detail = ""
@@ -68,26 +121,3 @@ class NetworkActivity( object ):
         self.unmapped = ['']
 
 
-    def __getNyble( self, indexNyble ):
-        byteIndex = int(indexNyble/2)
-        #byte = struct.unpack( '>B', self.data[byteIndex] )[0]
-        byte = self.data[byteIndex]  #Python3 read ensures this is already in a binary format
-        if indexNyble % 2 == 0:
-            mask = 0b11110000
-            return ( byte & mask ) >> 4
-        mask = 0b00001111
-        return byte & mask
-
-    def getPayloadAsBytes( self ):
-        headerLengthSum = (
-            Packet.LAYER2_HEADER_LENGTH +
-            self.__getLayer3HeaderLength() +
-            self.__getLayer4HeaderLength() )
-
-        return self.data[headerLengthSum:]
-
-    @staticmethod
-    def createFromHex( data ):
-        binData = binascii.unhexlify( data )
-        return Packet( binData )
-        
