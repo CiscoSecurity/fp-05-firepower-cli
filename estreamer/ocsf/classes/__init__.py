@@ -20,3 +20,5 @@ and splunk adapters
 #       CISCO SYSTEMS, Inc. IS STRICTLY PROHIBITED.
 #
 #*********************************************************************/
+from estreamer.ocsf.classes.NetworkActivity import NetworkActivity
+
