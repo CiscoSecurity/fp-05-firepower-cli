@@ -125,8 +125,6 @@ def __activityMap (action):
     return ActivityIds.UNKNOWN
 
 
-
-
 MAPPING = {
 
     # 71
@@ -234,7 +232,7 @@ MAPPING = {
             'securityGroupId': '',
             'securityIntelligenceLayer': '',
             'securityIntelligenceList1': 'cs5',
-            'securityIntelligenceList2': ''
+            'securityIntelligenceList2': '',
             'securityIntelligenceSourceDestination': '',
             'sinkholeUuid': '',
             'snmpIn': '',
@@ -369,11 +367,6 @@ class Ocsf( object ):
         name = self.mapping['name']( self.record )
         severity = self.mapping['severity']( self.record )
 
-        # my $ocsf_message = "OCSF:$OCSF_VERSION|$OCSF_DEV_VENDOR|$OCSF_DEV_PRODUCT|
-        # ...$OCSF_DEV_VERSION|$sig_id|$name|$severity|$message";
-        # # Update the message with the details
-        # $message = "<$SYSLOG_NUMERIC>$datetime $hostname $OCSF_message";
-
         #return nested json object
         message = u'<{8}>{9} {10} OCSF:{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}'.format(
             OCSF_VERSION,
@@ -391,7 +384,6 @@ class Ocsf( object ):
 
         #json.dumps(data,cls=UTF8Encoder)
         return message
-
 
 
     def dumps( self ):
