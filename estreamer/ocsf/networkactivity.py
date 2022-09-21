@@ -16,9 +16,9 @@
 #
 #*********************************************************************/
 from __future__ import absolute_import
-from estreamer.ocsf.objects import NetworkEndpoint
-from estreamer.ocsf.objects import NetworkProxy
-from estreamer.ocsf.objects import Metadata
+from estreamer.ocsf import NetworkEndpoint
+from estreamer.ocsf import NetworkProxy
+from estreamer.ocsf import Metadata
 import estreamer.crossprocesslogging as logging
 
 import binascii
