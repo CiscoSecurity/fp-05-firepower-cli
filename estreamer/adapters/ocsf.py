@@ -1,12 +1,12 @@
 
 #********************************************************************
 #      File:    ocsf.py
-#      Author:  Seyed Khadem
+#      Author:  Sam Strachan
 #
 #      Description:
-#       OCSF adapter
+#       ocsf adapter
 #
-#      Copyright (c) 2022 by Cisco Systems, Inc.
+#      Copyright (c) 2017 by Cisco Systems, Inc.
 #
 #       ALL RIGHTS RESERVED. THESE SOURCE FILES ARE THE SOLE PROPERTY
 #       OF CISCO SYSTEMS, Inc. AND CONTAIN CONFIDENTIAL  AND PROPRIETARY
@@ -27,11 +27,16 @@ import estreamer.definitions as definitions
 import estreamer.common
 from estreamer.metadata import View
 import six
-import enum
-import json
 
 
-# OCSF header field values
+# Syslog settings
+SYSLOG_FACILITY_USER   = 1
+SYSLOG_PRIORITY_NOTICE = 5
+
+# Calc and save the syslog numeric (do not change, gets calculated)
+SYSLOG_NUMERIC = (SYSLOG_FACILITY_USER << 3  | SYSLOG_PRIORITY_NOTICE)
+
+# ocsf header field values
 OCSF_VERSION     = 0
 OCSF_DEV_VENDOR  = 'Cisco'
 OCSF_DEV_PRODUCT = 'Firepower'
@@ -43,11 +48,6 @@ PACKET_LENGTH_MAX = 1022
 # Output encoding: ascii / utf8 or hex
 PACKET_ENCODING = 'ascii'
 
-class UTF8Encoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, bytes):
-            return str(obj, encoding='utf-8');
-        return json.JSONEncoder.default(self, obj)
 
 
 def __severity( priority, impact ):
@@ -91,6 +91,8 @@ def __ipv4( ipAddress ):
 
     return ''
 
+
+
 def __ipv6( ipAddress ):
     if ipAddress == '::':
         return ''
@@ -104,13 +106,17 @@ def __ipv6( ipAddress ):
     return ''
 
 
+
+
 MAPPING = {
 
     # 71
     definitions.RECORD_RNA_CONNECTION_STATISTICS: {
-        'sig_id': lambda rec: 'RNA:4100:1',
+        'sig_id': lambda rec: 'RNA:1003:1',
 
-        'name': lambda rec: 'NETWORK ACTIVITY',
+        'name': lambda rec: 'CONNECTION STATISTICS',
+
+        'severity': lambda rec: 3 if rec['ruleAction'] < 4 else 7,
 
         'constants': {
             'cs1Label': 'fwPolicy',
@@ -122,8 +128,6 @@ MAPPING = {
 
         'lambdas': {
             'rt': lambda rec: rec['firstPacketTimestamp'] * 1000,
-            'category_name': "network_activity",
-            'activity_id': lambda rec: ____activityMap( rec['firewallRuleAction'] ),
             'start': lambda rec: rec['firstPacketTimestamp'] * 1000,
             'end': lambda rec: rec['lastPacketTimestamp'] * 1000,
             'src': lambda rec: __ipv4( rec['initiatorIpAddress'] ),
@@ -133,49 +137,48 @@ MAPPING = {
             'deviceExternalId': lambda rec: rec['deviceId'],
         },
 
-        # the following qualification needs to be in place for mapping
-        # names must be unique
-        # duplicate object types must have the parent declared, ex.
-        # classname.fieldname
-
         'fields': {
-            'applicationId': 'app',
-            'clientApplicationId': 'requestClientApplication',
-            'clientApplicationVersion': '',
-            'clientApplication': 'networkactivity.app_name',
-            'clientUrl.data': 'request',
-            'connectionCounter': 'externalId',
-            'destinationAutonomousSystem': '',
-            'destinationMask': '',
-            'destinationTos': '',
-            'dnsQuery.data': 'destinationDnsDomain',
             'deviceId': 'dvchost',
-            'dnsRecordType': '',
-            'dnsResponseType': '',
-            'dnsTtl': '',
-            'egressInterface': 'deviceOutboundInterface',
-            'egressZone': 'cs4',
-            'endpointProfileId': '',
-            'eventDescription.data': 'networkactivity.activity',
-            'fileEventCount': '',
-            'firewallRuleAction': 'networkactivity.activity_id',
-            'firstPacketTimestamp': '', # Used to generate rt and start
-            'httpReferrer': '',
-            'httpResponse': '',
-            'ingressInterface': 'deviceInboundInterface',
             'ingressZone': 'cs3',
-            'initiatorBytesDropped': '',
-            'initiatorCountry': '',
-            'initiatorIpAddress': 'networkactivity.dst_endpoint.networkendpoint.ip',
-            'initiatorPacketsDropped': '',
+            'egressZone': 'cs4',
+            'ingressInterface': 'deviceInboundInterface',
+            'egressInterface': 'deviceOutboundInterface',
+            'initiatorIpAddress': '',
+            'responderIpAddress': '',
+            'originalClientIpAddress': '',
+            'policyRevision': 'cs1',
+            'ruleId': 'cs2',
+            'tunnelRuleId': '',
+            'ruleAction': 'act',
+            'ruleReason': 'reason',
             'initiatorPort': 'spt',
-            'initiatorTransmittedBytes': 'bytesOut',
-            'initiatorTransmittedPackets': '',
+            'responderPort': 'dpt',
+            'tcpFlags': '',
+            'protocol': 'proto',
+            'netflowSource': '',
             'instanceId': 'dvcpid',
-            'intrusionEventCount': '',
-            'iocNumber': '',
+            'connectionCounter': 'externalId',
+            'firstPacketTimestamp': '', # Used to generate rt and start
             'lastPacketTimestamp': '', # Used to generate end
-            'locationIpv6': '',
+            'initiatorTransmittedPackets': '',
+            'responderTransmittedPackets': '',
+            'initiatorTransmittedBytes': 'bytesOut',
+            'responderTransmittedBytes': 'bytesIn',
+            'initiatorPacketsDropped': '',
+            'responderPacketsDropped': '',
+            'initiatorBytesDropped': '',
+            'responderBytesDropped': '',
+            'qosAppliedInterface': '',
+            'qosRuleId': '',
+            'userId': 'suser',
+            'applicationId': 'app',
+            'urlCategory': '',
+            'urlReputation': '',
+            'clientApplicationId': 'requestClientApplication',
+            'webApplicationId': '',
+            'clientUrl.data': 'request',
+            'netbios': '',
+            'clientApplicationVersion': '',
             'monitorRules1': '',
             'monitorRules2': '',
             'monitorRules3': '',
@@ -184,64 +187,57 @@ MAPPING = {
             'monitorRules6': '',
             'monitorRules7': '',
             'monitorRules8': '',
-            'netbios': '',
-            'netflowSource': '',
-            'networkAnalysisPolicyRevision': '',
-            'originalClientCountry': '',
-            'originalClientIpAddress': '',
-            'policyRevision': 'cs1',
-            'protocol': 'proto',
-            'qosAppliedInterface': '',
-            'qosRuleId': '',
-            'referencedHost': '',
-            'responderBytesDropped': '',
-            'responderCountry': '',
-            'responderIpAddress': 'networkactivity.src_endpoint.networkendpoint.ip',
-            'responderPacketsDropped': '',
-            'responderPort': 'dpt',
-            'responderTransmittedBytes': 'bytesIn',
-            'responderTransmittedPackets': '',
-            'ruleAction': 'act',
-            'ruleId': 'cs2',
-            'ruleReason': 'reason',
-            'securityContext': '',
-            'securityGroupId': '',
-            'securityIntelligenceLayer': '',
-            'securityIntelligenceList1': 'cs5',
-            'securityIntelligenceList2': '',
             'securityIntelligenceSourceDestination': '',
-            'sinkholeUuid': '',
+            'securityIntelligenceLayer': '',
+            'fileEventCount': '',
+            'intrusionEventCount': '',
+            'initiatorCountry': '',
+            'responderCountry': '',
+            'originalClientCountry': '',
+            'iocNumber': '',
+            'sourceAutonomousSystem': '',
+            'destinationAutonomousSystem': '',
             'snmpIn': '',
             'snmpOut': '',
-            'sourceAutonomousSystem': '',
-            'sourceMask': '',
             'sourceTos': '',
-            'sslActualAction': '',
+            'destinationTos': '',
+            'sourceMask': '',
+            'destinationMask': '',
+            'securityContext': '',
+            'vlanId': '',
+            'referencedHost': '',
+            'userAgent': '',
+            'httpReferrer': '',
             'sslCertificateFingerprint': '',
-            'sslCipherSuite': '',
-            'sslExpectedAction': '',
-            'sslFlowError': '',
-            'sslFlowFlags': '',
-            'sslFlowMessages': '',
-            'sslFlowStatus': '',
             'sslPolicyId': '',
             'sslRuleId': '',
+            'sslCipherSuite': '',
+            'sslVersion': '',
             'sslServerCertificateStatus': '',
+            'sslActualAction': '',
+            'sslExpectedAction': '',
+            'sslFlowStatus': '',
+            'sslFlowError': '',
+            'sslFlowMessages': '',
+            'sslFlowFlags': '',
             'sslServerName': '',
+            'sslUrlCategory': '',
             'sslSessionId': '',
             'sslSessionIdLength': '',
             'sslTicketId': '',
             'sslTicketIdLength': '',
-            'sslUrlCategory': '',
-            'sslVersion': '',
-            'tcpFlags': '',
-            'tunnelRuleId': '',
-            'urlCategory': '',
-            'urlReputation': '',
-            'userAgent': '',
-            'userId': 'suser',
-            'vlanId': '',
-            'webApplicationId': '',
+            'networkAnalysisPolicyRevision': '',
+            'endpointProfileId': '',
+            'securityGroupId': '',
+            'locationIpv6': '',
+            'httpResponse': '',
+            'dnsQuery.data': 'destinationDnsDomain',
+            'dnsRecordType': '',
+            'dnsResponseType': '',
+            'dnsTtl': '',
+            'sinkholeUuid': '',
+            'securityIntelligenceList1': 'cs5',
+            'securityIntelligenceList2': ''
         },
 
         'viewdata': {
@@ -261,13 +257,197 @@ MAPPING = {
             View.CLIENT_APP: 'requestClientApplication',
         },
     },
+    # 400
+    definitions.RECORD_INTRUSION_EVENT: {
+        'sig_id': lambda rec: 'INTRUSION:400:{0}:{1}'.format(
+            rec['generatorId'],
+            rec['@computed.renderedId']
+        ),
 
-   
+        'name': lambda rec: rec['@computed.message'],
+
+        'severity': lambda rec: __severity(
+            rec['priorityId'],
+            rec['impact'] ),
+
+        'constants': {
+            'cs1Label': 'fwPolicy',
+            'cs2Label': 'fwRule',
+            'cs3Label': 'ingressZone',
+            'cs4Label': 'egressZone',
+            'cs5Label': 'ipsPolicy',
+            'cs6Label': 'ruleId',
+            'cn1Label': 'vlan',
+            'cn2Label': 'impact',
+        },
+
+        'lambdas': {
+            'rt': lambda rec: rec['eventSecond'] * 1000,
+            'start': lambda rec: rec['connectionTimestamp'] * 1000,
+            'src': lambda rec: __ipv4( rec['sourceIpAddress'] ),
+            'dst': lambda rec: __ipv4( rec['destinationIpAddress'] ),
+            'c6a2': lambda rec: __ipv6( rec['sourceIpAddress'] ),
+            'c6a3': lambda rec: __ipv6( rec['destinationIpAddress'] ),
+            'deviceExternalId': lambda rec: rec['deviceId'],
+            'request': lambda rec: '',
+            'act': lambda rec: ['Alerted', 'Blocked', 'Would Be Blocked'][ rec['blocked'] ]
+        },
+
+        'viewdata': {
+            View.SENSOR: 'dvchost',
+            View.CLASSIFICATION_DESCRIPTION: 'cat',
+            View.IP_PROTOCOL: 'proto',
+            View.IDS_POLICY: 'cs5',
+            View.RENDERED_ID: 'cs6',
+            View.USER: 'suser',
+            View.CLIENT_APP: 'requestClientApplication',
+            View.APP_PROTO: 'app',
+            View.FW_POLICY: 'cs1',
+            View.FW_RULE: 'cs2',
+            View.IFACE_INGRESS: 'deviceInboundInterface',
+            View.IFACE_EGRESS: 'deviceOutboundInterface',
+            View.SEC_ZONE_INGRESS: 'cs3',
+            View.SEC_ZONE_EGRESS: 'cs4'
+        },
+
+        'fields': {
+            'deviceId': 'dvchost',
+            'eventId': 'externalId',
+            'eventSecond': '', # Used to generate rt
+            'eventMicrosecond': '',
+            'renderedId': 'cs6', # Used to generate sig_id
+            'generatorId': '', # Used to generate sig_id
+            'ruleRevision': '',
+            'classificationId': 'cat',
+            'priorityId': '', # Used to generate severity
+            'sourceIpAddress': '',
+            'destinationIpAddress': '',
+            'sourcePortOrIcmpType': 'spt',
+            'destinationPortOrIcmpType': 'dpt',
+            'ipProtocolId': 'proto',
+            'impactFlags': '',
+            'impact': 'cn2', # Used to generate severity
+            'blocked': 'act',
+            'mplsLabel': '',
+            'vlanId': 'cn1',
+            'pad': '',
+            'policyUuid': 'cs5',
+            'userId': 'suser',
+            'webApplicationId': '',
+            'clientApplicationId': 'requestClientApplication',
+            'applicationId': 'app',
+            'accessControlRuleId': 'cs2',
+            'accessControlPolicyUuid': 'cs1',
+            'interfaceIngressUuid': 'deviceInboundInterface',
+            'interfaceEgressUuid': 'deviceOutboundInterface',
+            'securityZoneIngressUuid': 'cs3',
+            'securityZoneEgressUuid': 'cs4',
+            'connectionTimestamp': '', # Used to generate start
+            'connectionInstanceId': 'dvcpid',
+            'connectionCounter': '',
+            'sourceCountry': '',
+            'destinationCountry': '',
+            'iocNumber': '',
+            'securityContext': '',
+            'sslCertificateFingerprint': '',
+            'sslActualAction': '',
+            'sslFlowStatus': '',
+            'networkAnalysisPolicyUuid': '',
+            'httpResponse': '',
+        },
+    },
+
+    # 500 (and also 502 - it's copied below)
+    definitions.RECORD_FILELOG_EVENT: {
+        'sig_id': lambda rec: 'File:500:1',
+
+        'name': lambda rec: '{0}'.format( rec['@computed.recordTypeDescription'] ),
+
+        'severity': lambda rec: rec['threatScore'] / 10,
+
+        'constants': {
+            'cs1Label': 'filePolicy',
+            'cs2Label': 'disposition',
+            'cs3Label': 'speroDisposition'
+        },
+
+        'lambdas': {
+            'rt': lambda rec: rec['fileEventTimestamp'] * 1000,
+            'start': lambda rec: rec['connectionTimestamp'] * 1000,
+            'src': lambda rec: __ipv4( rec['sourceIpAddress'] ),
+            'dst': lambda rec: __ipv4( rec['destinationIpAddress'] ),
+            'c6a2': lambda rec: __ipv6( rec['sourceIpAddress'] ),
+            'c6a3': lambda rec: __ipv6( rec['destinationIpAddress'] ),
+            'deviceExternalId': lambda rec: rec['deviceId'],
+        },
+
+        'viewdata': {
+            View.SENSOR: 'dvchost',
+            View.DISPOSITION: 'cs2',
+            View.SPERO_DISPOSITION: 'cs3',
+            View.FILE_ACTION: 'act',
+            View.FILE_TYPE: 'fileType',
+            View.APP_PROTO: 'app',
+            View.USER: 'suser',
+            View.PROTOCOL: 'proto',
+            View.FILE_POLICY: 'cs1',
+            View.CLIENT_APP: 'requestClientApplication',
+        },
+
+        'fields': {
+            'deviceId': 'dvchost',
+            'connectionInstance': 'dvcpid',
+            'connectionCounter': '',
+            'connectionTimestamp': '', # Used to generate start
+            'fileEventTimestamp': '', # Used to generate rt
+            'sourceIpAddress': '',
+            'destinationIpAddress': '',
+            'disposition': 'cs2',
+            'speroDisposition': 'cs3',
+            'fileStorageStatus': '',
+            'fileAnalysisStatus': '',
+            'localMalwareAnalysisStatus': '',
+            'archiveFileStatus': '',
+            'threatScore': '', # Used to generate severity
+            'action': 'act',
+            'shaHash': 'fileHash',
+            'fileTypeId': 'fileType',
+            'fileName.data': 'fname',
+            'fileSize': 'fsize',
+            'direction': 'deviceDirection',
+            'applicationId': 'app',
+            'userId': 'suser',
+            'uri.data': 'request',
+            'signature.data': 'cs4',
+            'sourcePort': 'spt',
+            'destinationPort': 'dpt',
+            'protocol': 'proto',
+            'accessControlPolicyUuid': 'cs1',
+            'sourceCountry': '',
+            'destinationCountry': '',
+            'webApplicationId': '',
+            'clientApplicationId': 'requestClientApplication',
+            'securityContext': '',
+            'sslCertificateFingerprint': '',
+            'sslActualAction': '',
+            'sslFlowStatus': '',
+            'archiveSha': '',
+            'archiveName': '',
+            'archiveDepth': '',
+        },
+    },
 }
+
+# 502
+MAPPING[ definitions.RECORD_FILELOG_MALWARE_EVENT ] = copy.deepcopy(
+    MAPPING[ definitions.RECORD_FILELOG_EVENT ])
+
+MAPPING[ definitions.RECORD_FILELOG_MALWARE_EVENT ]['sig_id'] = lambda rec: 'FileMalware:502:1'
+
 
 
 class Ocsf( object ):
-    """Ocsf adapter class to contain implementation"""
+    """ocsf adapter class to contain implementation"""
     def __init__( self, source ):
         self.source = source
         self.record = estreamer.common.Flatdict( source, True )
@@ -278,6 +458,22 @@ class Ocsf( object ):
             if self.record['recordType'] in MAPPING:
                 self.mapping = MAPPING[ self.record['recordType'] ]
                 self.output = {}
+
+
+
+    @staticmethod
+    def __sanitize( value ):
+        value = str(value)
+        
+        # Escape \ " ]
+        value = value.replace('\\', '\\\\')
+        value = value.replace('"', '\\"')
+        value = value.replace(']', '\\]')
+        value = value.replace('|', '\|')
+
+        return value
+
+
 
     def __convert( self ):
         """Writes the self.output dictionary"""
@@ -319,7 +515,7 @@ class Ocsf( object ):
 
 
     def __ocsfMessage( self ):
-        """Takes a transformed dictionary and converts it to a OCSF message"""
+        """Takes a transformed dictionary and converts it to a ocsf message"""
         # my ($sig_id, $name, $severity, $message) = @_;
 
         # my $hostname = hostname();
@@ -338,15 +534,35 @@ class Ocsf( object ):
             quoteSpaces = False,
             sort = True )
 
-        #return nested json object
-        message = u'OCSF'
+        # Special fields
+        sigId = self.mapping['sig_id']( self.record )
+        name = self.mapping['name']( self.record )
+        severity = self.mapping['severity']( self.record )
 
-        #json.dumps(data,cls=UTF8Encoder)
+        # my $ocsf_message = "ocsf:$ocsf_VERSION|$ocsf_DEV_VENDOR|$ocsf_DEV_PRODUCT|
+        # ...$ocsf_DEV_VERSION|$sig_id|$name|$severity|$message";
+        # # Update the message with the details
+        # $message = "<$SYSLOG_NUMERIC>$datetime $hostname $ocsf_message";
+        message = u'<{8}>{9} {10} ocsf:{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}'.format(
+            OCSF_VERSION,
+            OCSF_DEV_VENDOR,
+            OCSF_DEV_PRODUCT,
+            OCSF_DEV_VERSION,
+            sigId,
+            name,
+            severity,
+            data,
+            SYSLOG_NUMERIC,
+            now,
+            hostname
+        )
+
         return message
 
 
+
     def dumps( self ):
-        """Dumps the current record to a OCSF message (or None)"""
+        """Dumps the current record to a ocsf message (or None)"""
         if self.mapping is None:
             return None
 
@@ -355,8 +571,10 @@ class Ocsf( object ):
 
         return message
 
+
+
 def dumps( source ):
-    """Converts a source record into a OCSF message"""
+    """Converts a source record into a ocsf message"""
     ocsfAdapter = Ocsf( source )
     return ocsfAdapter.dumps()
 
