@@ -25,7 +25,7 @@ import estreamer
 import estreamer.adapters.kvpair
 import estreamer.definitions as definitions
 import estreamer.common
-import estreamer.ocsf.classes.NetworkActivity
+from estreamer.ocsf import NetworkActivity
 from estreamer.metadata import View
 import six
 
@@ -43,13 +43,8 @@ OCSF_DEV_VENDOR  = 'Cisco'
 OCSF_DEV_PRODUCT = 'Firepower'
 OCSF_DEV_VERSION = '6.0'
 
-# Packet truncation length
-PACKET_LENGTH_MAX = 1022
-
 # Output encoding: ascii / utf8 or hex
 PACKET_ENCODING = 'ascii'
-
-
 
 def __severity( priority, impact ):
     matrix = {
