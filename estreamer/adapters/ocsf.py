@@ -510,7 +510,7 @@ class Ocsf( object ):
                 del self.output[ key ]
 
             else:
-                self.output[ key ] = ocsf.__sanitize( self.output[ key ] )
+                self.output[ key ] = Ocsf.__sanitize( self.output[ key ] )
 
 
 
