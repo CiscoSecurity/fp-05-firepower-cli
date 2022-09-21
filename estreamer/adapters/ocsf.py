@@ -25,7 +25,7 @@ import estreamer
 import estreamer.adapters.kvpair
 import estreamer.definitions as definitions
 import estreamer.common
-from estreamer.ocsf import NetworkActivity
+import estreamer.ocsf.networkactivity
 from estreamer.metadata import View
 import six
 
