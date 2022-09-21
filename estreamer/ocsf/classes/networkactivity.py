@@ -81,7 +81,7 @@ class NetworkActivity( object ):
 
     def __init__( self, data ):
         self.logger = logging.getLogger( __name__ )
-        self.data = NetworkActivty.__default()
+        self.data = data
 
         self.activity = ""
         self.activity_id = __activityMap("Allowed")
@@ -92,13 +92,13 @@ class NetworkActivity( object ):
         self.unmapped = ['']
         self.connection_info = "" # connection_info object
         self.count = ""
-        self.dst_endpoint = NetworkEndpoint(data) # network_endpoint object
+        self.dst_endpoint = ""#NetworkEndpoint(data) # network_endpoint object
         self.duration = ""
         self.end_time = ""
         self.enrichments = ['']
         self._time = ""
         self.message = ""
-        self.metadata = Metadata(data) # metadata object
+        self.metadata = "" #Metadata(data) # metadata object
         self.observables = ""
         self.ref_time = ""
         self.product = "" # product object
@@ -108,7 +108,7 @@ class NetworkActivity( object ):
         self.ref_event_name = ""
         self.severity = ""
         self.severity_id = ""
-        self.src_endpoint = NetworkEndpoint(data) 
+        self.src_endpoint = ""#NetworkEndpoint(data) 
         self.status = ""
         self.status_code = ""
         self.status_detail = ""
@@ -121,3 +121,7 @@ class NetworkActivity( object ):
         self.unmapped = ['']
 
 
+    def dumps( self ):
+        """Dumps the current record to a ocsf message (or None)"""
+
+        return self.__dict__

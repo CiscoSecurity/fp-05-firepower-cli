@@ -91,7 +91,10 @@ def __ipv4( ipAddress ):
 
     return ''
 
+def __networkActivity( data )
+    event = NetworkActivity( data )
 
+    return event.dumps()
 
 def __ipv6( ipAddress ):
     if ipAddress == '::':
@@ -128,6 +131,7 @@ MAPPING = {
 
         'lambdas': {
             'rt': lambda rec: rec['firstPacketTimestamp'] * 1000,
+            'activity_id': lambda x : __networkActivity("test"),
             'start': lambda rec: rec['firstPacketTimestamp'] * 1000,
             'end': lambda rec: rec['lastPacketTimestamp'] * 1000,
             'src': lambda rec: __ipv4( rec['initiatorIpAddress'] ),
@@ -357,85 +361,6 @@ MAPPING = {
         },
     },
 
-    # 500 (and also 502 - it's copied below)
-    definitions.RECORD_FILELOG_EVENT: {
-        'sig_id': lambda rec: 'File:500:1',
-
-        'name': lambda rec: '{0}'.format( rec['@computed.recordTypeDescription'] ),
-
-        'severity': lambda rec: rec['threatScore'] / 10,
-
-        'constants': {
-            'cs1Label': 'filePolicy',
-            'cs2Label': 'disposition',
-            'cs3Label': 'speroDisposition'
-        },
-
-        'lambdas': {
-            'rt': lambda rec: rec['fileEventTimestamp'] * 1000,
-            'start': lambda rec: rec['connectionTimestamp'] * 1000,
-            'src': lambda rec: __ipv4( rec['sourceIpAddress'] ),
-            'dst': lambda rec: __ipv4( rec['destinationIpAddress'] ),
-            'c6a2': lambda rec: __ipv6( rec['sourceIpAddress'] ),
-            'c6a3': lambda rec: __ipv6( rec['destinationIpAddress'] ),
-            'deviceExternalId': lambda rec: rec['deviceId'],
-        },
-
-        'viewdata': {
-            View.SENSOR: 'dvchost',
-            View.DISPOSITION: 'cs2',
-            View.SPERO_DISPOSITION: 'cs3',
-            View.FILE_ACTION: 'act',
-            View.FILE_TYPE: 'fileType',
-            View.APP_PROTO: 'app',
-            View.USER: 'suser',
-            View.PROTOCOL: 'proto',
-            View.FILE_POLICY: 'cs1',
-            View.CLIENT_APP: 'requestClientApplication',
-        },
-
-        'fields': {
-            'deviceId': 'dvchost',
-            'connectionInstance': 'dvcpid',
-            'connectionCounter': '',
-            'connectionTimestamp': '', # Used to generate start
-            'fileEventTimestamp': '', # Used to generate rt
-            'sourceIpAddress': '',
-            'destinationIpAddress': '',
-            'disposition': 'cs2',
-            'speroDisposition': 'cs3',
-            'fileStorageStatus': '',
-            'fileAnalysisStatus': '',
-            'localMalwareAnalysisStatus': '',
-            'archiveFileStatus': '',
-            'threatScore': '', # Used to generate severity
-            'action': 'act',
-            'shaHash': 'fileHash',
-            'fileTypeId': 'fileType',
-            'fileName.data': 'fname',
-            'fileSize': 'fsize',
-            'direction': 'deviceDirection',
-            'applicationId': 'app',
-            'userId': 'suser',
-            'uri.data': 'request',
-            'signature.data': 'cs4',
-            'sourcePort': 'spt',
-            'destinationPort': 'dpt',
-            'protocol': 'proto',
-            'accessControlPolicyUuid': 'cs1',
-            'sourceCountry': '',
-            'destinationCountry': '',
-            'webApplicationId': '',
-            'clientApplicationId': 'requestClientApplication',
-            'securityContext': '',
-            'sslCertificateFingerprint': '',
-            'sslActualAction': '',
-            'sslFlowStatus': '',
-            'archiveSha': '',
-            'archiveName': '',
-            'archiveDepth': '',
-        },
-    },
 }
 
 # 502
