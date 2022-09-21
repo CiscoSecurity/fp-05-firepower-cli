@@ -50,16 +50,6 @@ class UTF8Encoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-class ActivityIds(enum.Enum):
-   OTHER = -1
-   UNKNOWN = 0
-   ESTABLISHED = 1
-   CLOSED = 2
-   RESET = 3
-   FAILED = 4
-   REFUSED = 5
-   TRAFFIC = 6
-
 def __severity( priority, impact ):
     matrix = {
         1: {  # High
@@ -112,17 +102,6 @@ def __ipv6( ipAddress ):
         return ipAddress
 
     return ''
-
-#Network Activity Helper Functions
-#consider extracting this out as a helper class
-def __activityMap (action):
-    if action == "Blocked" :
-        return ActivityIds.REFUSED
-
-    elif action == "Allowed" :
-        return ActivityIds.TRAFFIC
-
-    return ActivityIds.UNKNOWN
 
 
 MAPPING = {
@@ -362,25 +341,8 @@ class Ocsf( object ):
             quoteSpaces = False,
             sort = True )
 
-        # Special fields
-        sigId = self.mapping['sig_id']( self.record )
-        name = self.mapping['name']( self.record )
-        severity = self.mapping['severity']( self.record )
-
         #return nested json object
-        message = u'<{8}>{9} {10} OCSF:{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}'.format(
-            OCSF_VERSION,
-            OCSF_DEV_VENDOR,
-            OCSF_DEV_PRODUCT,
-            OCSF_DEV_VERSION,
-            sigId,
-            name,
-            severity,
-            data,
-            SYSLOG_NUMERIC,
-            now,
-            hostname
-        )
+        message = u'OCSF'
 
         #json.dumps(data,cls=UTF8Encoder)
         return message
