@@ -91,7 +91,7 @@ def __ipv4( ipAddress ):
 
     return ''
 
-def __networkActivity( data )
+def __networkActivity( data ) :
     event = NetworkActivity( data )
 
     return event.dumps()
