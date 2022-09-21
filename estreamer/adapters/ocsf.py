@@ -123,9 +123,6 @@ MAPPING = {
         'lambdas': {
             'rt': lambda rec: rec['firstPacketTimestamp'] * 1000,
             'category_name': "network_activity",
-            'category_uid': 4,
-            'class_name': "Network Activity",
-            'class_uid': 4001,
             'activity_id': lambda rec: ____activityMap( rec['firewallRuleAction'] ),
             'start': lambda rec: rec['firstPacketTimestamp'] * 1000,
             'end': lambda rec: rec['lastPacketTimestamp'] * 1000,
