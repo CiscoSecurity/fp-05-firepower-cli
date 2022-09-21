@@ -363,13 +363,6 @@ MAPPING = {
 
 }
 
-# 502
-MAPPING[ definitions.RECORD_FILELOG_MALWARE_EVENT ] = copy.deepcopy(
-    MAPPING[ definitions.RECORD_FILELOG_EVENT ])
-
-MAPPING[ definitions.RECORD_FILELOG_MALWARE_EVENT ]['sig_id'] = lambda rec: 'FileMalware:502:1'
-
-
 
 class Ocsf( object ):
     """ocsf adapter class to contain implementation"""
