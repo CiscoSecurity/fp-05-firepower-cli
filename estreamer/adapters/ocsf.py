@@ -31,6 +31,7 @@ from estreamer.ocsf import NetworkEndpoint
 from estreamer.ocsf import NetworkProxy
 from estreamer.ocsf import NetworkTraffic
 from estreamer.ocsf import Metadata
+from estreamer.ocsf import User
 from estreamer.metadata import View
 import six
 
@@ -49,6 +50,14 @@ OCSF_DEV_VERSION = '6.0'
 
 # Output encoding: ascii / utf8 or hex
 PACKET_ENCODING = 'ascii'
+
+def __sanitize( value ):
+    value = str(value)
+
+    value = value.replace('\"', '"')
+    value = value.rstrip('"')
+
+    return value
 
 def __severity( priority, impact ):
     matrix = {
@@ -126,13 +135,11 @@ def __networkEndpoint( data , ip, port) :
     
     return vars(event)
 
-#    return estreamer.adapters.json.dumps(vars(event))
 
 def __networkProxy( data ) :
     event = NetworkProxy( data )
 
     return vars(event)
-#    return estreamer.adapters.json.dumps(vars(event))
 
 def __networkActivity( data ) :
     return NetworkActivity( data)
@@ -142,13 +149,16 @@ def __networkTraffic( data ) :
     event = NetworkTraffic( data )
 
     return vars(event)
-#    return estreamer.adapters.json.dumps(vars(event))
 
 def __metadata( data ) :
     event = Metadata( data )
 
     return vars(event)
-#    return estreamer.adapters.json.dumps(vars(event))
+
+def __userProfile( data ) :
+    event = User( data )
+
+    return vars(event)
 
 
 def __ipv6( ipAddress ):
@@ -207,6 +217,7 @@ MAPPING = {
             'traffic': lambda rec: __networkTraffic(rec),
             'type_uid': lambda rec: 400100 + int(__networkActivityId( rec['firewallRuleAction'] )),
             'type_name': lambda rec: __networkTypeById(400100 + int(__networkActivityId( rec['firewallRuleAction'] ))),
+            'user': lambda rec: __userProfile(rec),  #todo:  function to determine what profiles are available then append them to record
         },
 
         'fields': {
@@ -338,6 +349,7 @@ class Ocsf( object ):
             if self.record['recordType'] in MAPPING:
                 self.mapping = MAPPING[ self.record['recordType'] ]
                 self.output = {}
+               
 
 
 
@@ -345,11 +357,18 @@ class Ocsf( object ):
     def __sanitize( value ):
         value = str(value)
         
+        singleQuote = "'"
+        doubleQuote = '"'
         ## Escape \ " ]
-        value = value.replace('\\', '')
-        #value = value.replace('"', '\\"')
-        #value = value.replace(']', '\\]')
-        #value = value.replace('|', '\|')
+        value = value.replace('\\\"', '"')
+        value = value.replace('"{', '{')
+        value = value.replace('}"', '}')
+        value = value.replace(singleQuote, doubleQuote)
+        value = value.replace('\"', '"')
+        value = value.replace('\\"', '"')
+        value = value.replace('\\\"', '"')
+        value = value.replace('\"{', '{')
+        value = value.replace('}\"', '}')
 
         return value
 
@@ -363,21 +382,20 @@ class Ocsf( object ):
         for source in self.mapping['fields']:
             target = self.mapping['fields'][source]
             if len(target) > 0:
-                unmapped[target] = self.record[source]
+#                unmapped[target] = Ocsf.__sanitize( self.record[source] )
+                unmapped[target] = self.record[source] 
 
-        self.output['unmapped'] = estreamer.adapters.json.dumps(unmapped)
+        self.output['unmapped'] = unmapped
 
         # Now the constants (hard coded values)
         for target in self.mapping['constants']:
-            self.output[target] = estreamer.adapters.json.dumps(self.mapping['constants'][target])
-
+            self.output[target] = self.mapping['constants'][target]
         # Lambdas
 
         lambdas = {}
         for target in self.mapping['lambdas']:
             function = self.mapping['lambdas'][target]
-            self.output[target] = estreamer.adapters.json.dumps(function( self.record ))
-
+            self.output[target] = function( self.record  )
 
         # View data last
         for source in self.mapping['viewdata']:
@@ -385,7 +403,7 @@ class Ocsf( object ):
             value = self.record[key]
             if value is not None:
                 target = self.mapping['viewdata'][source]
-                self.output[target] = value
+                self.output[target] = Ocsf.__sanitize( value )
 
         keys = list(self.output.keys())
         for key in keys:
@@ -395,7 +413,8 @@ class Ocsf( object ):
             elif self.output[ key ] == 0:
                 del self.output[ key ]
 
-            else:
+            else: 
+
                 self.output[ key ] = Ocsf.__sanitize( self.output[ key ] )
 
 
@@ -413,21 +432,11 @@ class Ocsf( object ):
         # my $datetime = strftime('%b %e %T', localtime(time()));
         now = time.strftime('%b %d %X')
 
-        # Key value pairs
-#        data = estreamer.adapters.kvpair.dumps(
-#            self.output,
-#            delimiter = ' ',
-#            quoteSpaces = False,
-#            sort = True )
-
-        data = estreamer.adapters.json.dumps(self.output)
+#        data = estreamer.adapters.json.dumps(self.output)
+        data = Ocsf.__sanitize( self.output )
         # Special fields
         name = self.mapping['name']( self.record )
 
-        # my $ocsf_message = "ocsf:$ocsf_VERSION|$ocsf_DEV_VENDOR|$ocsf_DEV_PRODUCT|
-        # ...$ocsf_DEV_VERSION|$sig_id|$name|$severity|$message";
-        # # Update the message with the details
-        # $message = "<$SYSLOG_NUMERIC>$datetime $hostname $ocsf_message";
         message = u'{0}'.format(
             data
         )

@@ -26,3 +26,4 @@ from estreamer.ocsf.networkendpoint import NetworkEndpoint
 from estreamer.ocsf.networkconnectioninfo import NetworkConnectionInfo
 from estreamer.ocsf.networktraffic import NetworkTraffic
 from estreamer.ocsf.metadata import Metadata
+from estreamer.ocsf.user import User
