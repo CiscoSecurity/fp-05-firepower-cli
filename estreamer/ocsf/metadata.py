@@ -26,8 +26,6 @@ class Metadata( object ):
 
     def __init__( self, data ):
 
-        # https://schema.ocsf.io/classes/network_activity?extensions=, -1 to 6, for Secure Firewall Default is  Network Traffic
-        # todo:  helper function to determine network activity classification
         self.correlation_uid = ""
         self.uid = ""
         self.labels = ""

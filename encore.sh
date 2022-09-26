@@ -201,7 +201,7 @@ main() {
             echo '    restart:    stop the eNcore background task'
             echo '    foreground: runs eNcore in the foreground'
             echo '    test:       runs a quick test to check connectivity'
-            echo '    setup:      change the output (splunk | cef | json)'
+            echo '    setup:      change the output (splunk | cef | json | ocsf)'
             echo
             echo $1
             exit $EXIT_CODE_ERROR

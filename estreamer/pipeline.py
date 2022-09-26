@@ -68,6 +68,9 @@ def _shouldParse( record, settings ):
         if settings.writeVPN:
             result = True
 
+    elif recordTypeId in definitions.TYPES['OCSF']:
+        result = True
+
     elif recordTypeId in definitions.TYPES['RUA']:
         if settings.writeRua:
             result = True

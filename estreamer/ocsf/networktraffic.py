@@ -19,7 +19,7 @@ from __future__ import absolute_import
 import binascii
 import struct
 
-class NetworkProxy( object ):
+class NetworkTraffic( object ):
     """
     Helper class for OCSF network activity classes
     """
@@ -28,8 +28,11 @@ class NetworkProxy( object ):
 
         # https://schema.ocsf.io/classes/network_activity?extensions=, -1 to 6, for Secure Firewall Default is  Network Traffic
         # todo:  helper function to determine network activity classification
-        self.hostname = data['hostIpAddr']
-        self.ip = data['originalClientIpAddress']
-        self.port = data['initiatorPort']
-        self.profiles = [''] 
+        self.bytes_in = data['responderTransmittedBytes']
+        self.bytes_out = data['initiatorTransmittedBytes']
+        self.packets_in = data['initiatorTransmittedPackets']
+        self.packets_out = data['responderTransmittedPackets']
+        self.profiles = ['']
+        self.bytes = ""
+        self.packets = ""
 

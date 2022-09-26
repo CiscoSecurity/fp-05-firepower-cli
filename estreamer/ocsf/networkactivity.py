@@ -16,13 +16,10 @@
 #
 #*********************************************************************/
 from __future__ import absolute_import
-from estreamer.ocsf import NetworkEndpoint
-from estreamer.ocsf import NetworkProxy
-from estreamer.ocsf import Metadata
-import estreamer.crossprocesslogging as logging
 
 import binascii
 import struct
+import json
 
 class NetworkActivity( object ):
     """
@@ -38,7 +35,7 @@ class NetworkActivity( object ):
         4 : 'Failed',
         5 : 'Refused',
         6 : 'Traffic'
-    },
+    }
 
     TYPES =  {
         -1 : 'Network Activity: Other',
@@ -49,7 +46,7 @@ class NetworkActivity( object ):
         400104 : 'Network Activity: Failed',
         400105 : 'Network Activity: Refused',
         400106 : 'Network Activity: Traffic'
-    },
+    }
 
     SEVERITIES = {
         -1: 'Other',
@@ -60,7 +57,7 @@ class NetworkActivity( object ):
         4 : 'High',
         5 : 'Critical',
         6 : 'Fatal'
-    },
+    }
 
     STATUSES = {
         -1: 'Other',
@@ -69,22 +66,69 @@ class NetworkActivity( object ):
         2 : 'Failure'
     }
 
-    def __activityMap (action):
-        if action == "Blocked" :
-            return NetworkActivty.ACTIVITIES.REFUSED
+    @staticmethod
+    def activityMap ( activity ):
 
-        elif action == "Allowed" :
-            return NetworkActivty.ACTIVITIES.TRAFFIC
+        if activity == 'Allow' :
+           activity = 'Established'
 
-        return NetworkActivty.ACTIVITIES.UNKNOWN
+        if activity in NetworkActivity.ACTIVITIES:
+            return activity
+
+        return "Unknown"
+
+    @staticmethod
+    def activityMapId ( activity ):
+
+        if activity == 'Allow' :
+           activity = 'Established'
+
+        for k,v  in NetworkActivity.ACTIVITIES.items() :
+            if v  == activity:
+                return k
+
+        return -1
+
+    @staticmethod
+    def newtworkTypeById ( id ):
+
+        for k,v in NetworkActivity.TYPES.items() :
+           if id == k :
+               return v
+
+        return -1
+
+    @staticmethod
+    def activityMapIdName ( self, id ):
+
+        if id in NetworkActivity.TYPES.keys():
+            return NetworkAcitivity.TYPE.get(id)
+
+        return -1
+
+    @staticmethod
+    def statusMap ( status ):
+
+        if status in NetworkActivity.STATUSES:
+            return status
+
+        return "Unknown"
+
+    @staticmethod
+    def statusMapId ( status ):
+
+        for k, v in NetworkActivity.STATUSES.items():
+            if status == v:
+                return k
+
+        return "Unknown"
+
 
 
     def __init__( self, data ):
-        self.logger = logging.getLogger( __name__ )
-        self.data = data
 
-        self.activity = ""
-        self.activity_id = __activityMap("Allowed")
+        #self.activity = self.__activityMap(data['firewallRuleAction'])
+        #self.activity_id =  self.__activityMapId(data['firewallRuleAction'])
         self.app_name = ""
         self.category_name = ""
         self.class_name = ""
@@ -120,8 +164,3 @@ class NetworkActivity( object ):
         self.type_name = ""
         self.unmapped = ['']
 
-
-    def dumps( self ):
-        """Dumps the current record to a ocsf message (or None)"""
-
-        return self.__dict__

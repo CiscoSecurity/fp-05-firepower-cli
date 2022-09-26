@@ -18,18 +18,28 @@
 from __future__ import absolute_import
 import binascii
 import struct
+from estreamer.ocsf import DigitialCertificate
 
-class NetworkProxy( object ):
+class TLS( object ):
     """
     Helper class for OCSF network activity classes
     """
 
     def __init__( self, data ):
 
-        # https://schema.ocsf.io/classes/network_activity?extensions=, -1 to 6, for Secure Firewall Default is  Network Traffic
-        # todo:  helper function to determine network activity classification
-        self.hostname = data['hostIpAddr']
-        self.ip = data['originalClientIpAddress']
-        self.port = data['initiatorPort']
-        self.profiles = [''] 
-
+        self.certificate = ""
+        self.certificate_chain = ""
+        self.cipher = ""
+        self.client_ciphers = ""
+        self.alert = ""
+        self.extension_list = ""
+        self.handshake_dur = ""
+        self.ja3_fingerprint = ""
+        self.ja3s_fingerprint = ""
+        self.ja3s_string = ['']
+        self.key_length = 0
+        self.profiles = ['']
+        self.server_ciphers = ['']
+        self.sni = ""
+        self.sans = ""
+        self.version = "1.0.0"

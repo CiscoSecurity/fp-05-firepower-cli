@@ -25,16 +25,16 @@ class NetworkEndpoint( object ):
     Helper class for OCSF network activity classes
     """
 
-    def __init__( self, data ):
+    def __init__( self, data , ip, port):
 
         self.location = ""
         self.domain = ""
-        self.ip = ""
+        self.ip = ip
         self.instance_uid = ""
         self.mac = ""
         self.name = ""
         self.interface_uid = "" 
-        self.port = ""
+        self.port = port
         self.profiles = [''] 
         self.svc_name = ""
         self.subnet_uid = ""

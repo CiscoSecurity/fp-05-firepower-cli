@@ -24,4 +24,5 @@ from estreamer.ocsf.networkactivity import NetworkActivity
 from estreamer.ocsf.networkproxy import NetworkProxy
 from estreamer.ocsf.networkendpoint import NetworkEndpoint
 from estreamer.ocsf.networkconnectioninfo import NetworkConnectionInfo
+from estreamer.ocsf.networktraffic import NetworkTraffic
 from estreamer.ocsf.metadata import Metadata

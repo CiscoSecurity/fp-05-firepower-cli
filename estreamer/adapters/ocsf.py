@@ -25,10 +25,14 @@ import estreamer
 import estreamer.adapters.kvpair
 import estreamer.definitions as definitions
 import estreamer.common
-import estreamer.ocsf.networkactivity
+import estreamer.adapters.json
+from estreamer.ocsf import NetworkActivity
+from estreamer.ocsf import NetworkEndpoint
+from estreamer.ocsf import NetworkProxy
+from estreamer.ocsf import NetworkTraffic
+from estreamer.ocsf import Metadata
 from estreamer.metadata import View
 import six
-
 
 # Syslog settings
 SYSLOG_FACILITY_USER   = 1
@@ -90,7 +94,62 @@ def __ipv4( ipAddress ):
 def __networkActivity( data ) :
     event = NetworkActivity( data )
 
-    return event.dumps()
+    return NetworkActivity.activityMap( data )
+
+def __networkActivityId( data ) :
+    event = NetworkActivity( data )
+
+    return NetworkActivity.activityMapId( data )
+
+def __networkActivityIdName( data ) :
+    event = NetworkActivity( data )
+
+    return NetworkActivity.activityMapIdName( data )
+
+def __networkStatus( data ) :
+    event = NetworkActivity( data )
+
+    return NetworkActivity.statusMap( data )
+
+def __networkStatusId( data ) :
+    event = NetworkActivity( data )
+
+    return NetworkActivity.statusMapId( data )
+
+def __networkTypeById( data ) :
+    event = NetworkActivity( data )
+
+    return NetworkActivity.newtworkTypeById( data )
+
+def __networkEndpoint( data , ip, port) :
+    event = NetworkEndpoint( data , ip , port)
+    
+    return vars(event)
+
+#    return estreamer.adapters.json.dumps(vars(event))
+
+def __networkProxy( data ) :
+    event = NetworkProxy( data )
+
+    return vars(event)
+#    return estreamer.adapters.json.dumps(vars(event))
+
+def __networkActivity( data ) :
+    return NetworkActivity( data)
+
+
+def __networkTraffic( data ) :
+    event = NetworkTraffic( data )
+
+    return vars(event)
+#    return estreamer.adapters.json.dumps(vars(event))
+
+def __metadata( data ) :
+    event = Metadata( data )
+
+    return vars(event)
+#    return estreamer.adapters.json.dumps(vars(event))
+
 
 def __ipv6( ipAddress ):
     if ipAddress == '::':
@@ -105,60 +164,66 @@ def __ipv6( ipAddress ):
     return ''
 
 
-
-
 MAPPING = {
 
     # 71
     definitions.RECORD_RNA_CONNECTION_STATISTICS: {
-        'sig_id': lambda rec: 'RNA:1003:1',
 
         'name': lambda rec: 'CONNECTION STATISTICS',
 
-        'severity': lambda rec: 3 if rec['ruleAction'] < 4 else 7,
+        'severity_id': lambda rec: 3 if rec['ruleAction'] < 4 else 7,
 
         'constants': {
-            'cs1Label': 'fwPolicy',
-            'cs2Label': 'fwRule',
+            'message': 'eventDescription',
+            'initiatorPort': 'spt',
+            'responderPort': 'dpt',
             'cs3Label': 'ingressZone',
             'cs4Label': 'egressZone',
             'cs5Label': 'secIntelCategory'
         },
 
         'lambdas': {
-            'rt': lambda rec: rec['firstPacketTimestamp'] * 1000,
-            'activity_id': lambda x : __networkActivity("test"),
-            'start': lambda rec: rec['firstPacketTimestamp'] * 1000,
-            'end': lambda rec: rec['lastPacketTimestamp'] * 1000,
-            'src': lambda rec: __ipv4( rec['initiatorIpAddress'] ),
-            'dst': lambda rec: __ipv4( rec['responderIpAddress'] ),
-            'c6a2': lambda rec: __ipv6( rec['initiatorIpAddress'] ),
-            'c6a3': lambda rec: __ipv6( rec['responderIpAddress'] ),
-            'deviceExternalId': lambda rec: rec['deviceId'],
+            'time': lambda rec: rec['firstPacketTimestamp'] * 1000,
+            'activity': lambda rec: 'connection',
+            'activity_id': lambda rec : __networkActivityId( rec ),
+            'category_name': lambda rec: 'NETWORK ACTIVITY',
+            'category_uid': lambda rec: 4,
+            'class_name': lambda rec: 'network_activity',
+            'class_uid': lambda rec: 4001,
+            'dst_endpoint': lambda rec : __networkEndpoint ( rec , rec['responderIpAddress'], rec['responderPort']),
+            'duration': lambda rec: ( rec['lastPacketTimestamp']  - rec['firstPacketTimestamp'] ),
+            'end_time': lambda rec: rec['lastPacketTimestamp'] * 1000,
+            'metadata': lambda rec : __metadata(rec),
+            'proxy': lambda rec : "" if rec['originalClientIpAddress'] != "::" else __networkProxy(rec),
+            'ref_time': lambda rec: rec['firstPacketTimestamp'] * 1000,
+            'ref_event_name': lambda rec : "Connection Event",
+            'severity': lambda rec :  'Low' , #for connection events??
+            'severity_id': lambda rec: 3 if rec['ruleAction'] < 4 else 7,
+            'src_endpoint': lambda rec : __networkEndpoint ( rec , rec['initiatorIpAddress'], rec['initiatorPort']),
+            'start_time': lambda rec: rec['firstPacketTimestamp'] * 1000,
+            'status_id': lambda rec : __networkStatus( rec['sslFlowStatus'] ),
+             #'tls': lambda rec: __tls(rec),
+            'timezone_offset': lambda rec: 0,
+            'traffic': lambda rec: __networkTraffic(rec),
+            'type_uid': lambda rec: 400100 + int(__networkActivityId( rec['firewallRuleAction'] )),
+            'type_name': lambda rec: __networkTypeById(400100 + int(__networkActivityId( rec['firewallRuleAction'] ))),
         },
 
         'fields': {
-            'deviceId': 'dvchost',
-            'ingressZone': 'cs3',
-            'egressZone': 'cs4',
+            'ingressZone': 'inbound',
+            'egressZone': 'outbound',
             'ingressInterface': 'deviceInboundInterface',
             'egressInterface': 'deviceOutboundInterface',
-            'initiatorIpAddress': '',
-            'responderIpAddress': '',
-            'originalClientIpAddress': '',
-            'policyRevision': 'cs1',
-            'ruleId': 'cs2',
+            'policyRevision': 'policy_rev',
+            'ruleId': 'rule_id',
             'tunnelRuleId': '',
             'ruleAction': 'act',
             'ruleReason': 'reason',
-            'initiatorPort': 'spt',
-            'responderPort': 'dpt',
-            'tcpFlags': '',
             'protocol': 'proto',
             'netflowSource': '',
             'instanceId': 'dvcpid',
-            'connectionCounter': 'externalId',
-            'firstPacketTimestamp': '', # Used to generate rt and start
+            'connectionCounter': 'count', # ocsf network_activity.count
+            'firstPacketTimestamp': '', 
             'lastPacketTimestamp': '', # Used to generate end
             'initiatorTransmittedPackets': '',
             'responderTransmittedPackets': '',
@@ -174,7 +239,7 @@ MAPPING = {
             'applicationId': 'app',
             'urlCategory': '',
             'urlReputation': '',
-            'clientApplicationId': 'requestClientApplication',
+            'clientApplicationId': 'app_name',
             'webApplicationId': '',
             'clientUrl.data': 'request',
             'netbios': '',
@@ -216,7 +281,7 @@ MAPPING = {
             'sslServerCertificateStatus': '',
             'sslActualAction': '',
             'sslExpectedAction': '',
-            'sslFlowStatus': '',
+            'sslFlowStatus': 'status',
             'sslFlowError': '',
             'sslFlowMessages': '',
             'sslFlowFlags': '',
@@ -236,7 +301,7 @@ MAPPING = {
             'dnsResponseType': '',
             'dnsTtl': '',
             'sinkholeUuid': '',
-            'securityIntelligenceList1': 'cs5',
+            'securityIntelligenceList1': 'sec_intel_events',
             'securityIntelligenceList2': ''
         },
 
@@ -254,106 +319,7 @@ MAPPING = {
             View.PROTOCOL: 'proto',
             View.USER: 'suser',
             View.APP_PROTO: 'app',
-            View.CLIENT_APP: 'requestClientApplication',
-        },
-    },
-    # 400
-    definitions.RECORD_INTRUSION_EVENT: {
-        'sig_id': lambda rec: 'INTRUSION:400:{0}:{1}'.format(
-            rec['generatorId'],
-            rec['@computed.renderedId']
-        ),
-
-        'name': lambda rec: rec['@computed.message'],
-
-        'severity': lambda rec: __severity(
-            rec['priorityId'],
-            rec['impact'] ),
-
-        'constants': {
-            'cs1Label': 'fwPolicy',
-            'cs2Label': 'fwRule',
-            'cs3Label': 'ingressZone',
-            'cs4Label': 'egressZone',
-            'cs5Label': 'ipsPolicy',
-            'cs6Label': 'ruleId',
-            'cn1Label': 'vlan',
-            'cn2Label': 'impact',
-        },
-
-        'lambdas': {
-            'rt': lambda rec: rec['eventSecond'] * 1000,
-            'start': lambda rec: rec['connectionTimestamp'] * 1000,
-            'src': lambda rec: __ipv4( rec['sourceIpAddress'] ),
-            'dst': lambda rec: __ipv4( rec['destinationIpAddress'] ),
-            'c6a2': lambda rec: __ipv6( rec['sourceIpAddress'] ),
-            'c6a3': lambda rec: __ipv6( rec['destinationIpAddress'] ),
-            'deviceExternalId': lambda rec: rec['deviceId'],
-            'request': lambda rec: '',
-            'act': lambda rec: ['Alerted', 'Blocked', 'Would Be Blocked'][ rec['blocked'] ]
-        },
-
-        'viewdata': {
-            View.SENSOR: 'dvchost',
-            View.CLASSIFICATION_DESCRIPTION: 'cat',
-            View.IP_PROTOCOL: 'proto',
-            View.IDS_POLICY: 'cs5',
-            View.RENDERED_ID: 'cs6',
-            View.USER: 'suser',
-            View.CLIENT_APP: 'requestClientApplication',
-            View.APP_PROTO: 'app',
-            View.FW_POLICY: 'cs1',
-            View.FW_RULE: 'cs2',
-            View.IFACE_INGRESS: 'deviceInboundInterface',
-            View.IFACE_EGRESS: 'deviceOutboundInterface',
-            View.SEC_ZONE_INGRESS: 'cs3',
-            View.SEC_ZONE_EGRESS: 'cs4'
-        },
-
-        'fields': {
-            'deviceId': 'dvchost',
-            'eventId': 'externalId',
-            'eventSecond': '', # Used to generate rt
-            'eventMicrosecond': '',
-            'renderedId': 'cs6', # Used to generate sig_id
-            'generatorId': '', # Used to generate sig_id
-            'ruleRevision': '',
-            'classificationId': 'cat',
-            'priorityId': '', # Used to generate severity
-            'sourceIpAddress': '',
-            'destinationIpAddress': '',
-            'sourcePortOrIcmpType': 'spt',
-            'destinationPortOrIcmpType': 'dpt',
-            'ipProtocolId': 'proto',
-            'impactFlags': '',
-            'impact': 'cn2', # Used to generate severity
-            'blocked': 'act',
-            'mplsLabel': '',
-            'vlanId': 'cn1',
-            'pad': '',
-            'policyUuid': 'cs5',
-            'userId': 'suser',
-            'webApplicationId': '',
-            'clientApplicationId': 'requestClientApplication',
-            'applicationId': 'app',
-            'accessControlRuleId': 'cs2',
-            'accessControlPolicyUuid': 'cs1',
-            'interfaceIngressUuid': 'deviceInboundInterface',
-            'interfaceEgressUuid': 'deviceOutboundInterface',
-            'securityZoneIngressUuid': 'cs3',
-            'securityZoneEgressUuid': 'cs4',
-            'connectionTimestamp': '', # Used to generate start
-            'connectionInstanceId': 'dvcpid',
-            'connectionCounter': '',
-            'sourceCountry': '',
-            'destinationCountry': '',
-            'iocNumber': '',
-            'securityContext': '',
-            'sslCertificateFingerprint': '',
-            'sslActualAction': '',
-            'sslFlowStatus': '',
-            'networkAnalysisPolicyUuid': '',
-            'httpResponse': '',
+            View.CLIENT_APP: 'app_name',
         },
     },
 
@@ -379,11 +345,11 @@ class Ocsf( object ):
     def __sanitize( value ):
         value = str(value)
         
-        # Escape \ " ]
-        value = value.replace('\\', '\\\\')
-        value = value.replace('"', '\\"')
-        value = value.replace(']', '\\]')
-        value = value.replace('|', '\|')
+        ## Escape \ " ]
+        value = value.replace('\\', '')
+        #value = value.replace('"', '\\"')
+        #value = value.replace(']', '\\]')
+        #value = value.replace('|', '\|')
 
         return value
 
@@ -392,20 +358,26 @@ class Ocsf( object ):
     def __convert( self ):
         """Writes the self.output dictionary"""
 
+        unmapped = {}
         # Do the fields first (mapping)
         for source in self.mapping['fields']:
             target = self.mapping['fields'][source]
             if len(target) > 0:
-                self.output[target] = self.record[source]
+                unmapped[target] = self.record[source]
+
+        self.output['unmapped'] = estreamer.adapters.json.dumps(unmapped)
 
         # Now the constants (hard coded values)
         for target in self.mapping['constants']:
-            self.output[target] = self.mapping['constants'][target]
+            self.output[target] = estreamer.adapters.json.dumps(self.mapping['constants'][target])
 
         # Lambdas
+
+        lambdas = {}
         for target in self.mapping['lambdas']:
             function = self.mapping['lambdas'][target]
-            self.output[target] = function( self.record )
+            self.output[target] = estreamer.adapters.json.dumps(function( self.record ))
+
 
         # View data last
         for source in self.mapping['viewdata']:
@@ -442,33 +414,22 @@ class Ocsf( object ):
         now = time.strftime('%b %d %X')
 
         # Key value pairs
-        data = estreamer.adapters.kvpair.dumps(
-            self.output,
-            delimiter = ' ',
-            quoteSpaces = False,
-            sort = True )
+#        data = estreamer.adapters.kvpair.dumps(
+#            self.output,
+#            delimiter = ' ',
+#            quoteSpaces = False,
+#            sort = True )
 
+        data = estreamer.adapters.json.dumps(self.output)
         # Special fields
-        sigId = self.mapping['sig_id']( self.record )
         name = self.mapping['name']( self.record )
-        severity = self.mapping['severity']( self.record )
 
         # my $ocsf_message = "ocsf:$ocsf_VERSION|$ocsf_DEV_VENDOR|$ocsf_DEV_PRODUCT|
         # ...$ocsf_DEV_VERSION|$sig_id|$name|$severity|$message";
         # # Update the message with the details
         # $message = "<$SYSLOG_NUMERIC>$datetime $hostname $ocsf_message";
-        message = u'<{8}>{9} {10} ocsf:{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}'.format(
-            OCSF_VERSION,
-            OCSF_DEV_VENDOR,
-            OCSF_DEV_PRODUCT,
-            OCSF_DEV_VERSION,
-            sigId,
-            name,
-            severity,
-            data,
-            SYSLOG_NUMERIC,
-            now,
-            hostname
+        message = u'{0}'.format(
+            data
         )
 
         return message
