@@ -27,6 +27,6 @@ class User( object ):
 
     def __init__( self, data):
 
-        self.uid = data['user_id']
-        self.name = data['user']
+        self.uid = 4 #data['user_id']
+        self.name = "test" #data['user']
 

@@ -18,7 +18,6 @@
 from __future__ import absolute_import
 import binascii
 import struct
-from estreamer.ocsf import DigitialCertificate
 
 class TLS( object ):
     """
@@ -30,16 +29,13 @@ class TLS( object ):
         self.certificate = ""
         self.certificate_chain = ""
         self.cipher = ""
-        self.client_ciphers = ""
+        self.client_ciphers = [data['@computed.sslCipherSuite']]
         self.alert = ""
         self.extension_list = ""
         self.handshake_dur = ""
         self.ja3_fingerprint = ""
         self.ja3s_fingerprint = ""
-        self.ja3s_string = ['']
-        self.key_length = 0
-        self.profiles = ['']
-        self.server_ciphers = ['']
-        self.sni = ""
+        self.server_ciphers = [data['@computed.sslServerCertificateStatus']]
+        self.sni = data['@computed.sslServerName']
         self.sans = ""
-        self.version = "1.0.0"
+        self.version = data['@computed.sslVersion']

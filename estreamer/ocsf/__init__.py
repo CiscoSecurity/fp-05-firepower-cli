@@ -26,4 +26,7 @@ from estreamer.ocsf.networkendpoint import NetworkEndpoint
 from estreamer.ocsf.networkconnectioninfo import NetworkConnectionInfo
 from estreamer.ocsf.networktraffic import NetworkTraffic
 from estreamer.ocsf.metadata import Metadata
+from estreamer.ocsf.product import Product
+from estreamer.ocsf.tls import TLS
 from estreamer.ocsf.user import User
+from estreamer.ocsf.cloud import Cloud

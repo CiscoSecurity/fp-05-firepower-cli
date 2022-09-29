@@ -17,6 +17,7 @@
 #*********************************************************************/
 
 from __future__ import absolute_import
+from array import array
 import binascii
 import copy
 import time
@@ -26,12 +27,14 @@ import estreamer.adapters.kvpair
 import estreamer.definitions as definitions
 import estreamer.common
 import estreamer.adapters.json
+from estreamer.ocsf import Cloud
 from estreamer.ocsf import NetworkActivity
 from estreamer.ocsf import NetworkEndpoint
 from estreamer.ocsf import NetworkProxy
 from estreamer.ocsf import NetworkTraffic
 from estreamer.ocsf import Metadata
 from estreamer.ocsf import User
+from estreamer.ocsf import TLS
 from estreamer.metadata import View
 import six
 
@@ -46,7 +49,7 @@ SYSLOG_NUMERIC = (SYSLOG_FACILITY_USER << 3  | SYSLOG_PRIORITY_NOTICE)
 OCSF_VERSION     = 0
 OCSF_DEV_VENDOR  = 'Cisco'
 OCSF_DEV_PRODUCT = 'Firepower'
-OCSF_DEV_VERSION = '6.0'
+OCSF_DEV_VERSION = '7.1'
 
 # Output encoding: ascii / utf8 or hex
 PACKET_ENCODING = 'ascii'
@@ -100,65 +103,16 @@ def __ipv4( ipAddress ):
 
     return ''
 
-def __networkActivity( data ) :
-    event = NetworkActivity( data )
 
-    return NetworkActivity.activityMap( data )
+def __networkType ( data ) :
+    networkObj = NetworkActivity( data )
+    members = [attr for attr in vars(networkObj) if not callable(getattr(networkObj, attr)) and not attr.startswith("__")]
 
-def __networkActivityId( data ) :
-    event = NetworkActivity( data )
+    network_attr = {}
+    for m in members :
+        network_attr[m] = getattr(networkObj, m)
 
-    return NetworkActivity.activityMapId( data )
-
-def __networkActivityIdName( data ) :
-    event = NetworkActivity( data )
-
-    return NetworkActivity.activityMapIdName( data )
-
-def __networkStatus( data ) :
-    event = NetworkActivity( data )
-
-    return NetworkActivity.statusMap( data )
-
-def __networkStatusId( data ) :
-    event = NetworkActivity( data )
-
-    return NetworkActivity.statusMapId( data )
-
-def __networkTypeById( data ) :
-    event = NetworkActivity( data )
-
-    return NetworkActivity.newtworkTypeById( data )
-
-def __networkEndpoint( data , ip, port) :
-    event = NetworkEndpoint( data , ip , port)
-    
-    return vars(event)
-
-
-def __networkProxy( data ) :
-    event = NetworkProxy( data )
-
-    return vars(event)
-
-def __networkActivity( data ) :
-    return NetworkActivity( data)
-
-
-def __networkTraffic( data ) :
-    event = NetworkTraffic( data )
-
-    return vars(event)
-
-def __metadata( data ) :
-    event = Metadata( data )
-
-    return vars(event)
-
-def __userProfile( data ) :
-    event = User( data )
-
-    return vars(event)
+    return network_attr
 
 
 def __ipv6( ipAddress ):
@@ -173,164 +127,47 @@ def __ipv6( ipAddress ):
 
     return ''
 
+def __profiles(data) :
+
+   profiles = []
+   if data['recordType'] == 71 :
+      profiles.append("user")
+
+   return profiles["user"]
+
+def __nonEmptyValues( data ) :
+
+    return {k: v for k, v in data.items() if v}
+
 
 MAPPING = {
 
     # 71
     definitions.RECORD_RNA_CONNECTION_STATISTICS: {
 
-        'name': lambda rec: 'CONNECTION STATISTICS',
-
-        'severity_id': lambda rec: 3 if rec['ruleAction'] < 4 else 7,
-
-        'constants': {
-            'message': 'eventDescription',
-            'initiatorPort': 'spt',
-            'responderPort': 'dpt',
-            'cs3Label': 'ingressZone',
-            'cs4Label': 'egressZone',
-            'cs5Label': 'secIntelCategory'
-        },
+        'network': lambda rec : __networkType(rec) ,
 
         'lambdas': {
-            'time': lambda rec: rec['firstPacketTimestamp'] * 1000,
-            'activity': lambda rec: 'connection',
-            'activity_id': lambda rec : __networkActivityId( rec ),
-            'category_name': lambda rec: 'NETWORK ACTIVITY',
-            'category_uid': lambda rec: 4,
-            'class_name': lambda rec: 'network_activity',
-            'class_uid': lambda rec: 4001,
-            'dst_endpoint': lambda rec : __networkEndpoint ( rec , rec['responderIpAddress'], rec['responderPort']),
-            'duration': lambda rec: ( rec['lastPacketTimestamp']  - rec['firstPacketTimestamp'] ),
-            'end_time': lambda rec: rec['lastPacketTimestamp'] * 1000,
-            'metadata': lambda rec : __metadata(rec),
-            'proxy': lambda rec : "" if rec['originalClientIpAddress'] != "::" else __networkProxy(rec),
-            'ref_time': lambda rec: rec['firstPacketTimestamp'] * 1000,
-            'ref_event_name': lambda rec : "Connection Event",
-            'severity': lambda rec :  'Low' , #for connection events??
-            'severity_id': lambda rec: 3 if rec['ruleAction'] < 4 else 7,
-            'src_endpoint': lambda rec : __networkEndpoint ( rec , rec['initiatorIpAddress'], rec['initiatorPort']),
-            'start_time': lambda rec: rec['firstPacketTimestamp'] * 1000,
-            'status_id': lambda rec : __networkStatus( rec['sslFlowStatus'] ),
-             #'tls': lambda rec: __tls(rec),
-            'timezone_offset': lambda rec: 0,
-            'traffic': lambda rec: __networkTraffic(rec),
-            'type_uid': lambda rec: 400100 + int(__networkActivityId( rec['firewallRuleAction'] )),
-            'type_name': lambda rec: __networkTypeById(400100 + int(__networkActivityId( rec['firewallRuleAction'] ))),
-            'user': lambda rec: __userProfile(rec),  #todo:  function to determine what profiles are available then append them to record
+            'dst_endpoint': lambda rec : __nonEmptyValues ( vars ( NetworkEndpoint ( rec, rec['responderIpAddress'], rec['responderPort']) ) ),
+            'metadata': lambda rec : __nonEmptyValues(vars( Metadata(rec) ) ),
+            'src_endpoint': lambda rec : __nonEmptyValues ( vars ( NetworkEndpoint ( rec, rec['initiatorIpAddress'], rec['initiatorPort']) ) ),
+            'tls': lambda rec : __nonEmptyValues ( vars ( TLS(rec) ) )
         },
 
         'fields': {
-            'ingressZone': 'inbound',
-            'egressZone': 'outbound',
-            'ingressInterface': 'deviceInboundInterface',
-            'egressInterface': 'deviceOutboundInterface',
-            'policyRevision': 'policy_rev',
-            'ruleId': 'rule_id',
-            'tunnelRuleId': '',
-            'ruleAction': 'act',
-            'ruleReason': 'reason',
             'protocol': 'proto',
-            'netflowSource': '',
-            'instanceId': 'dvcpid',
-            'connectionCounter': 'count', # ocsf network_activity.count
-            'firstPacketTimestamp': '', 
-            'lastPacketTimestamp': '', # Used to generate end
-            'initiatorTransmittedPackets': '',
-            'responderTransmittedPackets': '',
+            'clientApplicationId': 'app_id',
+            'connectionCounter': 'count', 
+            'lastPacketTimestamp': '', 
             'initiatorTransmittedBytes': 'bytesOut',
             'responderTransmittedBytes': 'bytesIn',
-            'initiatorPacketsDropped': '',
-            'responderPacketsDropped': '',
-            'initiatorBytesDropped': '',
-            'responderBytesDropped': '',
-            'qosAppliedInterface': '',
-            'qosRuleId': '',
-            'userId': 'suser',
+            'userId': 'user',
             'applicationId': 'app',
-            'urlCategory': '',
-            'urlReputation': '',
-            'clientApplicationId': 'app_name',
-            'webApplicationId': '',
-            'clientUrl.data': 'request',
-            'netbios': '',
-            'clientApplicationVersion': '',
-            'monitorRules1': '',
-            'monitorRules2': '',
-            'monitorRules3': '',
-            'monitorRules4': '',
-            'monitorRules5': '',
-            'monitorRules6': '',
-            'monitorRules7': '',
-            'monitorRules8': '',
-            'securityIntelligenceSourceDestination': '',
-            'securityIntelligenceLayer': '',
-            'fileEventCount': '',
-            'intrusionEventCount': '',
-            'initiatorCountry': '',
-            'responderCountry': '',
-            'originalClientCountry': '',
-            'iocNumber': '',
-            'sourceAutonomousSystem': '',
-            'destinationAutonomousSystem': '',
-            'snmpIn': '',
-            'snmpOut': '',
-            'sourceTos': '',
-            'destinationTos': '',
-            'sourceMask': '',
-            'destinationMask': '',
-            'securityContext': '',
-            'vlanId': '',
-            'referencedHost': '',
-            'userAgent': '',
-            'httpReferrer': '',
-            'sslCertificateFingerprint': '',
-            'sslPolicyId': '',
-            'sslRuleId': '',
-            'sslCipherSuite': '',
-            'sslVersion': '',
-            'sslServerCertificateStatus': '',
-            'sslActualAction': '',
-            'sslExpectedAction': '',
-            'sslFlowStatus': 'status',
-            'sslFlowError': '',
-            'sslFlowMessages': '',
-            'sslFlowFlags': '',
-            'sslServerName': '',
-            'sslUrlCategory': '',
-            'sslSessionId': '',
-            'sslSessionIdLength': '',
-            'sslTicketId': '',
-            'sslTicketIdLength': '',
-            'networkAnalysisPolicyRevision': '',
-            'endpointProfileId': '',
-            'securityGroupId': '',
-            'locationIpv6': '',
-            'httpResponse': '',
-            'dnsQuery.data': 'destinationDnsDomain',
-            'dnsRecordType': '',
-            'dnsResponseType': '',
-            'dnsTtl': '',
-            'sinkholeUuid': '',
             'securityIntelligenceList1': 'sec_intel_events',
-            'securityIntelligenceList2': ''
         },
 
         'viewdata': {
-            View.SENSOR: 'dvchost',
-            View.SEC_ZONE_INGRESS: 'cs3',
-            View.SEC_ZONE_EGRESS: 'cs4',
-            View.SEC_INTEL_LIST1: 'cs5',
-            View.IFACE_INGRESS: 'deviceInboundInterface',
-            View.IFACE_EGRESS: 'deviceOutboundInterface',
-            View.FW_POLICY: 'cs1',
-            View.FW_RULE: 'cs2',
-            View.FW_RULE_ACTION: 'act',
-            View.FW_RULE_REASON: 'reason',
-            View.PROTOCOL: 'proto',
-            View.USER: 'suser',
-            View.APP_PROTO: 'app',
-            View.CLIENT_APP: 'app_name',
+            View.PROTOCOL: 'proto'
         },
     },
 
@@ -382,17 +219,10 @@ class Ocsf( object ):
         for source in self.mapping['fields']:
             target = self.mapping['fields'][source]
             if len(target) > 0:
-#                unmapped[target] = Ocsf.__sanitize( self.record[source] )
                 unmapped[target] = self.record[source] 
 
         self.output['unmapped'] = unmapped
 
-        # Now the constants (hard coded values)
-        for target in self.mapping['constants']:
-            self.output[target] = self.mapping['constants'][target]
-        # Lambdas
-
-        lambdas = {}
         for target in self.mapping['lambdas']:
             function = self.mapping['lambdas'][target]
             self.output[target] = function( self.record  )
@@ -405,12 +235,25 @@ class Ocsf( object ):
                 target = self.mapping['viewdata'][source]
                 self.output[target] = Ocsf.__sanitize( value )
 
+
+        function = self.mapping['network']
+        network = function (self.record)
+
+        for k, v in network.items() :
+
+            if isinstance(v, int) :
+                self.output[k] = int(v)
+
+            elif k == "\"[]\"" :
+                self.output[k] = []
+
+            else :
+                self.output[k] = v
+
+
         keys = list(self.output.keys())
         for key in keys:
             if isinstance( self.output[ key ], six.string_types) and len( self.output[ key ] ) == 0:
-                del self.output[ key ]
-
-            elif self.output[ key ] == 0:
                 del self.output[ key ]
 
             else: 
@@ -432,10 +275,7 @@ class Ocsf( object ):
         # my $datetime = strftime('%b %e %T', localtime(time()));
         now = time.strftime('%b %d %X')
 
-#        data = estreamer.adapters.json.dumps(self.output)
         data = Ocsf.__sanitize( self.output )
-        # Special fields
-        name = self.mapping['name']( self.record )
 
         message = u'{0}'.format(
             data

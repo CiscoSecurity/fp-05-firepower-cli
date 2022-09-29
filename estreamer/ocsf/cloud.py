@@ -1,10 +1,10 @@
 
 #********************************************************************
-#      File:    network_endpoint.py
+#      File:    cloud.py
 #      Author:  Seyed Khadem
 #
 #      Description:
-#       Packet helper class
+#       Cloud object
 #
 #      Copyright (c) 2018 by Cisco Systems, Inc.
 #
@@ -20,22 +20,20 @@ import estreamer.crossprocesslogging as logging
 import binascii
 import struct
 
-class NetworkEndpoint( object ):
+class Cloud( object ):
     """
     Helper class for OCSF network activity classes
     """
 
-    def __init__( self, data , ip, port):
+    def __init__( self, data):
 
-        self.location = ""
-        self.domain = ""
-        self.ip = ip
-        self.instance_uid = ""
-        self.mac = ""
-        self.name = ""
-        self.interface_uid = "" 
-        self.port = port
-        self.svc_name = ""
-        self.subnet_uid = ""
-
-        
+#        self.acount_type = data['user_id']
+#        self.acount_type_id = data['user']
+        self.account_uid = ""
+        self.zone = ""
+        self.org_uid = ""
+        self.profiles = ['']
+        self.project_uid = ""
+        self.provider = "Cisco Secure Firewall"
+        self.region = ""
+        self.resource_uid = ""

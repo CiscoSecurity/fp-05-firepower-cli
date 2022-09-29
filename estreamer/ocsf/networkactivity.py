@@ -80,23 +80,21 @@ class NetworkActivity( object ):
     @staticmethod
     def activityMapId ( activity ):
 
-        if activity == 'Allow' :
-           activity = 'Established'
+        item = NetworkActivity.activityMap( activity ) 
 
-        for k,v  in NetworkActivity.ACTIVITIES.items() :
-            if v  == activity:
+        for k, v in NetworkActivity.ACTIVITIES.items() :
+            if v == item :
                 return k
 
         return -1
 
     @staticmethod
-    def newtworkTypeById ( id ):
+    def newtworkTypeName ( id ):
 
-        for k,v in NetworkActivity.TYPES.items() :
-           if id == k :
-               return v
+        if id in NetworkActivity.TYPES.keys() :
+            return NetworkActivity.TYPES[id]
 
-        return -1
+        return "Network Activity: Other"
 
     @staticmethod
     def activityMapIdName ( self, id ):
@@ -121,46 +119,44 @@ class NetworkActivity( object ):
             if status == v:
                 return k
 
-        return "Unknown"
+        return -1
 
+    @staticmethod
+    def nonEmptyValues( data ) :
+
+        return {k: v for k, v in data.items() if v}
 
 
     def __init__( self, data ):
 
-        #self.activity = self.__activityMap(data['firewallRuleAction'])
-        #self.activity_id =  self.__activityMapId(data['firewallRuleAction'])
-        self.app_name = ""
-        self.category_name = ""
-        self.class_name = ""
-        self.class_uid = ""
-        self.unmapped = ['']
-        self.connection_info = "" # connection_info object
-        self.count = ""
-        self.dst_endpoint = ""#NetworkEndpoint(data) # network_endpoint object
-        self.duration = ""
-        self.end_time = ""
-        self.enrichments = ['']
-        self._time = ""
-        self.message = ""
-        self.metadata = "" #Metadata(data) # metadata object
+        #todo: add checks for null data
+        self.activity = NetworkActivity.activityMap( data['firewallRuleAction'] )
+        self.activity_id = NetworkActivity.activityMapId( data['firewallRuleAction'] ) #todo
+        self.app_name = data['@computed.clientApplication']
+        self.category_name = "Network Activity"
+        self.category_uid = 4
+        self.class_name = "Network Activity"
+        self.class_uid = 4001
+        self.count = data['connectionCounter']
+        self.duration = int(data['lastPacketTimestamp'])  - int(data['firstPacketTimestamp'] )
+        self.end_time = int(data['lastPacketTimestamp']) * 1000
+        self.time = int(data['firstPacketTimestamp']) * 1000
+        self.message = data['recordTypeDescription']
         self.observables = ""
+        self.profiles = []
         self.ref_time = ""
-        self.product = "" # product object
-        self.profiles = "" # profile objects
         self._raw_data = ""
         self.ref_event_code = ""
-        self.ref_event_name = ""
-        self.severity = ""
-        self.severity_id = ""
-        self.src_endpoint = ""#NetworkEndpoint(data) 
-        self.status = ""
-        self.status_code = ""
+        self.ref_event_name = "Connection Event"
+        self.ref_time = data['firstPacketTimestamp'] * 1000
+        self.severity = "Unknown" #todo is there a mapping for connection events?
+        self.severity_id = 0 #todo
+        self.start_time = data['firstPacketTimestamp'] * 1000
+        self.status = NetworkActivity.statusMap( data['@computed.sslFlowStatus'] )  #todo what statuses are available for generic connection events
+        self.status_code = lambda rec : __statusMapId ( data['@computed.sslFlowStatus'] ) #is there an equivalent ssl network class we should use?
         self.status_detail = ""
-        self.status_id = ""
-        self.tls = ""
-        self.timezone_offset = ""
-        self.traffic = ""
-        self.type_uid = "" #The event type ID identifies the event's semantics and structure. The value is calculated by the logging system as: class_uid * 100 + activity_id.
-        self.type_name = ""
-        self.unmapped = ['']
+        self.status_id = NetworkActivity.statusMapId( data['@computed.sslFlowStatus'] )
+        self.timezone_offset = 0
+        self.type_uid = 400100 + self.activity_id
+        self.type_name = NetworkActivity.newtworkTypeName( self.type_uid )
 

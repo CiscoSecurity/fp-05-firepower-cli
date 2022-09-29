@@ -1,6 +1,6 @@
 
 #********************************************************************
-#      File:    network_endpoint.py
+#      File:    product.py
 #      Author:  Seyed Khadem
 #
 #      Description:
@@ -20,22 +20,18 @@ import estreamer.crossprocesslogging as logging
 import binascii
 import struct
 
-class NetworkEndpoint( object ):
+class Product( object ):
     """
     Helper class for OCSF network activity classes
     """
 
-    def __init__( self, data , ip, port):
+    def __init__( self, data ):
 
-        self.location = ""
-        self.domain = ""
-        self.ip = ip
-        self.instance_uid = ""
-        self.mac = ""
-        self.name = ""
-        self.interface_uid = "" 
-        self.port = port
-        self.svc_name = ""
-        self.subnet_uid = ""
+        self.feature = ""
+        self.lang = ""
+        self.uid = ""
+        self.name = "Secure Firewall"
+        self.path = ""
+        self.version = "7.1"
+        self.vendor_name = "Cisco"
 
-        

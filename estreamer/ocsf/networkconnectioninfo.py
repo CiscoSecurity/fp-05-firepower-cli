@@ -57,6 +57,3 @@ class NetworkConnectionInfo( object ):
         self.tcp_flags = "" 
         self.traffic_path = "Unknown"
         self.traffic_path_id = 0
-    
-
-        

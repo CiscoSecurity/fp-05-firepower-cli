@@ -18,6 +18,7 @@
 from __future__ import absolute_import
 import binascii
 import struct
+from estreamer.ocsf.product import Product
 
 class Metadata( object ):
     """
@@ -25,6 +26,8 @@ class Metadata( object ):
     """
 
     def __init__( self, data ):
+
+        product = vars ( Product(data) )
 
         self.correlation_uid = ""
         self.uid = ""
@@ -35,6 +38,6 @@ class Metadata( object ):
         self.modified_time_dt = ""
         self.processed_time = ""
         self.processed_time_dt = ""
-        self.profiles = ['']
+        self.product = {k: v for k, v in product.items() if v} #consider a dumps functions that will output the desired format
         self.sequence = 0
         self.version = "1.0.0"
