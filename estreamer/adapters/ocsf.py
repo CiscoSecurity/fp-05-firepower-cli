@@ -103,7 +103,6 @@ def __ipv4( ipAddress ):
 
     return ''
 
-
 def __networkType ( data ) :
     networkObj = NetworkActivity( data )
     members = [attr for attr in vars(networkObj) if not callable(getattr(networkObj, attr)) and not attr.startswith("__")]
@@ -112,7 +111,7 @@ def __networkType ( data ) :
     for m in members :
         network_attr[m] = getattr(networkObj, m)
 
-    return network_attr
+    return __nonEmptyValues(network_attr)
 
 
 def __ipv6( ipAddress ):
@@ -181,6 +180,7 @@ class Ocsf( object ):
         self.record = estreamer.common.Flatdict( source, True )
         self.output = None
         self.mapping = None
+        self.network = {}
 
         if 'recordType' in self.record:
             if self.record['recordType'] in MAPPING:
@@ -188,6 +188,18 @@ class Ocsf( object ):
                 self.output = {}
                
 
+    @staticmethod
+    def __networkType ( data ) :
+        networkObj = NetworkActivity( data )
+        members = [attr for attr in vars(networkObj) if not callable(getattr(networkObj, attr)) and not attr.startswith("__")]
+
+        network_attr = {}
+        for m in members :
+            network_attr[m] = getattr(networkObj, m)
+#        print ('value for {0}:{1}'.format(m, network_attr[m]))
+
+#    print(network_attr)
+        return network_attr
 
 
     @staticmethod
@@ -237,19 +249,7 @@ class Ocsf( object ):
 
 
         function = self.mapping['network']
-        network = function (self.record)
-
-        for k, v in network.items() :
-
-            if isinstance(v, int) :
-                self.output[k] = int(v)
-
-            elif k == "\"[]\"" :
-                self.output[k] = []
-
-            else :
-                self.output[k] = v
-
+        self.network = function (self.record)
 
         keys = list(self.output.keys())
         for key in keys:
@@ -274,8 +274,10 @@ class Ocsf( object ):
         # # Get syslog-style timestamp: MAR  1 16:23:11
         # my $datetime = strftime('%b %e %T', localtime(time()));
         now = time.strftime('%b %d %X')
-
+        self.output = self.output | self.network
         data = Ocsf.__sanitize( self.output )
+#        mydict = {'test':4}
+#        data = data | mydict
 
         message = u'{0}'.format(
             data

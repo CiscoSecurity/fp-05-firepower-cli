@@ -9363,3 +9363,824 @@
 2022-09-29 22:02:02,622 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
 2022-09-29 22:02:02,622 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
 2022-09-29 22:02:02,638 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:37:01,088 Controller   INFO     eNcore version: development
+2022-09-29 22:37:01,088 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-09-29 22:37:01,099 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-09-29 22:37:01,099 Controller   INFO     Starting client (pid=488961).
+2022-09-29 22:37:01,099 Controller   INFO     Sha256: 9b91ffb0da844ab4aa7e68c11b5a94f7ba68930931f91df1778f42b0bf43d0f5
+2022-09-29 22:37:01,099 Controller   INFO     Processes: 1
+2022-09-29 22:37:01,099 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-09-29 22:37:01,099 Diagnostics  INFO     Check certificate
+2022-09-29 22:37:01,100 Diagnostics  INFO     Creating connection
+2022-09-29 22:37:01,100 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:37:01,100 Connection   INFO     Using TLS v1.2
+2022-09-29 22:37:01,511 Diagnostics  INFO     Creating request message
+2022-09-29 22:37:01,512 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-09-29 22:37:01,512 Diagnostics  INFO     Sending request message
+2022-09-29 22:37:01,512 Diagnostics  INFO     Receiving response message
+2022-09-29 22:37:01,525 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-09-29 22:37:01,528 Diagnostics  INFO     Streaming info response
+2022-09-29 22:37:01,529 Diagnostics  INFO     Connection successful
+2022-09-29 22:37:01,529 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:37:01,529 Connection   INFO     Using TLS v1.2
+2022-09-29 22:37:01,530 Monitor      INFO     Starting Monitor.
+2022-09-29 22:37:01,530 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-09-29 22:37:02,012 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:37:02,013 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:37:02,013 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-09-29 22:37:02,013 SingleWorker INFO     Starting process.
+2022-09-29 22:37:02,019 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:37:02,019 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:37:02,019 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-09-29 22:37:02,309 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-09-29 22:37:02,309 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-09-29 22:37:02,320 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:37:38,933 Controller   INFO     eNcore version: development
+2022-09-29 22:37:38,934 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-09-29 22:37:38,945 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-09-29 22:37:38,945 Controller   INFO     Starting client (pid=489273).
+2022-09-29 22:37:38,945 Controller   INFO     Sha256: 9b91ffb0da844ab4aa7e68c11b5a94f7ba68930931f91df1778f42b0bf43d0f5
+2022-09-29 22:37:38,945 Controller   INFO     Processes: 1
+2022-09-29 22:37:38,945 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-09-29 22:37:38,945 Diagnostics  INFO     Check certificate
+2022-09-29 22:37:38,945 Diagnostics  INFO     Creating connection
+2022-09-29 22:37:38,946 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:37:38,946 Connection   INFO     Using TLS v1.2
+2022-09-29 22:37:38,951 Diagnostics  INFO     Creating request message
+2022-09-29 22:37:38,951 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-09-29 22:37:38,951 Diagnostics  INFO     Sending request message
+2022-09-29 22:37:38,951 Diagnostics  INFO     Receiving response message
+2022-09-29 22:37:38,970 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-09-29 22:37:38,972 Diagnostics  INFO     Streaming info response
+2022-09-29 22:37:38,972 Diagnostics  INFO     Connection successful
+2022-09-29 22:37:38,973 Monitor      INFO     Starting Monitor.
+2022-09-29 22:37:38,973 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-09-29 22:37:38,979 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:37:38,980 Connection   INFO     Using TLS v1.2
+2022-09-29 22:37:39,458 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:37:39,459 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:37:39,459 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-09-29 22:37:39,459 SingleWorker INFO     Starting process.
+2022-09-29 22:37:39,475 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:37:39,475 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:37:39,475 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-09-29 22:37:39,958 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-09-29 22:37:39,958 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-09-29 22:37:39,969 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:40:54,158 Controller   INFO     eNcore version: development
+2022-09-29 22:40:54,161 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-09-29 22:40:54,166 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-09-29 22:40:54,166 Controller   INFO     Starting client (pid=490758).
+2022-09-29 22:40:54,167 Controller   INFO     Sha256: e3f4d8fd72f19ea4f8b42e9a0a56c228a9e27be0d27185c52e48f1f18151af5d
+2022-09-29 22:40:54,167 Controller   INFO     Processes: 1
+2022-09-29 22:40:54,167 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-09-29 22:40:54,167 Diagnostics  INFO     Check certificate
+2022-09-29 22:40:54,167 Diagnostics  INFO     Creating connection
+2022-09-29 22:40:54,167 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:40:54,167 Connection   INFO     Using TLS v1.2
+2022-09-29 22:40:54,178 Diagnostics  INFO     Creating request message
+2022-09-29 22:40:54,178 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-09-29 22:40:54,178 Diagnostics  INFO     Sending request message
+2022-09-29 22:40:54,178 Diagnostics  INFO     Receiving response message
+2022-09-29 22:40:54,183 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-09-29 22:40:54,184 Diagnostics  INFO     Streaming info response
+2022-09-29 22:40:54,184 Diagnostics  INFO     Connection successful
+2022-09-29 22:40:54,190 Monitor      INFO     Starting Monitor.
+2022-09-29 22:40:54,190 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:40:54,196 Connection   INFO     Using TLS v1.2
+2022-09-29 22:40:54,196 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-09-29 22:41:09,976 Controller   INFO     eNcore version: development
+2022-09-29 22:41:09,977 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-09-29 22:41:09,989 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-09-29 22:41:09,989 Controller   INFO     Starting client (pid=490910).
+2022-09-29 22:41:09,989 Controller   INFO     Sha256: e3f4d8fd72f19ea4f8b42e9a0a56c228a9e27be0d27185c52e48f1f18151af5d
+2022-09-29 22:41:09,989 Controller   INFO     Processes: 1
+2022-09-29 22:41:09,990 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-09-29 22:41:09,990 Diagnostics  INFO     Check certificate
+2022-09-29 22:41:09,990 Diagnostics  INFO     Creating connection
+2022-09-29 22:41:09,990 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:41:09,990 Connection   INFO     Using TLS v1.2
+2022-09-29 22:41:10,192 Diagnostics  INFO     Creating request message
+2022-09-29 22:41:10,193 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-09-29 22:41:10,193 Diagnostics  INFO     Sending request message
+2022-09-29 22:41:10,193 Diagnostics  INFO     Receiving response message
+2022-09-29 22:41:10,206 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-09-29 22:41:10,208 Diagnostics  INFO     Streaming info response
+2022-09-29 22:41:10,208 Diagnostics  INFO     Connection successful
+2022-09-29 22:41:10,209 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:41:10,209 Monitor      INFO     Starting Monitor.
+2022-09-29 22:41:10,209 Connection   INFO     Using TLS v1.2
+2022-09-29 22:41:10,210 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-09-29 22:41:10,697 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:41:10,698 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:41:10,698 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-09-29 22:41:10,698 SingleWorker INFO     Starting process.
+2022-09-29 22:41:10,703 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:41:10,703 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:41:10,703 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-09-29 22:41:10,993 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-09-29 22:41:10,993 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-09-29 22:41:11,004 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:42:13,865 Controller   INFO     eNcore version: development
+2022-09-29 22:42:13,866 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-09-29 22:42:13,871 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-09-29 22:42:13,871 Controller   INFO     Starting client (pid=491442).
+2022-09-29 22:42:13,871 Controller   INFO     Sha256: 6a13f05c5d1b641ac4bd6bc308843e522e7cbd10876e402d4e08e05c5865532f
+2022-09-29 22:42:13,872 Controller   INFO     Processes: 1
+2022-09-29 22:42:13,872 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-09-29 22:42:13,872 Diagnostics  INFO     Check certificate
+2022-09-29 22:42:13,872 Diagnostics  INFO     Creating connection
+2022-09-29 22:42:13,872 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:42:13,873 Connection   INFO     Using TLS v1.2
+2022-09-29 22:42:14,238 Diagnostics  INFO     Creating request message
+2022-09-29 22:42:14,239 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-09-29 22:42:14,239 Diagnostics  INFO     Sending request message
+2022-09-29 22:42:14,239 Diagnostics  INFO     Receiving response message
+2022-09-29 22:42:14,256 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-09-29 22:42:14,257 Diagnostics  INFO     Streaming info response
+2022-09-29 22:42:14,257 Diagnostics  INFO     Connection successful
+2022-09-29 22:42:14,258 Monitor      INFO     Starting Monitor.
+2022-09-29 22:42:14,258 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-09-29 22:42:14,263 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:42:14,263 Connection   INFO     Using TLS v1.2
+2022-09-29 22:42:14,743 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:42:14,743 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:42:14,743 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-09-29 22:42:14,743 SingleWorker INFO     Starting process.
+2022-09-29 22:42:14,748 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:42:14,748 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:42:14,749 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-09-29 22:42:15,051 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-09-29 22:42:15,051 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-09-29 22:42:15,062 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:43:53,017 Controller   INFO     eNcore version: development
+2022-09-29 22:43:53,018 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-09-29 22:43:53,029 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-09-29 22:43:53,029 Controller   INFO     Starting client (pid=492211).
+2022-09-29 22:43:53,029 Controller   INFO     Sha256: 84fa9fced44c09a791b66c212dc5274be09f2d8d98748b23e213488519c002d1
+2022-09-29 22:43:53,029 Controller   INFO     Processes: 1
+2022-09-29 22:43:53,029 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-09-29 22:43:53,029 Diagnostics  INFO     Check certificate
+2022-09-29 22:43:53,030 Diagnostics  INFO     Creating connection
+2022-09-29 22:43:53,030 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:43:53,030 Connection   INFO     Using TLS v1.2
+2022-09-29 22:43:53,040 Diagnostics  INFO     Creating request message
+2022-09-29 22:43:53,040 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-09-29 22:43:53,040 Diagnostics  INFO     Sending request message
+2022-09-29 22:43:53,040 Diagnostics  INFO     Receiving response message
+2022-09-29 22:43:53,051 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-09-29 22:43:53,052 Diagnostics  INFO     Streaming info response
+2022-09-29 22:43:53,052 Diagnostics  INFO     Connection successful
+2022-09-29 22:43:53,057 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:43:53,061 Connection   INFO     Using TLS v1.2
+2022-09-29 22:43:53,071 Monitor      INFO     Starting Monitor.
+2022-09-29 22:43:53,072 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-09-29 22:44:04,511 Controller   INFO     eNcore version: development
+2022-09-29 22:44:04,511 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-09-29 22:44:04,517 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-09-29 22:44:04,517 Controller   INFO     Starting client (pid=492362).
+2022-09-29 22:44:04,517 Controller   INFO     Sha256: 84fa9fced44c09a791b66c212dc5274be09f2d8d98748b23e213488519c002d1
+2022-09-29 22:44:04,517 Controller   INFO     Processes: 1
+2022-09-29 22:44:04,517 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-09-29 22:44:04,517 Diagnostics  INFO     Check certificate
+2022-09-29 22:44:04,517 Diagnostics  INFO     Creating connection
+2022-09-29 22:44:04,518 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:44:04,518 Connection   INFO     Using TLS v1.2
+2022-09-29 22:44:04,548 Diagnostics  INFO     Creating request message
+2022-09-29 22:44:04,548 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-09-29 22:44:04,549 Diagnostics  INFO     Sending request message
+2022-09-29 22:44:04,549 Diagnostics  INFO     Receiving response message
+2022-09-29 22:44:04,570 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-09-29 22:44:04,570 Diagnostics  INFO     Streaming info response
+2022-09-29 22:44:04,571 Diagnostics  INFO     Connection successful
+2022-09-29 22:44:04,572 Monitor      INFO     Starting Monitor.
+2022-09-29 22:44:04,572 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:44:04,572 Connection   INFO     Using TLS v1.2
+2022-09-29 22:44:04,578 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-09-29 22:44:05,049 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:44:05,050 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:44:05,050 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-09-29 22:44:05,050 SingleWorker INFO     Starting process.
+2022-09-29 22:44:05,067 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:44:05,068 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:44:05,068 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-09-29 22:44:05,351 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-09-29 22:44:05,351 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-09-29 22:44:05,367 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:46:06,914 Controller   INFO     eNcore version: development
+2022-09-29 22:46:06,914 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-09-29 22:46:06,925 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-09-29 22:46:06,925 Controller   INFO     Starting client (pid=493300).
+2022-09-29 22:46:06,926 Controller   INFO     Sha256: 4142fe7e589b1fb69d66f9ac2ba9651cf1da2d047d1d2e168d20fb8419789825
+2022-09-29 22:46:06,926 Controller   INFO     Processes: 1
+2022-09-29 22:46:06,926 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-09-29 22:46:06,926 Diagnostics  INFO     Check certificate
+2022-09-29 22:46:06,926 Diagnostics  INFO     Creating connection
+2022-09-29 22:46:06,926 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:46:06,926 Connection   INFO     Using TLS v1.2
+2022-09-29 22:46:07,142 Diagnostics  INFO     Creating request message
+2022-09-29 22:46:07,142 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-09-29 22:46:07,142 Diagnostics  INFO     Sending request message
+2022-09-29 22:46:07,142 Diagnostics  INFO     Receiving response message
+2022-09-29 22:46:07,153 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-09-29 22:46:07,154 Diagnostics  INFO     Streaming info response
+2022-09-29 22:46:07,154 Diagnostics  INFO     Connection successful
+2022-09-29 22:46:07,154 Monitor      INFO     Starting Monitor.
+2022-09-29 22:46:07,154 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-29 22:46:07,155 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-09-29 22:46:07,155 Connection   INFO     Using TLS v1.2
+2022-09-29 22:46:07,643 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:46:07,643 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:46:07,643 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-09-29 22:46:07,643 SingleWorker INFO     Starting process.
+2022-09-29 22:46:07,654 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-29 22:46:07,654 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-29 22:46:07,654 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-09-29 22:46:07,950 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-09-29 22:46:07,950 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-09-29 22:46:07,956 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-30 00:48:19,275 Controller   INFO     eNcore version: development
+2022-09-30 00:48:19,276 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-09-30 00:48:19,282 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-09-30 00:48:19,282 Controller   INFO     Starting client (pid=547383).
+2022-09-30 00:48:19,282 Controller   INFO     Sha256: 4142fe7e589b1fb69d66f9ac2ba9651cf1da2d047d1d2e168d20fb8419789825
+2022-09-30 00:48:19,282 Controller   INFO     Processes: 1
+2022-09-30 00:48:19,282 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-09-30 00:48:19,282 Diagnostics  INFO     Check certificate
+2022-09-30 00:48:19,282 Diagnostics  INFO     Creating connection
+2022-09-30 00:48:19,282 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-30 00:48:19,282 Connection   INFO     Using TLS v1.2
+2022-09-30 00:48:19,293 Diagnostics  INFO     Creating request message
+2022-09-30 00:48:19,293 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-09-30 00:48:19,293 Diagnostics  INFO     Sending request message
+2022-09-30 00:48:19,293 Diagnostics  INFO     Receiving response message
+2022-09-30 00:48:19,304 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-09-30 00:48:19,306 Diagnostics  INFO     Streaming info response
+2022-09-30 00:48:19,306 Diagnostics  INFO     Connection successful
+2022-09-30 00:48:19,307 Monitor      INFO     Starting Monitor.
+2022-09-30 00:48:19,307 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-09-30 00:48:19,308 Connection   INFO     Using TLS v1.2
+2022-09-30 00:48:19,308 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-09-30 00:48:19,790 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-30 00:48:19,790 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-30 00:48:19,790 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-09-30 00:48:19,790 SingleWorker INFO     Starting process.
+2022-09-30 00:48:19,806 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-09-30 00:48:19,806 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-09-30 00:48:19,806 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-09-30 00:48:20,091 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-09-30 00:48:20,091 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-09-30 00:48:20,097 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 16:19:20,331 Diagnostics  INFO     Check certificate
+2022-10-02 16:19:20,343 Diagnostics  INFO     Creating connection
+2022-10-02 16:19:20,344 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 16:19:20,344 Connection   INFO     Using TLS v1.2
+2022-10-02 16:19:20,717 Diagnostics  INFO     Creating request message
+2022-10-02 16:19:20,718 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 16:19:20,718 Diagnostics  INFO     Sending request message
+2022-10-02 16:19:20,719 Diagnostics  INFO     Receiving response message
+2022-10-02 16:19:20,727 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 16:19:20,727 Diagnostics  INFO     Streaming info response
+2022-10-02 16:19:20,727 Diagnostics  INFO     Connection successful
+2022-10-02 17:19:41,647 Controller   INFO     eNcore version: development
+2022-10-02 17:19:41,647 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-10-02 17:19:41,659 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-10-02 17:19:41,660 Controller   INFO     Starting client (pid=2257875).
+2022-10-02 17:19:41,660 Controller   INFO     Sha256: 4142fe7e589b1fb69d66f9ac2ba9651cf1da2d047d1d2e168d20fb8419789825
+2022-10-02 17:19:41,660 Controller   INFO     Processes: 1
+2022-10-02 17:19:41,660 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:19:41,660 Diagnostics  INFO     Check certificate
+2022-10-02 17:19:41,660 Diagnostics  INFO     Creating connection
+2022-10-02 17:19:41,660 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:19:41,661 Connection   INFO     Using TLS v1.2
+2022-10-02 17:19:42,103 Diagnostics  INFO     Creating request message
+2022-10-02 17:19:42,104 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:19:42,104 Diagnostics  INFO     Sending request message
+2022-10-02 17:19:42,104 Diagnostics  INFO     Receiving response message
+2022-10-02 17:19:42,121 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:19:42,122 Diagnostics  INFO     Streaming info response
+2022-10-02 17:19:42,122 Diagnostics  INFO     Connection successful
+2022-10-02 17:19:42,124 Monitor      INFO     Starting Monitor.
+2022-10-02 17:19:42,136 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:19:42,136 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:19:42,136 Connection   INFO     Using TLS v1.2
+2022-10-02 17:19:42,616 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:19:42,617 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:19:42,617 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:19:42,618 SingleWorker INFO     Starting process.
+2022-10-02 17:19:42,633 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:19:42,634 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:19:42,634 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:19:42,916 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:19:42,916 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:19:42,932 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:27:57,619 Controller   INFO     eNcore version: development
+2022-10-02 17:27:57,625 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-10-02 17:27:57,633 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-10-02 17:27:57,633 Controller   INFO     Starting client (pid=2261544).
+2022-10-02 17:27:57,633 Controller   INFO     Sha256: 9125386cbc80998ecb2374e27f51775ae3f066b231ee0b0b4223810c30690420
+2022-10-02 17:27:57,633 Controller   INFO     Processes: 1
+2022-10-02 17:27:57,634 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:27:57,634 Diagnostics  INFO     Check certificate
+2022-10-02 17:27:57,634 Diagnostics  INFO     Creating connection
+2022-10-02 17:27:57,634 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:27:57,634 Connection   INFO     Using TLS v1.2
+2022-10-02 17:27:57,645 Diagnostics  INFO     Creating request message
+2022-10-02 17:27:57,645 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:27:57,645 Diagnostics  INFO     Sending request message
+2022-10-02 17:27:57,645 Diagnostics  INFO     Receiving response message
+2022-10-02 17:27:57,658 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:27:57,660 Diagnostics  INFO     Streaming info response
+2022-10-02 17:27:57,661 Diagnostics  INFO     Connection successful
+2022-10-02 17:27:57,661 Monitor      INFO     Starting Monitor.
+2022-10-02 17:27:57,662 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:27:57,662 Connection   INFO     Using TLS v1.2
+2022-10-02 17:27:57,663 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:27:58,151 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:27:58,152 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:27:58,152 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:27:58,152 SingleWorker INFO     Starting process.
+2022-10-02 17:27:58,157 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:27:58,157 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:27:58,157 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:27:58,448 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:27:58,449 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:27:58,459 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:35:32,349 Controller   INFO     eNcore version: development
+2022-10-02 17:35:32,349 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-10-02 17:35:32,361 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-10-02 17:35:32,361 Controller   INFO     Starting client (pid=2265392).
+2022-10-02 17:35:32,361 Controller   INFO     Sha256: dd798b217f0de76da0c368f33f5503f7d91e98d82ad64e66235f3b4e7c9e38df
+2022-10-02 17:35:32,362 Controller   INFO     Processes: 1
+2022-10-02 17:35:32,362 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:35:32,362 Diagnostics  INFO     Check certificate
+2022-10-02 17:35:32,362 Diagnostics  INFO     Creating connection
+2022-10-02 17:35:32,362 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:35:32,363 Connection   INFO     Using TLS v1.2
+2022-10-02 17:35:32,368 Diagnostics  INFO     Creating request message
+2022-10-02 17:35:32,368 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:35:32,369 Diagnostics  INFO     Sending request message
+2022-10-02 17:35:32,369 Diagnostics  INFO     Receiving response message
+2022-10-02 17:35:32,381 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:35:32,383 Diagnostics  INFO     Streaming info response
+2022-10-02 17:35:32,383 Diagnostics  INFO     Connection successful
+2022-10-02 17:35:32,383 Monitor      INFO     Starting Monitor.
+2022-10-02 17:35:32,390 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:35:32,391 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:35:32,391 Connection   INFO     Using TLS v1.2
+2022-10-02 17:35:32,875 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:35:32,875 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:35:32,875 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:35:32,875 SingleWorker INFO     Starting process.
+2022-10-02 17:35:32,886 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:35:32,886 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:35:32,886 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:35:33,195 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:35:33,196 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:35:33,211 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:37:17,230 Controller   INFO     eNcore version: development
+2022-10-02 17:37:17,230 Controller   INFO     Python version: 3.8.10 (default, Jun 22 2022, 20:18:18) \n[GCC 9.4.0]
+2022-10-02 17:37:17,241 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.29
+2022-10-02 17:37:17,241 Controller   INFO     Starting client (pid=2266218).
+2022-10-02 17:37:17,242 Controller   INFO     Sha256: 743ee7bbd1e33a56e0169e1897144f1c9d1dbb5c52e87b06baae1990ee8d5afb
+2022-10-02 17:37:17,242 Controller   INFO     Processes: 1
+2022-10-02 17:37:17,242 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:37:17,242 Diagnostics  INFO     Check certificate
+2022-10-02 17:37:17,242 Diagnostics  INFO     Creating connection
+2022-10-02 17:37:17,243 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:37:17,243 Connection   INFO     Using TLS v1.2
+2022-10-02 17:37:17,248 Diagnostics  INFO     Creating request message
+2022-10-02 17:37:17,248 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:37:17,249 Diagnostics  INFO     Sending request message
+2022-10-02 17:37:17,249 Diagnostics  INFO     Receiving response message
+2022-10-02 17:37:17,290 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:37:17,291 Diagnostics  INFO     Streaming info response
+2022-10-02 17:37:17,291 Diagnostics  INFO     Connection successful
+2022-10-02 17:37:17,291 Monitor      INFO     Starting Monitor.
+2022-10-02 17:37:17,292 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:37:17,297 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:37:17,297 Connection   INFO     Using TLS v1.2
+2022-10-02 17:37:17,754 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:37:17,754 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:37:17,754 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:37:17,754 SingleWorker INFO     Starting process.
+2022-10-02 17:37:17,770 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:37:17,770 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:37:17,770 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:37:18,064 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:37:18,064 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:37:18,080 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:38:17,075 Controller   INFO     eNcore version: development
+2022-10-02 17:38:17,076 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:38:17,076 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:38:17,077 Controller   INFO     Starting client (pid=2266675).
+2022-10-02 17:38:17,077 Controller   INFO     Sha256: 743ee7bbd1e33a56e0169e1897144f1c9d1dbb5c52e87b06baae1990ee8d5afb
+2022-10-02 17:38:17,078 Controller   INFO     Processes: 1
+2022-10-02 17:38:17,078 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:38:17,079 Diagnostics  INFO     Check certificate
+2022-10-02 17:38:17,080 Diagnostics  INFO     Creating connection
+2022-10-02 17:38:17,080 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:38:17,081 Connection   INFO     Using TLS v1.2
+2022-10-02 17:38:17,086 Diagnostics  INFO     Creating request message
+2022-10-02 17:38:17,086 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:38:17,086 Diagnostics  INFO     Sending request message
+2022-10-02 17:38:17,086 Diagnostics  INFO     Receiving response message
+2022-10-02 17:38:17,092 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:38:17,093 Diagnostics  INFO     Streaming info response
+2022-10-02 17:38:17,093 Diagnostics  INFO     Connection successful
+2022-10-02 17:38:17,100 Monitor      INFO     Starting Monitor.
+2022-10-02 17:38:17,101 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:38:17,101 Connection   INFO     Using TLS v1.2
+2022-10-02 17:38:17,102 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:38:17,587 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:38:17,587 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:38:17,588 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:38:17,588 SingleWorker INFO     Starting process.
+2022-10-02 17:38:17,599 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:38:17,599 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:38:17,600 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:38:17,905 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:38:17,906 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:38:17,917 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:42:47,372 Controller   INFO     eNcore version: development
+2022-10-02 17:42:47,373 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:42:47,373 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:42:47,373 Controller   INFO     Starting client (pid=2268716).
+2022-10-02 17:42:47,373 Controller   INFO     Sha256: 0f8e2136f9a9cbccc0ddf961af7529210b30b00c557fc056a9d4269cd59e172c
+2022-10-02 17:42:47,373 Controller   INFO     Processes: 1
+2022-10-02 17:42:47,373 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:42:47,374 Diagnostics  INFO     Check certificate
+2022-10-02 17:42:47,374 Diagnostics  INFO     Creating connection
+2022-10-02 17:42:47,374 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:42:47,374 Connection   INFO     Using TLS v1.2
+2022-10-02 17:42:47,384 Diagnostics  INFO     Creating request message
+2022-10-02 17:42:47,384 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:42:47,384 Diagnostics  INFO     Sending request message
+2022-10-02 17:42:47,385 Diagnostics  INFO     Receiving response message
+2022-10-02 17:42:47,396 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:42:47,397 Diagnostics  INFO     Streaming info response
+2022-10-02 17:42:47,397 Diagnostics  INFO     Connection successful
+2022-10-02 17:42:47,397 Monitor      INFO     Starting Monitor.
+2022-10-02 17:42:47,397 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:42:47,403 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:42:47,403 Connection   INFO     Using TLS v1.2
+2022-10-02 17:42:47,892 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:42:47,893 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:42:47,893 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:42:47,893 SingleWorker INFO     Starting process.
+2022-10-02 17:42:47,904 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:42:47,904 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:42:47,904 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:42:48,188 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:42:48,189 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:42:48,200 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:46:17,378 Controller   INFO     eNcore version: development
+2022-10-02 17:46:17,378 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:46:17,378 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:46:17,378 Controller   INFO     Starting client (pid=2270303).
+2022-10-02 17:46:17,378 Controller   INFO     Sha256: 90c9a1aac5eddea1e7a360b9f4eeac2ca8bc929d49116c055c3a94fc7aceab95
+2022-10-02 17:46:17,378 Controller   INFO     Processes: 1
+2022-10-02 17:46:17,378 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:46:17,378 Diagnostics  INFO     Check certificate
+2022-10-02 17:46:17,379 Diagnostics  INFO     Creating connection
+2022-10-02 17:46:17,379 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:46:17,379 Connection   INFO     Using TLS v1.2
+2022-10-02 17:46:17,410 Diagnostics  INFO     Creating request message
+2022-10-02 17:46:17,410 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:46:17,410 Diagnostics  INFO     Sending request message
+2022-10-02 17:46:17,410 Diagnostics  INFO     Receiving response message
+2022-10-02 17:46:17,424 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:46:17,424 Diagnostics  INFO     Streaming info response
+2022-10-02 17:46:17,424 Diagnostics  INFO     Connection successful
+2022-10-02 17:46:17,425 Monitor      INFO     Starting Monitor.
+2022-10-02 17:46:17,425 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:46:17,425 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:46:17,425 Connection   INFO     Using TLS v1.2
+2022-10-02 17:46:17,911 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:46:17,911 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:46:17,911 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:46:17,911 SingleWorker INFO     Starting process.
+2022-10-02 17:46:17,917 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:46:17,917 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:46:17,917 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:46:18,216 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:46:18,216 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:46:18,216 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:48:07,840 Controller   INFO     eNcore version: development
+2022-10-02 17:48:07,841 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:48:07,846 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:48:07,846 Controller   INFO     Starting client (pid=2271161).
+2022-10-02 17:48:07,846 Controller   INFO     Sha256: 02db14883e710a95690810dcbbc5a5d6bc89933dd9d381f0f4ea60638c2e75fa
+2022-10-02 17:48:07,846 Controller   INFO     Processes: 1
+2022-10-02 17:48:07,846 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:48:07,846 Diagnostics  INFO     Check certificate
+2022-10-02 17:48:07,846 Diagnostics  INFO     Creating connection
+2022-10-02 17:48:07,847 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:48:07,847 Connection   INFO     Using TLS v1.2
+2022-10-02 17:48:08,013 Diagnostics  INFO     Creating request message
+2022-10-02 17:48:08,013 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:48:08,013 Diagnostics  INFO     Sending request message
+2022-10-02 17:48:08,013 Diagnostics  INFO     Receiving response message
+2022-10-02 17:48:08,028 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:48:08,029 Diagnostics  INFO     Streaming info response
+2022-10-02 17:48:08,030 Diagnostics  INFO     Connection successful
+2022-10-02 17:48:08,030 Monitor      INFO     Starting Monitor.
+2022-10-02 17:48:08,040 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:48:08,041 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:48:08,041 Connection   INFO     Using TLS v1.2
+2022-10-02 17:48:08,505 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:48:08,505 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:48:08,506 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:48:08,506 SingleWorker INFO     Starting process.
+2022-10-02 17:48:08,517 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:48:08,517 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:48:08,517 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:48:08,805 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:48:08,805 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:48:08,826 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:49:58,550 Controller   INFO     eNcore version: development
+2022-10-02 17:49:58,556 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:49:58,556 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:49:58,556 Controller   INFO     Starting client (pid=2272011).
+2022-10-02 17:49:58,556 Controller   INFO     Sha256: 7bbe0467882f7c441176ed517e4f3d05a7593d6c3cc5cf0decdd6e165749c328
+2022-10-02 17:49:58,556 Controller   INFO     Processes: 1
+2022-10-02 17:49:58,556 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:49:58,557 Diagnostics  INFO     Check certificate
+2022-10-02 17:49:58,557 Diagnostics  INFO     Creating connection
+2022-10-02 17:49:58,557 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:49:58,557 Connection   INFO     Using TLS v1.2
+2022-10-02 17:49:58,596 Diagnostics  INFO     Creating request message
+2022-10-02 17:49:58,596 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:49:58,597 Diagnostics  INFO     Sending request message
+2022-10-02 17:49:58,597 Diagnostics  INFO     Receiving response message
+2022-10-02 17:49:58,611 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:49:58,613 Diagnostics  INFO     Streaming info response
+2022-10-02 17:49:58,614 Diagnostics  INFO     Connection successful
+2022-10-02 17:49:58,614 Monitor      INFO     Starting Monitor.
+2022-10-02 17:49:58,614 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:49:58,614 Connection   INFO     Using TLS v1.2
+2022-10-02 17:49:58,615 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:49:59,093 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:49:59,093 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:49:59,093 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:49:59,093 SingleWorker INFO     Starting process.
+2022-10-02 17:49:59,104 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:49:59,104 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:49:59,104 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:49:59,383 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:49:59,383 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:49:59,388 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:52:18,170 Controller   INFO     eNcore version: development
+2022-10-02 17:52:18,172 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:52:18,173 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:52:18,173 Controller   INFO     Starting client (pid=2273071).
+2022-10-02 17:52:18,173 Controller   INFO     Sha256: da5938d082bcedd5639000e00cda0d9d8ab4f50088a5bb5ecc85c0fa7aad7706
+2022-10-02 17:52:18,174 Controller   INFO     Processes: 1
+2022-10-02 17:52:18,174 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:52:18,175 Diagnostics  INFO     Check certificate
+2022-10-02 17:52:18,175 Diagnostics  INFO     Creating connection
+2022-10-02 17:52:18,175 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:52:18,175 Connection   INFO     Using TLS v1.2
+2022-10-02 17:52:18,181 Diagnostics  INFO     Creating request message
+2022-10-02 17:52:18,181 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:52:18,181 Diagnostics  INFO     Sending request message
+2022-10-02 17:52:18,181 Diagnostics  INFO     Receiving response message
+2022-10-02 17:52:18,193 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:52:18,196 Diagnostics  INFO     Streaming info response
+2022-10-02 17:52:18,196 Diagnostics  INFO     Connection successful
+2022-10-02 17:52:18,201 Monitor      INFO     Starting Monitor.
+2022-10-02 17:52:18,201 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:52:18,202 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:52:18,202 Connection   INFO     Using TLS v1.2
+2022-10-02 17:52:18,688 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:52:18,688 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:52:18,688 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:52:18,688 SingleWorker INFO     Starting process.
+2022-10-02 17:52:18,693 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:52:18,694 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:52:18,694 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:52:19,006 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:52:19,006 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:52:19,007 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:53:01,100 Controller   INFO     eNcore version: development
+2022-10-02 17:53:01,101 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:53:01,101 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:53:01,101 Controller   INFO     Starting client (pid=2273412).
+2022-10-02 17:53:01,101 Controller   INFO     Sha256: fc7ac4068833658a8f8524bcdb977891bdb97ad139492d02d28adc6898b0d6d0
+2022-10-02 17:53:01,102 Controller   INFO     Processes: 1
+2022-10-02 17:53:01,102 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:53:01,102 Diagnostics  INFO     Check certificate
+2022-10-02 17:53:01,102 Diagnostics  INFO     Creating connection
+2022-10-02 17:53:01,102 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:53:01,103 Connection   INFO     Using TLS v1.2
+2022-10-02 17:53:01,232 Diagnostics  INFO     Creating request message
+2022-10-02 17:53:01,232 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:53:01,232 Diagnostics  INFO     Sending request message
+2022-10-02 17:53:01,232 Diagnostics  INFO     Receiving response message
+2022-10-02 17:53:01,246 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:53:01,249 Diagnostics  INFO     Streaming info response
+2022-10-02 17:53:01,250 Diagnostics  INFO     Connection successful
+2022-10-02 17:53:01,250 Monitor      INFO     Starting Monitor.
+2022-10-02 17:53:01,251 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:53:01,251 Connection   INFO     Using TLS v1.2
+2022-10-02 17:53:01,251 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:53:01,725 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:53:01,725 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:53:01,725 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:53:01,725 SingleWorker INFO     Starting process.
+2022-10-02 17:53:01,746 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:53:01,746 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:53:01,746 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:53:02,041 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:53:02,041 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:53:02,052 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:54:11,193 Controller   INFO     eNcore version: development
+2022-10-02 17:54:11,193 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:54:11,193 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:54:11,193 Controller   INFO     Starting client (pid=2273979).
+2022-10-02 17:54:11,193 Controller   INFO     Sha256: 58ea462bb4377baf703ea7430d46e9451f2ea9635fd0aa9f8dfe14a673e4cc90
+2022-10-02 17:54:11,193 Controller   INFO     Processes: 1
+2022-10-02 17:54:11,193 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:54:11,193 Diagnostics  INFO     Check certificate
+2022-10-02 17:54:11,193 Diagnostics  INFO     Creating connection
+2022-10-02 17:54:11,194 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:54:11,194 Connection   INFO     Using TLS v1.2
+2022-10-02 17:54:11,287 Diagnostics  INFO     Creating request message
+2022-10-02 17:54:11,288 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:54:11,288 Diagnostics  INFO     Sending request message
+2022-10-02 17:54:11,288 Diagnostics  INFO     Receiving response message
+2022-10-02 17:54:11,301 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:54:11,303 Diagnostics  INFO     Streaming info response
+2022-10-02 17:54:11,304 Diagnostics  INFO     Connection successful
+2022-10-02 17:54:11,304 Monitor      INFO     Starting Monitor.
+2022-10-02 17:54:11,305 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:54:11,310 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:54:11,310 Connection   INFO     Using TLS v1.2
+2022-10-02 17:54:11,785 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:54:11,785 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:54:11,785 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:54:11,785 SingleWorker INFO     Starting process.
+2022-10-02 17:54:11,796 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:54:11,796 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:54:11,796 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:54:12,077 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:54:12,077 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:54:12,093 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:55:40,660 Controller   INFO     eNcore version: development
+2022-10-02 17:55:40,661 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:55:40,661 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:55:40,661 Controller   INFO     Starting client (pid=2274665).
+2022-10-02 17:55:40,661 Controller   INFO     Sha256: 8cf7541c7e9a3b0d87f353da48c4564ba4e42146b7cd984b52f216df8f0b028b
+2022-10-02 17:55:40,661 Controller   INFO     Processes: 1
+2022-10-02 17:55:40,661 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:55:40,661 Diagnostics  INFO     Check certificate
+2022-10-02 17:55:40,661 Diagnostics  INFO     Creating connection
+2022-10-02 17:55:40,662 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:55:40,662 Connection   INFO     Using TLS v1.2
+2022-10-02 17:55:40,858 Diagnostics  INFO     Creating request message
+2022-10-02 17:55:40,859 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:55:40,859 Diagnostics  INFO     Sending request message
+2022-10-02 17:55:40,859 Diagnostics  INFO     Receiving response message
+2022-10-02 17:55:40,871 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:55:40,872 Diagnostics  INFO     Streaming info response
+2022-10-02 17:55:40,872 Diagnostics  INFO     Connection successful
+2022-10-02 17:55:40,872 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:55:40,872 Connection   INFO     Using TLS v1.2
+2022-10-02 17:55:40,878 Monitor      INFO     Starting Monitor.
+2022-10-02 17:55:40,878 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:55:41,357 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:55:41,358 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:55:41,358 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:55:41,358 SingleWorker INFO     Starting process.
+2022-10-02 17:55:41,368 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:55:41,369 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:55:41,369 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:55:41,663 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:55:41,664 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:56:23,154 Controller   INFO     eNcore version: development
+2022-10-02 17:56:23,154 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:56:23,155 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:56:23,155 Controller   INFO     Starting client (pid=2274996).
+2022-10-02 17:56:23,155 Controller   INFO     Sha256: 29d020c2337f89538e813a700ed0f051d5353007d1676838947414d466c7212e
+2022-10-02 17:56:23,156 Controller   INFO     Processes: 1
+2022-10-02 17:56:23,156 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:56:23,156 Diagnostics  INFO     Check certificate
+2022-10-02 17:56:23,156 Diagnostics  INFO     Creating connection
+2022-10-02 17:56:23,157 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:56:23,157 Connection   INFO     Using TLS v1.2
+2022-10-02 17:56:23,167 Diagnostics  INFO     Creating request message
+2022-10-02 17:56:23,168 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:56:23,168 Diagnostics  INFO     Sending request message
+2022-10-02 17:56:23,168 Diagnostics  INFO     Receiving response message
+2022-10-02 17:56:23,176 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:56:23,177 Diagnostics  INFO     Streaming info response
+2022-10-02 17:56:23,177 Diagnostics  INFO     Connection successful
+2022-10-02 17:56:23,178 Monitor      INFO     Starting Monitor.
+2022-10-02 17:56:23,178 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:56:23,183 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:56:23,184 Connection   INFO     Using TLS v1.2
+2022-10-02 17:56:23,668 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:56:23,668 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:56:23,668 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:56:23,668 SingleWorker INFO     Starting process.
+2022-10-02 17:56:23,678 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:56:23,679 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:56:23,679 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:56:23,969 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:56:23,969 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:56:50,491 Controller   INFO     eNcore version: development
+2022-10-02 17:56:50,491 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:56:50,492 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:56:50,492 Controller   INFO     Starting client (pid=2275232).
+2022-10-02 17:56:50,493 Controller   INFO     Sha256: 862076fdf121815c69709e3ca1c075c0c98ff595d2bc17bdd9a62436ba05e61a
+2022-10-02 17:56:50,493 Controller   INFO     Processes: 1
+2022-10-02 17:56:50,493 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:56:50,493 Diagnostics  INFO     Check certificate
+2022-10-02 17:56:50,494 Diagnostics  INFO     Creating connection
+2022-10-02 17:56:50,494 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:56:50,494 Connection   INFO     Using TLS v1.2
+2022-10-02 17:56:50,505 Diagnostics  INFO     Creating request message
+2022-10-02 17:56:50,505 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:56:50,505 Diagnostics  INFO     Sending request message
+2022-10-02 17:56:50,505 Diagnostics  INFO     Receiving response message
+2022-10-02 17:56:50,510 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:56:50,516 Diagnostics  INFO     Streaming info response
+2022-10-02 17:56:50,517 Diagnostics  INFO     Connection successful
+2022-10-02 17:56:50,517 Monitor      INFO     Starting Monitor.
+2022-10-02 17:56:50,518 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:56:50,518 Connection   INFO     Using TLS v1.2
+2022-10-02 17:56:50,535 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:56:51,011 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:56:51,012 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:56:51,012 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:56:51,012 SingleWorker INFO     Starting process.
+2022-10-02 17:56:51,018 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:56:51,018 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:56:51,018 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:56:51,317 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:56:51,317 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:56:51,333 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:57:37,439 Controller   INFO     eNcore version: development
+2022-10-02 17:57:37,439 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:57:37,440 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:57:37,440 Controller   INFO     Starting client (pid=2275647).
+2022-10-02 17:57:37,440 Controller   INFO     Sha256: 98524eaf3f3a6ee49ac56249c3d71ed05be0dfd634f29e67e42ad7183a142531
+2022-10-02 17:57:37,440 Controller   INFO     Processes: 1
+2022-10-02 17:57:37,440 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:57:37,440 Diagnostics  INFO     Check certificate
+2022-10-02 17:57:37,440 Diagnostics  INFO     Creating connection
+2022-10-02 17:57:37,440 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:57:37,441 Connection   INFO     Using TLS v1.2
+2022-10-02 17:57:37,456 Diagnostics  INFO     Creating request message
+2022-10-02 17:57:37,457 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:57:37,457 Diagnostics  INFO     Sending request message
+2022-10-02 17:57:37,457 Diagnostics  INFO     Receiving response message
+2022-10-02 17:57:37,470 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:57:37,471 Diagnostics  INFO     Streaming info response
+2022-10-02 17:57:37,472 Diagnostics  INFO     Connection successful
+2022-10-02 17:57:37,473 Monitor      INFO     Starting Monitor.
+2022-10-02 17:57:37,473 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:57:37,480 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:57:37,482 Connection   INFO     Using TLS v1.2
+2022-10-02 17:57:37,953 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:57:37,953 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:57:37,953 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:57:37,953 SingleWorker INFO     Starting process.
+2022-10-02 17:57:37,964 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:57:37,964 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:57:37,964 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:57:38,268 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:57:38,269 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:57:38,279 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:59:13,488 Controller   INFO     eNcore version: development
+2022-10-02 17:59:13,488 Controller   INFO     Python version: 3.9.5 (default, Nov 23 2021, 15:27:38) \n[GCC 9.3.0]
+2022-10-02 17:59:13,488 Controller   INFO     Platform version: Linux-5.4.0-122-generic-x86_64-with-glibc2.31
+2022-10-02 17:59:13,488 Controller   INFO     Starting client (pid=2276406).
+2022-10-02 17:59:13,488 Controller   INFO     Sha256: 027f6fc590a01ef37b23c7630548125c98e839c8a6365eba486302a30ad3e70b
+2022-10-02 17:59:13,488 Controller   INFO     Processes: 1
+2022-10-02 17:59:13,488 Controller   INFO     Settings: b'gASVwwUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlCh9lCiMB2FkYXB0ZXKUjARvY3NmlGgCiIwGc3RyZWFtlH2UKIwHb3B0aW9uc5R9lCiMB21heExvZ3OUTRAnjAZyb3RhdGWUiHWMA3VyaZSMI3JlbGZpbGU6Ly8vZGF0YS9vY3NmL2VuY29yZS57MH0ubG9nlHV1fZQoaAqMBGpzb26UaAKIaAx9lChoDn2UKGgQTRAnaBGIdWgSjCNyZWxmaWxlOi8vL2RhdGEvanNvbi9lbmNvcmUuezB9LmxvZ5R1dWWMB3JlY29yZHOUfZQojAtjb25uZWN0aW9uc5SIjARjb3JllIiMDGV4Y2xAY29tbWVudJRdlCiMSFRoZXNlIHJlY29yZHMgd2lsbCBiZSBleGNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZlIChvdmVycmlkZXMgJ2luY2x1ZGUnKZSMM2UuZy4gdG8gZXhjbHVkZSBmbG93IGFuZCBJUFMgZXZlbnRzIHVzZSBbIDcxLCA0MDAgXZRljAdleGNsdWRllF2UjAtpbmNAY29tbWVudJSMMlRoZXNlIHJlY29yZHMgd2lsbCBiZSBpbmNsdWRlZCByZWdhcmRsZXNzIG9mIGFib3ZllIwHaW5jbHVkZZRdlIwJaW50cnVzaW9ulIiMCG1ldGFkYXRhlIiMB3BhY2tldHOUiIwDcm5hlIiMA3J1YZSIdXWMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS3iMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiXWMD3Jlc3BvbnNlVGltZW91dJRLAowMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsCjAxzdWJzY3JpcHRpb26UfZQoaBl9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgniGgoiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDjE5OC4xOC4xMzMuMTk0lIwOcGtjczEyRmlsZXBhdGiUjA1jbGllbnQucGtjczEylIwEcG9ydJRNbiCMC3Rsc0Bjb21tZW50lIwcVmFsaWQgdmFsdWVzIGFyZSAxLjAgYW5kIDEuMpSMCnRsc1ZlcnNpb26URz/zMzMzMzMzdWF1jA93b3JrZXJQcm9jZXNzZXOUSwF1Lg=='
+2022-10-02 17:59:13,488 Diagnostics  INFO     Check certificate
+2022-10-02 17:59:13,488 Diagnostics  INFO     Creating connection
+2022-10-02 17:59:13,489 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:59:13,489 Connection   INFO     Using TLS v1.2
+2022-10-02 17:59:13,504 Diagnostics  INFO     Creating request message
+2022-10-02 17:59:13,504 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2022-10-02 17:59:13,504 Diagnostics  INFO     Sending request message
+2022-10-02 17:59:13,504 Diagnostics  INFO     Receiving response message
+2022-10-02 17:59:13,515 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2022-10-02 17:59:13,516 Diagnostics  INFO     Streaming info response
+2022-10-02 17:59:13,516 Diagnostics  INFO     Connection successful
+2022-10-02 17:59:13,522 Monitor      INFO     Starting Monitor.
+2022-10-02 17:59:13,522 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2022-10-02 17:59:13,522 Connection   INFO     Connecting to 198.18.133.194:8302
+2022-10-02 17:59:13,522 Connection   INFO     Using TLS v1.2
+2022-10-02 17:59:14,007 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:59:14,007 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:59:14,007 Receiver     INFO     EventStreamRequestMessage: b'000100020000000862b4c71b48900061'
+2022-10-02 17:59:14,007 SingleWorker INFO     Starting process.
+2022-10-02 17:59:14,018 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
+2022-10-02 17:59:14,018 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1656014619)
+2022-10-02 17:59:14,018 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006162b4c71b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2022-10-02 17:59:14,337 Cache        INFO     Loading cache from /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat
+2022-10-02 17:59:14,337 Cache        INFO     Cache file "/opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_cache.dat" does not exist. Using default values
+2022-10-02 17:59:14,348 Bookmark     INFO     Opening bookmark file /opt/moost_dev/fp-05-firepower-cli/198.18.133.194-8302_bookmark.dat.
