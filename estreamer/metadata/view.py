@@ -21,9 +21,11 @@ import datetime
 import re
 import estreamer.crossprocesslogging
 import estreamer.definitions as definitions
+import codecs
 from estreamer.adapters.binary import Binary
 from estreamer.common import Flatdict
 from estreamer.metadata.cache import Cache
+
 
 class View( object ):
     """
@@ -107,6 +109,7 @@ class View( object ):
     NET_PROTO = 'networkProtocol'
     NETWORK_ANALYSIS_POLICY = 'networkAnalysisPolicy'
     ORIGINAL_CLIENT_SRC_IP = 'originalSrcIP'
+    PACKET_DATA = 'packetData'
     PARENT_DETECTION = 'parentDetection'
     PRIORITY = 'priority'
     PROTOCOL = 'protocol'
@@ -243,9 +246,10 @@ class View( object ):
         ]
     }
 
-    def __init__( self, cache, record ):
+    def __init__( self, cache, record, settings ):
         self.cache = cache
         self.record = record
+        self.settings = settings
         self.data = {}
         self.logger = estreamer.crossprocesslogging.getLogger( __name__ )
 
@@ -293,7 +297,38 @@ class View( object ):
             if not (char in hex_digits):
                 return False
         return True
-    
+
+    def __packetData(self, data , packetLength):
+        payload = ''
+
+        PACKET_LENGTH_MAX = 1022
+        if packetLength == 0 :
+            return payload
+
+        if isinstance(data, bytes):
+            data = codecs.decode(data, 'utf-8')
+
+        settings = 'ascii' #[self.settings]
+        self.logger.info( self.settings )
+        
+        if settings :
+
+            packet = estreamer.common.Packet.createFromHex( data )
+
+            if settings == 'ascii' : 
+                payload = packet.getPayloadAsAscii()
+
+            elif settings == 'utf8':
+                payload = packet.getPayloadAsUtf8()
+
+            elif settings == 'hex':
+                payload = packet.getPayloadAsHex()
+
+            else:
+                raise estreamer.EncoreException( 'Unknown packet encoding' )
+
+        return payload[ 0 : PACKET_LENGTH_MAX ]
+
     def __convertIPv6(self, extraData) :
                             
         h1 = extraData[0:4].decode('utf-8')
@@ -344,6 +379,10 @@ class View( object ):
 
             self.data[ View.IMPACT ] = Binary.getImpact( record['impact'])
 
+        elif recordTypeId == definitions.RECORD_PACKET:
+            # 2
+            if 'packetData' in record :
+                self.data['packetData'] = self.__packetData(record['packetData'], len(record['packetData']))
 
         elif recordTypeId == definitions.METADATA_CORRELATION_POLICY:
             # 69

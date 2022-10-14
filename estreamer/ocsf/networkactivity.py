@@ -141,20 +141,19 @@ class NetworkActivity( object ):
         self.duration = int(data['lastPacketTimestamp'])  - int(data['firstPacketTimestamp'] )
         self.end_time = int(data['lastPacketTimestamp']) * 1000
         self.time = int(data['firstPacketTimestamp']) * 1000
-        self.message = data['recordTypeDescription']
-        self.observables = ""
+        self.message = str(data['recordTypeDescription'] != "")
+#        self.observables = ""
         self.profiles = []
-        self.ref_time = ""
-        self._raw_data = ""
-        self.ref_event_code = ""
+#        self._raw_data = ""
+#        self.ref_event_code = ""
         self.ref_event_name = "Connection Event"
-        self.ref_time = data['firstPacketTimestamp'] * 1000
+        self.ref_time = str(data['firstPacketTimestamp'] * 1000)
         self.severity = "Unknown" #todo is there a mapping for connection events?
         self.severity_id = 0 #todo
         self.start_time = data['firstPacketTimestamp'] * 1000
         self.status = NetworkActivity.statusMap( data['@computed.sslFlowStatus'] )  #todo what statuses are available for generic connection events
-        self.status_code = lambda rec : __statusMapId ( data['@computed.sslFlowStatus'] ) #is there an equivalent ssl network class we should use?
-        self.status_detail = ""
+        self.status_code = str(NetworkActivity.statusMapId ( data['@computed.sslFlowStatus'] )) #is there an equivalent ssl network class we should use?
+#        self.status_detail = ""
         self.status_id = NetworkActivity.statusMapId( data['@computed.sslFlowStatus'] )
         self.timezone_offset = 0
         self.type_uid = 400100 + self.activity_id

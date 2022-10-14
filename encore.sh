@@ -16,6 +16,7 @@ diagnostics="$pybin ./estreamer/diagnostics.py $configFilepath"
 service="$pybin ./estreamer/service.py $configFilepath"
 preflight="$pybin ./estreamer/preflight.py $configFilepath"
 pidFile="encore.pid"
+jsontoparq="python3 jsontoparquet.py"
 
 EXIT_CODE_ERROR=1
 
@@ -158,6 +159,10 @@ ts() {
     tar -zcvf ../"encore-ts-$(date '+%Y-%m-%d_%H-%M-%S%z(%Z)').tar.gz" *
 }
 
+parquet() {
+    $jsontoparq
+}
+
 restart() {
     stop
     start
@@ -181,6 +186,10 @@ main() {
             diagnostics
             ;;
 
+        parquet)
+            parquet
+            ;;
+
         foreground)
             foreground
             ;;
@@ -194,14 +203,15 @@ main() {
             ;;
 
         *)
-            echo $"Usage: $prog {start | stop | restart | foreground | test | setup}"
+            echo $"Usage: $prog {start | stop | restart | foreground | test | setup | parquet}}"
             echo
             echo '    start:      starts eNcore as a background task'
             echo '    stop:       stop the eNcore background task'
             echo '    restart:    stop the eNcore background task'
             echo '    foreground: runs eNcore in the foreground'
             echo '    test:       runs a quick test to check connectivity'
-            echo '    setup:      change the output (splunk | cef | json | ocsf)'
+            echo '    parquet:    converts existing json files to parquet format'
+            echo '    setup:      change the output (splunk | cef | json | ocsf | parquet)'
             echo
             echo $1
             exit $EXIT_CODE_ERROR

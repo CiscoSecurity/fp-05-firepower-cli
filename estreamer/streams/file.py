@@ -20,8 +20,16 @@
 from __future__ import absolute_import
 import os
 import time
+import datetime
+import estreamer 
 import io
+import boto3
 import uuid
+
+import pyarrow.parquet as pq
+import pandas as pd
+import json
+
 from estreamer.streams.base import Base
 
 class FileStream( Base ):
@@ -34,6 +42,14 @@ class FileStream( Base ):
         self.rotate = rotate
         self.filename = FileStream._sanitiseFilename( filename )
         self.encoding = encoding
+        self.currtime = None 
+        self.prevtime = None
+        self.s3 = boto3.resource('s3')
+        self.bucket = "moose-secure-firewall-demo-v1"
+        self.account = "645424132307"
+        self.region = "us-east-1"
+        self.location = "us"
+        self.aws_data = ""
 
 
 
@@ -74,13 +90,40 @@ class FileStream( Base ):
 
 
 
-    def _ensureRotation( self ):
+    def _ensureRotation( self , data):
         if self.rotate:
             if self.lines >= self.threshold:
                 self.file.close()
                 self.onFileClose()
                 self.file = None
 
+        
+        if self.currtime is not None and self.prevtime is not None:
+
+            diff = self.currtime - self.prevtime
+
+            #“<source location>/region=<region>/AWS_account=<accountid>/eventhour=<yyyyMMddHH>/“
+            event_hour = "{0}{1}{2}{3}".format(self.currtime.year, self.currtime.month, self.currtime.day, self.currtime.hour)
+
+            s3_dir = "/region={0}/AWS_account={1}/eventhour={2}/".format(self.region, self.account, event_hour)
+
+            if self.currtime.hour != self.prevtime.hour and 'time' in data and 'type_uid' in data:
+
+
+#                data_dict = json.loads(self.aws_data)
+
+#                for key, value in data_dict.items():
+#                    data_dict[key] = [value]
+
+#                df = pd.DataFrame(data_dict)
+                object = self.s3.Object(self.bucket, '{0}data.log'.format(s3_dir))
+                
+                result = object.put(Body=self.aws_data.encode('utf-8'))
+
+                self.aws_data = ""
+                self.file.close()
+                self.onFileClose()
+                self.file = None
 
 
     def close( self ):
@@ -94,6 +137,21 @@ class FileStream( Base ):
         """Writes to the underlying stream"""
         self._ensureFile()
         self.file.write( data.encode( self.encoding ).decode('utf-8') )
+        #.decode('utf-8')
         self.file.flush()
         self.lines += 1
-        self._ensureRotation()
+
+        if "time" in data and "type_uid" in data :
+            self.prevtime = self.currtime
+
+            pos = data.find('"time"')
+            offset = 8
+            #fixed characters for epoch time, offset
+            #pos -3 since datetime doesn't support finer than millis
+            try :
+                self.currtime = datetime.datetime.fromtimestamp(int(data[pos+8:pos+18]))
+                self.aws_data += data 
+            except :
+                 raise estreamer.EncoreException('Unrecognised value: {0} in {1}'.format( data[pos+8:pos+18], data) )
+
+        self._ensureRotation(data)

@@ -191,9 +191,11 @@ def decorate( record, settings ):
         # Update METADATA (this will only process certain record types)
         settings.cache().store( record )
 
+        #
+#        record['']
         # Reads from METADATA and computes other things e.g. IP addrs
         record[ View.OUTPUT_KEY ] = estreamer.metadata.View(
-            settings.cache(), record ).create()
+            settings.cache(), record , settings).create()
 
 
 

@@ -29,13 +29,13 @@ class TLS( object ):
         self.certificate = ""
         self.certificate_chain = ""
         self.cipher = ""
-        self.client_ciphers = [data['@computed.sslCipherSuite']]
+        self.client_ciphers = [data['@computed.sslCipherSuite'] if data['@computed.sslCipherSuite'] is not None else ""]
         self.alert = ""
         self.extension_list = ""
         self.handshake_dur = ""
         self.ja3_fingerprint = ""
         self.ja3s_fingerprint = ""
-        self.server_ciphers = [data['@computed.sslServerCertificateStatus']]
-        self.sni = data['@computed.sslServerName']
+        self.server_ciphers =  [data['@computed.sslServerCertificateStatus'] if data['@computed.sslServerCertificateStatus'] is not None else ""]
+        self.sni = data['@computed.sslServerName'] if data['@computed.sslServerName'] is not None else ""
         self.sans = ""
         self.version = data['@computed.sslVersion']

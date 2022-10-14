@@ -136,7 +136,7 @@ def __profiles(data) :
 
 def __nonEmptyValues( data ) :
 
-    return {k: v for k, v in data.items() if v}
+    return {k: v for k, v in data.items() if v != ""}
 
 
 MAPPING = {
@@ -196,9 +196,7 @@ class Ocsf( object ):
         network_attr = {}
         for m in members :
             network_attr[m] = getattr(networkObj, m)
-#        print ('value for {0}:{1}'.format(m, network_attr[m]))
 
-#    print(network_attr)
         return network_attr
 
 
@@ -273,11 +271,10 @@ class Ocsf( object ):
         # http://search.cpan.org/~dexter/POSIX-strftime-GNU-0.02/lib/POSIX/strftime/GNU.pm
         # # Get syslog-style timestamp: MAR  1 16:23:11
         # my $datetime = strftime('%b %e %T', localtime(time()));
+
         now = time.strftime('%b %d %X')
         self.output = self.output | self.network
         data = Ocsf.__sanitize( self.output )
-#        mydict = {'test':4}
-#        data = data | mydict
 
         message = u'{0}'.format(
             data
