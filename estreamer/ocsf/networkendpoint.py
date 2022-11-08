@@ -19,6 +19,7 @@ from __future__ import absolute_import
 import estreamer.crossprocesslogging as logging
 import binascii
 import struct
+import random
 
 class NetworkEndpoint( object ):
     """

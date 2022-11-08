@@ -138,7 +138,7 @@ class NetworkActivity( object ):
         self.class_name = "Network Activity"
         self.class_uid = 4001
         self.count = data['connectionCounter']
-        self.duration = int(data['lastPacketTimestamp'])  - int(data['firstPacketTimestamp'] )
+        self.duration = int(data['lastPacketTimestamp'])  - int(data['firstPacketTimestamp'] ) if int(data['lastPacketTimestamp']) != 0 else 0
         self.end_time = int(data['lastPacketTimestamp']) * 1000
         self.time = int(data['firstPacketTimestamp']) * 1000
         self.message = str(data['recordTypeDescription'] != "")

@@ -25,6 +25,7 @@ import estreamer
 import estreamer.definitions as definitions
 import estreamer.crossprocesslogging as logging
 
+import json
 from estreamer.adapters.binary import Binary
 from estreamer.metadata import View
 from estreamer.baseproc import QueueProcess
@@ -241,6 +242,7 @@ def write( event, settings, delimiter = '\n' ):
 
     for index in range( 0, len( streams )):
         if not event['payloads'][ index ] is None:
+
             streams[ index ].write( event['payloads'][index] + delimiter )
 
     # Handle bookmarking

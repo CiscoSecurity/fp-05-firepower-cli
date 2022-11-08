@@ -23,12 +23,15 @@ import time
 import datetime
 import estreamer 
 import io
+from io import BytesIO
 import boto3
 import uuid
 
 import pyarrow.parquet as pq
 import pandas as pd
-import json
+import json as json1
+import estreamer.adapters.json as json2
+from pyarrow import json
 
 from estreamer.streams.base import Base
 
@@ -45,11 +48,13 @@ class FileStream( Base ):
         self.currtime = None 
         self.prevtime = None
         self.s3 = boto3.resource('s3')
-        self.bucket = "moose-secure-firewall-demo-v1"
-        self.account = "645424132307"
-        self.region = "us-east-1"
+#        self.bucket = "moose-secure-firewall-demo-v1"
+
+        self.bucket = "aws-security-data-lake-us-east-2-351076683564"
+        self.account = "551076683564"
+        self.region = "us-east-2"
         self.location = "us"
-        self.aws_data = ""
+        self.aws_data = []
 
 
 
@@ -97,60 +102,76 @@ class FileStream( Base ):
                 self.onFileClose()
                 self.file = None
 
-        
-        if self.currtime is not None and self.prevtime is not None:
-
-            diff = self.currtime - self.prevtime
-
-            #“<source location>/region=<region>/AWS_account=<accountid>/eventhour=<yyyyMMddHH>/“
-            event_hour = "{0}{1}{2}{3}".format(self.currtime.year, self.currtime.month, self.currtime.day, self.currtime.hour)
-
-            s3_dir = "/region={0}/AWS_account={1}/eventhour={2}/".format(self.region, self.account, event_hour)
-
-            if self.currtime.hour != self.prevtime.hour and 'time' in data and 'type_uid' in data:
-
-
-#                data_dict = json.loads(self.aws_data)
-
-#                for key, value in data_dict.items():
-#                    data_dict[key] = [value]
-
-#                df = pd.DataFrame(data_dict)
-                object = self.s3.Object(self.bucket, '{0}data.log'.format(s3_dir))
-                
-                result = object.put(Body=self.aws_data.encode('utf-8'))
-
-                self.aws_data = ""
-                self.file.close()
-                self.onFileClose()
-                self.file = None
-
-
     def close( self ):
         if self.file is not None and not self.file.closed:
             self.file.close()
             self.onFileClose()
 
+    def _writeToS3(self, data) :
+
+        event_hour = self.prevtime.strftime('%Y%m%d%H')
+        s3_dir = "ext/CISCOFIREWALL/region={0}/accountId={1}/eventhour={2}/".format(self.region, self.account, event_hour)
+        filename = '{0}{1}'.format(s3_dir, event_hour)
+        tmp_file = './tmp/file.gz.parquet'
+        format = "parquet"
+
+        if format == 'parquet':
+            out_buffer = BytesIO()
+
+            if (self.aws_data is not None) :
+                filename += '.gz.parquet'
+
+#                json_data = json2.loads(self.aws_data)
+                df = pd.DataFrame(self.aws_data)
+                object = self.s3.Object(self.bucket, filename)
+                df.columns = df.columns.astype(str)
+                df.to_parquet(out_buffer, index=False, compression='gzip')
+#                result = object.put(Body=out_buffer.getvalue())
 
 
-    def write( self, data ):
+        elif format == 'json':
+            filename += '.json'
+            object = self.s3.Object(self.bucket, filename)
+            #convert string list to str then encode
+            str_array = ""
+            for elem in self.aws_data :
+                str_array += elem
+
+            print(str_array)
+            result = object.put(Body=str_array.encode('utf-8'))
+
+         #resume with the next parition element at 00 hour
+        self.aws_data.append(data)
+
+    def write( self, data):
         """Writes to the underlying stream"""
+
         self._ensureFile()
         self.file.write( data.encode( self.encoding ).decode('utf-8') )
-        #.decode('utf-8')
         self.file.flush()
         self.lines += 1
 
-        if "time" in data and "type_uid" in data :
-            self.prevtime = self.currtime
+        pos = data.find('"time": ')
+        if pos != -1:
 
-            pos = data.find('"time"')
             offset = 8
             #fixed characters for epoch time, offset
             #pos -3 since datetime doesn't support finer than millis
             try :
+                self.prevtime = self.currtime
                 self.currtime = datetime.datetime.fromtimestamp(int(data[pos+8:pos+18]))
-                self.aws_data += data 
+
+                if self.prevtime is not None :
+                    if self.prevtime.hour != self.currtime.hour:
+                        self._writeToS3(data)
+                    else :
+                        #self.aws_data += data
+                        self.aws_data.append(data)
+
+                else :
+                    #self.aws_data = data
+                    self.aws_data.append(data)
+
             except :
                  raise estreamer.EncoreException('Unrecognised value: {0} in {1}'.format( data[pos+8:pos+18], data) )
 
