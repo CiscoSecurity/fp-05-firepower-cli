@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="54px" viewBox="0 0 60 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Email Light</title>
+    <g id="Iconography-(Product-Icons)-2.2.0?" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Product-Icons-UPDATED" transform="translate(-721.000000, -393.000000)" fill-rule="nonzero">
+            <g id="Email-Light" transform="translate(721.000000, 393.000000)">
+                <polygon id="Path" fill="#6BBF4E" points="24.08 35.65 24.08 53.88 32.15 40.05"></polygon>
+                <polygon id="Path" fill="#6BBF4E" points="60 0 49.74 47.47 24.08 33.36"></polygon>
+                <path d="M19.92,32.73 C19.8004012,32.7250244 19.6823125,32.7014067 19.57,32.66 L0.63,25.29 C0.259259966,25.1425447 0.0116510344,24.7888176 0,24.39 C0,23.9887198 0.240495052,23.6264992 0.61,23.47 L50.28,3 C50.6124659,2.72779971 51.0816536,2.69841238 51.4454861,2.92700038 C51.8093186,3.15558838 51.9864541,3.59104649 51.8854996,4.00870035 C51.7845452,4.42635421 51.4280711,4.73282931 51,4.77 L3.63,24.35 L20.28,30.83 C20.7778966,31.0337782 21.0253428,31.5949509 20.84,32.1 C20.6897343,32.4773501 20.3261519,32.726325 19.92,32.73 Z" id="Path" fill="#06144D"></path>
+            </g>
+        </g>
+    </g>
+</svg>

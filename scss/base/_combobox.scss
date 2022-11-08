@@ -1,0 +1,38 @@
+.combobox {
+    position: relative;
+    height: $combobox-height;
+    width: $combobox-width;
+    padding: $combobox-padding;
+    color: $base-color;
+    background: transparent;
+    border: $base-border-width solid $base-stroke-color;
+    border-radius: $base-border-radius;
+    appearance: none;
+    &::-webkit-calendar-picker-indicator {
+        opacity: 100;
+        color: $control-text-color;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+    &:hover {
+        border-color: $control-stroke-color--hover;
+    }
+    &:focus {
+        border-color: $base-color--hover;
+        box-shadow: $base-box-shadow;
+    }
+    &:active {
+        border-color: $input-border-color--active;
+    }
+    &.disabled,
+    &[disabled] {
+        @include disabled;
+        color: $input-color--disabled;
+        border-color: $input-border-color--disabled;
+        background: $input-bg--disabled;
+    }
+}
+&.atomic-ui-root--animated .combobox {
+    @include transition($input-transition);
+}

@@ -1,0 +1,40 @@
+.tag {
+    display: inline-flex;
+    height: $tag-height;
+    font-size: $tag-font-size;
+    line-height: $tag-line-height;
+    align-items: center;
+    padding: $tag-padding;
+    border: $tag-border;
+    border-radius: $tag-border-radius;
+    background-color: $tag-bg-color;
+    color: $tag-color;
+    &:focus {
+        box-shadow: $base-box-shadow;
+    }
+    &__icon {
+        font-size: $tag-icon-font-size;
+        color: $tag-icon-color;
+        margin: $tag-icon-margin;
+        cursor: pointer;
+    }
+    @each $tag-name, $tag-bg, $tag-color, $tag-box-shadow,
+        $tag-icon-color in $tag-colors
+    {
+        &--state-#{$tag-name} {
+            @include tag-color(
+                $tag-bg,
+                $tag-color,
+                $tag-box-shadow,
+                $tag-icon-color
+            );
+        }
+    }
+    &--state-new {
+        height: $tag--state-new-height;
+        padding: $tag--state-new-padding;
+        background-color: $tag--state-new-bg;
+        color: $tag--state-new-color;
+        font-size: $tag--state-new-font-size;
+    }
+}

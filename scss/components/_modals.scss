@@ -1,0 +1,125 @@
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    top: $modal-backdrop-top;
+    right: $modal-backdrop-right;
+    bottom: $modal-backdrop-bottom;
+    left: $modal-backdrop-left;
+    background-color: $modal-backdrop-bg;
+    opacity: $modal-backdrop-opacity;
+    pointer-events: initial;
+    z-index: $modal-z-index;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: $modal-top;
+    right: $modal-right;
+    bottom: $modal-bottom;
+    left: $modal-left;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: $modal-z-index;
+    pointer-events: none;
+    &__dialog {
+        width: $modal-width;
+        margin: auto;
+        padding: $modal-dialog-padding;
+    }
+    &__content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: $modal-content-width;
+        pointer-events: auto;
+        background-color: $control-fill-color;
+        background-clip: padding-box;
+        border: $base-border-width solid $base-stroke-color;
+        border-radius: $modal-content-border-radius;
+        outline: 0;
+    }
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: $modal-header-padding;
+        box-shadow: $default-box-shadow;
+        background-color: $modal-header-bg;
+        border-top-left-radius: $modal-content-border-radius;
+        border-top-right-radius: $modal-content-border-radius;
+    }
+    &__title {
+        @extend h3;
+        margin: $modal-title-margin;
+    }
+    &__close {
+        padding: $modal-close-padding;
+        margin: $modal-close-margin;
+        line-height: $font-size;
+        cursor: pointer;
+        &:hover {
+            & span {
+                color: $base-color--hover;
+            }
+            text-decoration: none;
+        }
+    }
+    &__body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: $modal-body-padding;
+    }
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: $modal-footer-padding;
+        background-color: $modal-footer-bg;
+        border-bottom-left-radius: $modal-content-border-radius;
+        border-bottom-right-radius: $modal-content-border-radius;
+        .btn {
+            margin: $modal-button-padding;
+        }
+    }
+    &--size-small {
+        .modal__dialog {
+            width: $modal-width--size-small;
+        }
+    }
+    &--size-large {
+        .modal__dialog {
+            width: $modal-width--size-large;
+        }
+    }
+    &--position-left {
+        .modal__dialog {
+            margin: auto auto auto 0;
+            padding: 20px 20px 20px 0;
+        }
+    }
+    &--position-right {
+        .modal__dialog {
+            margin: auto 0 auto auto;
+            padding: 20px 0 20px 20px;
+        }
+    }
+}
+
+&.atomic-ui-root--animated .modal {
+    .modal__dialog {
+        animation-name: slideInBottom;
+        animation-duration: $transition-duration;
+    }
+    &--position-left {
+        .modal__dialog {
+            animation-name: slideModalInLeft;
+            animation-duration: $transition-duration;
+        }
+    }
+    &--position-right {
+        .modal__dialog {
+            animation-name: slideModalInRight;
+            animation-duration: $transition-duration;
+        }
+    }
+}

@@ -1,0 +1,121 @@
+.checkbox {
+    display: flex;
+    position: relative;
+    padding: $checkbox-padding;
+    align-items: center;
+    cursor: pointer;
+    &__input {
+        @include hidden-input;
+        & ~ .checkbox__box {
+            position: relative;
+            flex: 0 0 auto;
+            height: $checkbox-height;
+            width: $checkbox-width;
+            background-color: transparent;
+            border: $base-border-width solid $base-stroke-color;
+            border-radius: $base-border-radius;
+            vertical-align: middle;
+            &:hover {
+                border-color: $control-stroke-color--hover;
+            }
+            &:after {
+                border: solid $base-color;
+                content: '';
+                display: none;
+                position: absolute;
+            }
+        }
+        &:enabled:checked ~ .checkbox__box {
+            border-color: $base-color--selected;
+            background-color: $base-color--selected;
+            &:hover {
+                border-color: $base-color--hover;
+                background-color: $base-color--hover;
+            }
+            &:after {
+                border-color: $base-inverse-color;
+            }
+        }
+        &:enabled:checked:active ~ .checkbox__box {
+            &:hover {
+                background-color: transparent;
+            }
+        }
+        &:enabled:focus ~ .checkbox__box {
+            border-color: $checkbox-box-color--focus;
+            box-shadow: $base-box-shadow;
+        }
+        &:enabled:active ~ .checkbox__box {
+            border-color: $base-stroke-color;
+            background-color: transparent;
+            &:after {
+                width: $checkbox-active-width;
+                height: $checkbox-active-height;
+                display: block;
+                transform: none;
+                left: $checkbox-checkmark-left-active;
+                top: $checkbox-checkmark-top-active;
+                border-radius: $border-radius--xs;
+                border-color: $checkbox-box-color--selected;
+                background-color: $checkbox-box-color--selected;
+            }
+            &:hover {
+                border-color: $control-stroke-color--hover;
+                &:after {
+                    border-color: $checkbox-box-color--active;
+                    background-color: $checkbox-box-color--active;
+                }
+            }
+        }
+        &:checked ~ .checkbox__box:after {
+            @include checkmark;
+            top: -$checkbox-checkmark-top-checked;
+            left: $checkbox-checkmark-left-checked;
+        }
+        &:indeterminate ~ .checkbox__box:after {
+            width: $checkbox-checkmark-width-indeterminate;
+            height: $checkbox-checkmark-height-indeterminate;
+            display: block;
+            transform: none;
+            left: $checkbox-checkmark-left-indeterminate;
+            top: $checkbox-checkmark-top-indeterminate;
+            border-width: $checkbox-checkmark-border-width-indeterminate;
+            border-color: $base-color--selected;
+        }
+        &:disabled ~ .checkbox__box {
+            pointer-events: none;
+            background-color: $checkbox-box-color--disabled;
+            border-color: $checkbox-box-border-color--disabled;
+            &:after {
+                border-color: $checkbox-checkmark-color--disabled;
+            }
+        }
+        &:disabled ~ .checkbox__label {
+            color: $checkbox-label-color--disabled;
+        }
+    }
+    &__label {
+        display: inline-block;
+        position: relative;
+        padding-left: $checkbox-label-padding-left;
+        flex: 1 1 0%;
+        @include text-truncate;
+    }
+    &__label--wrap {
+        white-space: normal;
+        overflow: visible;
+    }
+    &__icon {
+        font-size: $checkbox-icon-font-size;
+        font-weight: $font-weight-xbold;
+        padding-left: $checkbox-icon-padding-left;
+    }
+}
+
+&.atomic-ui-root--animated .checkbox {
+    &__input {
+        & ~ .checkbox__box {
+            @include transition($checkbox-transition);
+        }
+    }
+}

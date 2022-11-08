@@ -1,0 +1,97 @@
+th {
+    font-weight: normal;
+    text-align: left;
+}
+table,
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    min-width: $table-min-width;
+    background: $table-bg;
+    &--type-tight {
+        .table__header-row,
+        .table__row {
+            height: $table-row-height-tight;
+        }
+        .table__cell {
+            padding-top: $table-cell-tight-padding-top-bottom;
+            padding-bottom: $table-cell-tight-padding-top-bottom;
+        }
+    }
+    &--type-condensed {
+        .table__header-row,
+        .table__row {
+            height: $table-row-height-condensed;
+        }
+        .table__header-cell,
+        .table__cell {
+            padding-top: 0;
+            padding-right: $table-cell-condensed-padding-left-right;
+            padding-bottom: 0;
+            padding-left: $table-cell-condensed-padding-left-right;
+            vertical-align: middle;
+        }
+    }
+    &--type-striped {
+        .table__row:nth-child(even):not(:hover) {
+            background-color: $table-row-stripe-color;
+        }
+    }
+    &__top-pane {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding-bottom: $table__top-pane--padding-bottom;
+    }
+    &__title {
+        font-size: $table__title--font-size;
+    }
+    &__total {
+        padding-top: $table__total--padding-top;
+    }
+    &__header-row,
+    &__row {
+        height: $table-row-height;
+    }
+    &__row:hover {
+        background-color: $table-row-hover-color;
+    }
+    &__header-cell,
+    &__cell {
+        padding-left: $table-cell-padding-left-right;
+        padding-right: $table-cell-padding-left-right;
+        min-width: $table-cell-min-width;
+    }
+    &__header-cell {
+        text-align: left;
+        font-size: $table-header-font-size;
+        font-weight: bold;
+        line-height: $table-header-line-height;
+        color: $table-header-color;
+        border: $base-border-width solid $control-stroke-color;
+    }
+    &__cell {
+        font-size: $table-body-font-size;
+        line-height: $table-body-line-height;
+        border: $base-border-width solid $control-stroke-color;
+        padding-top: $table-cell-padding-top-bottom;
+        padding-bottom: $table-cell-padding-top-bottom;
+        vertical-align: top;
+        word-break: break-word;
+        &:not(:first-child) {
+            border-left: none;
+        }
+        &:not(:last-child) {
+            border-right: none;
+        }
+    }
+    &__header-cell--align-right,
+    &__cell--align-right {
+        text-align: right;
+    }
+    &__header-cell--align-center,
+    &__cell--align-center {
+        text-align: center;
+    }
+}

@@ -1,0 +1,40 @@
+.theme-switcher {
+    display: flex;
+    .theme-card {
+        margin: $theme-switcher-card-margin;
+        &__icon {
+            width: $theme-switcher-width;
+            height: $theme-switcher-height;
+            border: 1px solid transparent;
+            border-radius: $base-border-radius;
+        }
+        &__title {
+            text-align: center;
+            padding-top: $theme-switcher-title-padding-top;
+        }
+        &--color-light-blue,
+        &--color-light-gray {
+            .theme-card__icon {
+                .img {
+                    opacity: $theme-switcher-card-opacity;
+                }
+            }
+        }
+        &--state-selected {
+            .theme-card__icon {
+                border-color: $base-color--selected;
+            }
+        }
+        &:hover {
+            .theme-card__icon {
+                border-color: $base-color--hover;
+            }
+        }
+        &:focus {
+            .theme-card__icon {
+                border-color: $base-brand-color;
+                box-shadow: $base-box-shadow;
+            }
+        }
+    }
+}

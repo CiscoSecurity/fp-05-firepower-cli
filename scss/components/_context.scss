@@ -1,0 +1,135 @@
+.context {
+    display: inline-flex;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    min-height: 40px;
+    color: $base-color;
+    background-color: $control-fill-color;
+    border: $base-border-width solid transparent;
+    border-left: $context-border-left-width solid transparent;
+    margin: $context-margin;
+    padding: $context-padding;
+    border-radius: $base-border-radius;
+    &__arrow {
+        position: absolute;
+        display: block;
+        width: $context-arrow-width;
+        height: $context-arrow-height;
+        margin: 0 $context-arrow-margin;
+        &::before,
+        &::after {
+            position: absolute;
+            display: block;
+            content: '';
+            border-color: transparent;
+            border-style: solid;
+        }
+    }
+    &__icon {
+        margin: $context-icon-margin;
+    }
+    &--top {
+        margin-bottom: $context-arrow-height;
+        .context__arrow {
+            left: $context-arrow-left;
+            bottom: calc(#{$popover-arrow-height} * -1);
+        }
+        .context__arrow::before,
+        .context__arrow::after {
+            border-width: $context-arrow-height ($context-arrow-width / 2) 0;
+        }
+        .context__arrow::before {
+            bottom: 0;
+            border-top-color: transparent;
+        }
+        .context__arrow::after {
+            bottom: $base-border-width + 1;
+            border-top-color: $control-fill-color;
+        }
+    }
+    &--right {
+        margin-left: $context-arrow-height;
+        .context__arrow {
+            top: $context-arrow-top;
+            left: calc(
+                (#{$context-arrow-height} + #{$context-border-left-width}) * -1
+            );
+            width: $context-arrow-height;
+            height: $context-arrow-width;
+            margin: 0;
+        }
+        .context__arrow::before,
+        .context__arrow::after {
+            border-width: ($context-arrow-width / 2) $context-arrow-height
+                ($context-arrow-width / 2) 0;
+        }
+        .context__arrow::before {
+            left: 0;
+            border-right-color: transparent;
+        }
+        .context__arrow::after {
+            left: $base-border-width;
+            border-right-color: transparent;
+        }
+    }
+    &--bottom {
+        margin-top: $context-arrow-height;
+        .context__arrow {
+            left: $context-arrow-left;
+            top: calc((#{$context-arrow-height}) * -1);
+        }
+        .context__arrow::before,
+        .context__arrow::after {
+            border-width: 0 ($context-arrow-width / 2) $context-arrow-height
+                ($context-arrow-width / 2);
+        }
+        .context__arrow::before {
+            top: 0;
+            border-bottom-color: transparent;
+        }
+        .context__arrow::after {
+            top: $base-border-width + 1;
+            border-bottom-color: $control-fill-color;
+        }
+    }
+    &--left {
+        margin-right: $context-arrow-height;
+        .context__arrow {
+            top: $context-arrow-top;
+            right: calc((#{$context-arrow-height}) * -1);
+            width: $context-arrow-height;
+            height: $context-arrow-width;
+            margin: 0;
+        }
+        .context__arrow::before,
+        .context__arrow::after {
+            border-width: ($context-arrow-width / 2) 0
+                ($context-arrow-width / 2) $context-arrow-height;
+        }
+        .context__arrow::before {
+            right: 0;
+            border-left-color: transparent;
+        }
+        .context__arrow::after {
+            right: $base-border-width + 1;
+            border-left-color: $control-fill-color;
+        }
+    }
+    &--state-warning {
+        border-color: $color-status--orange;
+        @include context-border-color($color-status--orange);
+    }
+    &--state-critical-stop {
+        border-color: $color-status--red;
+        @include context-border-color($color-status--red);
+    }
+    &--state-success {
+        border-color: $color-status--green;
+        @include context-border-color($color-status--green);
+    }
+    &--state-info {
+        border-color: $color-blue1;
+        @include context-border-color($color-blue1);
+    }
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>bulleted-list</title>
+    <g id="ICONS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons_2.2" transform="translate(-23.000000, -892.000000)" fill="#58585B">
+            <g id="bulleted-list" transform="translate(23.000000, 892.000000)">
+                <circle id="Oval-Copy-3" cx="1.25" cy="1.25" r="1.25"></circle>
+                <circle id="Oval-Copy-4" cx="1.25" cy="7.25" r="1.25"></circle>
+                <circle id="Oval-Copy-5" cx="1.25" cy="13.25" r="1.25"></circle>
+                <rect id="Rectangle-Copy-5" x="4" y="0.5" width="12" height="1.5" rx="0.75"></rect>
+                <rect id="Rectangle-Copy-11" x="4" y="6.5" width="12" height="1.5" rx="0.75"></rect>
+                <rect id="Rectangle-Copy-12" x="4" y="12.5" width="12" height="1.5" rx="0.75"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

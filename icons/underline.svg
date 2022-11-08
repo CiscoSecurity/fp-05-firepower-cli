@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>underline</title>
+    <g id="ICONS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons_2.2" transform="translate(-23.000000, -197.000000)" fill="#58585B">
+            <g id="underline" transform="translate(23.000000, 197.000000)">
+                <path d="M7.828,12.495 C9.188,12.495 10.293,12.155 11.143,11.475 C12.1403333,10.6816667 12.639,9.571 12.639,8.143 L12.639,8.143 L12.639,-5.68434189e-14 L10.956,-5.68434189e-14 L10.956,8.296 C10.956,9.06666667 10.7236667,9.69 10.259,10.166 C9.70366667,10.744 8.899,11.033 7.845,11.033 C6.927,11.033 6.196,10.812 5.652,10.37 C5.04,9.88266667 4.734,9.19133333 4.734,8.296 L4.734,8.296 L4.734,-5.68434189e-14 L3,-5.68434189e-14 L3,8.143 C3,9.37833333 3.37966667,10.3813333 4.139,11.152 C5.023,12.0473333 6.25266667,12.495 7.828,12.495 Z" id="U" fill-rule="nonzero"></path>
+                <rect id="Rectangle" x="0" y="14" width="16" height="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

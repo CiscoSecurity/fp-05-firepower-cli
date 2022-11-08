@@ -1,0 +1,146 @@
+.popover {
+    // Change position to absolute when positioning in your project;
+    // position: absolute;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: $popover-zindex;
+    display: block;
+    max-width: $popover-width;
+    font-size: $popover-font-size;
+    word-wrap: break-word;
+    background-color: $control-fill-color;
+    background-clip: padding-box;
+    border: $base-border-width solid $base-stroke-color;
+    border-radius: $popover-border-radius;
+    box-shadow: $default-box-shadow;
+    &__arrow {
+        position: absolute;
+        display: block;
+        width: $popover-arrow-width;
+        height: $popover-arrow-height;
+        margin: 0 $popover-arrow-margin;
+        &::before,
+        &::after {
+            position: absolute;
+            display: block;
+            content: '';
+            border-color: transparent;
+            border-style: solid;
+        }
+    }
+    &--top {
+        margin-bottom: $popover-arrow-height;
+        .popover__arrow {
+            left: $popover-arrow-left;
+            bottom: calc(#{$popover-arrow-height} * -1);
+        }
+        .popover__arrow::before,
+        .popover__arrow::after {
+            border-width: $popover-arrow-height ($popover-arrow-width / 2) 0;
+        }
+        .popover__arrow::before {
+            bottom: 0;
+            border-top-color: $base-stroke-color;
+        }
+        .popover__arrow::after {
+            bottom: $base-border-width + 1;
+            border-top-color: $popover-footer-arrow-color;
+        }
+    }
+    &--right {
+        margin-left: $popover-arrow-height;
+        .popover__arrow {
+            top: $popover-arrow-top;
+            left: calc(#{$popover-arrow-height} * -1);
+            width: $popover-arrow-height;
+            height: $popover-arrow-width;
+            margin: 0;
+        }
+        .popover__arrow::before,
+        .popover__arrow::after {
+            border-width: ($popover-arrow-width / 2) $popover-arrow-height
+                ($popover-arrow-width / 2) 0;
+        }
+        .popover__arrow::before {
+            left: 0;
+            border-right-color: $base-stroke-color;
+        }
+        .popover__arrow::after {
+            left: $base-border-width + 1;
+            border-right-color: $popover-header-arrow-color;
+        }
+    }
+    &--bottom {
+        margin-top: $popover-arrow-height;
+        .popover__arrow {
+            left: $popover-arrow-left;
+            top: calc(#{$popover-arrow-height} * -1);
+        }
+        .popover__arrow::before,
+        .popover__arrow::after {
+            border-width: 0 ($popover-arrow-width / 2) $popover-arrow-height
+                ($popover-arrow-width / 2);
+        }
+        .popover__arrow::before {
+            top: 0;
+            border-bottom-color: $base-stroke-color;
+        }
+        .popover__arrow::after {
+            top: $base-border-width + 1;
+            border-bottom-color: $popover-header-arrow-color;
+        }
+    }
+    &--left {
+        margin-right: $popover-arrow-height;
+        .popover__arrow {
+            top: $popover-arrow-top;
+            right: calc(#{$popover-arrow-height} * -1);
+            width: $popover-arrow-height;
+            height: $popover-arrow-width;
+            margin: $popover-arrow-margin 0;
+        }
+        .popover__arrow::before,
+        .popover__arrow::after {
+            border-width: ($popover-arrow-width / 2) 0
+                ($popover-arrow-width / 2) $popover-arrow-height;
+        }
+        .popover__arrow::before {
+            right: 0;
+            border-left-color: $base-stroke-color;
+        }
+        .popover__arrow::after {
+            right: $base-border-width + 1;
+            border-left-color: $popover-header-arrow-color;
+        }
+    }
+    &__header {
+        font-size: $popover-header-font-size;
+        padding: $popover-header-padding;
+        margin: $popover-header-margin;
+        color: $base-color;
+        background-color: $popover-header-bg;
+        box-shadow: $default-box-shadow;
+        border-top-left-radius: $popover-border-radius;
+        border-top-right-radius: $popover-border-radius;
+        &:empty {
+            display: none;
+        }
+    }
+    &__body {
+        padding: $popover-body-padding;
+        color: $base-color;
+    }
+    &__footer {
+        text-align: right;
+        padding: $popover-footer-padding;
+        background-color: $popover-footer-bg;
+        border-bottom-right-radius: $popover-border-radius;
+        border-bottom-left-radius: $popover-border-radius;
+    }
+}
+
+&.atomic-ui-root--animated .popover {
+    animation-name: fade-in;
+    animation-duration: $transition-duration--fast;
+}

@@ -1,0 +1,62 @@
+.form-group {
+    position: relative;
+    margin-bottom: $form-group-margin-bottom;
+}
+
+.form-group__text {
+    position: relative;
+    margin: 0 0 $form-text-margin-bottom 0;
+}
+
+.input,
+.textarea {
+    position: relative;
+    padding: $input-padding;
+    color: $base-color;
+    background: $input-bg;
+    border: $base-border-width solid $base-stroke-color;
+    border-radius: $base-border-radius;
+    appearance: none;
+    &:hover {
+        border-color: $control-stroke-color--hover;
+    }
+    &:focus {
+        border-color: $base-color--hover;
+        box-shadow: $base-box-shadow;
+    }
+    &:active {
+        border-color: $input-border-color--active;
+    }
+    &.disabled,
+    &[disabled] {
+        @include disabled;
+        color: $input-color--disabled;
+        border-color: $input-border-color--disabled;
+        background: $input-bg--disabled;
+    }
+    &[readonly],
+    &[readonly]:focus {
+        border-color: $input-border-color--readonly;
+        background: $input-bg--readonly;
+        box-shadow: none;
+    }
+    &--state-warning {
+        @include input-state(
+            $color-warning,
+            $warning-box-shadow,
+            $color-warning--state-hover
+        );
+    }
+    &--state-danger {
+        @include input-state(
+            $color-error,
+            $danger-box-shadow,
+            $color-error--state-hover
+        );
+    }
+}
+
+&.atomic-ui-root--animated .input,
+&.atomic-ui-root--animated .textarea {
+    @include transition($input-transition);
+}

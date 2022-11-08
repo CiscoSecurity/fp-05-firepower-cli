@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-cli</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Abstract" transform="translate(-302.000000, -242.000000)" fill="#58585B">
+            <g id="CLI" transform="translate(0.000000, 215.000000)">
+                <g id="icn_cli" transform="translate(303.000000, 30.000000)">
+                    <path d="M13.500444,9 L5.49955595,9 C5.22280195,9 5,8.776 5,8.5 C5,8.224 5.22280195,8 5.49955595,8 L13.500444,8 C13.7761989,8 14,8.224 14,8.5 C14,8.776 13.7761989,9 13.500444,9" id="Fill-4"></path>
+                    <path d="M0.480339911,9 C0.357434346,9 0.234528782,8.95100136 0.140429209,8.85400406 C-0.0468097364,8.6580095 -0.0468097364,8.34201828 0.140429209,8.14602372 L3.64227759,4.500125 L0.140429209,0.854226271 C-0.0468097364,0.658231716 -0.0468097364,0.342240493 0.140429209,0.146245938 C0.328628355,-0.0487486459 0.632051467,-0.0487486459 0.820250612,0.146245938 L5,4.500125 L0.820250612,8.85400406 C0.726151039,8.95100136 0.603245475,9 0.480339911,9" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-shadow-rule</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Actions" transform="translate(-289.000000, -3538.000000)" fill="#58585B">
+            <g id="Shadow-Rule" transform="translate(0.000000, 3510.000000)">
+                <path d="M290,36 C290,32.204 293.04,29.11 296.812,29.01 L296.812,42.99 C293.04,42.89 290,39.796 290,36 M297,28 C292.589,28 289,31.589 289,36 C289,40.411 292.589,44 297,44 C301.411,44 305,40.411 305,36 C305,31.589 301.411,28 297,28" id="icn_shadow_rule"></path>
+            </g>
+        </g>
+    </g>
+</svg>

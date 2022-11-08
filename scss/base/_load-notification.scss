@@ -1,0 +1,16 @@
+.load {
+    position: relative;
+    padding: $load-padding;
+    margin: $load-margin;
+    color: $base-color;
+    background: transparent;
+    min-height: $load-min-height;
+    max-width: $load-max-width;
+    text-align: center;
+    &__icon {
+        font-size: $load-icon-font-size;
+    }
+    &__body {
+        font-size: $load-body-font-size;
+    }
+}

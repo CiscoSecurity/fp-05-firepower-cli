@@ -1,0 +1,137 @@
+.tooltip {
+    position: relative;
+    display: inline-block;
+    &__text {
+        visibility: hidden;
+        font-size: $tooltip-font-size;
+        line-height: $base-line-height;
+        min-width: $tooltip-min-width;
+        width: 100%;
+        background-color: $tooltip-bg;
+        color: $base-inverse-color;
+        text-align: center;
+        padding: $tooltip-padding;
+        border-radius: $base-border-radius;
+        box-shadow: $tooltip-box-shadow;
+        position: absolute;
+        z-index: $tooltip-z-index;
+        text-transform: none;
+        letter-spacing: normal;
+        word-break: normal;
+        word-spacing: normal;
+        word-wrap: normal;
+        white-space: normal;
+    }
+    &:hover {
+        .tooltip__arrow,
+        .tooltip__text {
+            visibility: visible;
+        }
+    }
+    &--top {
+        .tooltip__arrow {
+            bottom: $tooltip-top-arrow-bottom;
+            left: 50%;
+            margin-left: -$tooltip-top-arrow-margin-left;
+            border-width: $tooltip-top-arrow-border-width;
+            border-top-color: $tooltip-bg;
+        }
+        .tooltip__text {
+            bottom: $tooltip-top-bottom;
+            left: 0;
+        }
+    }
+    &--right {
+        .tooltip__arrow {
+            top: 50%;
+            left: $tooltip-right-arrow-left;
+            margin-top: -$tooltip-right-arrow-margin-top;
+            border-width: $tooltip-right-arrow-border-width;
+            border-right-color: $tooltip-bg;
+        }
+        .tooltip__text {
+            top: $tooltip-right-top;
+            left: $tooltip-right-left;
+        }
+    }
+    &--bottom {
+        .tooltip__arrow {
+            top: $tooltip-bottom-arrow-top;
+            left: 50%;
+            margin-left: -$tooltip-bottom-arrow-margin-left;
+            border-width: $tooltip-bottom-arrow-border-width;
+            border-bottom-color: $tooltip-bg;
+        }
+        .tooltip__text {
+            top: $tooltip-bottom-top;
+            left: 0;
+        }
+    }
+    &--left {
+        .tooltip__arrow {
+            top: 50%;
+            right: $tooltip-left-arrow-right;
+            margin-top: -$tooltip-left-arrow-margin-top;
+            border-width: $tooltip-left-arrow-border-width;
+            border-left-color: $tooltip-bg;
+        }
+        .tooltip__text {
+            top: $tooltip-left-top;
+            right: $tooltip-left-right;
+        }
+    }
+
+    &__arrow {
+        visibility: hidden;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+    }
+}
+
+// Fading and sliding for the regular Tooltip, only fading for the Tooltip with an arrow.
+// Could be reconsidered later.
+&.atomic-ui-root--animated .tooltip {
+    &:hover {
+        &.tooltip--top {
+            .tooltip__text {
+                animation-name: slideToTop;
+                animation-duration: $transition-duration--fast;
+            }
+        }
+        &.tooltip--right {
+            .tooltip__text {
+                animation-name: slideToRight;
+                animation-duration: $transition-duration--fast;
+            }
+        }
+        &.tooltip--bottom {
+            .tooltip__text {
+                animation-name: slideToBottom;
+                animation-duration: $transition-duration--fast;
+            }
+        }
+        &.tooltip--left {
+            .tooltip__text {
+                animation-name: slideToLeft;
+                animation-duration: $transition-duration--fast;
+            }
+        }
+    }
+    &.tooltip--pointer {
+        &:hover {
+            &.tooltip--top,
+            &.tooltip--right,
+            &.tooltip--bottom,
+            &.tooltip--left {
+                .tooltip__arrow,
+                .tooltip__text {
+                    animation-name: fade-in;
+                    animation-duration: $transition-duration--fast;
+                }
+            }
+        }
+    }
+}

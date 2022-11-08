@@ -1,0 +1,43 @@
+.toast {
+    display: flex;
+    position: relative;
+    $color: $base-color;
+    background: $control-fill-color;
+    border: $toast-border-width solid $control-stroke-color;
+    border-radius: $base-border-radius;
+    min-height: $toast-min-height;
+    min-width: $toast-min-width;
+    max-width: $toast-max-width;
+    padding: $toast-padding;
+    &__icon {
+        font-size: $toast-icon-font-size;
+    }
+    &__body {
+        margin: $toast-margin;
+        font-size: $base-font-size;
+    }
+    &__title {
+        font-weight: $toast-title-font-weight;
+        font-size: $base-font-size;
+    }
+}
+
+.icon {
+    &-information {
+        @include alert-icon-color($color-information);
+    }
+    &-good {
+        @include alert-icon-color($color-good);
+    }
+    &-warning {
+        @include alert-icon-color($color-warning);
+    }
+    &-critical-stop {
+        @include alert-icon-color($color-error);
+    }
+}
+
+&.atomic-ui-root--animated .toast {
+    animation-name: fade-in;
+    animation-duration: $transition-duration--fast;
+}

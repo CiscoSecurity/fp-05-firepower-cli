@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="55px" height="45px" viewBox="0 0 55 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Secure Cloud Analytics Light</title>
+    <g id="Iconography-(Product-Icons)-2.2.0?" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Product-Icons-UPDATED" transform="translate(-725.000000, -318.000000)">
+            <g id="Secure-Cloud-Analytics-Light" transform="translate(725.000000, 320.000000)">
+                <path d="M39.2699989,23.76 C39.2713062,21.9892395 38.5512225,20.2943515 37.2757425,19.0660416 C36.0002625,17.8377317 34.2794548,17.1819979 32.51,17.25 C30.7307036,13.4831694 26.6250732,11.4008283 22.5347003,12.1906121 C18.4443275,12.9803959 15.4090509,16.4415289 15.16,20.6 C13.7182044,20.2987884 12.2174446,20.6635147 11.0747038,21.5928404 C9.93196298,22.5221661 9.26899344,23.9170771 9.26999886,25.39 C9.26999886,30.39 14.48,30.28 14.48,30.28 L33.4,30.28 C33.4,30.28 39.2699989,29.52 39.2699989,23.76 Z" id="Path" fill="#06144D" fill-rule="nonzero"></path>
+                <path d="M34.09,4.63 C30.6337269,1.64977463 26.2237174,0.0071081773 21.66,-1.77635684e-15 C17.7301259,0.193677477 13.9169296,1.39929508 10.59,3.5" id="Path" stroke="#6BBF4E" stroke-width="2.07" stroke-linecap="round"></path>
+                <path d="M12,38.43 L40.85,38.43 C40.85,38.43 53.1900016,36.82 53.1900016,24.72 C53.1922896,20.041099 50.809992,15.6836053 46.87,13.16" id="Path" stroke="#06144D" stroke-width="2.07" stroke-linecap="round"></path>
+                <circle id="Oval" fill="#06144D" fill-rule="nonzero" cx="39.33" cy="10.83" r="3.68"></circle>
+                <circle id="Oval" fill="#06144D" fill-rule="nonzero" cx="3.86" cy="38.43" r="3.86"></circle>
+                <circle id="Oval" stroke="#6BBF4E" stroke-width="2.07" cx="7.57" cy="6.32" r="2.98"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

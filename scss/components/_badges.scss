@@ -1,0 +1,100 @@
+.badge-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: $badge-icon-large-height;
+        width: $badge-icon-large-width;
+        &--size-medium {
+            height: $badge-icon-medium-height;
+            width: $badge-icon-medium-width;
+        }
+        &--size-small {
+            height: $badge-icon-small-height;
+            width: $badge-icon-small-width;
+        }
+        &:focus {
+            box-shadow: $base-box-shadow;
+        }
+    }
+    .badge {
+        position: absolute;
+        display: inline-flex;
+        font-weight: $base-font-weight;
+        color: $base-inverse-color;
+        border: $base-border-width solid $badge-border-color;
+        border-radius: $badge-border-radius;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        z-index: $badge-z-index;
+        &--size-large {
+            top: $badge-large-top;
+            right: $badge-large-right;
+            @include badge-size(
+                $badge-large-font-size,
+                $badge-large-width,
+                $badge-large-height,
+                $badge-large-line-height
+            );
+            &.badge--shape-pill {
+                width: $badge-large-pill-width;
+                right: $badge-large-pill-right;
+            }
+        }
+        &--size-medium {
+            top: $badge-medium-top;
+            right: $badge-medium-right;
+            @include badge-size(
+                $badge-medium-font-size,
+                $badge-medium-width,
+                $badge-medium-height,
+                $badge-medium-line-height
+            );
+            &.badge--shape-pill {
+                width: $badge-medium-pill-width;
+                right: $badge-medium-pill-right;
+            }
+        }
+        &--size-small {
+            top: $badge-small-top;
+            right: $badge-small-right;
+            @include badge-size(
+                $badge-small-font-size,
+                $badge-small-width,
+                $badge-small-height,
+                $badge-small-line-height
+            );
+            &.badge--shape-pill {
+                width: $badge-small-pill-width;
+                right: $badge-small-pill-right;
+            }
+        }
+        &--state-success {
+            background-color: $color-information-alt;
+        }
+        &--state-warning {
+            background-color: $color-warning;
+        }
+        &--state-danger {
+            background-color: $color-error;
+        }
+    }
+    &:focus {
+        .icon,
+        .badge {
+            &--state-success {
+                box-shadow: $base-box-shadow;
+            }
+            &--state-warning {
+                box-shadow: $warning-box-shadow;
+            }
+            &--state-danger {
+                box-shadow: $danger-box-shadow;
+            }
+        }
+    }
+}

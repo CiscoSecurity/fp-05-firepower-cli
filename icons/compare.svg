@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-compare</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Content" transform="translate(-294.000000, -796.000000)" fill="#58585B">
+            <g id="Compare" transform="translate(0.000000, 768.000000)">
+                <text id="Compare-Note-similar" font-family="CiscoSansTT-Bold, CiscoSansTT" font-size="12" font-weight="bold">
+                    <tspan x="22" y="25">Compare</tspan>
+                    <tspan x="22" y="41" font-family="CiscoSansTTLight, CiscoSansTT" font-weight="300">Note similarity or dissimilarity between items</tspan>
+                </text>
+                <g id="icn_compare" transform="translate(294.000000, 28.000000)">
+                    <path d="M8.4541,14.8286 L8.4541,2.1936 L14.8281,2.1936 L14.8291,14.8276 L8.4541,14.8286 Z M0.9981,2.1936 L7.4541,2.1936 L7.4541,14.8286 L1.0001,14.8296 L0.9981,2.1936 Z M14.8311,-0.0004 L0.9981,-0.0004 C0.4471,-0.0004 0.0001,0.4476 0.0001,0.9966 L0.0001,14.8296 C0.0001,15.3806 0.4471,15.8276 0.9981,15.8276 L14.8311,15.8276 C15.3811,15.8276 15.8281,15.3806 15.8281,14.8296 L15.8281,0.9966 C15.8281,0.4476 15.3811,-0.0004 14.8311,-0.0004 Z" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

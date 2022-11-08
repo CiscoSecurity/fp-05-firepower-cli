@@ -1,0 +1,146 @@
+.switch {
+    display: flex;
+    align-items: center;
+    margin: $switch-margin;
+    &__box {
+        display: flex;
+        position: relative;
+        width: $switch-width;
+        height: $switch-height;
+        border-radius: $switch-border-radius;
+        background-color: $switch-bg;
+        align-items: center;
+        justify-content: center;
+        &:after {
+            display: block;
+            position: absolute;
+            width: $switch__circle-width;
+            height: $switch__circle-height;
+            left: 0;
+            top: -3px; //IE 11 fix
+            border-radius: $switch__circle-border-radius;
+            content: '';
+        }
+    }
+    &__input {
+        @include hidden-input;
+        ~ .switch__box {
+            @include transition($switch-transition);
+            &:after {
+                background-color: $base-inverse-color;
+                border: $border-width solid $switch__circle-border-color;
+                @include transition($switch-after-transition);
+            }
+        }
+        &:enabled {
+            ~ .switch__box {
+                &:hover {
+                    cursor: pointer;
+                    &:after {
+                        border: $border-width solid
+                            $switch__circle-border-color--hover;
+                        box-shadow: inset 0 0 0 5px $base-inverse-color,
+                            inset 0 0 0 6px
+                                $switch__circle--inner-box-shadow-hover;
+                    }
+                }
+                &:active {
+                    &:after {
+                        border: $border-width solid
+                            $switch__circle--inner-border-active;
+                        box-shadow: inset 0 0 0 5px $base-inverse-color,
+                            inset 0 0 0 10px
+                                $switch__circle--inner-box-shadow-active;
+                    }
+                    &:hover:after {
+                        border: $border-width solid
+                            $switch__circle--inner-border-active-hover;
+                        box-shadow: inset 0 0 0 5px $base-inverse-color,
+                            inset 0 0 0 10px
+                                $switch__circle--inner-box-shadow-active-hover;
+                    }
+                }
+            }
+        }
+        &:focus {
+            ~ .switch__box {
+                box-shadow: $base-box-shadow;
+                &:after {
+                    box-shadow: $base-box-shadow;
+                }
+            }
+        }
+        &:checked {
+            ~ .switch__box {
+                background-color: $switch-bg--checked;
+                &:after {
+                    border: $border-width solid
+                        $switch__circle-border-color--checked;
+                    transform: translateX(82%);
+                }
+            }
+        }
+        &:enabled:checked {
+            ~ .switch__box {
+                &:hover {
+                    &:after {
+                        border: $border-width solid
+                            $switch__circle-border-color--checked--hover;
+                        box-shadow: inset 0 0 0 5px $base-inverse-color,
+                            inset 0 0 0 6px
+                                $switch__circle--inner-box-shadow-checked-hover;
+                    }
+                }
+                &:active {
+                    &:after {
+                        border: $border-width solid
+                            $switch__circle--inner-border-checked-active;
+                        box-shadow: inset 0 0 0 5px $base-inverse-color,
+                            inset 0 0 0 10px
+                                $switch__circle--inner-box-shadow-checked-active;
+                    }
+                    &:hover:after {
+                        border: $border-width solid
+                            $switch__circle--inner-border-checked-active-hover;
+                        box-shadow: inset 0 0 0 5px $base-inverse-color,
+                            inset 0 0 0 10px
+                                $switch__circle--inner-box-shadow-checked-active-hover;
+                    }
+                }
+            }
+        }
+        &:disabled {
+            ~ .switch__box {
+                opacity: $switch-opacity-disabled;
+                background-color: $switch-bg--disabled;
+                &:after {
+                    border: $border-width solid
+                        $switch__circle-border-color--disabled;
+                }
+            }
+            ~ .switch__label {
+                color: $switch__label-color--disabled;
+            }
+        }
+        &:disabled:checked {
+            ~ .switch__box {
+                background-color: $switch-bg--disabled--checked;
+                &:after {
+                    border: $border-width solid
+                        $switch__circle-border-color--disabled--checked;
+                }
+            }
+        }
+    }
+    &__label {
+        margin: $switch__label-margin;
+        display: inline-block;
+        flex: 1 1 0%;
+        position: relative;
+        @include text-truncate;
+    }
+    &__label--wrap {
+        white-space: normal;
+        overflow: visible;
+    }
+}

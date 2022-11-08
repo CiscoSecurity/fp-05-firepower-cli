@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="8px" viewBox="0 0 10 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-triangle-down</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Actions" transform="translate(-280.000000, -4086.000000)">
+            <g id="Cancel/Close-Copy" transform="translate(0.000000, 4018.000000)"></g>
+            <polygon id="triangle_down" fill="#58585B" points="285 4086 290 4093.77778 280 4093.77778"></polygon>
+        </g>
+    </g>
+</svg>

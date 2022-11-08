@@ -1,0 +1,26 @@
+.breadcrumb {
+    @include clearfix;
+    @include list--unstyled;
+    background-color: transparent;
+    margin: $breadcrumb-margin;
+    padding: $breadcrumb-padding;
+    &__item {
+        float: left;
+        font-size: $breadcrumb-font-size;
+        color: $base-brand-color;
+        & + .breadcrumb__item::before {
+            color: $base-color;
+            display: inline-block;
+            padding: $breadcrumb__divider-padding;
+            content: '#{$breadcrumb-divider}';
+        }
+        &:hover,
+        &:focus {
+            color: $base-brand-color;
+            text-decoration: underline;
+        }
+        &:active {
+            color: $base-color--active;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-dynamic-nat</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Abstract" transform="translate(-304.000000, -563.000000)" fill="#58585B">
+            <g id="Dynamic-NAT" transform="translate(1.000000, 534.000000)">
+                <g id="icn_dynamic_nat" transform="translate(303.000000, 34.000000)">
+                    <path d="M12.7871,0.2246 C12.5871,0.0916 12.4541,0.1586 12.4541,0.3916 L12.4541,1.2416 L12.4541,1.8256 L12.4541,2.0036 L1.0001,1.9956 L1.0001,0.4996 C1.0001,0.2236 0.7761,-0.0004 0.5001,-0.0004 C0.2241,-0.0004 0.0001,0.2236 0.0001,0.4996 L0.0001,4.4996 C0.0001,4.7766 0.2241,4.9996 0.5001,4.9996 C0.7761,4.9996 1.0001,4.7766 1.0001,4.4996 L1.0001,2.9956 L12.4541,3.0036 L12.4541,2.6916 L12.4541,3.1586 L12.4541,3.9626 L12.4541,4.5916 C12.4541,4.8256 12.6201,4.8916 12.7871,4.7586 L16.1201,2.4926 L12.7871,0.2246 Z" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

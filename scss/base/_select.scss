@@ -1,0 +1,114 @@
+.select {
+    position: relative;
+    display: inline-block;
+    flex: 1;
+    width: $select-width;
+    max-width: $select-width;
+    margin-bottom: $form-group-margin-bottom;
+    &__open-icon {
+        position: absolute;
+        // Subject for refactoring, switch to the actual icon
+        @include open-icon;
+    }
+    &__native-select,
+    &__surface {
+        order: $select__surface-order;
+        width: $select__surface-width;
+        height: $select-height;
+        color: $base-color;
+        background-color: $control-fill-color;
+        cursor: pointer;
+        appearance: none;
+        user-select: none;
+        padding-left: $select-padding;
+        padding-right: $select__surface-padding-right;
+        border: $base-border-width solid $base-stroke-color;
+        border-radius: $base-border-radius;
+        &:hover {
+            border-color: $control-stroke-color--hover;
+        }
+        &:focus,
+        &--focused {
+            border-color: $select-border-color--focus;
+            box-shadow: $base-box-shadow;
+        }
+        &:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 $base-color;
+        }
+        &:disabled,
+        &--disabled {
+            @include disabled;
+            background-color: $select-bg--disabled;
+            border-color: $select-border-color--disabled;
+            opacity: 1;
+            color: $select-color--disabled;
+            ~ .select__open-icon {
+                color: $select__open-icon--disabled;
+            }
+        }
+
+        .select__label {
+            padding-top: $select__label-padding-top;
+        }
+    }
+
+    &__menu-items {
+        display: none;
+        position: absolute;
+        top: $select-height - 1px;
+        right: $select__menu-items-right;
+        left: $select__menu-items-left;
+        z-index: $select__menu-items-z-index;
+        margin: $select__menu-items-margin;
+        padding: $select__menu-items-padding;
+        overflow: auto;
+        list-style: none;
+        background-color: $control-fill-color;
+        border: $base-border-width solid $select-border-color--focus;
+        border-bottom-left-radius: $base-border-radius;
+        border-bottom-right-radius: $base-border-radius;
+        cursor: pointer;
+        user-select: none;
+        &--opened {
+            display: block;
+        }
+    }
+    &__menu-item {
+        width: $select__menu-item-width;
+        height: $select-height;
+        line-height: $select__menu-item-line-height;
+        padding-top: $select__menu-item-padding-top;
+        position: relative;
+        text-indent: $select-padding;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &::after {
+            content: '';
+            display: none;
+            border: solid $white;
+            position: relative;
+        }
+        &:hover {
+            color: $white;
+            background-color: $base-color--hover;
+        }
+        &--selected {
+            color: $white;
+            background-color: $base-color--selected;
+            &:hover::after {
+                border-color: $select-checkmark--hover;
+            }
+            &::after {
+                @include checkmark;
+                border-color: $select-checkmark--selected;
+                top: $select-padding;
+                right: $select__menu-item-checkmark-right;
+            }
+        }
+        &--active,
+        &:active {
+            background-color: $select-border-color--focus;
+        }
+    }
+}

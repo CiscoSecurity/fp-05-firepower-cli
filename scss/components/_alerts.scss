@@ -1,0 +1,94 @@
+.alert {
+    display: inline-flex;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    min-height: $alert-min-height;
+    border: $base-border-width solid;
+    border-radius: $base-border-radius;
+    margin: $alert-margin;
+    padding: $alert-padding;
+    @include alert-state($alert-bg, $alert-border-color, $base-color);
+    &__icon {
+        font-size: $alert-icon-font-size;
+        margin: $alert-icon-margin;
+        &.icon-close {
+            cursor: pointer;
+            @include alert-icon-color($alert-close-icon);
+            &:hover {
+                @include alert-icon-color($alert-close-icon--hover);
+            }
+            &:focus {
+                box-shadow: $base-box-shadow;
+            }
+        }
+    }
+    &__message {
+        font-size: $alert-body-font-size;
+        max-width: $alert-message-max-width;
+        margin-right: auto;
+        align-self: center;
+        @include flex-fluid;
+        @include text-break-word;
+    }
+    &:focus {
+        box-shadow: $base-box-shadow;
+    }
+    &--state-success {
+        @include alert-state(
+            $alert-success-bg,
+            $alert-success-border-color,
+            $base-color
+        );
+        .icon-close {
+            @include alert-icon-color($alert-success-close-icon);
+            &:hover {
+                @include alert-icon-color($alert-success-close-icon--hover);
+            }
+            &:focus {
+                box-shadow: $success-box-shadow;
+            }
+        }
+        &:focus {
+            box-shadow: $success-box-shadow;
+        }
+    }
+    &--state-warning {
+        @include alert-state(
+            $alert-warning-bg,
+            $alert-warning-border-color,
+            $base-color
+        );
+        .icon-close {
+            @include alert-icon-color($alert-warning-close-icon);
+            &:hover {
+                @include alert-icon-color($alert-warning-close-icon--hover);
+            }
+            &:focus {
+                box-shadow: $warning-box-shadow;
+            }
+        }
+        &:focus {
+            box-shadow: $warning-box-shadow;
+        }
+    }
+    &--state-danger {
+        @include alert-state(
+            $alert-danger-bg,
+            $alert-danger-border-color,
+            $base-color
+        );
+        .icon-close {
+            @include alert-icon-color($alert-danger-close-icon);
+            &:hover {
+                @include alert-icon-color($alert-danger-close-icon--hover);
+            }
+            &:focus {
+                box-shadow: $danger-box-shadow;
+            }
+        }
+        &:focus {
+            box-shadow: $danger-box-shadow;
+        }
+    }
+}

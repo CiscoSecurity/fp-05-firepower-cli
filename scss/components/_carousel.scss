@@ -1,0 +1,56 @@
+.carousel {
+    margin: $carousel-margin;
+    &__slide {
+        display: none;
+        &--active {
+            display: block;
+        }
+    }
+    &__controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size;
+        margin-top: $carousel-controls-margin-top;
+        .icon {
+            color: $carousel-dot-color;
+        }
+        .carousel__back,
+        .carousel__next {
+            text-decoration: none;
+            &:hover {
+                > .icon {
+                    color: $carousel-dot-color-hover;
+                }
+            }
+        }
+        .carousel__back {
+            margin-right: $spacing * 0.5;
+        }
+        .carousel__next {
+            margin-left: $spacing * 0.5;
+        }
+        & a:focus {
+            box-shadow: $base-box-shadow;
+            text-decoration: none;
+        }
+    }
+    &__dot {
+        margin: $carousel-dot-margin;
+        font-size: $font-size--xs;
+        transition: color 0.5s;
+        &:hover {
+            text-decoration: none;
+            > .icon {
+                color: $carousel-dot-color-hover;
+            }
+        }
+        &--selected,
+        &--active {
+            color: $carousel-dot-color-selected;
+            > .icon {
+                color: $carousel-dot-color-selected;
+            }
+        }
+    }
+}

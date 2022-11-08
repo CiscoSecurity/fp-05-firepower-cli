@@ -1,0 +1,11 @@
+@import 'base/fonts';
+@import 'utilities/palette';
+@import 'utilities/variables';
+@import 'base/keyframes';
+
+.atomic-ui-root {
+    &.theme-dusk {
+        @import 'theme/dusk';
+        @import '_atomic-ui-root-imports.scss';
+    }
+}

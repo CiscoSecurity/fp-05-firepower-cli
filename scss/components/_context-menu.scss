@@ -1,0 +1,167 @@
+.context-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: $context-menu-zindex;
+    display: block;
+    width: $context-menu-width;
+    max-width: $context-menu-max-width;
+    font-size: $context-menu-font-size;
+    word-wrap: break-word;
+    background-color: $control-fill-color;
+    background-clip: padding-box;
+    border: $base-border-width solid $base-stroke-color;
+    border-radius: $base-border-radius;
+    box-shadow: $context-menu-box-shadow;
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    &__arrow {
+        position: absolute;
+        display: block;
+        width: $context-menu-arrow-width;
+        height: $context-menu-arrow-height;
+        margin: 0 $context-menu-arrow-margin;
+        &::before,
+        &::after {
+            position: absolute;
+            display: block;
+            content: '';
+            border-color: transparent;
+            border-style: solid;
+        }
+    }
+    &--top {
+        margin-bottom: $context-menu-arrow-height;
+        .context-menu__arrow {
+            left: $context-menu-arrow-left;
+            bottom: calc(#{$context-menu-arrow-height} * -1);
+        }
+        .context-menu__arrow::before,
+        .context-menu__arrow::after {
+            border-width: $context-menu-arrow-height
+                ($context-menu-arrow-width / 2) 0;
+        }
+        .context-menu__arrow::before {
+            bottom: -1px;
+            border-top-color: $base-stroke-color;
+        }
+        .context-menu__arrow::after {
+            bottom: $base-border-width;
+            border-top-color: $control-fill-color;
+        }
+    }
+    &--right {
+        margin-left: $context-menu-arrow-height;
+        .context-menu__arrow {
+            top: $context-menu-arrow-top;
+            left: calc(#{$context-menu-arrow-height} * -1);
+            width: $context-menu-arrow-height;
+            height: $context-menu-arrow-width;
+            margin: 0;
+        }
+        .context-menu__arrow::before,
+        .context-menu__arrow::after {
+            border-width: ($context-menu-arrow-width / 2)
+                $context-menu-arrow-height ($context-menu-arrow-width / 2) 0;
+        }
+        .context-menu__arrow::before {
+            left: -1px;
+            border-right-color: $base-stroke-color;
+        }
+        .context-menu__arrow::after {
+            left: $base-border-width;
+            border-right-color: $control-fill-color;
+        }
+    }
+    &--bottom {
+        margin-top: $context-menu-arrow-height;
+        .context-menu__arrow {
+            left: $context-menu-arrow-left;
+            top: calc(#{$context-menu-arrow-height} * -1);
+        }
+        .context-menu__arrow::before,
+        .context-menu__arrow::after {
+            border-width: 0 ($context-menu-arrow-width / 2)
+                $context-menu-arrow-height ($context-menu-arrow-width / 2);
+        }
+        .context-menu__arrow::before {
+            top: -1px;
+            border-bottom-color: $base-stroke-color;
+        }
+        .context-menu__arrow::after {
+            top: $base-border-width;
+            border-bottom-color: $control-fill-color;
+        }
+    }
+    &--left {
+        margin-right: $context-menu-arrow-height;
+        .context-menu__arrow {
+            top: $context-menu-arrow-top;
+            right: calc(#{$context-menu-arrow-height} * -1);
+            width: $context-menu-arrow-height;
+            height: $context-menu-arrow-width;
+            margin: $context-menu-arrow-margin 0;
+        }
+        .context-menu__arrow::before,
+        .context-menu__arrow::after {
+            border-width: ($context-menu-arrow-width / 2) 0
+                ($context-menu-arrow-width / 2) $context-menu-arrow-height;
+        }
+        .context-menu__arrow::before {
+            right: -1px;
+            border-left-color: $base-stroke-color;
+        }
+        .context-menu__arrow::after {
+            right: $base-border-width;
+            border-left-color: $control-fill-color;
+        }
+    }
+    &__header {
+        line-height: $context-menu-header-line-height;
+        font-size: $context-menu-header-font-size;
+        margin: $context-menu-header-margin;
+        color: $base-color;
+    }
+    &__body {
+        color: $base-color;
+        padding: $context-menu-body-padding;
+    }
+    & li {
+        line-height: $context-menu-li-line-height;
+        padding: $context-menu-li-padding;
+        &:hover {
+            color: $base-inverse-color;
+            background-color: $base-color--hover;
+        }
+        &.selected,
+        &:active {
+            color: $base-inverse-color;
+            background-color: $base-color--selected;
+        }
+        &:focus {
+            color: $base-inverse-color;
+            background-color: $base-color--active;
+        }
+        &.disabled {
+            color: $context-menu-li-color-disabled;
+        }
+    }
+    &__footer {
+        text-align: left;
+        padding: $context-menu-footer-padding;
+        border-top: $base-border-width solid $base-stroke-color;
+        & a:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+&.atomic-ui-root--animated .context-menu {
+    animation-name: fade-in;
+    animation-duration: $transition-duration--fast;
+    & li {
+        @include transition($transition-item);
+    }
+}
