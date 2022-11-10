@@ -6,7 +6,7 @@
 # vars
 pid=-1
 configFilepath="estreamer.conf"
-pybin="python3.9"
+pybin="python3"
 basepath="."
 isRunning=0
 
