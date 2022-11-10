@@ -1,0 +1,421 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: The template creates a VPC and an EC2 Instance for the Cisco Encore client.
+Parameters:
+  CidrBlock:
+    Default: '100.64.0.0/16'
+    Description: The CIDR Block for the VPC
+    Type: String
+#  AZCount:
+#    Type: Number
+#    Description: "# of AZs. Max - 2"
+#    MinValue: 1
+#    MaxValue: 2
+#    Default: 2
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: >-
+      Name of an existing EC2 KeyPair to enable SSH access to the instance
+  InstanceType:
+    Description: EC2 instance type
+    Type: String
+    Default: t2.medium
+    AllowedValues: 
+      - t2.medium
+      - t2.large
+      - c3.large
+      - c5.xlarge
+      - c5.2xlarge
+      - c5.large
+  amazonSecurityLakeBucketForCiscoFirewallURI:
+    Description: Bucket URI for amazon Security Lake Bucket for Cisco Firewall
+    Type: String
+    Default: s3://aws-security-data-lake-us-west-2-141548511100/aws/
+  fmcIP:
+    Description: Public IP address of FMC Instance
+    Type: String
+    Default: 1.2.3.4
+  
+Mappings:
+  AWSAMIRegionMap:
+    af-south-1:
+      US2204HVM: ami-080bc3824e96f9b8d
+    ap-east-1:
+      US2204HVM: ami-0ecb6d8435affe2b6
+    ap-northeast-1:
+      US2204HVM: ami-081ce1b631be2b337
+    ap-northeast-2:
+      US2204HVM: ami-05b9c9c0fe2f5a62c
+    ap-northeast-3:
+      US2204HVM: ami-0fa94f39b906bd429
+    ap-south-1:
+      US2204HVM: ami-068257025f72f470d
+    ap-southeast-1:
+      US2204HVM: ami-02ee763250491e04a
+    ap-southeast-2:
+      US2204HVM: ami-09a5c873bc79530d9
+    ap-southeast-3:
+      US2204HVM: ami-0a7d0f34566ce9a9a
+    ca-central-1:
+      US2204HVM: ami-0fb99f22ad0184043
+    eu-central-1:
+      US2204HVM: ami-0caef02b518350c8b
+    eu-north-1:
+      US2204HVM: ami-0852b274a4f812259
+    eu-south-1:
+      US2204HVM: ami-07e67c061ef6a3779
+    eu-west-1:
+      US2204HVM: ami-0c0aa81a5fab62093
+    eu-west-2:
+      US2204HVM: ami-033c8ef001424a6d3
+    eu-west-3:
+      US2204HVM: ami-00952d073cecd1d1f
+    me-central-1:
+      US2204HVM: ami-0b176a61215978ae7
+    me-south-1:
+      US2204HVM: ami-03de2671163dff759
+    sa-east-1:
+      US2204HVM: ami-0deebba34ef22f5a9
+    us-east-1:
+      US2204HVM: '{{resolve:ssm:/aws/service/canonical/ubuntu/server/22.04/stable/current/amd64/hvm/ebs-gp2/ami-id}}'
+    us-east-2:
+      US2204HVM: '{{resolve:ssm:/aws/service/canonical/ubuntu/server/22.04/stable/current/amd64/hvm/ebs-gp2/ami-id}}'
+    us-west-1:
+      US2204HVM: ami-0d02a9285176ca8a8
+    us-west-2:
+      US2204HVM: '{{resolve:ssm:/aws/service/canonical/ubuntu/server/22.04/stable/current/amd64/hvm/ebs-gp2/ami-id}}'
+    us-gov-east-1:
+      US2204HVM: ami-02715d3e836877098
+    us-gov-west-1:
+      US2204HVM: ami-09e0cb78220c19409
+    cn-north-1:
+      US2204HVM: ami-066463ec4673de53b
+    cn-northwest-1:
+      US2204HVM: ami-020ce060d4778563b
+#  LinuxAMINameMap:
+#    Ubuntu-Server-22.04-LTS-HVM:
+#      Code: US2204HVM
+#      OS: Ubuntu
+#Conditions: 
+#  TwoAZs:  !Equals [ !Ref AZCount, 2 ]
+
+Resources:
+#--------------------------------VPC-------------------------------------------------------------
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref CidrBlock
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: !Sub eNcore-${AWS::StackName}
+#--------------------------------Subnets---------------------------------------------------------
+  PublicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      CidrBlock: !Sub
+        - ${a}.${b}.0.0/24
+        - a: !Select [0, !Split ['.', !Select [0, !Split [ "/" , !Ref CidrBlock ]]]]
+          b: !Select [1, !Split ['.', !Select [0, !Split [ "/" , !Ref CidrBlock ]]]]
+      AvailabilityZone: 
+        Fn::Select: 
+          - 0
+          - Fn::GetAZs: ""
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: !Sub PublicSubnet1-${AWS::StackName}
+  PublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      CidrBlock: !Sub
+        - ${a}.${b}.3.0/24
+        - a: !Select [0, !Split ['.', !Select [0, !Split [ "/" , !Ref CidrBlock ]]]]
+          b: !Select [1, !Split ['.', !Select [0, !Split [ "/" , !Ref CidrBlock ]]]]
+      AvailabilityZone: 
+        Fn::Select: 
+          - 1
+          - Fn::GetAZs: ""
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: !Sub PublicSubnet2-${AWS::StackName}       
+#--------------------------------Security Groups-------------------------------------------------
+  eNcoreSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: !Ref VPC
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: '0.0.0.0/0'
+        - IpProtocol: tcp
+          FromPort: '8302'
+          ToPort: '8302'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: icmp
+          FromPort: -1
+          ToPort: -1
+          CidrIp: '0.0.0.0/0'
+        - IpProtocol: -1
+          FromPort: -1
+          ToPort: -1
+          CidrIp: 100.64.0.0/16
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: !Sub eNcoreSecurityGroup-${AWS::StackName}
+#--------------------------------Network Interfaces----------------------------------------------
+  eNcoreInterface1:
+    Type: AWS::EC2::NetworkInterface
+    Properties: 
+      Description: String
+      GroupSet:
+      - !Ref 'eNcoreSecurityGroup'
+      SourceDestCheck: true
+      SubnetId: !Ref PublicSubnet1
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-eNcoreInterface1
+  # eNcoreInterface2:
+  #   Type: AWS::EC2::NetworkInterface
+  #   Properties: 
+  #     Description: String
+  #     GroupSet:
+  #     - !Ref 'eNcoreSecurityGroup'
+  #     SourceDestCheck: true
+  #     SubnetId: !Ref PublicSubnet2
+  #     Tags:
+  #     - Key: Name
+  #       Value: !Sub ${AWS::StackName}-eNcoreInterface2
+  eNcoreInterfaceEIP1:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  # eNcoreInterfaceEIP2:
+  #   Type: AWS::EC2::EIP
+  #   Properties:
+  #     Domain: vpc
+  AssociateeNcoreInterfaceEIP1:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      AllocationId: !GetAtt eNcoreInterfaceEIP1.AllocationId
+      NetworkInterfaceId: !Ref eNcoreInterface1
+  # AssociateeNcoreInterfaceEIP2:
+  #   Type: AWS::EC2::EIPAssociation
+  #   Properties:
+  #     AllocationId: !GetAtt eNcoreInterfaceEIP2.AllocationId
+  #     NetworkInterfaceId: !Ref eNcoreInterface2
+#--------------------------------Route Tables---------------------------------------------------
+  PublicSubnet1RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: !Sub PublicSubnet1-Vpc-${AWS::StackName}
+  PublicSubnet1Route:
+    Type: AWS::EC2::Route
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      RouteTableId: !Ref 'PublicSubnet1RouteTable'
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref 'InternetGateway'
+  PublicSubnet1RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PublicSubnet1'
+      RouteTableId: !Ref 'PublicSubnet1RouteTable'
+  # PublicSubnet2RouteTable:
+  #   Type: AWS::EC2::RouteTable
+  #   Properties:
+  #     VpcId: !Ref 'VPC'
+  #     Tags:
+  #       - Key: Application
+  #         Value: !Ref 'AWS::StackId'
+  #       - Key: Name
+  #         Value: !Sub PublicSubnet2-Vpc-${AWS::StackName}
+  # PublicSubnet2Route:
+  #   Type: AWS::EC2::Route
+  #   DependsOn: InternetGatewayAttachment
+  #   Properties:
+  #     RouteTableId: !Ref 'PublicSubnet2RouteTable'
+  #     DestinationCidrBlock: 0.0.0.0/0
+  #     GatewayId: !Ref 'InternetGateway'
+  # PublicSubnet2RouteTableAssociation:
+  #   Type: AWS::EC2::SubnetRouteTableAssociation
+  #   Properties:
+  #     SubnetId: !Ref 'PublicSubnet2'
+  #     RouteTableId: !Ref 'PublicSubnet2RouteTable'
+  
+#--------------------------------Gateways-------------------------------------------------------
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+  InternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref 'VPC'
+      InternetGatewayId: !Ref 'InternetGateway'
+#------------------ EC2 ------------------------------------------------------------
+  eNcoreInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: 
+        Fn::Select: 
+          - 0
+          - Fn::GetAZs: ""
+      ImageId: !FindInMap [AWSAMIRegionMap, !Ref "AWS::Region", US2204HVM]
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      UserData: 
+        Fn::Base64:
+          !Sub
+          - |
+            #!/bin/bash -x
+
+            # python package installation
+
+            sudo apt update
+
+            sudo apt -y install python3-pip
+
+            sudo apt -y install zip unzip
+
+            sudo pip install pyarrow
+
+            sudo pip install pandas
+            
+            sudo pip install boto3
+            
+            sudo pip3 install boto3
+
+            # Install AWS CLI
+            
+            echo "Installing AWS CLI"
+            
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            
+            unzip -qq awscliv2.zip
+            
+            ./aws/install
+
+            # git clone eNcore client
+            
+            sudo git clone -b ocsf https://github.com/CiscoSecurity/fp-05-firepower-cli.git /encore
+            
+            cd /encore
+
+            cat >estreamer.conf <<'EOF'
+            
+            {
+                "connectTimeout": 10,
+                "enabled": true,
+                "handler": {
+                    "output@comment": "If you disable all outputters it behaves as a sink",
+                    "outputters": [
+                        {
+                            "adapter": "ocsf",
+                            "s3": "${amazonSecurityLakeBucketForCiscoFirewallURI}",
+                            "region": "${AWS::Region}",
+                            "accountId": "${AWS::AccountId}",
+                            "enabled": true,
+                            "stream": {
+                                "options": {
+                                    "maxLogs": 10000,
+                                    "rotate": true
+                                },
+                                "uri": "relfile:///data/ocsf/encore.{0}.json"
+                            }
+                        }
+                    ],
+                    "records": {
+                        "connections": true,
+                        "core": true,
+                        "excl@comment": [
+                            "These records will be excluded regardless of above (overrides 'include')",
+                            "e.g. to exclude flow and IPS events use [ 71, 400 ]"
+                        ],
+                        "exclude": [2],
+                        "inc@comment": "These records will be included regardless of above",
+                        "include": [],
+                        "intrusion": true,
+                        "metadata": true,
+                        "packets": true,
+                        "rna": true,
+                        "rua": true
+                    }
+                },
+                "packetEncoding": "ascii",
+                "logging": {
+                    "filepath": "estreamer.log",
+                    "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
+                    "lev@comment": "Levels include FATAL, ERROR, WARNING, INFO, DEBUG, VERBOSE and TRACE",
+                    "level": "INFO",
+                    "stdOut": true
+                },
+                "monitor": {
+                    "bookmark": false,
+                    "handled": true,
+                    "period": 120,
+                    "subscribed": true,
+                    "velocity": false
+                },
+                "responseTimeout": 2,
+                "star@comment": "0 for genesis, 1 for now, 2 for bookmark",
+                "start": 2,
+                "subscription": {
+                    "records": {
+                        "@comment": [
+                            "Just because we subscribe doesn't mean the server is sending. Nor does it mean",
+                            "we are writing the records either. See handler.records[]"
+                        ],
+                        "archiveTimestamps": true,
+                        "eventExtraData": true,
+                        "extended": true,
+                        "impactEventAlerts": true,
+                        "intrusion": true,
+                        "metadata": true,
+                        "packetData": true
+                    },
+                    "servers": [
+                        {
+                            "host": "${fmcIP}",
+                            "pkcs12Filepath": "client.pkcs12",
+                            "port": 8302,
+                            "tls@comment": "Valid values are 1.0 and 1.2",
+                            "tlsVersion": 1.2
+                        }
+                    ]
+                },
+                "workerProcesses": 1
+            }
+            EOF
+          - amazonSecurityLakeBucketForCiscoFirewallURI: !Ref amazonSecurityLakeBucketForCiscoFirewallURI
+            fmcIP: !Ref fmcIP
+      NetworkInterfaces:
+        - 
+          NetworkInterfaceId: !Ref eNcoreInterface1
+          DeviceIndex: 0
+      Tags:
+        - Key: Name
+          Value: !Sub eNcore-client-${AWS::StackName}
+Outputs:
+  eNcorePublicIP1:
+    Description: Public IP for eNcore client
+    Value: !Ref eNcoreInterfaceEIP1
+    Export:
+      Name: !Sub '${AWS::StackName}-eNcoreInterfaceEIP1'
+      
