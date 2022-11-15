@@ -328,12 +328,12 @@ Resources:
                     "outputters": [
                         {
                             "adapter": "ocsf",
-                            "s3": "${amazonSecurityLakeBucketForCiscoFirewallURI}",
-                            "region": "${AWS::Region}",
-                            "accountId": "${AWS::AccountId}",
                             "enabled": true,
                             "stream": {
                                 "options": {
+                                    "s3": "${amazonSecurityLakeBucketForCiscoFirewallURI}",
+                                    "region": "${AWS::Region}",
+                                    "accountId": "${AWS::AccountId}",
                                     "maxLogs": 10000,
                                     "rotate": true
                                 },
