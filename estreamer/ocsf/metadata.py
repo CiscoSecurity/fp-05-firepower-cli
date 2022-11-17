@@ -38,6 +38,7 @@ class Metadata( object ):
         self.modified_time_dt = ""
         self.processed_time = ""
         self.processed_time_dt = ""
+        self.profiles = []
         self.product = {k: v for k, v in product.items() if v} #consider a dumps functions that will output the desired format
         self.sequence = 0
         self.version = "1.0.0"

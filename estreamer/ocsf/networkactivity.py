@@ -130,7 +130,7 @@ class NetworkActivity( object ):
     def __init__( self, data ):
 
         #todo: add checks for null data
-        self.activity = NetworkActivity.activityMap( data['firewallRuleAction'] )
+        self.activity_name = NetworkActivity.activityMap( data['firewallRuleAction'] )
         self.activity_id = NetworkActivity.activityMapId( data['firewallRuleAction'] ) #todo
         self.app_name = data['@computed.clientApplication']
         self.category_name = "Network Activity"
@@ -143,11 +143,11 @@ class NetworkActivity( object ):
         self.time = int(data['firstPacketTimestamp']) * 1000
         self.message = str(data['recordTypeDescription'] != "")
 #        self.observables = ""
-        self.profiles = []
+#        self.profiles = []
 #        self._raw_data = ""
 #        self.ref_event_code = ""
-        self.ref_event_name = "Connection Event"
-        self.ref_time = str(data['firstPacketTimestamp'] * 1000)
+#        self.ref_event_name = "Connection Event"
+#        self.ref_time = str(data['firstPacketTimestamp'] * 1000)
         self.severity = "Unknown" #todo is there a mapping for connection events?
         self.severity_id = 0 #todo
         self.start_time = data['firstPacketTimestamp'] * 1000

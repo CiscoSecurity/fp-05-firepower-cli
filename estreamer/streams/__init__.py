@@ -44,7 +44,16 @@ def create( settingsStream ):
         if 'maxLogs' in settingsStream.options:
             maxLogs = settingsStream.options['maxLogs']
 
-        stream = FileStream( uri.path, maxLogs, rotate, uri.file )
+        if 's3' in settingsStream.options:
+            s3 = settingsStream.options['s3']
+
+        if 'region' in settingsStream.options:
+            region = settingsStream.options['region']
+
+        if 'accountId' in settingsStream.options:
+            accountId = settingsStream.options['accountId']
+
+        stream = FileStream( uri.path, maxLogs, rotate, s3, region, accountId, uri.file )
         return stream
 
     elif uri.scheme == 'udp':

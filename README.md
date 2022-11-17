@@ -2,7 +2,7 @@
 
 # License
 
-Copyright (c) 2017 by Cisco Systems, Inc.
+Copyright (c) 2021 by Cisco Systems, Inc.
 
 [Cisco EULA](http://www.cisco.com/c/en/us/about/legal/cloud-and-software/software-terms.html)
 
@@ -13,7 +13,7 @@ Copyright (c) 2017 by Cisco Systems, Inc.
     CISCO SYSTEMS, Inc. IS STRICTLY PROHIBITED.
 
 # eStreamer eNcore
-The Cisco eStreamer client. 
+The Cisco eStreamer client for Open Cyber Security Framework (OCSF) 
 
 The Cisco Event Streamer (also known as eStreamer) allows you to stream System intrusion,
 discovery, and connection data from Firepower Management Center or managed device (also
@@ -25,6 +25,9 @@ keeps it fast.
 eNcore is a new all-purpose client which requests all possible events from eStreamer, parses
 the binary content and outputs events in various formats to support other SIEMs.
 
+This edition of eStreamer has been specificially tailored to provide OCSF compliant Network Activity events in both json and parquet
+
+
 # Support
 This is a beta version of eNcore. Before the General Availability release this will be
 updated with details of paying for and receiving support.
@@ -32,11 +35,15 @@ updated with details of paying for and receiving support.
 Detailed setup instructions for the CLI are included here, the specific implementation correspondences to Microsoft Sentinel integration but the CLI is the same setup
 https://www.cisco.com/c/en/us/td/docs/security/firepower/70/api/eNcore/eNcore_Operations_Guide_v08.html
 
-# Python3
 
-The 4.x branches of this project correspond to Python3 support, files use the future library as well as python3 executable, you may have to import the python3 equivalent of pip for openssl support
+# Quick install on AWS ec2
 
-# Quick install
+* Upload ./eNcoreCloudFormation.yaml to AWS Cloud Formation
+  - Configure the FMC IP
+  - Server size (defaults to t1.medium)
+  - S3 Bucket - this is the s3 path that will host paritioned data, the /ext/SOURCE_NAME needs to be provided in addition to the root s3 bucket location (ex. us-east-2-accountid/ex/MYSOURCE)
+  - AWS Account Id
+
 * Run eNcore: `./encore.sh`
 * Run a connectivity test: `./encore.sh test` (and enter the pkcs12 password)
 * View the log output `tail -f estreamer.log`
