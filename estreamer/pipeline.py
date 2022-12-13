@@ -190,7 +190,7 @@ def decorate( record, settings ):
 
         # Reads from METADATA and computes other things e.g. IP addrs
         record[ View.OUTPUT_KEY ] = estreamer.metadata.View(
-            settings.cache(), record ).create()
+            settings.cache(), record, settings ).create()
 
 
 
@@ -205,11 +205,11 @@ def transform( event, settings ):
     for index in range( 0, len( adapters ) ):
         outputter = settings.outputters[ index ]
 
-        if not outputter.passthru:
-            output = adapters[ index ].dumps( event['record'] )
+        if not outputter.passthru:  #maybe adding settings in dumps function here
+            output = adapters[ index ].dumps( event['record'] , settings)
 
         else:
-            output = adapters[ index ].dumps( event['message'] )
+            output = adapters[ index ].dumps( event['message'], settings)
 
         payloads.append( output )
 

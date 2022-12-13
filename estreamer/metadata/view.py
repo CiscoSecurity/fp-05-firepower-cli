@@ -19,10 +19,12 @@
 
 import datetime
 import re
+import binascii
 import estreamer.crossprocesslogging
 import estreamer.definitions as definitions
 from estreamer.adapters.binary import Binary
 from estreamer.common import Flatdict
+from estreamer.common import Packet
 from estreamer.metadata.cache import Cache
 
 class View( object ):
@@ -107,6 +109,8 @@ class View( object ):
     NET_PROTO = 'networkProtocol'
     NETWORK_ANALYSIS_POLICY = 'networkAnalysisPolicy'
     ORIGINAL_CLIENT_SRC_IP = 'originalSrcIP'
+    PACKET_DATA = 'packet'
+    PACKET_DATA_FULL = 'packetHex'
     PARENT_DETECTION = 'parentDetection'
     PRIORITY = 'priority'
     PROTOCOL = 'protocol'
@@ -169,6 +173,11 @@ class View( object ):
 
 
     AUTOMAP = {
+        # 2
+        definitions.RECORD_PACKET: [
+
+        ],
+
         # 13
         definitions.RECORD_RNA_NEW_NET_PROTOCOL: [
             {
@@ -243,9 +252,10 @@ class View( object ):
         ]
     }
 
-    def __init__( self, cache, record ):
+    def __init__( self, cache, record, settings ):
         self.cache = cache
         self.record = record
+        self.settings = settings
         self.data = {}
         self.logger = estreamer.crossprocesslogging.getLogger( __name__ )
 
@@ -257,8 +267,6 @@ class View( object ):
         value = self.cache.get( cacheKeys )
         if value:
             self.data[ key ] = value
-
-
 
     def __automap( self, record ):
         recordTypeId = record['recordType']
@@ -332,7 +340,35 @@ class View( object ):
         self.__automap( record )
 
         # Now deal with all the other special cases
-        if recordTypeId == definitions.RECORD_INTRUSION_IMPACT_ALERT:
+
+        if recordTypeId == definitions.RECORD_PACKET :
+
+            packet = record['packetData']
+            packetEncoding = self.settings.subscribePacketEncoding
+ 
+            if isinstance(packet, (bytes, bytearray)) : 
+
+                if self.settings.subscribePacketEncoding : 
+
+                    packetEncoding = self.settings.subscribePacketEncoding
+
+                    if packetEncoding == 'ascii' :
+
+                        binData = binascii.unhexlify( packet )
+                        p = Packet(binData)
+                        packet = p.getPayloadAsAscii()
+
+                    elif packetEncoding == 'utf-8' :
+                        
+                        binData = binascii.unhexlify( packet )
+                        p = Packet(binData)
+                        packet = p.getPayloadAsUtf8()
+                    else :
+                        packet = record['packetData'].decode('utf-8')
+
+                self.__addValue(View.PACKET_DATA, packet)
+
+        elif recordTypeId == definitions.RECORD_INTRUSION_IMPACT_ALERT:
             # 9
             impact = record['description']['data']
             # Gets '23' from '[Impact: 23]'

@@ -107,21 +107,22 @@ def __ipv6( ipAddress ):
 
 
 
-def __packetData( data , packetLength):
+def __packetData( data , packetLength, packetEncoding):
     payload = ''
 
     if packetLength == 0 :
         return payload
 
     packet = estreamer.common.Packet.createFromHex( data )
+#    packetEncoding = __getPacketEncoding()
 
-    if PACKET_ENCODING == 'ascii':
+    if packetEncoding == 'ascii':
         payload = packet.getPayloadAsAscii()
 
-    elif PACKET_ENCODING == 'utf8':
+    elif packetEncoding == 'utf-8':
         payload = packet.getPayloadAsUtf8()
 
-    elif PACKET_ENCODING == 'hex':
+    elif packetEncoding == 'hex':
         payload = packet.getPayloadAsHex()
 
     else:
@@ -148,7 +149,7 @@ MAPPING = {
             'rt': lambda rec: rec['eventSecond'] * 1000,
             'start': lambda rec: rec['packetSecond'] * 1000,
             'deviceExternalId': lambda rec: rec['deviceId'],
-            'cs1': lambda rec: __packetData( rec['packetData'], rec['packetLength'] )
+            'cs1': lambda rec: __packetData( rec['packetData'], rec['packetLength'], rec['packetEncoding'])
         },
 
         'fields': {
@@ -829,10 +830,14 @@ MAPPING[ definitions.RECORD_FILELOG_MALWARE_EVENT ] = copy.deepcopy(
 MAPPING[ definitions.RECORD_FILELOG_MALWARE_EVENT ]['sig_id'] = lambda rec: 'FileMalware:502:1'
 
 
-
 class Cef( object ):
     """Cef adapter class to contain implementation"""
-    def __init__( self, source ):
+    def __init__( self, source, settings ):  
+
+        if ('recordType' in source) :
+            if (source['recordType'] == definitions.RECORD_PACKET) :
+                source['packetEncoding'] = self.__getPacketEncoding(settings)
+
         self.source = source
         self.record = estreamer.common.Flatdict( source, True )
         self.output = None
@@ -842,7 +847,6 @@ class Cef( object ):
             if self.record['recordType'] in MAPPING:
                 self.mapping = MAPPING[ self.record['recordType'] ]
                 self.output = {}
-
 
 
     @staticmethod
@@ -857,7 +861,10 @@ class Cef( object ):
 
         return value
 
+    def __getPacketEncoding( self, settings ) :
+        packetEncoding = settings.subscribePacketEncoding if settings.subscribePacketEncoding else 'hex'
 
+        return packetEncoding
 
     def __convert( self ):
         """Writes the self.output dictionary"""
@@ -945,11 +952,12 @@ class Cef( object ):
 
 
 
-    def dumps( self ):
+    def dumps( self , settings):
         """Dumps the current record to a CEF message (or None)"""
         if self.mapping is None:
             return None
 
+        self.settings = settings
         self.__convert()
         message = self.__cefMessage()
 
@@ -957,9 +965,9 @@ class Cef( object ):
 
 
 
-def dumps( source ):
+def dumps( source , settings):
     """Converts a source record into a CEF message"""
-    cefAdapter = Cef( source )
-    return cefAdapter.dumps()
+    cefAdapter = Cef( source, settings )
+    return cefAdapter.dumps(settings)
 
 

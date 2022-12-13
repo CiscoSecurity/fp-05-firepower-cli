@@ -31,6 +31,6 @@ def loads( line ):
     """Converts a json line back into a dict"""
     return json.loads( line )
 
-def dumps( data ):
+def dumps( data , settings):
     """Serializes the incoming object as a json string"""
     return json.dumps(data,cls=UTF8Encoder)

@@ -110,6 +110,8 @@ FIELD_MAPPING = {
         View.NET_PROTO: 'net_proto',
         View.NETWORK_ANALYSIS_POLICY: 'net_analysis_policy',
         View.ORIGINAL_CLIENT_SRC_IP: 'original_src_ip',
+        View.PACKET_DATA: 'packet',
+        View.PACKET_DATA_FULL: 'packetHex',
         View.PARENT_DETECTION: 'parent_detection',
         View.PRIORITY: 'priority',
         View.PROTOCOL: 'protocol',
@@ -1758,7 +1760,7 @@ def __convert( source ):
 
 
 
-def dumps( source ):
+def dumps( source , settings):
     """Converts a source record into a splunk output line"""
     data = __convert( source )
 

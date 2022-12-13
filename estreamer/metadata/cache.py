@@ -82,6 +82,8 @@ class Cache( object ):
     NETMAP_DOMAINS = 'netmapDomains'
     ORIGINAL_SRC_IP = 'originalSrcIp'
     OS_FINGERPRINTS = 'osFingerprints'
+    PACKET_DATA = 'packet'
+    PACKET_DATA_FULL = 'packetHex'
     PAYLOADS = 'payloads'
     POLICIES = 'policies'
     PRIORITIES = 'priorities'
@@ -148,6 +150,8 @@ class Cache( object ):
         MALWARE_EVENT_TYPES: 'malware_event_types',
         NET_PROTOS: 'net_protos',
         OS_FINGERPRINTS: 'os_fingerprints',
+        PACKET_DATA: 'packet',
+        PACKET_DATA_FULL: 'packetHex',
         PAYLOADS: 'payloads',
         POLICIES: 'policies',
         PRIORITIES: 'priorities',
@@ -164,6 +168,13 @@ class Cache( object ):
     }
 
     AUTOMAP = {
+
+        # 2
+        definitions.RECORD_PACKET: {
+            'cache': PACKET_DATA,
+            'id': 'id',
+            'value': 'name' },
+
         # 4
         definitions.RECORD_PRIORITY: {
             'cache': PRIORITIES,
@@ -550,6 +561,7 @@ class Cache( object ):
     @staticmethod
     def __default():
         return {
+
             Cache.DEVICES: {
                 0: 'Defense Center'
             },

@@ -101,6 +101,12 @@ class Settings( object ):
             self.logging = LoggingSettings( None )
 
         subscriptionRecords = jsonSettings['subscription']['records']
+
+        if 'packetEncoding' in subscriptionRecords :
+            self.subscribePacketEncoding = subscriptionRecords['packetEncoding']
+        else :
+            self.subscribePacketEncoding = 'hex'
+
         self.subscribePacketData = subscriptionRecords['packetData']
         self.subscribeExtended = subscriptionRecords['extended']
         self.subscribeMetaData = subscriptionRecords['metadata']

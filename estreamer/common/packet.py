@@ -18,6 +18,7 @@
 from __future__ import absolute_import
 import binascii
 import struct
+import math
 
 class Packet( object ):
     """
@@ -37,14 +38,21 @@ class Packet( object ):
         self.layer3HeaderLength = 0
 
     def __getNyble( self, indexNyble ):
-        byteIndex = int(indexNyble/2)
-        #byte = struct.unpack( '>B', self.data[byteIndex] )[0]
-        byte = self.data[byteIndex]  #Python3 read ensures this is already in a binary format
-        if indexNyble % 2 == 0:
+
+        byteIndex = math.floor(indexNyble /2 )
+        byte = struct.unpack('>B', self.data[byteIndex:byteIndex+1])[0]
+
+        byteBin = format(byte, '#010b')
+        mask = 0b11110000
+
+        if (indexNyble % 2 ) == 0 :
             mask = 0b11110000
-            return ( byte & mask ) >> 4
-        mask = 0b00001111
-        return byte & mask
+            offset = (byte & mask) >> 4 
+        else :
+            mask = 0b00001111
+            offset = byte & mask
+
+        return  offset
 
     def __getLayer3HeaderLength( self ):
         if self.layer3HeaderLength == 0:
@@ -59,6 +67,7 @@ class Packet( object ):
         return self.layer3HeaderLength
 
     def __getLayer4HeaderLength( self ):
+
         ipProtocolOffset = (
             Packet.LAYER2_HEADER_LENGTH +
             Packet.IP_PROTOCOL_OFFSET )
@@ -81,6 +90,7 @@ class Packet( object ):
         return 0
 
     def getPayloadAsBytes( self ):
+
         headerLengthSum = (
             Packet.LAYER2_HEADER_LENGTH +
             self.__getLayer3HeaderLength() +

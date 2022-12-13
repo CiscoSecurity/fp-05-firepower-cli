@@ -118,7 +118,7 @@ def __packetData( data , packetLength):
     if PACKET_ENCODING == 'ascii':
         payload = packet.getPayloadAsAscii()
 
-    elif PACKET_ENCODING == 'utf8':
+    elif PACKET_ENCODING == 'utf-8':
         payload = packet.getPayloadAsUtf8()
 
     elif PACKET_ENCODING == 'hex':
@@ -697,6 +697,11 @@ MAPPING[ definitions.RECORD_FILELOG_MALWARE_EVENT ]['sig_id'] = lambda rec: 'Fil
 class Cef2( object ):
     """Cef adapter class to contain implementation"""
     def __init__( self, source ):
+
+        if ('recordType' in source) :
+            if (source['recordType'] == definitions.RECORD_PACKET) :
+                source['packetEncoding'] = self.__getPacketEncoding(settings)
+
         self.source = source
         self.record = estreamer.common.Flatdict( source, True )
         self.output = None
@@ -721,7 +726,10 @@ class Cef2( object ):
 
         return value
 
+    def __getPacketEncoding( self, settings ) :
+        packetEncoding = settings.subscribePacketEncoding if settings.subscribePacketEncoding else 'hex'
 
+        return packetEncoding
 
     def __convert( self ):
         """Writes the self.output dictionary"""
@@ -821,7 +829,7 @@ class Cef2( object ):
 
 
 
-def dumps( source ):
+def dumps( source , settings):
     """Converts a source record into a CEF message"""
     cef2Adapter = Cef2( source )
     return cef2Adapter.dumps()
