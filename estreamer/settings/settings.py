@@ -107,6 +107,11 @@ class Settings( object ):
         else :
             self.subscribePacketEncoding = 'hex'
 
+        if 'includeOriginalPacket' in subscriptionRecords :
+            self.subscribeIncludeOriginalPacket = subscriptionRecords['includeOriginalPacket']
+        else :
+            self.subscribeIncludeOriginalPacket = True
+
         self.subscribePacketData = subscriptionRecords['packetData']
         self.subscribeExtended = subscriptionRecords['extended']
         self.subscribeMetaData = subscriptionRecords['metadata']

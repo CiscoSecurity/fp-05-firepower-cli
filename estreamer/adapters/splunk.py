@@ -111,7 +111,7 @@ FIELD_MAPPING = {
         View.NETWORK_ANALYSIS_POLICY: 'net_analysis_policy',
         View.ORIGINAL_CLIENT_SRC_IP: 'original_src_ip',
         View.PACKET_DATA: 'packet',
-        View.PACKET_DATA_FULL: 'packetHex',
+        View.PACKET_DATA_FULL: 'original_packet',
         View.PARENT_DETECTION: 'parent_detection',
         View.PRIORITY: 'priority',
         View.PROTOCOL: 'protocol',

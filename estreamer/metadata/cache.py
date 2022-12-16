@@ -83,7 +83,7 @@ class Cache( object ):
     ORIGINAL_SRC_IP = 'originalSrcIp'
     OS_FINGERPRINTS = 'osFingerprints'
     PACKET_DATA = 'packet'
-    PACKET_DATA_FULL = 'packetHex'
+    PACKET_DATA_FULL = 'originalPacket'
     PAYLOADS = 'payloads'
     POLICIES = 'policies'
     PRIORITIES = 'priorities'
@@ -151,7 +151,7 @@ class Cache( object ):
         NET_PROTOS: 'net_protos',
         OS_FINGERPRINTS: 'os_fingerprints',
         PACKET_DATA: 'packet',
-        PACKET_DATA_FULL: 'packetHex',
+        PACKET_DATA_FULL: 'originalPacket',
         PAYLOADS: 'payloads',
         POLICIES: 'policies',
         PRIORITIES: 'priorities',

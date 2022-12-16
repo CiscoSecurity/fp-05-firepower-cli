@@ -110,7 +110,7 @@ class View( object ):
     NETWORK_ANALYSIS_POLICY = 'networkAnalysisPolicy'
     ORIGINAL_CLIENT_SRC_IP = 'originalSrcIP'
     PACKET_DATA = 'packet'
-    PACKET_DATA_FULL = 'packetHex'
+    PACKET_DATA_FULL = 'originalPacket'
     PARENT_DETECTION = 'parentDetection'
     PRIORITY = 'priority'
     PROTOCOL = 'protocol'
@@ -345,7 +345,6 @@ class View( object ):
 
             packet = record['packetData']
             packetEncoding = self.settings.subscribePacketEncoding
- 
             if isinstance(packet, (bytes, bytearray)) : 
 
                 if self.settings.subscribePacketEncoding : 
@@ -359,12 +358,17 @@ class View( object ):
                         packet = p.getPayloadAsAscii()
 
                     elif packetEncoding == 'utf-8' :
-                        
+
                         binData = binascii.unhexlify( packet )
                         p = Packet(binData)
                         packet = p.getPayloadAsUtf8()
                     else :
-                        packet = record['packetData'].decode('utf-8')
+                        binData = binascii.unhexlify( packet )
+                        p = Packet(binData)
+                        packet = p.getPayloadAsHex()
+
+                if self.settings.subscribeIncludeOriginalPacket :
+                    self.__addValue(View.PACKET_DATA_FULL,record['packetData'].decode('utf-8')) 
 
                 self.__addValue(View.PACKET_DATA, packet)
 
@@ -801,6 +805,12 @@ class View( object ):
 
         elif recordTypeId == definitions.RECORD_MALWARE_EVENT:
             # 125
+
+            for key in record :
+                if isinstance(record[key], (bytes, bytearray)) :
+                     value = record[key].decode('utf-8')
+                     record[key] = value
+
             self.__addValueIfAvailable(
                 View.CLOUD,
                 [ Cache.CLOUDS, record['cloudUuid']] )
@@ -1147,6 +1157,12 @@ class View( object ):
         elif recordTypeId == definitions.RECORD_FILELOG_EVENT or \
              recordTypeId == definitions.RECORD_FILELOG_MALWARE_EVENT:
             # 500 or 502
+
+            for key in record :
+                if isinstance(record[key], (bytes, bytearray)) :
+                     value = record[key].decode('utf-8')
+                     record[key] = value
+
             self.__addValueIfAvailable(
                 View.FILE_POLICY,
                 [ Cache.POLICIES, record['accessControlPolicyUuid']] )
@@ -1229,6 +1245,11 @@ class View( object ):
 
         elif recordTypeId == definitions.METADATA_FILELOG_SHA:
             # 511
+            for key in record :
+                if isinstance(record[key], (bytes, bytearray)) :
+                     value = record[key].decode('utf-8')
+                     record[key] = value
+
             self.__addValueIfAvailable(
                 View.DISPOSITION,
                 [ Cache.FILE_DISPOSITIONS, record['disposition']] )
