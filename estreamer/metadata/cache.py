@@ -763,6 +763,18 @@ class Cache( object ):
                 0: 'No',
                 1: 'Yes',
                 2: 'Would'
+                3: "Partially Dropped',
+                4: 'Block',
+                5: 'Would be Blocked',
+                6: 'Partial Block',
+                7: 'Drop',
+                8: 'Would Drop',
+                9: 'Reject',
+                10: 'Would be Rejected',
+                11: 'Rejected',
+                12: 'Would be Rejected',
+                13: 'Rewrite',
+                14: 'Would be Rewritten'
             },
 
             Cache.GEOLOCATIONS: {
