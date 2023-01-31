@@ -675,9 +675,9 @@ MAPPING = {
             'c6a3': lambda rec: __ipv6( rec['destinationIpAddress'] ),
             'deviceExternalId': lambda rec: rec['deviceId'],
             'request': lambda rec: '',
-            'act': lambda rec: ['Alerted', 'Dropped', 'Would Be Blocked', 'Partially Dropped', 'Blocked', 'Would Block', 'Partial Block', 'Drop', 'Would Drop', 'Rejected', 'Would Reject', 'React', 'Would React', 'Rewrite', 'Would Rewrite'][ rec['blocked'] ]
+            'act': lambda rec: ['Alerted', 'Dropped', 'Would Be Blocked', 'Partially Dropped', 'Blocked', 'Would be Block', 'Partial Blocked', 'Dropped', 'Would be Dropped', 'Rejected', 'Would Rejected', 'Rejected', 'Would be Rejected', 'Rewritten', 'Would be Rewritten'][ rec['blocked'] ]
         },
-
+        
         'viewdata': {
             View.SENSOR: 'dvchost',
             View.CLASSIFICATION_DESCRIPTION: 'cat',
