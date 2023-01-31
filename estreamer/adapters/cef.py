@@ -675,7 +675,7 @@ MAPPING = {
             'c6a3': lambda rec: __ipv6( rec['destinationIpAddress'] ),
             'deviceExternalId': lambda rec: rec['deviceId'],
             'request': lambda rec: '',
-            'act': lambda rec: ['Alerted', 'Blocked', 'Would Be Blocked'][ rec['blocked'] ]
+            'act': lambda rec: ['Alerted', 'Blocked', 'Would Be Blocked', 'Partially dropped', 'Blocked'][ rec['blocked'] ]
         },
 
         'viewdata': {
