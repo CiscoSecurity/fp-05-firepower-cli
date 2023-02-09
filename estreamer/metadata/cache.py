@@ -40,6 +40,7 @@ class Cache( object ):
     APPLICATION_PROTOCOLS = 'appProtocols'
     ATTRIBS = 'attributes'
     BLOCKED = 'blocked'
+    BLOCKED_REASON = 'blockedReasonId'
     CLASSIFICATIONS = 'classifications'
     CLIENT_APPLICATIONS = 'clientApps'
     CLOUDS = 'clouds'
@@ -776,7 +777,17 @@ class Cache( object ):
                 13: 'Rewrite',
                 14: 'Would be Rewritten'
             },
-
+        
+            Cache.BLOCKED_REASON: {
+                1: 'Interface in Passive or Tap mode',
+                2: 'Intrusion Policy in \"Detection\" Inspection Mode',
+                3: 'Network Analysis Policy in \"Detection\" Inspection Mode',
+                4: 'Connection Timed Out',
+                5: 'Connection Closed (0x01)',
+                6: 'Connection Closed (0x02)',
+                7: 'Connection Closed (0x04)'
+            },
+            
             Cache.GEOLOCATIONS: {
                 0: 'unknown'
             },
