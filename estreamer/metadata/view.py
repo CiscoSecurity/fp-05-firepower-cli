@@ -39,6 +39,7 @@ class View( object ):
     APP_PROTO = 'applicationProtocol'
     ARCHIVE_FILE_STATUS = 'archiveFileStatus'
     BLOCKED = 'blocked'
+    BLOCKED_REASON = 'blockedReasonId'
     BYTES_RECEIVED = 'bytesReceived'
     BYTES_TRANSMITTED = 'bytesTransmitted'
     CLASSIFICATION_DESCRIPTION = 'classificationDescription'
@@ -673,6 +674,10 @@ class View( object ):
                 [ Cache.BLOCKED, record['blocked']] )
 
             self.__addValueIfAvailable(
+                View.BLOCKED_REASON,
+                [ Cache.BLOCKED_REASON, record['blockedReasonId']] )
+
+            self.__addValueIfAvailable(
                 View.IP_PROTOCOL,
                 [ Cache.IP_PROTOCOLS, record['ipProtocol']] )
 
@@ -1088,6 +1093,10 @@ class View( object ):
                 View.BLOCKED,
                 [ Cache.BLOCKED, record['blocked']] )
 
+            self.__addValueIfAvailable(
+                View.BLOCKED_REASON,
+                [ Cache.BLOCKED_REASON, record['blockedReasonId']] )
+            
             self.__addValueIfAvailable(
                 View.IP_PROTOCOL,
                 [ Cache.IP_PROTOCOLS, record['ipProtocolId']] )
