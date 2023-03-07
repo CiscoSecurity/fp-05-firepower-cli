@@ -1,0 +1,19 @@
+.help-block {
+    display: block;
+    font-style: oblique;
+    line-height: $help-block-line-height;
+    margin: $help-block-margin-top 0 0 0;
+    &__text {
+        font-size: $help-block-font-size;
+        color: $help-block-color;
+        &--descriptive {
+            font-style: normal;
+        }
+        &--state-warning {
+            color: $help-block-color-warning;
+        }
+        &--state-danger {
+            color: $help-block-color-error;
+        }
+    }
+}

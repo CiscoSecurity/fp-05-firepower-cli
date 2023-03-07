@@ -1,0 +1,11 @@
+@import 'base/fonts';
+@import 'utilities/palette';
+@import 'utilities/variables';
+
+.atomic-ui-root {
+    &.theme-magnetic {
+        @import 'theme/magnetic';
+        @import 'base/keyframes';
+        @import '_atomic-ui-root-imports.scss';
+    }
+}

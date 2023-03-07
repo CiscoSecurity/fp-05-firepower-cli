@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="14px" viewBox="0 0 16 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-bandwidth-quota</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Content" transform="translate(-300.000000, -2309.000000)">
+            <g id="Export-CSV-/-Save-Copy" transform="translate(22.000000, 2304.000000)"></g>
+            <g id="bandwidth-quota-icon-a" transform="translate(300.000000, 2308.000000)" fill="#58585B">
+                <g id="Page-1" transform="translate(8.201905, 7.878095) rotate(-270.000000) translate(-8.201905, -7.878095) translate(0.646349, 0.322540)">
+                    <g id="Group-4" transform="translate(-0.000000, 0.000000)">
+                        <g id="Group-5">
+                            <path d="M0.888778086,12.4752004 L4.57961684,14.9885756 C4.78423253,15.1326191 4.95154465,15.0458236 4.95154465,14.7957788 L4.95154465,13.2142546 L8.27562638,13.2142546 C8.68374975,13.2142546 9.01431121,12.8836932 9.01431121,12.4755698 C9.01431121,12.0678158 8.68374975,11.736885 8.27562638,11.736885 L4.95154465,11.736885 L4.95154465,10.1671797 C4.95154465,9.91713488 4.78423253,9.83033941 4.57961684,9.97438295 L0.888778086,12.4752004 Z" id="Fill-1"></path>
+                            <path d="M5.37273411,2.9085191 L9.06357286,5.42189424 C9.26818856,5.56593778 9.43550067,5.47914231 9.43550067,5.2290975 L9.43550067,3.64757328 L12.7595824,3.64757328 C13.1677058,3.64757328 13.4982672,3.31701182 13.4982672,2.90888845 C13.4982672,2.50113442 13.1677058,2.17020362 12.7595824,2.17020362 L9.43550067,2.17020362 L9.43550067,0.600498355 C9.43550067,0.350453541 9.26818856,0.263658073 9.06357286,0.407701615 L5.37273411,2.9085191 Z" id="Fill-1" transform="translate(9.435501, 2.914798) rotate(-180.000000) translate(-9.435501, -2.914798) "></path>
+                            <rect id="Rectangle-12" transform="translate(7.419734, 7.926525) rotate(-60.000000) translate(-7.419734, -7.926525) " x="6.40386083" y="0.307477206" width="2.03174603" height="15.2380952" rx="1"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,34 @@
+&,
+& * {
+    box-sizing: inherit;
+    &:before,
+    &:after {
+        box-sizing: inherit;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Disabled
+// To disable any element, add a "disabled" attribute or the ".disabled" class
+// -----------------------------------------------------------------------------
+&[disabled],
+& *[disabled],
+.disabled {
+    @include disabled;
+}
+
+// Images
+.img,
+.picture {
+    margin: 0;
+    border: 0;
+    max-width: 100%;
+    &--fluid {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}

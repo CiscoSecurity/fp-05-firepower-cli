@@ -1,0 +1,64 @@
+import React from 'react';
+import axios from 'axios';
+import './cisco-atomic-ui.scss';
+
+class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.getConfig();
+  }
+  getConfig()  {
+    try {
+      return axios({
+        method: "get",
+        url: "/api/loadconfig/",
+        headers: { "accept": "application/json", "Access-Control-Allow-Origin": "*"}
+      }).then((response) => {
+        this.configData = response.data; 
+        alert(this.configData.packetEncoding)
+    });
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  handleChange(event) {    this.setState({file: event.target.files[0]});  }
+
+  handleSubmit(event) {
+    const formData = new FormData();
+    formData.append("file", this.state.file);
+    try {
+      axios({
+        method: "post",
+        url: "/api/uploadfile/",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data", "Access-Control-Allow-Origin": "*", "content": "application/json"},
+      });
+    } catch(error) {
+      console.log(error)
+    }
+    alert('A name was submitted: ' + this.state.file);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <body class="atomic-ui-root">
+        <div class="banner">
+          <div class="form-group">
+            <form onSubmit={this.handleSubmit}>        <label class="label">
+                FMC Certificate:
+                <input type="file" onChange={this.handleChange} />        </label>
+              <input type="submit" class="btn btn--primary" value="Submit" />
+            </form>
+          </div>
+        </div>
+      </body>
+    );
+  }
+}
+
+export default Form;

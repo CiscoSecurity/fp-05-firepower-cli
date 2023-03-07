@@ -1,0 +1,222 @@
+// -----------------------------------------------------------------------------
+// Default Loading Indicator
+// -----------------------------------------------------------------------------
+.loader {
+    margin: $loader-margin;
+    padding: $loader-padding;
+    text-align: center;
+    width: $loader-container-width;
+    &__dot {
+        width: $loader-dot-diameter;
+        height: $loader-dot-diameter;
+        background-color: $loader-dot-background-color;
+        border-radius: 100%;
+        display: inline-block;
+        animation: dot-animation $loader-dot-animation-delay infinite
+            ease-in-out both;
+        &:nth-of-type(1) {
+            animation-delay: $loader-dot-bounce1-delay;
+        }
+        &:nth-of-type(2) {
+            animation-delay: $loader-dot-bounce2-delay;
+        }
+    }
+}
+// -----------------------------------------------------------------------------
+// Page Level Loading Indicator
+// -----------------------------------------------------------------------------
+.page-loader {
+    display: inline-block;
+    box-sizing: border-box;
+    position: relative;
+    margin: $loader-margin;
+    padding: $loader-padding;
+    text-align: center;
+    width: $page-loader-medium-diameter;
+    height: $page-loader-medium-diameter;
+    &:after,
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        content: ' ';
+        @include loader-bounding-box(
+            $page-loader-medium-diameter,
+            $page-loader-medium-diameter
+        );
+    }
+    &:after {
+        animation: page-loader-animation $page-loader-animation-delay linear
+            infinite;
+        @include loader-border(
+            $page-loader-medium-thickness,
+            $page-loader-background-color,
+            transparent,
+            transparent,
+            transparent
+        );
+    }
+    &:before {
+        @include loader-border(
+            $page-loader-medium-thickness,
+            $page-loader-base-background-color,
+            $page-loader-base-background-color,
+            $page-loader-base-background-color,
+            $page-loader-base-background-color
+        );
+    }
+    &--size-small {
+        width: $page-loader-small-diameter;
+        height: $page-loader-small-diameter;
+        &:after,
+        &:before {
+            @include loader-bounding-box(
+                $page-loader-small-diameter,
+                $page-loader-small-diameter
+            );
+        }
+        &:before {
+            @include loader-border(
+                $page-loader-small-thickness,
+                $page-loader-base-background-color,
+                $page-loader-base-background-color,
+                $page-loader-base-background-color,
+                $page-loader-base-background-color
+            );
+        }
+        &:after {
+            @include loader-border(
+                $page-loader-small-thickness,
+                $page-loader-background-color,
+                transparent,
+                transparent,
+                transparent
+            );
+        }
+    }
+    &--size-medium {
+        width: $page-loader-medium-diameter;
+        height: $page-loader-medium-diameter;
+        &:after,
+        &:before {
+            @include loader-bounding-box(
+                $page-loader-medium-diameter,
+                $page-loader-medium-diameter
+            );
+        }
+        &:before {
+            @include loader-border(
+                $page-loader-medium-thickness,
+                $page-loader-base-background-color,
+                $page-loader-base-background-color,
+                $page-loader-base-background-color,
+                $page-loader-base-background-color
+            );
+        }
+        &:after {
+            @include loader-border(
+                $page-loader-medium-thickness,
+                $page-loader-background-color,
+                transparent,
+                transparent,
+                transparent
+            );
+        }
+    }
+    &--size-large {
+        width: $page-loader-large-diameter;
+        height: $page-loader-large-diameter;
+        &:after,
+        &:before {
+            @include loader-bounding-box(
+                $page-loader-large-diameter,
+                $page-loader-large-diameter
+            );
+        }
+        &:before {
+            @include loader-border(
+                $page-loader-large-thickness,
+                $page-loader-base-background-color,
+                $page-loader-base-background-color,
+                $page-loader-base-background-color,
+                $page-loader-base-background-color
+            );
+        }
+        &:after {
+            @include loader-border(
+                $page-loader-large-thickness,
+                $page-loader-background-color,
+                transparent,
+                transparent,
+                transparent
+            );
+        }
+    }
+}
+// -----------------------------------------------------------------------------
+// Cisco Logo Loading Indicator
+// -----------------------------------------------------------------------------
+.cisco-loader {
+    height: $cisco-loader-height;
+    width: $cisco-loader-width;
+    min-width: $cisco-loader-min-width;
+    margin: $cisco-loader-bar-margin;
+    &__bar {
+        width: $cisco-loader-bar-width;
+        float: left;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+        border-radius: $cisco-loader-bar-border-radius;
+        margin-left: 12px;
+        position: relative;
+        animation-duration: $cisco-loader-bar-animation-duration;
+        animation-iteration-count: infinite;
+        &--index-1 {
+            height: $cisco-loader-bar-height--index1;
+            top: $cisco-loader-bar-top--index1;
+            margin-left: 0;
+            animation-name: animate1;
+        }
+        &--index-2 {
+            height: $cisco-loader-bar-height--index2;
+            top: $cisco-loader-bar-top--index2;
+            animation-name: animate2;
+        }
+        &--index-3 {
+            height: $cisco-loader-bar-height--index3;
+            top: $cisco-loader-bar-top--index3;
+            animation-name: animate3;
+        }
+        &--index-4 {
+            height: $cisco-loader-bar-height--index4;
+            top: $cisco-loader-bar-top--index4;
+            animation-name: animate4;
+        }
+        &--index-5 {
+            height: $cisco-loader-bar-height--index5;
+            top: $cisco-loader-bar-top--index5;
+            animation-name: animate5;
+        }
+        &--index-6 {
+            height: $cisco-loader-bar-height--index6;
+            top: $cisco-loader-bar-top--index6;
+            animation-name: animate6;
+        }
+        &--index-7 {
+            height: $cisco-loader-bar-height--index7;
+            top: $cisco-loader-bar-top--index7;
+            animation-name: animate7;
+        }
+        &--index-8 {
+            height: $cisco-loader-bar-height--index8;
+            top: $cisco-loader-bar-top--index8;
+            animation-name: animate8;
+        }
+        &--index-9 {
+            height: $cisco-loader-bar-height--index9;
+            top: $cisco-loader-bar-top--index9;
+            animation-name: animate9;
+        }
+    }
+}

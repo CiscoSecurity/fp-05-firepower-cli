@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="16px" viewBox="0 0 11 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-detail-view</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Content" transform="translate(-295.000000, -899.000000)" fill="#58585B">
+            <g id="Detail-View" transform="translate(0.000000, 874.000000)">
+                <g id="icn_detail_view" transform="translate(295.000000, 25.000000)">
+                    <path d="M8.5416,14.2587 L2.1246,14.2587 C1.8486,14.2587 1.6246,14.0347 1.6246,13.7587 C1.6246,13.4827 1.8486,13.2587 2.1246,13.2587 L8.5416,13.2587 C8.8176,13.2587 9.0416,13.4827 9.0416,13.7587 C9.0416,14.0347 8.8176,14.2587 8.5416,14.2587 Z M6.3396,4.2897 L6.3396,-0.0003 L0.6666,-0.0003 C0.2996,-0.0003 -0.0004,0.2997 -0.0004,0.6667 L-0.0004,15.3337 C-0.0004,15.6997 0.2996,15.9997 0.6666,15.9997 L9.9996,15.9997 C10.3666,15.9997 10.6666,15.6997 10.6666,15.3337 L10.6666,4.2897 L6.3396,4.2897 Z" id="Fill-2"></path>
+                    <polygon id="Fill-1" points="7.3395 3.2902 10.6225 3.2902 7.3395 0.0062"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

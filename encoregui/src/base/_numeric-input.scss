@@ -1,0 +1,48 @@
+// -----------------------------------------------------------------------------
+// Native
+// -----------------------------------------------------------------------------
+.input[type='number'] {
+    width: $numeric-input-width;
+    padding: $numeric-input-padding;
+}
+// -----------------------------------------------------------------------------
+// Custom
+// -----------------------------------------------------------------------------
+.spinner {
+    position: relative;
+    display: inline-block;
+    &__box {
+        background-color: $spinner-box-bg;
+        height: $spinner-box-height;
+        width: $spinner-box-width;
+        display: block;
+        position: absolute;
+        right: $spinner-box-right;
+        top: $spinner-box-top;
+        pointer-events: none;
+    }
+    &__icon {
+        font-size: $spinner-icon-font-size;
+        font-weight: $font-weight-xbold;
+        background-color: $spinner-icon-bg;
+        margin: $spinner-icon-margin;
+        padding: $spinner-icon-padding;
+        float: left;
+        line-height: $spinner-icon-line-height;
+        height: $spinner-icon-height;
+        width: $spinner-icon-width;
+        &:before {
+            position: absolute;
+            right: $spinner-icon-before-right;
+            top: $spinner-icon-before-top;
+        }
+    }
+    .input[readonly] + .spinner__box,
+    .input[disabled] + .spinner__box {
+        display: none;
+    }
+}
+
+&.atomic-ui-root--animated .input[type='number'] {
+    @include transition($input-transition);
+}

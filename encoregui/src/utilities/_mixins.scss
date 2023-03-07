@@ -1,0 +1,202 @@
+// -----------------------------------------------------------------------------
+// Text Ellipsis
+// -----------------------------------------------------------------------------
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin text-break-word {
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+// -----------------------------------------------------------------------------
+// Disabled
+// -----------------------------------------------------------------------------
+@mixin disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    z-index: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Buttons
+// -----------------------------------------------------------------------------
+@mixin btn-icon() {
+    display: inline-flex;
+    height: $btn--icon-height;
+    width: $btn--icon-width;
+    align-items: center;
+    justify-content: center;
+    background-color: $btn--icon-bg;
+    &:hover {
+        text-decoration: none;
+    }
+}
+@mixin btn-size() {
+    @include text-truncate;
+    font-weight: $btn-font-weight;
+    line-height: $btn-line-height;
+    height: $btn-height;
+    padding: $btn-padding;
+    margin: $btn-margin;
+    min-width: $btn-min-width;
+}
+// -----------------------------------------------------------------------------
+// Inputs
+// -----------------------------------------------------------------------------
+@mixin input-state(
+    $input-border-color,
+    $input-box-shadow,
+    $input-border-color--hover
+) {
+    border: $base-border-width solid $input-border-color;
+    &:hover {
+        border: $base-border-width solid $input-border-color--hover;
+    }
+    &:focus,
+    &:active {
+        border: $base-border-width solid $input-border-color;
+        box-shadow: $input-box-shadow;
+    }
+}
+// -----------------------------------------------------------------------------
+// Lists
+// -----------------------------------------------------------------------------
+@mixin list--unstyled {
+    list-style: none;
+}
+@mixin clearfix() {
+    &::after {
+        display: block;
+        content: '';
+        clear: both;
+    }
+}
+// Checkmark
+@mixin checkmark {
+    display: block;
+    position: absolute;
+    width: $checkbox-checkmark-width;
+    height: $checkbox-checkmark-height;
+    border-width: $checkbox-checkmark-border;
+    transform: rotate($checkbox-checkmark-rotation);
+}
+// Hide the default input field. Used by Checkboxes, Radios Buttons.
+@mixin hidden-input {
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+// -----------------------------------------------------------------------------
+// Loading Indicators
+// -----------------------------------------------------------------------------
+@mixin loader-bounding-box($width, $height) {
+    width: $width;
+    height: $height;
+    display: inline-block;
+    box-sizing: border-box;
+}
+@mixin loader-border($border-width, $top, $right, $bottom, $left) {
+    border-top: solid $border-width $top;
+    border-right: solid $border-width $right;
+    border-bottom: solid $border-width $bottom;
+    border-left: solid $border-width $left;
+}
+// -----------------------------------------------------------------------------
+// Select / Dropdown
+// -----------------------------------------------------------------------------
+@mixin open-icon() {
+    height: $select__open-icon-height;
+    font-size: $select__open-icon-font-size;
+    font-weight: $font-weight-xbold;
+    line-height: $select__open-icon-line-height;
+    right: $select__open-icon-right;
+    top: $select__open-icon-top;
+    color: $base-icon-color;
+    pointer-events: none;
+    transform: scaleX(1.2);
+}
+// -----------------------------------------------------------------------------
+// Flex
+// -----------------------------------------------------------------------------
+@mixin flex-fluid {
+    flex: 1;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+}
+// -----------------------------------------------------------------------------
+// Badges
+// -----------------------------------------------------------------------------
+@mixin badge-size(
+    $badge-font-size,
+    $badge-width,
+    $badge-height,
+    $badge-line-height
+) {
+    font-size: $badge-font-size;
+    width: $badge-width;
+    height: $badge-height;
+    line-height: $badge-line-height;
+}
+// -----------------------------------------------------------------------------
+// Pagination
+// -----------------------------------------------------------------------------
+@mixin pagination-link($pagination-link-color, $pagination-link-decoration) {
+    color: $pagination-link-color;
+    text-decoration: $pagination-link-decoration;
+}
+// -----------------------------------------------------------------------------
+// Border-radius
+// -----------------------------------------------------------------------------
+@mixin border-radius($radius: $border-radius) {
+    border-radius: $radius;
+}
+@mixin border-top-radius($radius) {
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+}
+@mixin border-right-radius($radius) {
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+}
+@mixin border-bottom-radius($radius) {
+    border-bottom-right-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+@mixin border-left-radius($radius) {
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+// -----------------------------------------------------------------------------
+// Theme mapping (future)
+// -----------------------------------------------------------------------------
+@mixin themify($themes) {
+    @each $theme, $map in $themes {
+        .theme-#{$theme} & {
+            $theme-map: () !global;
+            @each $key, $submap in $map {
+                $value: map-get(map-get($themes, $theme), '#{$key}');
+                $theme-map: map-merge(
+                    $theme-map,
+                    (
+                        $key: $value,
+                    )
+                ) !global;
+            }
+            @content;
+            $theme-map: null !global;
+        }
+    }
+}
+@function themed($key) {
+    @return map-get($theme-map, $key);
+}

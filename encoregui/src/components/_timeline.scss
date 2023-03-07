@@ -1,0 +1,99 @@
+.timeline {
+    position: relative;
+    color: $base-color;
+    &__item {
+        display: inline-flex;
+        align-items: flex-start;
+        position: relative;
+        margin: $timeline-item-margin;
+        padding: $timeline-item-padding;
+        width: $timeline-item-width;
+
+        &:hover,
+        &:active {
+            cursor: default;
+            background-color: $timeline-item-color-hover;
+            @include transition($timeline-transition);
+        }
+        &--state-success {
+            .timeline__icon {
+                background-color: $color-good;
+            }
+        }
+        &--state-info {
+            .timeline__icon {
+                background-color: $color-information;
+            }
+        }
+        &--state-warning {
+            .timeline__icon {
+                background-color: $color-warning;
+            }
+        }
+        &--state-danger {
+            .timeline__icon {
+                background-color: $color-error;
+            }
+        }
+    }
+    &--centered {
+        .timeline__item {
+            align-items: center;
+        }
+    }
+
+    &--block {
+        .timeline__content {
+            width: 100%;
+        }
+    }
+
+    &__icon {
+        border-radius: $timeline-icon-border-radius;
+        width: $timeline-icon-width;
+        height: $timeline-icon-height;
+        position: absolute;
+        left: 139px;
+        z-index: $timeline-icon-z-index;
+        border: $timeline-icon-border-width solid $timeline-icon-border-color;
+        background-color: $timeline-icon-bg-color;
+    }
+
+    &__time {
+        float: left;
+        width: $timeline-time-width;
+        min-width: $timeline-time-min-width;
+        text-align: right;
+        font-style: oblique;
+        padding: $timeline-time-padding;
+    }
+    &__content {
+        margin: $timeline-content-margin;
+    }
+    &__title {
+        font-weight: bold;
+        &--state-success {
+            color: $color-good;
+        }
+        &--state-info {
+            color: $color-information;
+        }
+        &--state-warning {
+            color: $color-warning;
+        }
+        &--state-danger {
+            color: $color-error;
+        }
+    }
+    &:after {
+        background-color: $timeline-line-bg-color;
+        content: ' ';
+        position: absolute;
+        display: block;
+        width: $timeline-line-width;
+        top: 0;
+        left: 150px;
+        bottom: 0;
+        z-index: $timeline-line-z-index;
+    }
+}

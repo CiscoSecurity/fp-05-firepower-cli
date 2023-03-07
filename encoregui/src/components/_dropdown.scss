@@ -1,0 +1,68 @@
+.dropdown {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+
+    &__menu {
+        @include list--unstyled;
+        padding: $dropdown-padding;
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+        background: $control-fill-color;
+        border: $border-width solid $control-stroke-color;
+        box-shadow: $dropdown-box-shadow;
+        position: absolute;
+        pointer-events: auto;
+        top: calc(100% + 10px);
+        width: auto;
+        min-width: $dropdown-min-width;
+        transform: translateY(-2em);
+        text-align: left;
+    }
+    &__item {
+        font-size: $base-font-size;
+        z-index: $dropdown-item-z-index;
+        display: inline-flex;
+        color: $base-color;
+        padding: $dropdown-item-padding;
+        width: $dropdown-item-width;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &--state-selected {
+            color: $base-inverse-color;
+            background-color: $base-color--selected;
+        }
+        &:hover {
+            color: $base-inverse-color;
+            background-color: $base-color--hover;
+            text-decoration: none;
+        }
+        &:focus {
+            color: $base-inverse-color;
+            background-color: $base-color--active;
+            text-decoration: none;
+        }
+    }
+    &--state-active {
+        .dropdown__menu {
+            transition: opacity 0.3s;
+            opacity: 1;
+            visibility: visible;
+            display: block;
+            z-index: $dropdown-active-z-index;
+            transform: translateY(0);
+        }
+    }
+}
+
+&.atomic-ui-root--animated .dropdown {
+    .dropdown__menu {
+        animation-name: fade-in;
+        animation-duration: $transition-duration;
+    }
+    .dropdown__item {
+        @include transition($transition-item);
+    }
+}

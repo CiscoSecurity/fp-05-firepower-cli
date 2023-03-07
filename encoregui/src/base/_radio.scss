@@ -1,0 +1,106 @@
+.radio {
+    display: flex;
+    padding: ($radio-padding * 0.5) $radio-padding;
+    position: relative;
+    &__input {
+        @include hidden-input;
+        & ~ .radio__box {
+            width: $radio-width;
+            height: $radio-height;
+            top: 2px;
+            position: relative;
+            display: inline-block;
+            margin: 0 10px 0 0;
+            border: $border-width solid $radio-border--disabled;
+            border-radius: 50%;
+            &:hover {
+                border: $border-width solid $radio-border--disabled;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                height: $radio-fill-height;
+                width: $radio-fill-width;
+                left: 3px;
+                top: 3px;
+                border-radius: 50%;
+                border: $radio-fill-border-width solid $radio-border--enabled;
+            }
+        }
+        &:enabled ~ .radio__box {
+            border: $border-width solid $base-stroke-color;
+            &:hover {
+                cursor: pointer;
+                border: $border-width solid $radio-box-border--enabled--hover;
+            }
+        }
+        &:focus ~ .radio__box {
+            border: $border-width solid $radio-border-color--focus;
+            box-shadow: $radio-box-shadow--focus;
+        }
+        &:enabled:checked ~ .radio__box {
+            border: $border-width solid $radio-box-border--enabled--checked;
+            &:after {
+                background-color: $radio-border--checked;
+                border-color: $radio-border--checked;
+            }
+            &:hover {
+                border: $border-width solid
+                    $radio-box-border--enabled--checked--hover;
+            }
+            &:hover:after {
+                background-color: $radio-fill--checked--hover;
+                border-color: $radio-fill--checked--hover;
+            }
+        }
+        &:enabled:active ~ .radio__box {
+            &:after {
+                height: $radio-fill-height--active;
+                width: $radio-fill-width--active;
+                left: 4px;
+                top: 4px;
+                border: $border-width solid $radio-border--enabled--active;
+                background-color: $radio-fill--enabled;
+            }
+            &:hover:after {
+                border: $border-width solid $radio-border--active--hover;
+                background-color: $radio-fill--active--hover;
+            }
+        }
+        &:disabled ~ .radio__box {
+            border: $border-width solid $radio-border-color--disabled;
+            background-color: $radio-box-bg--disabled;
+            opacity: $radio-opacity-disabled;
+        }
+        &:disabled:checked ~ .radio__box:after {
+            background-color: $radio-bg-color--checked--disabled;
+            border-color: $radio-border-color--checked--disabled;
+        }
+        &:disabled ~ .radio__box:after {
+            background-color: $radio-bg-inner-color--disabled;
+            border-color: $radio-border-inner-color--disabled;
+            pointer-events: none;
+        }
+        &:disabled ~ .radio__label {
+            color: $radio__label-color--disabled;
+        }
+    }
+    &__label {
+        display: inline-block;
+        flex: 1 1 0%;
+        position: relative;
+        @include text-truncate;
+    }
+    &__label--wrap {
+        white-space: normal;
+        overflow: visible;
+    }
+}
+
+&.atomic-ui-root--animated .radio {
+    &__input {
+        & ~ .radio__box {
+            @include transition($radio-transition);
+        }
+    }
+}

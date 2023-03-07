@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58px" height="60px" viewBox="0 0 58 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Security Analytics and Logging</title>
+    <g id="Iconography-(Product-Icons)-2.2.0?" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Product-Icons-UPDATED" transform="translate(-723.000000, -942.000000)">
+            <g id="Security-Analytics-and-Logging" transform="translate(724.000000, 943.000000)">
+                <line x1="16.81" y1="35.92" x2="5.43" y2="43.3" id="Path" stroke="#06144D" stroke-width="2" stroke-linecap="round"></line>
+                <line x1="49.81" y1="42.49" x2="55.59" y2="46.28" id="Path" stroke="#6BBF4E" stroke-width="2" stroke-linecap="round"></line>
+                <line x1="5.43" y1="43.3" x2="0" y2="46.98" id="Path" stroke="#6BBF4E" stroke-width="2" stroke-linecap="round"></line>
+                <path d="M23.4,6.55 L7.09,14 C6.14991531,14.456697 5.55784002,15.4149241 5.57,16.46 L5.43,43.3 L26.75,53.35 L26.75,53.35 C27.2411565,53.5796104 27.8088435,53.5796104 28.3,53.35 L28.3,53.35 L49.81,42.49 L49.54,16.49 C49.5628515,15.4288692 48.9596126,14.4535024 48,14 L31.8,6.56" id="Path" stroke="#6BBF4E" stroke-width="2"></path>
+                <circle id="Oval" stroke="#6BBF4E" stroke-width="2" cx="27.6" cy="4.63" r="4.63"></circle>
+                <circle id="Oval" fill="#06144D" fill-rule="nonzero" cx="27.62" cy="53.53" r="4.61"></circle>
+                <path d="M39.48,22.22 C39.4844094,21.6560791 39.1658204,21.1393432 38.66,20.89 L27.66,15.82 L16.58,20.89 C16.0741796,21.1393432 15.7555906,21.6560791 15.76,22.22 L15.69,36.68 L27.19,42.1 L27.19,42.1 C27.4564257,42.2233012 27.7635743,42.2233012 28.03,42.1 L28.03,42.1 L39.61,36.24 L39.48,22.22 Z M34.05,22.55 L27.77,25.49 C27.6773605,25.5294611 27.5726395,25.5294611 27.48,25.49 L21.25,22.55 C21.1187393,22.4927723 21.0338749,22.3631935 21.0338749,22.22 C21.0338749,22.0768065 21.1187393,21.9472277 21.25,21.89 L27.48,19 C27.5726395,18.9605389 27.6773605,18.9605389 27.77,19 L34.05,21.94 C34.1743249,22.003041 34.252668,22.1306054 34.252668,22.27 C34.252668,22.4093946 34.1743249,22.536959 34.05,22.6 L34.05,22.55 Z" id="Shape" fill="#06144D" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

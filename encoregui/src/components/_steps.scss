@@ -1,0 +1,163 @@
+.steps {
+    display: flex;
+    flex: 1;
+    align-items: top;
+    justify-content: space-around;
+    max-width: $steps-max-width;
+    margin: $steps-margin;
+    padding: $steps-padding;
+    text-align: center;
+    .step {
+        position: relative;
+        display: inline-flex;
+        flex: 1;
+        &__icon {
+            width: $step-icon-width;
+            min-width: $step-icon-min-width;
+            max-width: $step-icon-max-width;
+            height: $step-icon-height;
+            line-height: $step-icon-line-height;
+            font-size: $step-icon-font-size;
+            background: $step-icon-bg;
+            color: $step-icon-color;
+            border: $base-border-width solid $step-icon-border-color;
+            margin: $step-icon-margin;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            z-index: 1;
+            .icon-checkmark {
+                color: $color-good;
+            }
+        }
+        &__content {
+            width: $step-content-width;
+            text-align: left;
+            margin: $step-content-margin;
+        }
+        &__label {
+            color: $base-color;
+            font-size: $step-label-font-size;
+        }
+        &__title {
+            background: $base-bg;
+            padding: $step-title-padding;
+        }
+        &__hint {
+            color: $step-hint-color;
+            font-size: $step-hint-font-size;
+            line-height: $step-hint-line-height;
+        }
+
+        &.active {
+            .step__icon {
+                background: $base-color--selected;
+                color: $base-inverse-color;
+                border: $base-border-width solid $base-color--selected;
+            }
+        }
+
+        &.visited {
+            .step__icon {
+                background: $step-icon-bg-visited;
+                color: $step-icon-color-visited;
+                border: $base-border-width solid $color-good;
+            }
+        }
+        &.visited {
+            &:before {
+                background: $color-good;
+            }
+        }
+        &:last-child {
+            &:before {
+                display: none;
+            }
+        }
+        &:before {
+            top: $step-line-top;
+            display: block;
+            position: absolute;
+            content: '';
+            width: $step-line-width;
+            height: $step-line-heigth;
+            left: $step-line-left;
+            background: $step-line-color;
+            z-index: -1;
+        }
+    }
+    &--orientation-vertical {
+        display: flex;
+        flex: 1 1 auto; //IE 11 fix
+        flex-direction: column;
+        max-width: $steps-max-width-vertical;
+        text-align: left;
+        .step {
+            display: flex;
+            flex: 1 1 auto; //IE 11 fix
+            .step__icon {
+                flex: 1;
+            }
+            &__content {
+                flex: 2;
+                align-self: center;
+            }
+            &:before {
+                display: none;
+            }
+            &.visited {
+                &:after {
+                    background: $color-good;
+                }
+            }
+            &:last-child {
+                &:after {
+                    display: none;
+                }
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: $step-line-vertical-width;
+                height: $step-line-vertical-heigth;
+                left: $step-line-vertical-left;
+                top: $step-line-vertical-top;
+                background-color: $step-line-color;
+            }
+        }
+    }
+
+    &--type-expanded {
+        margin: 0;
+        width: 100%;
+        min-width: $steps-min-width;
+        max-width: $steps-max-width;
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        text-align: left;
+        padding: 0;
+        box-shadow: $default-box-shadow;
+
+        .step {
+            border: $base-border-width solid $control-stroke-color;
+            &:before {
+                display: none;
+            }
+
+            &.visited {
+                &:after {
+                    display: none;
+                }
+            }
+
+            &:last-child {
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}

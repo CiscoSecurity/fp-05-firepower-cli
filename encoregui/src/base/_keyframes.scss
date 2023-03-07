@@ -1,0 +1,425 @@
+// -----------------------------------------------------------------------------
+// Animations
+// -----------------------------------------------------------------------------
+@keyframes blink {
+    from,
+    to {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%,
+    20%,
+    40%,
+    60%,
+    80%,
+    100% {
+        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    0% {
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+        transform: scale3d(0.9, 0.9, 0.9);
+    }
+    60% {
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+        transform: scale3d(0.97, 0.97, 0.97);
+    }
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale3d(0.9, 0.9, 0.9);
+    }
+    33% {
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+    66% {
+        transform: scale3d(0.95, 0.95, 0.95);
+    }
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    80%,
+    100% {
+        transform: scale3d(0, 0, 0);
+    }
+    40% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Loading Indicators
+// -----------------------------------------------------------------------------
+// Page Level Loading Indicator
+@keyframes dot-animation {
+    0%,
+    100%,
+    80% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+@keyframes page-loader-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Cisco logo loading indicator
+@keyframes animate1 {
+    0%,
+    5% {
+        height: 33%;
+        top: 48%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+    5%,
+    30% {
+        height: 50%;
+        top: 30%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.5;
+    }
+    30%,
+    35% {
+        height: 33%;
+        top: 48%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+}
+
+@keyframes animate2 {
+    3%,
+    8% {
+        height: 56%;
+        top: 25%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+    8%,
+    35% {
+        height: 70%;
+        top: 15%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.5;
+    }
+    35%,
+    40% {
+        height: 56%;
+        top: 25%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+}
+
+@keyframes animate3 {
+    6%,
+    11% {
+        height: 100%;
+        top: -4%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+    11%,
+    40% {
+        height: 120%;
+        top: -15%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.5;
+    }
+    40%,
+    45% {
+        height: 100%;
+        top: -4%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+}
+
+@keyframes animate4 {
+    9%,
+    14% {
+        height: 56%;
+        top: 25%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+    14%,
+    45% {
+        height: 70%;
+        top: 15%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.5;
+    }
+    45%,
+    50% {
+        height: 56%;
+        top: 25%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+}
+
+@keyframes animate5 {
+    12%,
+    17% {
+        height: 33%;
+        top: 48%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+    17%,
+    50% {
+        height: 50%;
+        top: 30%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.5;
+    }
+    50%,
+    55% {
+        height: 33%;
+        top: 48%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+}
+
+@keyframes animate6 {
+    15%,
+    20% {
+        height: 56%;
+        top: 25%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+    20%,
+    55% {
+        height: 70%;
+        top: 15%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.5;
+    }
+    55%,
+    60% {
+        height: 56%;
+        top: 25%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+}
+
+@keyframes animate7 {
+    18%,
+    23% {
+        height: 100%;
+        top: -4%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+    23%,
+    60% {
+        height: 120%;
+        top: -15%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.5;
+    }
+    60%,
+    65% {
+        height: 100%;
+        top: -4%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+}
+
+@keyframes animate8 {
+    21%,
+    26% {
+        height: 56%;
+        top: 25%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+    26%,
+    65% {
+        height: 70%;
+        top: 15%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.5;
+    }
+    65%,
+    70% {
+        height: 56%;
+        top: 25%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+}
+
+@keyframes animate9 {
+    24%,
+    29% {
+        height: 33%;
+        top: 48%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+    29%,
+    70% {
+        height: 50%;
+        top: 30%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.5;
+    }
+    70%,
+    85% {
+        height: 33%;
+        top: 48%;
+        background-color: $cisco-loader-bar-bg;
+        opacity: 0.1;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Motion Transitions
+// -----------------------------------------------------------------------------
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Animated Progress Bar
+// -----------------------------------------------------------------------------
+
+// Disable animation if transitions are disabled
+@if $enable-transitions {
+    @keyframes progressbar-stripes {
+        from {
+            background-position: $progressbar-bg-height 0;
+        }
+        to {
+            background-position: 0 0;
+        }
+    }
+}
+
+@keyframes slideInBottom {
+    from {
+        opacity: 0;
+        transform: translate(0, -50px);
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideModalInLeft {
+    from {
+        opacity: 0;
+        transform: translate(-$modal-width, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideModalInRight {
+    from {
+        opacity: 0;
+        transform: translate($modal-width, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Animated Tooltips
+// -----------------------------------------------------------------------------
+@keyframes slideToTop {
+    from {
+        opacity: 0;
+        bottom: 80%;
+    }
+    100% {
+        opacity: 1;
+        bottom: 110%;
+    }
+}
+
+@keyframes slideToRight {
+    from {
+        opacity: 0;
+        left: 80%;
+    }
+    100% {
+        opacity: 1;
+        left: 110%;
+    }
+}
+
+@keyframes slideToBottom {
+    from {
+        opacity: 0;
+        top: 80%;
+    }
+    100% {
+        opacity: 1;
+        top: 110%;
+    }
+}
+
+@keyframes slideToLeft {
+    from {
+        opacity: 0;
+        right: 80%;
+    }
+    100% {
+        opacity: 1;
+        right: 110%;
+    }
+}

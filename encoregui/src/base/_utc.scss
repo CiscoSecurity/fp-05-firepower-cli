@@ -1,0 +1,12 @@
+.utc {
+    color: $utc-color;
+    font-size: $utc-font-size;
+    &--size-alt {
+        font-size: $utc--size-alt-font-size;
+    }
+    &--style-dashed {
+        line-height: $utc-line-height;
+        display: inline;
+        border-bottom: 1px dashed $utc-color;
+    }
+}

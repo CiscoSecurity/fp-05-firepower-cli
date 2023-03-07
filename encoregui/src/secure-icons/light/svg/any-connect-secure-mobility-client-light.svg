@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>AnyConnect Secure Mobility Client Light</title>
+    <defs>
+        <circle id="path-1" cx="30.4057356" cy="30.6058584" r="29.75"></circle>
+    </defs>
+    <g id="Iconography-(Product-Icons)-2.2.0?" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Product-Icons-UPDATED" transform="translate(-720.000000, -151.000000)">
+            <g id="AnyConnect-Secure-Mobility-Client-Light" transform="translate(721.000000, 152.000000)">
+                <g id="Path-+-Path-Mask" transform="translate(0.524264, 0.504142)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Mask"></g>
+                    <path d="M41.6157356,20.0258584 C58.7357356,35.2858584 40.1657356,72.0258584 1.61573561,109.025858 C-33.5842644,142.825858 -61.6742644,163.755858 -77.5242644,148.955858 C-93.3742644,134.155858 -90.9942644,120.125858 -57.6842644,84.4558584 C-24.3742644,48.7858584 16.3357356,-2.52414156 41.6157356,20.0258584 Z" id="Path" stroke="#06144D" stroke-width="3" mask="url(#mask-2)"></path>
+                    <path d="M141.635736,-16.0541416 C146.885736,-1.16414156 123.725736,16.7058584 92.9057356,29.4758584 C62.0857356,42.2458584 32.9057356,40.6858584 27.6957356,24.0658584 C19.7957356,-1.16414156 64.4657356,-14.9341416 99.0657356,-25.7741416 C130.915736,-35.7041416 136.395736,-30.9441416 141.635736,-16.0541416 Z" id="Path" stroke="#6DBE4F" stroke-width="3" mask="url(#mask-2)"></path>
+                </g>
+                <circle id="Oval" stroke="#06144D" stroke-width="3" cx="30.93" cy="31.11" r="29.75"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

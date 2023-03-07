@@ -1,0 +1,311 @@
+// -----------------------------------------------------------------------------
+// Base Colors
+// -----------------------------------------------------------------------------
+$base-color: $color-neutral--16; // #23282e;
+$base-inverse-color: $color-neutral--2; // #f7f7f7; 
+$base-bg: $color-neutral--1; // #ffffff; 
+$base-pg-bg: $color-neutral--2; // #f7f7f7; 
+$base-stroke-color: $color-neutral--9; // #889099;
+$base-icon-color: $color-neutral--9; // #889099;
+$base-color--disabled: $color-neutral--6; // #c1c6cc;
+$base-color--hover: $color-blue--9; // #235ec4;
+$base-color--active: $color-blue--9; // #235ec4;
+$base-color--selected: $color-blue--7; // #4580e5;
+// -----------------------------------------------------------------------------
+// General Colors
+// -----------------------------------------------------------------------------
+$control-text-color: $color-neutral--12; // #656c75; 
+$control-fill-color: $color-neutral--1; // #ffffff; 
+$control-stroke-color:  $color-neutral--4; // #e1e4e8;
+$control-stroke-color--hover: $color-neutral--12; // #656c75; 
+$control-stroke-color--disabled: $color-neutral--6; // #c1c6cc;
+$control-fill-color--disabled: $color-neutral--4; // #e1e4e8;
+
+// -----------------------------------------------------------------------------
+// Alert colors
+// -----------------------------------------------------------------------------
+$color-information-alt: $accent-f3; // #b73000;
+$color-warning: $yellow-5; // #D9B216;
+$color-error: $negative-45; // #cc2d37;
+$color-critical: $red-7; // #e05843;
+$warning-box-shadow: 0px 0px 2px 0.4px $warning-60; // #CC8604;
+$danger-box-shadow: 0px 0px 2px 0.4px $negative-45; // #cc2d37;
+// -----------------------------------------------------------------------------
+// Alert Hover colors
+// -----------------------------------------------------------------------------
+$color-warning--state-hover: $warning-60; // #CC8604;
+$color-error--state-hover: $negative-45; // #cc2d37;
+
+// -----------------------------------------------------------------------------
+// ATOMS
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Badges
+// -----------------------------------------------------------------------------
+$badge-border-focus: 1px solid $color-blue--9; // #235ec4
+$badge-box-shadow: 0px 0px 2px $color-blue--4; // #a6c4f5;
+$badge-warning-color: $color-neutral--16; // #23282e;
+$badge-warning-box-shadow: 0px 0px 2px $color-blue--4; // #a6c4f5;
+$badge-danger-box-shadow: 0px 0px 2px $color-blue--4; // #a6c4f5;
+// -----------------------------------------------------------------------------
+// Breadcrumb
+// -----------------------------------------------------------------------------
+$breadcrumb-color: $color-neutral--12; // #656c75
+$breadcrumb-color--hover: $color-blue--8; // #326cd1;
+$breadcrumb-color--active: $color-blue--8; // #326cd1;
+// -----------------------------------------------------------------------------
+// Buttons
+// -----------------------------------------------------------------------------
+// Primary Button
+$btn-box-shadow: 0px 0px 2px 1px $color-blue--4; // #a6c4f5;
+$btn-primary-bg: $color-blue--8;
+$btn-primary-border: $color-blue--8;
+$btn-primary-bg--hover: $color-blue--9;
+$btn-primary-border--hover: $color-blue--9;
+$btn-primary-bg--active: $color-blue--9;
+$btn-primary-border--active: $color-blue--9;
+$btn-primary-bg--focus: $color-blue--8;
+$btn-primary-border--focus: $color-blue--8;
+$btn-primary-bg--disabled: $color-blue--4;
+$btn-primary-border--disabled: $color-blue--4;
+
+// Secondary Button
+$btn-secondary-color: $color-blue--8;
+$btn-secondary-border: $color-blue--8;
+$btn-secondary-color--hover: $color-blue--9;
+$btn-secondary-border--hover: $color-blue--8;
+$btn-secondary-bg--hover: $color-blue--2;
+$btn-secondary-color--active: $color-blue--9;
+$btn-secondary-bg--active: $color-blue--2;
+$btn-secondary-border--active: $color-blue--8;
+$btn-secondary-color--focus: $color-blue--9;
+$btn-secondary-border--focus: $color-blue--8;
+$btn-secondary-bg--focus: $color-blue--2;
+$btn-secondary-color--disabled: $color-blue--4;
+$btn-secondary-border--disabled: $color-blue--4;
+
+// Tertiary Button
+$btn-tertiary-color: $color-blue--8;
+$btn-tertiary-color--hover: $color-blue--9;
+$btn-tertiary-bg--hover: $color-blue--2;
+$btn-tertiary-color--active: $color-blue--9;
+$btn-tertiary-bg--active: $color-blue--2;
+$btn-tertiary-color--focus: $color-blue--8;
+$btn-tertiary-color--focus: $color-blue--9;
+$btn-tertiary-border--focus: $color-blue--8;
+$btn-tertiary-bg--focus: $color-blue--2;
+$btn-tertiary-color--disabled: $color-blue--4;
+
+// Alternative Tertiary Button
+$btn-tertiary-alt-color: $base-color; // #23282e;
+$btn-tertiary-color--hover: $color-blue--9; // #235ec4;
+$btn-tertiary-bg--hover: $color-blue--2;
+$btn-tertiary-opacity--disabled: 1;
+$btn-tertiary-alt-color--disabled: $color-neutral--6; // #c1c6cc;
+
+// Tertiary Tertiary Icon Button
+$btn-tertiary-icon-bg: $color-blue--2;
+$btn-tertiary-icon-color: $color-neutral--14; // #464c54;
+$btn-tertiary-icon-color--hover: #336ed4;
+$btn-tertiary-alt-color--active: $color-blue--9; // #235ec4;
+$btn-tertiary-icon-color--active: $color-blue--9; // #235ec4;
+$btn-tertiary-icon-color--focus: $color-blue--9; // #235ec4;
+$btn-tertiary-icon-bg--disabled: $color-blue--1; // #edf4ff;
+$btn-tertiary-icon-color--disabled: $color-neutral--5; // #d0d4d9;
+$btn-tertiary-alt-opacity--disabled: 1;
+// -----------------------------------------------------------------------------
+// Button Card
+// -----------------------------------------------------------------------------
+$btn-card-body-color: $color-neutral--12; // #656c75;
+$btn-card-body-color--selected: $color-neutral--12; // #656c75;
+$btn-card-box-shadow--selected: 0 0 2px 2px rgba(4, 159, 217, 0.4),
+    inset 0 -5px 0 0 $base-color--selected;
+$btn-card-box-shadow--focus: 0px 0px 2px 1px $color-blue--4; // #a6c4f5;
+$btn-card-border-color--disabled: $color-neutral--5; // #d0d4d9;
+$btn-card-title-color--disabled: $color-neutral--6; // #c1c6cc;
+$btn-card-body-color--disabled: $color-neutral--6; // #c1c6cc;
+$btn-card-bg--disabled: $color-neutral--2; // #f7f7f7;
+// -----------------------------------------------------------------------------
+// Checkboxes
+// -----------------------------------------------------------------------------
+$checkbox-bg-color: $color-neutral--1; // #ffffff;
+$checkbox-box-border-color--hover: $color-blue--9;
+$checkbox-box-bg-color--hover: $color-blue--9;
+$checkbox-box-border-color--checked: $color-blue--7;
+$checkbox-box-bg-color--checked: $color-blue--7;
+$checkbox-box-color--selected: transparent;
+$checkbox-box-color--active: transparent;
+$checkbox-box-color--focus: $color-blue--7;
+$checkbox-box-shadow--focus: 0px 0px 2px 1px $color-blue--4;
+$checkbox-box-color--disabled: $color-neutral--2; // #f7f7f7;
+$checkbox-box-border-color--disabled: $color-neutral--5; // #d0d4d9;
+$checkbox-checkmark-color--disabled: $color-neutral--5; // #d0d4d9;
+$checkbox-label-color--disabled: $color-neutral--6;
+$checkbox-checkmark-indeterminate-color: $color-neutral--1; // #ffffff;
+// -----------------------------------------------------------------------------
+// Contextual Menu
+// -----------------------------------------------------------------------------
+$context-menu-li-color-disabled: $color-neutral--6; // #c1c6cc;
+$context-menu-color--hover: $base-color;
+$context-menu-bg-color--hover: $color-blue--2; // #d9e7ff;
+$context-menu-bg-color--selected: $color-blue--1; // #edf4ff;
+$context-menu-color--selected: $base-color;
+$context-menu-bg-color--focus: $color-blue--1; // #edf4ff;
+$context-menu-color--focus: $base-color;
+// -----------------------------------------------------------------------------
+// Hint Text
+// -----------------------------------------------------------------------------
+$help-block-color: $color-neutral--16; // #23282e;
+$help-block-color-warning: $color-neutral--16; // #23282e;
+$help-block-color-error: $color-neutral--16; // #23282e;
+// -----------------------------------------------------------------------------
+// Divider
+// -----------------------------------------------------------------------------
+$divider--color-default: $color-neutral--4; // #e1e4e8;
+$divider--color-light: $color-neutral--4; // #e1e4e8;
+$divider--color-lighter: $color-neutral--4; // #e1e4e8;
+// -----------------------------------------------------------------------------
+// Form Label
+// -----------------------------------------------------------------------------
+$label-color: $color-neutral--16; // #23282e;
+// -----------------------------------------------------------------------------
+// Link
+// -----------------------------------------------------------------------------
+$link-color: $color-blue--8; // #326cd1;
+$link-color--hover: $color-blue--9; // #235ec4;
+$link-color--active: $color-blue--9; // #235ec4;
+$link-color--focus: $color-blue--9; // #235ec4;
+$link-color--visited: $color-blue--8; // #326cd1;
+$link-color--disabled: $color-neutral--6; // #c1c6cc;
+$link-table-color: $color-neutral--16; // #23282e;
+$link-icon-color: $color-neutral--16; // #23282e;
+$link-icon--icon-color: $color-neutral--9; // #889099;
+$link-icon--icon-color--disabled: $color-neutral--5; // #d0d4d9;
+// -----------------------------------------------------------------------------
+// Loading Indicator - Default
+// -----------------------------------------------------------------------------
+$loader-dot-background-color: $color-blue--8; // #326cd1;
+// -----------------------------------------------------------------------------
+// Loading Indicator - Cisco Logo
+// -----------------------------------------------------------------------------
+$cisco-loader-bar-bg: $color-blue--8; // #326cd1;
+// -----------------------------------------------------------------------------
+// Loading Indicator - Page Level
+// -----------------------------------------------------------------------------
+$page-loader-background-color: $color-blue--8; // #326cd1;
+$cisco-loader-bar-bg: $color-blue--8; // #326cd1;
+// -----------------------------------------------------------------------------
+// Panels
+// -----------------------------------------------------------------------------
+$panel-bg-gray: $color-neutral--2;
+// -----------------------------------------------------------------------------
+// Progress Bar
+// -----------------------------------------------------------------------------
+$progressbar-bg-color: $color-blue--8;
+$progressbar-disabled-bg-color: $color-blue--4;
+$progressbar-bg-image: linear-gradient(
+    60deg,
+    rgba(166, 196, 245, 0) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(166, 196, 245, 1) 50%,
+    rgba(166, 196, 245, 1) 75%,
+    transparent 75%,
+    transparent
+);
+// -----------------------------------------------------------------------------
+// Radio Button
+// -----------------------------------------------------------------------------
+$radio-border--enabled: transparent;
+$radio-box-border--enabled--hover: $color-blue--5; // #7aa7f5;
+$radio-border--enabled--active: transparent;
+$radio-fill--enabled: transparent;
+$radio-border--active--hover: transparent;
+$radio-fill--active--hover: transparent;
+$radio-border--checked: $color-blue--7;
+$radio-box-border--enabled--checked: $color-blue--7;
+$radio-fill--checked--hover: $color-blue--9;
+$radio-box-border--enabled--checked--hover: $color-blue--9;
+$radio-border-color--disabled: $color-neutral--5;
+$radio-bg-color--checked--disabled: $color-neutral--5;
+$radio-border-color--checked--disabled: $color-neutral--5;
+$radio-bg-inner-color--disabled: transparent;
+$radio-border-inner-color--disabled: transparent;
+$radio-border-color--focus: $color-blue--7;
+$radio-box-shadow--focus: 0px 0px 2px 1px $color-blue--4; // #a6c4f5;
+$radio__label-color--disabled: $color-neutral--6;
+// -----------------------------------------------------------------------------
+// Scrollbar
+// -----------------------------------------------------------------------------
+$scrollbar-track-bg: $color-neutral--2;
+$scrollbar-track-border-color: $color-neutral--4;
+$scrollbar-thumb-bg: $color-neutral--5;
+
+// -----------------------------------------------------------------------------
+// Slider
+// -----------------------------------------------------------------------------
+$slider-selection-bg: $color-blue--7; // #4580e5;
+$slider-handle-border-color: $color-neutral--12; // #656c75;
+$slider-track-color: $color-neutral--4; // #e1e4e8;
+$slider-handle-inset-border-color-hover: $color-blue--7; // #4580e5;
+$slider-box-shadow--focus: 0px 0px 4px $color-blue--7; // #4580e5;
+$slider-handle-border-color-active: $color-neutral--12; // #656c75;
+$slider-handle-inset-border-color-active: $color-blue--7; // #4580e5;
+$slider-selection-bg-disabled: $color-neutral--5; // #d0d4d9;
+$slider-handle-border-disabled: $color-neutral--5; // #d0d4d9;
+$slider-opacity-disabled: 1;
+// -----------------------------------------------------------------------------
+// Switch
+// -----------------------------------------------------------------------------
+$switch-bg: $color-neutral--12;
+$switch__circle-border-color: $color-neutral--12;
+$switch__circle--inner-box-shadow-hover: $color-blue--5;
+$switch__circle-border-color--hover: $color-blue--9;
+$switch-bg-color--off--hover: $color-neutral--16;
+$switch__circle--inner-border-active: $color-blue--9;
+$switch__circle--inner-border-active-hover: $color-blue--9;
+$switch-bg--checked: $color-blue--7;
+$switch__circle-border-color--checked: $color-blue--7;
+$switch-bg-color--hover: $color-blue--9;
+$switch__circle-border-color--checked--hover: $color-blue--9;
+$switch__circle--inner-box-shadow-checked-hover: $color-blue--5;
+$switch__circle--inner-border-checked-active: $color-blue--9;
+$switch__circle--inner-border-checked-active-hover: $color-blue--9;
+$switch-bg--disabled: $color-neutral--5;
+$switch__circle-border-color--disabled: $color-neutral--5;
+$switch-bg--disabled--checked: $color-blue--3;
+$switch__label-color--disabled: $color-neutral--6;
+$switch__circle-border-color--disabled--checked: $color-blue--3;
+$switch-opacity-disabled: $alpha-3;
+$switch-box-shadow--checked--hover: inset 0 0 0 5px $color-neutral--1,
+    inset 0 0 0 6px $color-blue--5;
+$switch-box-shadow--hover: inset 0 0 0 5px $color-neutral--1,
+    inset 0 0 0 6px $color-blue--5;
+$switch-box-shadow--active: inset 0 0 0 5px $color-neutral--1,
+    inset 0 0 0 6px $color-blue--5;
+$switch-box-shadow--checked--active: inset 0 0 0 5px $color-neutral--1,
+    inset 0 0 0 6px $color-blue--5;
+$switch-bg--checked--active: $color-blue--9;
+$switch-bg-color--active: $color-neutral--16;
+$switch-box-shadow: 0px 0px 2px #99bcf7;
+$switch-opacity-disabled: 1;
+// -----------------------------------------------------------------------------
+// Text Input, Text Area
+// -----------------------------------------------------------------------------
+$input-border-color--focus: $color-blue--7; // #4580e5;
+$input-box-shadow: 0px 0px 2px 0.4px $color-blue--4; // a6c4f5;
+$input-color--disabled: $color-neutral--6; // #c1c6cc;
+$input-border-color--disabled: $color-neutral--5; // #d0d4d9;
+$input-bg--disabled: $color-neutral--1; // $color-neutral--1fff;
+$input-border-color--readonly: $color-neutral--5; // #d0d4d9;
+$input-bg--readonly: $color-neutral--1; // #ffffff;
+$input-color--readonly: $color-neutral--9; // #889099;
+// -----------------------------------------------------------------------------
+// Tooltip
+// -----------------------------------------------------------------------------
+$tooltip-bg: $color-neutral--15; // #373c42;
+// -----------------------------------------------------------------------------
+// Universal Time Code (UTC)
+// -----------------------------------------------------------------------------
+$utc-color: $color-neutral--16; // #23282e;

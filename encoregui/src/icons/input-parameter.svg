@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="16px" viewBox="0 0 11 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-input-parameter</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Content" transform="translate(-293.000000, -1518.000000)" fill="#58585B">
+            <g id="Input-Parameter" transform="translate(0.000000, 1493.000000)">
+                <g id="icn_input_parameter" transform="translate(293.000000, 25.000000)">
+                    <path d="M8.9166,12.8828 L6.3786,14.0308 L6.3786,13.4508 L8.3426,12.6108 L8.3426,12.5808 L6.3786,11.7408 L6.3786,11.1608 L8.9166,12.3088 L8.9166,12.8828 Z M4.2886,11.7408 L2.3236,12.5808 L2.3236,12.6108 L4.2886,13.4508 L4.2886,14.0308 L1.7496,12.8828 L1.7496,12.3088 L4.2886,11.1608 L4.2886,11.7408 Z M7.3336,-0.0002 L0.6666,-0.0002 C0.2996,-0.0002 -0.0004,0.2998 -0.0004,0.6668 L-0.0004,15.3338 C-0.0004,15.6998 0.2996,15.9998 0.6666,15.9998 L9.9996,15.9998 C10.3666,15.9998 10.6666,15.6998 10.6666,15.3338 L10.6666,3.3338 L7.3336,-0.0002 Z" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

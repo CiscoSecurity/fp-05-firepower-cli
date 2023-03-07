@@ -1,0 +1,10 @@
+.label {
+    display: block;
+    margin: $label-margin;
+    font-size: $base-font-size;
+    color: $label-color;
+    &--state-optional {
+        display: inline-block;
+        font-style: oblique;
+    }
+}

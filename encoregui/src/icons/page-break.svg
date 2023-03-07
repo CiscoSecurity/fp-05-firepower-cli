@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="14px" viewBox="0 0 11 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-page-break</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Content" transform="translate(-294.000000, -2129.000000)" fill="#58585B">
+            <g id="Page-Break" transform="translate(0.000000, 2101.000000)">
+                <g id="icn_page_break" transform="translate(294.000000, 28.000000)">
+                    <path d="M0,5.8394 C0,6.2064 0.3,6.5064 0.667,6.5064 L10,6.5064 C10.367,6.5064 10.667,6.2064 10.667,5.8394 L10.667,0.0004 L0,0.0004 L0,5.8394 Z" id="Fill-4"></path>
+                    <path d="M10.6665,10.7974 L7.3335,7.4644 L0.6665,7.4644 C0.2995,7.4644 -0.0005,7.7644 -0.0005,8.1304 L-0.0005,13.9584 L10.6665,13.9584 L10.6665,10.7974 Z" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

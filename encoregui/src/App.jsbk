@@ -1,0 +1,46 @@
+import './App.css';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
+import FlavorForm from './FlavorForm.js'
+import Form from './Form.js'
+import Header from './Header.js'
+import FormHeader from './FormHeader.js'
+import SideBar from './SideBar.js'
+import './cisco-atomic-ui.scss';
+
+function App() {
+  
+//  const [people, setPeople] = useState([]);
+
+//  useEffect(()=> {
+//      axios.get('/api').then(res => setPeople(res.data));
+//  }, []);
+
+  return (
+    <body class="atomic-ui-root">
+    <div class="demo-page">
+      <div>
+        <Header />
+      </div>
+      <div>
+        <div>
+          <SideBar />
+        </div>
+        <div class="col-md-12 content-container">
+          <div class="row">
+            <div class="col-md-12">
+              <FormHeader />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <Form />
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  );
+}
+
+export default App;

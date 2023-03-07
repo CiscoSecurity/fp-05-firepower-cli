@@ -1,0 +1,70 @@
+.side-panel {
+    display: none;
+    position: fixed;
+    top: $side-panel-top;
+    right: $side-panel-right;
+    bottom: $side-panel-bottom;
+    left: $side-panel-left;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: $side-panel-z-index;
+    pointer-events: none;
+    &__dialog {
+        width: $side-panel-width;
+        margin: auto;
+        padding: $side-panel-dialog-padding;
+        height: 100%;
+        float: right;
+    }
+    &__content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: $side-panel-content-width;
+        pointer-events: auto;
+        background-color: $control-fill-color;
+        background-clip: padding-box;
+        border: $base-border-width solid $base-stroke-color;
+        outline: 0;
+        height: 100%;
+    }
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: $side-panel-header-padding;
+        box-shadow: $default-box-shadow;
+        background-color: $side-panel-header-bg;
+    }
+    &__title {
+        @extend h3;
+        margin: $side-panel-title-margin;
+    }
+    &__close {
+        padding: $side-panel-close-padding;
+        margin: $side-panel-close-margin;
+        line-height: $font-size;
+        cursor: pointer;
+        &:hover {
+            & span {
+                color: $base-color--hover;
+            }
+            text-decoration: none;
+        }
+    }
+    &__body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: $side-panel-body-padding;
+    }
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: $side-panel-footer-padding;
+        background-color: $side-panel-footer-bg;
+        .btn {
+            margin: $side-panel-button-padding;
+        }
+    }
+}

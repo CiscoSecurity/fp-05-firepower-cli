@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="13px" viewBox="0 0 16 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>insert-horizontal-rule</title>
+    <g id="ICONS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons_2.2" transform="translate(-23.000000, -740.000000)" fill="#58585B">
+            <g id="insert-horizontal-rule" transform="translate(23.000000, 740.000000)">
+                <rect id="Rectangle-Copy-5" x="2.4" y="0" width="11.2" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-Copy-10" x="2.4" y="2" width="7.2" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-Copy-10" x="2.4" y="6" width="7.2" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-Copy-11" x="2.4" y="4" width="11.2" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-Copy-14" x="2.4" y="8" width="11.2" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-Copy-13" x="0" y="9.875" width="16" height="3" rx="0.75"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

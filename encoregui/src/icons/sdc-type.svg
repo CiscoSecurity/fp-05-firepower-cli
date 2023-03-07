@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-sdc-type</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Abstract" transform="translate(-301.000000, -1767.000000)" fill="#58585B">
+            <g id="SDC-Type" transform="translate(0.000000, 1739.000000)">
+                <g id="icn_sdc_type" transform="translate(301.000000, 28.000000)">
+                    <path d="M14.357,0.0257 L0.181,6.3007 C-0.089,6.4207 -0.047,6.8157 0.241,6.8767 L6.567,8.2037 L7.959,14.5447 C8.021,14.8257 8.406,14.8637 8.522,14.6007 L14.747,0.4147 C14.855,0.1687 14.604,-0.0823 14.357,0.0257" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

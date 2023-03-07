@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-reconnect</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Physical" transform="translate(-294.000000, -507.000000)" fill="#58585B">
+            <g id="Reconnect" transform="translate(0.000000, 479.000000)">
+                <g id="icn_reconnect" transform="translate(294.000000, 28.000000)">
+                    <path d="M12.1411,2.7656 C11.9461,2.5706 11.6291,2.5706 11.4341,2.7656 L9.3131,4.8876 L7.4001,2.9746 L9.5221,0.8536 C9.7171,0.6586 9.7171,0.3416 9.5221,0.1466 C9.3271,-0.0484 9.0101,-0.0484 8.8151,0.1466 L6.6931,2.2676 L4.8491,0.4236 L3.1151,2.1596 C1.2931,3.9806 1.2201,6.8626 2.8511,8.7956 L0.1461,11.4996 C-0.0489,11.6956 -0.0489,12.0116 0.1461,12.2066 C0.2441,12.3046 0.3721,12.3536 0.5001,12.3536 C0.6281,12.3536 0.7561,12.3046 0.8531,12.2066 L3.5711,9.4906 C5.5021,11.0066 8.2931,10.8976 10.0731,9.1186 L11.8081,7.3826 L10.0201,5.5946 L12.1411,3.4726 C12.3361,3.2776 12.3361,2.9606 12.1411,2.7656" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

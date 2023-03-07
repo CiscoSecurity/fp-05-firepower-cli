@@ -1,0 +1,69 @@
+a {
+    text-decoration: none;
+    &:hover,
+    &:focus,
+    &:active,
+    &:visited {
+        text-decoration: none;
+    }
+}
+.link {
+    color: $link-color;
+    font-size: $base-font-size;
+    text-decoration: none;
+    line-height: $line-height;
+    cursor: pointer;
+    &:hover {
+        color: $link-color--hover;
+        text-decoration: underline;
+    }
+    &:focus {
+        color: $link-color--focus;
+        text-decoration: underline;
+    }
+    &:active {
+        color: $link-color--active;
+        text-decoration: underline;
+    }
+    &--color-alt {
+        color: $link-table-color;
+        font-size: $link-color-alt-font-size;
+        line-height: $link-color-alt-line-height;
+    }
+    &--icon {
+        color: $link-icon-color;
+        .icon {
+            margin: 0 5px 0 0;
+            text-decoration: none;
+            color: $link-icon--icon-color;
+        }
+        &:hover {
+            .icon {
+                color: $link-color--hover;
+            }
+        }
+        &:focus {
+            .icon {
+                color: $link-color--focus;
+            }
+        }
+        &:active {
+            .icon {
+                color: $link-color--active;
+            }
+        }
+    }
+    // to be deprecated
+    &.disabled {
+        color: $link-color--disabled;
+        opacity: $link-opacity--disabled;
+    }
+    &--disabled {
+        color: $link-color--disabled;
+        opacity: $link-opacity--disabled;
+        @include disabled;
+        .icon {
+            color: $link-icon--icon-color--disabled;
+        }
+    }
+}

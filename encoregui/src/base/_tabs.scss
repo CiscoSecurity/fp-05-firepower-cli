@@ -1,0 +1,135 @@
+.tab-group {
+    margin: $tabs-margin;
+    padding: $tabs-padding;
+    list-style: none;
+    background-color: transparent;
+    &__tab {
+        display: inline-block;
+        margin: $tab-margin;
+        padding-top: $tab-padding-top;
+        padding-right: $tab-padding-right;
+        padding-bottom: $tab-padding-bottom;
+        padding-left: $tab-padding-left;
+        min-width: $tab-min-width;
+        border: none;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        color: $base-color;
+        font-size: $tab-font-size;
+        background-color: transparent;
+        cursor: pointer;
+        &:focus {
+            outline: $base-outline;
+            box-shadow: $base-box-shadow;
+        }
+        &:hover {
+            @include tab-bar($tab-bottom-bar-height, $base-color--hover);
+        }
+        &:active {
+            outline: none;
+            @include tab-bar($tab-bottom-bar-height, $base-color--active);
+        }
+        &--selected,
+        &--state-selected {
+            @include tab-bar($tab-bottom-bar-height, $base-color--selected);
+            &:focus {
+                outline: $base-outline;
+                box-shadow: $base-box-shadow,
+                    inset 0 $tab-bottom-bar-height 0 0 $base-color--selected;
+            }
+        }
+        &--state-disabled {
+            @include disabled;
+            .tab-group__link {
+                color: $tab--disabled-text-color;
+            }
+        }
+    }
+    &__link {
+        text-decoration: none;
+        color: $base-color;
+        &:active,
+        &:focus,
+        &:hover {
+            text-decoration: none;
+            color: $base-color;
+        }
+    }
+    &--size-tall {
+        .tab-group__tab {
+            padding: $tab-tall-padding;
+            margin: $tab-tall-margin;
+        }
+    }
+    &--size-oversized {
+        display: flex;
+        .tab-group__tab {
+            text-align: left;
+            height: $tab-oversized-height;
+            margin: $tab-oversized-margin;
+            padding: $tab-oversized-padding;
+            border-top: $base-border-width solid $control-stroke-color;
+            border-bottom: $base-border-width solid $control-stroke-color;
+            border-left: $base-border-width solid $control-stroke-color;
+            background-color: $tab-oversized-background-color;
+            &:last-of-type {
+                border-right: $base-border-width solid $control-stroke-color;
+            }
+            &:focus {
+                box-shadow: $base-box-shadow;
+                outline: $base-outline;
+                z-index: 1;
+                background-color: $tab-oversized--hover-background-color;
+            }
+            &:hover {
+                @include tab-bar($tab-top-bar-height, $base-color--hover);
+                border-top: $base-border-width solid transparent;
+                background-color: $tab-oversized--hover-background-color;
+            }
+            &:active {
+                @include tab-bar($tab-top-bar-height, $base-color--active);
+            }
+            &--selected,
+            &--state-selected {
+                @include tab-bar($tab-top-bar-height, $base-color--selected);
+                border-top: $base-border-width solid transparent;
+                border-bottom: $base-border-width solid transparent;
+                background-color: $tab-oversized--selected-background-color;
+                &:focus {
+                    box-shadow: $base-box-shadow,
+                        inset 0 $tab-top-bar-height 0 0 $base-color--selected;
+                }
+            }
+            &--state-disabled {
+                color: $tab--disabled-text-color;
+                background-color: $tab-oversized--disabled-background-color;
+                border-top-color: $tab-oversized--disabled-border-color;
+                border-bottom-color: $tab-oversized--disabled-border-color;
+                &:first-of-type {
+                    border-left-color: $tab-oversized--disabled-border-color;
+                }
+                &:last-of-type {
+                    border-right-color: $tab-oversized--disabled-border-color;
+                }
+                @include disabled;
+                .tab-group__tab-heading {
+                    color: $tab--disabled-text-color;
+                }
+            }
+        }
+    }
+    &__tab-heading {
+        color: $base-color;
+        text-decoration: none;
+        margin: $tab-heading-margin;
+        font-size: $tab-heading-font-size;
+        display: block;
+        &:active,
+        &:focus,
+        &:hover {
+            text-decoration: none;
+            color: $base-color;
+        }
+    }
+}

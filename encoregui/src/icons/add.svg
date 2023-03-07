@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-add</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SBG-Icon-Library" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Actions" transform="translate(-292.000000, -231.000000)" fill="#58585B">
+            <g id="Add" transform="translate(-1.000000, 210.000000)">
+                <g transform="translate(293.000000, 21.000000)" id="Page-1">
+                    <path d="M8.72727273,7.27272727 L8.72727273,0.727272727 C8.72727273,0.325818182 8.40145455,0 8,0 C7.59854545,0 7.27272727,0.325818182 7.27272727,0.727272727 L7.27272727,7.27272727 L0.727272727,7.27272727 C0.325818182,7.27272727 0,7.59854545 0,8 C0,8.40145455 0.325818182,8.72727273 0.727272727,8.72727273 L7.27272727,8.72727273 L7.27272727,15.2727273 C7.27272727,15.6741818 7.59854545,16 8,16 C8.40145455,16 8.72727273,15.6741818 8.72727273,15.2727273 L8.72727273,8.72727273 L15.2727273,8.72727273 C15.6741818,8.72727273 16,8.40145455 16,8 C16,7.59854545 15.6741818,7.27272727 15.2727273,7.27272727 L8.72727273,7.27272727 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

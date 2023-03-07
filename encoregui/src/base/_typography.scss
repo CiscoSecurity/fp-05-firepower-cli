@@ -1,0 +1,215 @@
+// -----------------------------------------------------------------------------
+// Typography
+// -----------------------------------------------------------------------------
+& {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: $base-font-size;
+    font-family: $font-family;
+    font-weight: $base-font-weight;
+    line-height: $line-height;
+    min-width: $page-width--min;
+    height: 100%;
+    margin: 0;
+    background-color: $base-bg;
+    color: $base-color;
+    text-transform: none;
+    box-sizing: border-box;
+}
+// -----------------------------------------------------------------------------
+// Headings
+// -----------------------------------------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+    line-height: $headings-line-height;
+    margin: $headings-margin 0;
+    color: $headings-color;
+}
+
+h1,
+.h1 {
+    font-size: $h1-font-size;
+}
+
+h2,
+.h2 {
+    font-size: $h2-font-size;
+}
+
+h3,
+.h3 {
+    font-size: $h3-font-size;
+}
+
+h4,
+.h4 {
+    font-size: $h4-font-size;
+}
+
+h5,
+.h5 {
+    font-size: $h5-font-size;
+}
+// -----------------------------------------------------------------------------
+// Display Headings
+// -----------------------------------------------------------------------------
+.display-1 {
+    font-size: $display1-size;
+    font-weight: $display1-weight;
+    line-height: $display-line-height;
+}
+.display-2 {
+    font-size: $display2-size;
+    font-weight: $display2-weight;
+    line-height: $display-line-height;
+}
+// -----------------------------------------------------------------------------
+// Subheadings, Emphasis
+// -----------------------------------------------------------------------------
+small,
+.small {
+    font-size: 80%;
+    font-weight: $font-weight;
+}
+
+mark,
+.mark {
+    padding: $mark-padding;
+    background-color: $mark-bg;
+}
+// -----------------------------------------------------------------------------
+// Abbreviations
+// -----------------------------------------------------------------------------
+
+// 1. Remove the bottom border in Firefox 39-.
+// 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+// 3. Add explicit cursor to indicate changed behavior.
+
+abbr[title] {
+    text-transform: uppercase;
+    text-decoration: underline; // 2
+    text-decoration: underline dotted; // 2
+    cursor: help; // 3
+    border-bottom: 0; // 1
+}
+// -----------------------------------------------------------------------------
+// Blockquote
+// -----------------------------------------------------------------------------
+blockquote {
+    margin: 0;
+    padding: $blockquote-spacing;
+    & cite {
+        display: block;
+        color: $blockquote-cite-color;
+        font-style: italic;
+        &:before {
+            content: '\2014 \00A0';
+        }
+    }
+}
+// -----------------------------------------------------------------------------
+// Code blocks
+// -----------------------------------------------------------------------------
+code,
+kbd,
+pre,
+samp {
+    font-family: $font-family-monospace;
+}
+code,
+pre {
+    font-size: $code-font-size;
+    color: $code-color;
+    background-color: $code-bg;
+    border-radius: $base-border-radius;
+}
+code {
+    word-break: break-word;
+    padding: $code-padding;
+}
+pre {
+    display: block;
+    margin: 0;
+    padding: $pre-padding;
+    border: 0;
+    code {
+        font-size: inherit;
+        color: inherit;
+        word-break: normal;
+    }
+}
+// -----------------------------------------------------------------------------
+// Paragraphs
+// -----------------------------------------------------------------------------
+p {
+    margin: ($spacing * 0.5) 0;
+}
+// -----------------------------------------------------------------------------
+// Form Elements
+// -----------------------------------------------------------------------------
+input,
+select,
+textarea,
+button {
+    font-size: $font-size--sm;
+    font-family: $font-family;
+}
+
+// -----------------------------------------------------------------------------
+// Icons
+// -----------------------------------------------------------------------------
+
+[class*='icon-'],
+[class|='icon'],
+.sidebar__link:after {
+    position: relative;
+    display: inline-block;
+    font-family: 'atomic-font';
+    font-size: inherit;
+    font-style: normal;
+    font-weight: 400;
+    color: $base-icon-color;
+    text-decoration: inherit;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    vertical-align: $vertical-align;
+}
+
+.icon {
+    &--size-large {
+        font-size: $icon-large-font-size;
+    }
+    &--size-medium {
+        font-size: $icon-medium-font-size;
+    }
+    &--size-small {
+        font-size: $icon-small-font-size;
+    }
+}
+
+.icon {
+    &:hover {
+        color: $icon-color-hover;
+    }
+    &--state-selected {
+        color: $icon-color-state-selected;
+    }
+    &--state-disabled {
+        color: $icon-color-state-disabled;
+        pointer-events: none;
+        cursor: no;
+    }
+}

@@ -20274,3 +20274,286 @@
 2022-11-16 08:53:58,216 estreamer.adapters.binary WARNING  __parse(): Offset (424) != recordLength (440) for recordType 125 blockType 0
 2022-11-16 08:53:59,777 estreamer.adapters.binary WARNING  __parse(): Offset (376) != recordLength (392) for recordType 125 blockType 0
 2022-11-16 08:54:06,085 estreamer.adapters.binary WARNING  __parse(): Offset (416) != recordLength (432) for recordType 125 blockType 0
+2023-03-07 09:12:46,707 Diagnostics  INFO     Check certificate
+2023-03-07 09:12:46,707 Diagnostics  INFO     Creating connection
+2023-03-07 09:12:46,707 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:12:46,707 Connection   INFO     Using TLS v1.2
+2023-03-07 09:12:46,806 Diagnostics  INFO     Creating request message
+2023-03-07 09:12:46,806 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-03-07 09:12:46,807 Diagnostics  INFO     Sending request message
+2023-03-07 09:12:46,807 Diagnostics  INFO     Receiving response message
+2023-03-07 09:12:46,816 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-03-07 09:12:46,816 Diagnostics  INFO     Streaming info response
+2023-03-07 09:12:46,816 Diagnostics  INFO     Connection successful
+2023-03-07 09:14:03,640 Controller   INFO     eNcore version: development
+2023-03-07 09:14:03,640 Controller   INFO     Python version: 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+2023-03-07 09:14:03,640 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-03-07 09:14:03,640 Controller   INFO     Starting client (pid=70965).
+2023-03-07 09:14:03,641 Controller   INFO     Sha256: d61c37b244f3e61074463bcbf59503f93bad342f6ef4a4776507e4ed75a0aaa9
+2023-03-07 09:14:03,641 Controller   INFO     Processes: 1
+2023-03-07 09:14:03,641 Controller   INFO     Settings: b'gASV5gUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjBZhd3Mtc2VjdXJpdHktZGF0YS1sYWtllIwJYWNjb3VudElklIoGLN+6ToAAjAZyZWdpb26UjAl1cy1lYXN0LTKUjAdtYXhMb2dzlE0QJ4wGcm90YXRllIh1jAN1cmmUjCRyZWxmaWxlOi8vL2RhdGEvb2NzZi9lbmNvcmUuezB9Lmpzb26UdXVhjAdyZWNvcmRzlH2UKIwLY29ubmVjdGlvbnOUiIwEY29yZZSIjAxleGNsQGNvbW1lbnSUXZQojEhUaGVzZSByZWNvcmRzIHdpbGwgYmUgZXhjbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZSAob3ZlcnJpZGVzICdpbmNsdWRlJymUjDNlLmcuIHRvIGV4Y2x1ZGUgZmxvdyBhbmQgSVBTIGV2ZW50cyB1c2UgWyA3MSwgNDAwIF2UZYwHZXhjbHVkZZRdlEsCYYwLaW5jQGNvbW1lbnSUjDJUaGVzZSByZWNvcmRzIHdpbGwgYmUgaW5jbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZZSMB2luY2x1ZGWUXZSMCWludHJ1c2lvbpSIjAhtZXRhZGF0YZSIjAdwYWNrZXRzlIiMA3JuYZSIjANydWGUiHV1jA5wYWNrZXRFbmNvZGluZ5SMBWFzY2lplIwHbG9nZ2luZ5R9lCiMCGZpbGVwYXRolIwNZXN0cmVhbWVyLmxvZ5SMBmZvcm1hdJSMMyUoYXNjdGltZSlzICUobmFtZSktMTJzICUobGV2ZWxuYW1lKS04cyAlKG1lc3NhZ2Upc5SMC2xldkBjb21tZW50lIxETGV2ZWxzIGluY2x1ZGUgRkFUQUwsIEVSUk9SLCBXQVJOSU5HLCBJTkZPLCBERUJVRywgVkVSQk9TRSBhbmQgVFJBQ0WUjAVsZXZlbJSMBElORk+UjAZzdGRPdXSUiHWMB21vbml0b3KUfZQojAhib29rbWFya5SJjAdoYW5kbGVklIiMBnBlcmlvZJRLeIwKc3Vic2NyaWJlZJSIjAh2ZWxvY2l0eZSJdYwPcmVzcG9uc2VUaW1lb3V0lEsCjAxzdGFyQGNvbW1lbnSUjCgwIGZvciBnZW5lc2lzLCAxIGZvciBub3csIDIgZm9yIGJvb2ttYXJrlIwFc3RhcnSUSwKMDHN1YnNjcmlwdGlvbpR9lChoGX2UKIwIQGNvbW1lbnSUXZQojE5KdXN0IGJlY2F1c2Ugd2Ugc3Vic2NyaWJlIGRvZXNuJ3QgbWVhbiB0aGUgc2VydmVyIGlzIHNlbmRpbmcuIE5vciBkb2VzIGl0IG1lYW6UjDh3ZSBhcmUgd3JpdGluZyB0aGUgcmVjb3JkcyBlaXRoZXIuIFNlZSBoYW5kbGVyLnJlY29yZHNbXZRljBFhcmNoaXZlVGltZXN0YW1wc5SIjA5ldmVudEV4dHJhRGF0YZSIjAhleHRlbmRlZJSIjBFpbXBhY3RFdmVudEFsZXJ0c5SIaCeIaCiIjApwYWNrZXREYXRhlIh1jAdzZXJ2ZXJzlF2UfZQojARob3N0lIwacGFydG5lci1mbWMuY3N0YS5jaXNjby5jb22UjA5wa2NzMTJGaWxlcGF0aJSMDWNsaWVudC5wa2NzMTKUjARwb3J0lE1uIIwLdGxzQGNvbW1lbnSUjBxWYWxpZCB2YWx1ZXMgYXJlIDEuMCBhbmQgMS4ylIwKdGxzVmVyc2lvbpRHP/MzMzMzMzN1YXWMD3dvcmtlclByb2Nlc3Nlc5RLAXUu'
+2023-03-07 09:14:03,641 Diagnostics  INFO     Check certificate
+2023-03-07 09:14:03,641 Diagnostics  INFO     Creating connection
+2023-03-07 09:14:03,641 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:14:03,641 Connection   INFO     Using TLS v1.2
+2023-03-07 09:14:03,683 Diagnostics  INFO     Creating request message
+2023-03-07 09:14:03,684 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-03-07 09:14:03,684 Diagnostics  INFO     Sending request message
+2023-03-07 09:14:03,684 Diagnostics  INFO     Receiving response message
+2023-03-07 09:14:03,697 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-03-07 09:14:03,697 Diagnostics  INFO     Streaming info response
+2023-03-07 09:14:03,697 Diagnostics  INFO     Connection successful
+2023-03-07 09:14:03,703 Monitor      INFO     Starting Monitor.
+2023-03-07 09:14:03,709 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:14:03,709 Connection   INFO     Using TLS v1.2
+2023-03-07 09:14:03,709 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-03-07 09:14:03,746 Bookmark     INFO     Bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat does not exist.
+2023-03-07 09:14:03,746 Settings     INFO     Timestamp: Start = 2 (Bookmark = 0)
+2023-03-07 09:14:03,746 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-03-07 09:14:03,746 SingleWorker INFO     Starting process.
+2023-03-07 09:14:03,757 Bookmark     INFO     Bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat does not exist.
+2023-03-07 09:14:03,757 Settings     INFO     Timestamp: Start = 2 (Bookmark = 0)
+2023-03-07 09:14:03,757 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-03-07 09:14:04,670 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat
+2023-03-07 09:14:04,670 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat" does not exist. Using default values
+2023-03-07 09:14:05,287 Bookmark     INFO     Bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat does not exist.
+2023-03-07 09:14:37,982 Controller   INFO     eNcore version: development
+2023-03-07 09:14:37,982 Controller   INFO     Python version: 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+2023-03-07 09:14:37,983 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-03-07 09:14:37,983 Controller   INFO     Starting client (pid=71009).
+2023-03-07 09:14:37,983 Controller   INFO     Sha256: d61c37b244f3e61074463bcbf59503f93bad342f6ef4a4776507e4ed75a0aaa9
+2023-03-07 09:14:37,983 Controller   INFO     Processes: 1
+2023-03-07 09:14:37,983 Controller   INFO     Settings: b'gASV7AUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjBZhd3Mtc2VjdXJpdHktZGF0YS1sYWtllIwJYWNjb3VudElklIoGLN+6ToAAjAZyZWdpb26UjAl1cy1lYXN0LTKUjAdtYXhMb2dzlE0QJ4wGcm90YXRllIh1jAN1cmmUjCRyZWxmaWxlOi8vL2RhdGEvb2NzZi9lbmNvcmUuezB9Lmpzb26UdXVhjAdyZWNvcmRzlH2UKIwLY29ubmVjdGlvbnOUiIwEY29yZZSIjAxleGNsQGNvbW1lbnSUXZQojEhUaGVzZSByZWNvcmRzIHdpbGwgYmUgZXhjbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZSAob3ZlcnJpZGVzICdpbmNsdWRlJymUjDNlLmcuIHRvIGV4Y2x1ZGUgZmxvdyBhbmQgSVBTIGV2ZW50cyB1c2UgWyA3MSwgNDAwIF2UZYwHZXhjbHVkZZRdlChLAk2QAUt9ZYwLaW5jQGNvbW1lbnSUjDJUaGVzZSByZWNvcmRzIHdpbGwgYmUgaW5jbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZZSMB2luY2x1ZGWUXZSMCWludHJ1c2lvbpSIjAhtZXRhZGF0YZSIjAdwYWNrZXRzlIiMA3JuYZSIjANydWGUiHV1jA5wYWNrZXRFbmNvZGluZ5SMBWFzY2lplIwHbG9nZ2luZ5R9lCiMCGZpbGVwYXRolIwNZXN0cmVhbWVyLmxvZ5SMBmZvcm1hdJSMMyUoYXNjdGltZSlzICUobmFtZSktMTJzICUobGV2ZWxuYW1lKS04cyAlKG1lc3NhZ2Upc5SMC2xldkBjb21tZW50lIxETGV2ZWxzIGluY2x1ZGUgRkFUQUwsIEVSUk9SLCBXQVJOSU5HLCBJTkZPLCBERUJVRywgVkVSQk9TRSBhbmQgVFJBQ0WUjAVsZXZlbJSMBElORk+UjAZzdGRPdXSUiHWMB21vbml0b3KUfZQojAhib29rbWFya5SJjAdoYW5kbGVklIiMBnBlcmlvZJRLeIwKc3Vic2NyaWJlZJSIjAh2ZWxvY2l0eZSJdYwPcmVzcG9uc2VUaW1lb3V0lEsCjAxzdGFyQGNvbW1lbnSUjCgwIGZvciBnZW5lc2lzLCAxIGZvciBub3csIDIgZm9yIGJvb2ttYXJrlIwFc3RhcnSUSwKMDHN1YnNjcmlwdGlvbpR9lChoGX2UKIwIQGNvbW1lbnSUXZQojE5KdXN0IGJlY2F1c2Ugd2Ugc3Vic2NyaWJlIGRvZXNuJ3QgbWVhbiB0aGUgc2VydmVyIGlzIHNlbmRpbmcuIE5vciBkb2VzIGl0IG1lYW6UjDh3ZSBhcmUgd3JpdGluZyB0aGUgcmVjb3JkcyBlaXRoZXIuIFNlZSBoYW5kbGVyLnJlY29yZHNbXZRljBFhcmNoaXZlVGltZXN0YW1wc5SIjA5ldmVudEV4dHJhRGF0YZSIjAhleHRlbmRlZJSIjBFpbXBhY3RFdmVudEFsZXJ0c5SIaCeIaCiIjApwYWNrZXREYXRhlIh1jAdzZXJ2ZXJzlF2UfZQojARob3N0lIwacGFydG5lci1mbWMuY3N0YS5jaXNjby5jb22UjA5wa2NzMTJGaWxlcGF0aJSMDWNsaWVudC5wa2NzMTKUjARwb3J0lE1uIIwLdGxzQGNvbW1lbnSUjBxWYWxpZCB2YWx1ZXMgYXJlIDEuMCBhbmQgMS4ylIwKdGxzVmVyc2lvbpRHP/MzMzMzMzN1YXWMD3dvcmtlclByb2Nlc3Nlc5RLAXUu'
+2023-03-07 09:14:37,983 Diagnostics  INFO     Check certificate
+2023-03-07 09:14:37,983 Diagnostics  INFO     Creating connection
+2023-03-07 09:14:37,983 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:14:37,984 Connection   INFO     Using TLS v1.2
+2023-03-07 09:14:38,025 Diagnostics  INFO     Creating request message
+2023-03-07 09:14:38,025 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-03-07 09:14:38,025 Diagnostics  INFO     Sending request message
+2023-03-07 09:14:38,026 Diagnostics  INFO     Receiving response message
+2023-03-07 09:14:38,037 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-03-07 09:14:38,037 Diagnostics  INFO     Streaming info response
+2023-03-07 09:14:38,037 Diagnostics  INFO     Connection successful
+2023-03-07 09:14:38,043 Monitor      INFO     Starting Monitor.
+2023-03-07 09:14:38,048 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:14:38,049 Connection   INFO     Using TLS v1.2
+2023-03-07 09:14:38,049 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-03-07 09:14:38,085 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:14:38,086 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677526579)
+2023-03-07 09:14:38,086 Receiver     INFO     EventStreamRequestMessage: b'000100020000000863fd063348900061'
+2023-03-07 09:14:38,086 SingleWorker INFO     Starting process.
+2023-03-07 09:14:38,096 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:14:38,097 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677526579)
+2023-03-07 09:14:38,097 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006163fd0633000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-03-07 09:14:38,454 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat
+2023-03-07 09:14:38,455 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat" does not exist. Using default values
+2023-03-07 09:14:38,593 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:22:27,561 Controller   INFO     eNcore version: development
+2023-03-07 09:22:27,561 Controller   INFO     Python version: 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+2023-03-07 09:22:27,561 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-03-07 09:22:27,562 Controller   INFO     Starting client (pid=71099).
+2023-03-07 09:22:27,562 Controller   INFO     Sha256: d61c37b244f3e61074463bcbf59503f93bad342f6ef4a4776507e4ed75a0aaa9
+2023-03-07 09:22:27,562 Controller   INFO     Processes: 1
+2023-03-07 09:22:27,562 Controller   INFO     Settings: b'gASV7AUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjBZhd3Mtc2VjdXJpdHktZGF0YS1sYWtllIwJYWNjb3VudElklIoGLN+6ToAAjAZyZWdpb26UjAl1cy1lYXN0LTKUjAdtYXhMb2dzlE0QJ4wGcm90YXRllIh1jAN1cmmUjCRyZWxmaWxlOi8vL2RhdGEvb2NzZi9lbmNvcmUuezB9Lmpzb26UdXVhjAdyZWNvcmRzlH2UKIwLY29ubmVjdGlvbnOUiIwEY29yZZSIjAxleGNsQGNvbW1lbnSUXZQojEhUaGVzZSByZWNvcmRzIHdpbGwgYmUgZXhjbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZSAob3ZlcnJpZGVzICdpbmNsdWRlJymUjDNlLmcuIHRvIGV4Y2x1ZGUgZmxvdyBhbmQgSVBTIGV2ZW50cyB1c2UgWyA3MSwgNDAwIF2UZYwHZXhjbHVkZZRdlChLAk2QAUt9ZYwLaW5jQGNvbW1lbnSUjDJUaGVzZSByZWNvcmRzIHdpbGwgYmUgaW5jbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZZSMB2luY2x1ZGWUXZSMCWludHJ1c2lvbpSIjAhtZXRhZGF0YZSIjAdwYWNrZXRzlIiMA3JuYZSIjANydWGUiHV1jA5wYWNrZXRFbmNvZGluZ5SMBWFzY2lplIwHbG9nZ2luZ5R9lCiMCGZpbGVwYXRolIwNZXN0cmVhbWVyLmxvZ5SMBmZvcm1hdJSMMyUoYXNjdGltZSlzICUobmFtZSktMTJzICUobGV2ZWxuYW1lKS04cyAlKG1lc3NhZ2Upc5SMC2xldkBjb21tZW50lIxETGV2ZWxzIGluY2x1ZGUgRkFUQUwsIEVSUk9SLCBXQVJOSU5HLCBJTkZPLCBERUJVRywgVkVSQk9TRSBhbmQgVFJBQ0WUjAVsZXZlbJSMBElORk+UjAZzdGRPdXSUiHWMB21vbml0b3KUfZQojAhib29rbWFya5SJjAdoYW5kbGVklIiMBnBlcmlvZJRLeIwKc3Vic2NyaWJlZJSIjAh2ZWxvY2l0eZSJdYwPcmVzcG9uc2VUaW1lb3V0lEsCjAxzdGFyQGNvbW1lbnSUjCgwIGZvciBnZW5lc2lzLCAxIGZvciBub3csIDIgZm9yIGJvb2ttYXJrlIwFc3RhcnSUSwKMDHN1YnNjcmlwdGlvbpR9lChoGX2UKIwIQGNvbW1lbnSUXZQojE5KdXN0IGJlY2F1c2Ugd2Ugc3Vic2NyaWJlIGRvZXNuJ3QgbWVhbiB0aGUgc2VydmVyIGlzIHNlbmRpbmcuIE5vciBkb2VzIGl0IG1lYW6UjDh3ZSBhcmUgd3JpdGluZyB0aGUgcmVjb3JkcyBlaXRoZXIuIFNlZSBoYW5kbGVyLnJlY29yZHNbXZRljBFhcmNoaXZlVGltZXN0YW1wc5SIjA5ldmVudEV4dHJhRGF0YZSIjAhleHRlbmRlZJSIjBFpbXBhY3RFdmVudEFsZXJ0c5SIaCeIaCiIjApwYWNrZXREYXRhlIh1jAdzZXJ2ZXJzlF2UfZQojARob3N0lIwacGFydG5lci1mbWMuY3N0YS5jaXNjby5jb22UjA5wa2NzMTJGaWxlcGF0aJSMDWNsaWVudC5wa2NzMTKUjARwb3J0lE1uIIwLdGxzQGNvbW1lbnSUjBxWYWxpZCB2YWx1ZXMgYXJlIDEuMCBhbmQgMS4ylIwKdGxzVmVyc2lvbpRHP/MzMzMzMzN1YXWMD3dvcmtlclByb2Nlc3Nlc5RLAXUu'
+2023-03-07 09:22:27,562 Diagnostics  INFO     Check certificate
+2023-03-07 09:22:27,562 Diagnostics  INFO     Creating connection
+2023-03-07 09:22:27,562 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:22:27,562 Connection   INFO     Using TLS v1.2
+2023-03-07 09:22:27,671 Diagnostics  INFO     Creating request message
+2023-03-07 09:22:27,672 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-03-07 09:22:27,672 Diagnostics  INFO     Sending request message
+2023-03-07 09:22:27,672 Diagnostics  INFO     Receiving response message
+2023-03-07 09:22:27,683 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-03-07 09:22:27,683 Diagnostics  INFO     Streaming info response
+2023-03-07 09:22:27,683 Diagnostics  INFO     Connection successful
+2023-03-07 09:22:27,692 Monitor      INFO     Starting Monitor.
+2023-03-07 09:22:27,699 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:22:27,699 Connection   INFO     Using TLS v1.2
+2023-03-07 09:22:27,699 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-03-07 09:22:27,735 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:22:27,736 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677526579)
+2023-03-07 09:22:27,736 Receiver     INFO     EventStreamRequestMessage: b'000100020000000863fd063348900061'
+2023-03-07 09:22:27,736 SingleWorker INFO     Starting process.
+2023-03-07 09:22:27,746 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:22:27,747 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677526579)
+2023-03-07 09:22:27,747 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006163fd0633000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-03-07 09:22:28,099 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat
+2023-03-07 09:22:28,099 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat" does not exist. Using default values
+2023-03-07 09:22:28,139 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-03-07 09:22:28,229 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:29:42,542 Controller   INFO     eNcore version: development
+2023-03-07 09:29:42,543 Controller   INFO     Python version: 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+2023-03-07 09:29:42,543 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-03-07 09:29:42,543 Controller   INFO     Starting client (pid=71317).
+2023-03-07 09:29:42,543 Controller   INFO     Sha256: d61c37b244f3e61074463bcbf59503f93bad342f6ef4a4776507e4ed75a0aaa9
+2023-03-07 09:29:42,543 Controller   INFO     Processes: 1
+2023-03-07 09:29:42,543 Controller   INFO     Settings: b'gASV7AUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjBZhd3Mtc2VjdXJpdHktZGF0YS1sYWtllIwJYWNjb3VudElklIoGLN+6ToAAjAZyZWdpb26UjAl1cy1lYXN0LTKUjAdtYXhMb2dzlE0QJ4wGcm90YXRllIh1jAN1cmmUjCRyZWxmaWxlOi8vL2RhdGEvb2NzZi9lbmNvcmUuezB9Lmpzb26UdXVhjAdyZWNvcmRzlH2UKIwLY29ubmVjdGlvbnOUiIwEY29yZZSIjAxleGNsQGNvbW1lbnSUXZQojEhUaGVzZSByZWNvcmRzIHdpbGwgYmUgZXhjbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZSAob3ZlcnJpZGVzICdpbmNsdWRlJymUjDNlLmcuIHRvIGV4Y2x1ZGUgZmxvdyBhbmQgSVBTIGV2ZW50cyB1c2UgWyA3MSwgNDAwIF2UZYwHZXhjbHVkZZRdlChLAk2QAUt9ZYwLaW5jQGNvbW1lbnSUjDJUaGVzZSByZWNvcmRzIHdpbGwgYmUgaW5jbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZZSMB2luY2x1ZGWUXZSMCWludHJ1c2lvbpSIjAhtZXRhZGF0YZSIjAdwYWNrZXRzlIiMA3JuYZSIjANydWGUiHV1jA5wYWNrZXRFbmNvZGluZ5SMBWFzY2lplIwHbG9nZ2luZ5R9lCiMCGZpbGVwYXRolIwNZXN0cmVhbWVyLmxvZ5SMBmZvcm1hdJSMMyUoYXNjdGltZSlzICUobmFtZSktMTJzICUobGV2ZWxuYW1lKS04cyAlKG1lc3NhZ2Upc5SMC2xldkBjb21tZW50lIxETGV2ZWxzIGluY2x1ZGUgRkFUQUwsIEVSUk9SLCBXQVJOSU5HLCBJTkZPLCBERUJVRywgVkVSQk9TRSBhbmQgVFJBQ0WUjAVsZXZlbJSMBElORk+UjAZzdGRPdXSUiHWMB21vbml0b3KUfZQojAhib29rbWFya5SJjAdoYW5kbGVklIiMBnBlcmlvZJRLeIwKc3Vic2NyaWJlZJSIjAh2ZWxvY2l0eZSJdYwPcmVzcG9uc2VUaW1lb3V0lEsCjAxzdGFyQGNvbW1lbnSUjCgwIGZvciBnZW5lc2lzLCAxIGZvciBub3csIDIgZm9yIGJvb2ttYXJrlIwFc3RhcnSUSwKMDHN1YnNjcmlwdGlvbpR9lChoGX2UKIwIQGNvbW1lbnSUXZQojE5KdXN0IGJlY2F1c2Ugd2Ugc3Vic2NyaWJlIGRvZXNuJ3QgbWVhbiB0aGUgc2VydmVyIGlzIHNlbmRpbmcuIE5vciBkb2VzIGl0IG1lYW6UjDh3ZSBhcmUgd3JpdGluZyB0aGUgcmVjb3JkcyBlaXRoZXIuIFNlZSBoYW5kbGVyLnJlY29yZHNbXZRljBFhcmNoaXZlVGltZXN0YW1wc5SIjA5ldmVudEV4dHJhRGF0YZSIjAhleHRlbmRlZJSIjBFpbXBhY3RFdmVudEFsZXJ0c5SIaCeIaCiIjApwYWNrZXREYXRhlIh1jAdzZXJ2ZXJzlF2UfZQojARob3N0lIwacGFydG5lci1mbWMuY3N0YS5jaXNjby5jb22UjA5wa2NzMTJGaWxlcGF0aJSMDWNsaWVudC5wa2NzMTKUjARwb3J0lE1uIIwLdGxzQGNvbW1lbnSUjBxWYWxpZCB2YWx1ZXMgYXJlIDEuMCBhbmQgMS4ylIwKdGxzVmVyc2lvbpRHP/MzMzMzMzN1YXWMD3dvcmtlclByb2Nlc3Nlc5RLAXUu'
+2023-03-07 09:29:42,543 Diagnostics  INFO     Check certificate
+2023-03-07 09:29:42,544 Diagnostics  INFO     Creating connection
+2023-03-07 09:29:42,544 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:29:42,544 Connection   INFO     Using TLS v1.2
+2023-03-07 09:29:42,601 Diagnostics  INFO     Creating request message
+2023-03-07 09:29:42,601 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-03-07 09:29:42,602 Diagnostics  INFO     Sending request message
+2023-03-07 09:29:42,602 Diagnostics  INFO     Receiving response message
+2023-03-07 09:29:42,613 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-03-07 09:29:42,614 Diagnostics  INFO     Streaming info response
+2023-03-07 09:29:42,615 Diagnostics  INFO     Connection successful
+2023-03-07 09:29:42,621 Monitor      INFO     Starting Monitor.
+2023-03-07 09:29:42,626 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:29:42,627 Connection   INFO     Using TLS v1.2
+2023-03-07 09:29:42,627 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-03-07 09:29:42,664 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:29:42,664 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677527105)
+2023-03-07 09:29:42,664 Receiver     INFO     EventStreamRequestMessage: b'000100020000000863fd084148900061'
+2023-03-07 09:29:42,665 SingleWorker INFO     Starting process.
+2023-03-07 09:29:42,675 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:29:42,675 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677527105)
+2023-03-07 09:29:42,676 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006163fd0841000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-03-07 09:29:43,194 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat
+2023-03-07 09:29:43,194 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat" does not exist. Using default values
+2023-03-07 09:29:43,599 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-03-07 09:29:43,730 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:30:05,138 Controller   INFO     Stopping...
+2023-03-07 09:30:05,285 SingleWorker INFO     Stop message received
+2023-03-07 09:30:05,291 SingleWorker INFO     Exiting
+2023-03-07 09:30:05,297 Controller   INFO     Process 71324 (Process-1) exit code: 0
+2023-03-07 09:30:05,297 Monitor      INFO     Stopping Monitor.
+2023-03-07 09:30:05,542 Controller   INFO     Goodbye
+2023-03-07 09:30:48,202 Controller   INFO     eNcore version: development
+2023-03-07 09:30:48,203 Controller   INFO     Python version: 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+2023-03-07 09:30:48,204 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-03-07 09:30:48,204 Controller   INFO     Starting client (pid=71359).
+2023-03-07 09:30:48,205 Controller   INFO     Sha256: d61c37b244f3e61074463bcbf59503f93bad342f6ef4a4776507e4ed75a0aaa9
+2023-03-07 09:30:48,205 Controller   INFO     Processes: 1
+2023-03-07 09:30:48,205 Controller   INFO     Settings: b'gASV7AUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjBZhd3Mtc2VjdXJpdHktZGF0YS1sYWtllIwJYWNjb3VudElklIoGLN+6ToAAjAZyZWdpb26UjAl1cy1lYXN0LTKUjAdtYXhMb2dzlE0QJ4wGcm90YXRllIh1jAN1cmmUjCRyZWxmaWxlOi8vL2RhdGEvb2NzZi9lbmNvcmUuezB9Lmpzb26UdXVhjAdyZWNvcmRzlH2UKIwLY29ubmVjdGlvbnOUiIwEY29yZZSIjAxleGNsQGNvbW1lbnSUXZQojEhUaGVzZSByZWNvcmRzIHdpbGwgYmUgZXhjbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZSAob3ZlcnJpZGVzICdpbmNsdWRlJymUjDNlLmcuIHRvIGV4Y2x1ZGUgZmxvdyBhbmQgSVBTIGV2ZW50cyB1c2UgWyA3MSwgNDAwIF2UZYwHZXhjbHVkZZRdlChLAk2QAUt9ZYwLaW5jQGNvbW1lbnSUjDJUaGVzZSByZWNvcmRzIHdpbGwgYmUgaW5jbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZZSMB2luY2x1ZGWUXZSMCWludHJ1c2lvbpSIjAhtZXRhZGF0YZSIjAdwYWNrZXRzlIiMA3JuYZSIjANydWGUiHV1jA5wYWNrZXRFbmNvZGluZ5SMBWFzY2lplIwHbG9nZ2luZ5R9lCiMCGZpbGVwYXRolIwNZXN0cmVhbWVyLmxvZ5SMBmZvcm1hdJSMMyUoYXNjdGltZSlzICUobmFtZSktMTJzICUobGV2ZWxuYW1lKS04cyAlKG1lc3NhZ2Upc5SMC2xldkBjb21tZW50lIxETGV2ZWxzIGluY2x1ZGUgRkFUQUwsIEVSUk9SLCBXQVJOSU5HLCBJTkZPLCBERUJVRywgVkVSQk9TRSBhbmQgVFJBQ0WUjAVsZXZlbJSMBElORk+UjAZzdGRPdXSUiHWMB21vbml0b3KUfZQojAhib29rbWFya5SJjAdoYW5kbGVklIiMBnBlcmlvZJRLeIwKc3Vic2NyaWJlZJSIjAh2ZWxvY2l0eZSJdYwPcmVzcG9uc2VUaW1lb3V0lEsCjAxzdGFyQGNvbW1lbnSUjCgwIGZvciBnZW5lc2lzLCAxIGZvciBub3csIDIgZm9yIGJvb2ttYXJrlIwFc3RhcnSUSwKMDHN1YnNjcmlwdGlvbpR9lChoGX2UKIwIQGNvbW1lbnSUXZQojE5KdXN0IGJlY2F1c2Ugd2Ugc3Vic2NyaWJlIGRvZXNuJ3QgbWVhbiB0aGUgc2VydmVyIGlzIHNlbmRpbmcuIE5vciBkb2VzIGl0IG1lYW6UjDh3ZSBhcmUgd3JpdGluZyB0aGUgcmVjb3JkcyBlaXRoZXIuIFNlZSBoYW5kbGVyLnJlY29yZHNbXZRljBFhcmNoaXZlVGltZXN0YW1wc5SIjA5ldmVudEV4dHJhRGF0YZSIjAhleHRlbmRlZJSIjBFpbXBhY3RFdmVudEFsZXJ0c5SIaCeIaCiIjApwYWNrZXREYXRhlIh1jAdzZXJ2ZXJzlF2UfZQojARob3N0lIwacGFydG5lci1mbWMuY3N0YS5jaXNjby5jb22UjA5wa2NzMTJGaWxlcGF0aJSMDWNsaWVudC5wa2NzMTKUjARwb3J0lE1uIIwLdGxzQGNvbW1lbnSUjBxWYWxpZCB2YWx1ZXMgYXJlIDEuMCBhbmQgMS4ylIwKdGxzVmVyc2lvbpRHP/MzMzMzMzN1YXWMD3dvcmtlclByb2Nlc3Nlc5RLAXUu'
+2023-03-07 09:30:48,206 Diagnostics  INFO     Check certificate
+2023-03-07 09:30:48,206 Diagnostics  INFO     Creating connection
+2023-03-07 09:30:48,207 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:30:48,207 Connection   INFO     Using TLS v1.2
+2023-03-07 09:30:48,265 Diagnostics  INFO     Creating request message
+2023-03-07 09:30:48,265 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-03-07 09:30:48,265 Diagnostics  INFO     Sending request message
+2023-03-07 09:30:48,266 Diagnostics  INFO     Receiving response message
+2023-03-07 09:30:48,278 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-03-07 09:30:48,279 Diagnostics  INFO     Streaming info response
+2023-03-07 09:30:48,279 Diagnostics  INFO     Connection successful
+2023-03-07 09:30:48,280 Monitor      INFO     Starting Monitor.
+2023-03-07 09:30:48,291 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 09:30:48,291 Connection   INFO     Using TLS v1.2
+2023-03-07 09:30:48,291 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-03-07 09:30:48,328 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:30:48,328 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677527435)
+2023-03-07 09:30:48,328 Receiver     INFO     EventStreamRequestMessage: b'000100020000000863fd098b48900061'
+2023-03-07 09:30:48,328 SingleWorker INFO     Starting process.
+2023-03-07 09:30:48,339 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:30:48,339 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677527435)
+2023-03-07 09:30:48,339 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006163fd098b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-03-07 09:30:48,687 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat
+2023-03-07 09:30:48,688 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat" does not exist. Using default values
+2023-03-07 09:30:48,730 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-03-07 09:30:48,825 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 09:31:27,596 Controller   INFO     Stopping...
+2023-03-07 09:31:27,788 SingleWorker INFO     Stop message received
+2023-03-07 09:31:27,861 SingleWorker INFO     Exiting
+2023-03-07 09:31:27,867 Controller   INFO     Process 71365 (Process-1) exit code: 0
+2023-03-07 09:31:27,868 Monitor      INFO     Stopping Monitor.
+2023-03-07 09:31:28,096 Controller   INFO     Goodbye
+2023-03-07 11:45:11,978 Controller   INFO     Process worker is dead.
+2023-03-07 11:45:11,978 Monitor      INFO     Running. 0 handled; average rate 0 ev/sec; 
+2023-03-07 11:45:11,980 Controller   INFO     Stopping...
+2023-03-07 11:45:12,023 Controller   INFO     Process worker is dead.
+2023-03-07 11:45:12,023 Monitor      INFO     Running. 0 handled; average rate 0 ev/sec; 
+2023-03-07 11:45:12,027 Monitor      INFO     Stopping. 0 handled; average rate 0 ev/sec; 
+2023-03-07 11:45:12,146 SingleWorker INFO     Stop message received
+2023-03-07 11:45:12,324 Controller   INFO     Stopping...
+2023-03-07 11:45:12,325 Controller   INFO     Process 71015 (Process-1) exit code: 1
+2023-03-07 11:45:12,325 Monitor      INFO     Stopping Monitor.
+2023-03-07 11:45:12,395 Controller   INFO     Stopping...
+2023-03-07 11:45:12,396 Controller   INFO     Process 70971 (Process-1) exit code: 1
+2023-03-07 11:45:12,396 Monitor      INFO     Stopping Monitor.
+2023-03-07 11:45:12,467 SingleWorker INFO     Exiting
+2023-03-07 11:45:12,475 Controller   INFO     Goodbye
+2023-03-07 11:45:12,478 Controller   INFO     Process 71105 (Process-1) exit code: 0
+2023-03-07 11:45:12,478 Monitor      INFO     Stopping Monitor.
+2023-03-07 11:45:12,525 Controller   INFO     Goodbye
+2023-03-07 11:45:12,532 Controller   INFO     Goodbye
+2023-03-07 14:00:11,680 Controller   INFO     eNcore version: development
+2023-03-07 14:00:11,681 Controller   INFO     Python version: 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+2023-03-07 14:00:11,681 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-03-07 14:00:11,681 Controller   INFO     Starting client (pid=72235).
+2023-03-07 14:00:11,682 Controller   INFO     Sha256: d61c37b244f3e61074463bcbf59503f93bad342f6ef4a4776507e4ed75a0aaa9
+2023-03-07 14:00:11,683 Controller   INFO     Processes: 1
+2023-03-07 14:00:11,683 Controller   INFO     Settings: b'gASV7AUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjBZhd3Mtc2VjdXJpdHktZGF0YS1sYWtllIwJYWNjb3VudElklIoGLN+6ToAAjAZyZWdpb26UjAl1cy1lYXN0LTKUjAdtYXhMb2dzlE0QJ4wGcm90YXRllIh1jAN1cmmUjCRyZWxmaWxlOi8vL2RhdGEvb2NzZi9lbmNvcmUuezB9Lmpzb26UdXVhjAdyZWNvcmRzlH2UKIwLY29ubmVjdGlvbnOUiIwEY29yZZSIjAxleGNsQGNvbW1lbnSUXZQojEhUaGVzZSByZWNvcmRzIHdpbGwgYmUgZXhjbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZSAob3ZlcnJpZGVzICdpbmNsdWRlJymUjDNlLmcuIHRvIGV4Y2x1ZGUgZmxvdyBhbmQgSVBTIGV2ZW50cyB1c2UgWyA3MSwgNDAwIF2UZYwHZXhjbHVkZZRdlChLAk2QAUt9ZYwLaW5jQGNvbW1lbnSUjDJUaGVzZSByZWNvcmRzIHdpbGwgYmUgaW5jbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZZSMB2luY2x1ZGWUXZSMCWludHJ1c2lvbpSIjAhtZXRhZGF0YZSIjAdwYWNrZXRzlIiMA3JuYZSIjANydWGUiHV1jA5wYWNrZXRFbmNvZGluZ5SMBWFzY2lplIwHbG9nZ2luZ5R9lCiMCGZpbGVwYXRolIwNZXN0cmVhbWVyLmxvZ5SMBmZvcm1hdJSMMyUoYXNjdGltZSlzICUobmFtZSktMTJzICUobGV2ZWxuYW1lKS04cyAlKG1lc3NhZ2Upc5SMC2xldkBjb21tZW50lIxETGV2ZWxzIGluY2x1ZGUgRkFUQUwsIEVSUk9SLCBXQVJOSU5HLCBJTkZPLCBERUJVRywgVkVSQk9TRSBhbmQgVFJBQ0WUjAVsZXZlbJSMBElORk+UjAZzdGRPdXSUiHWMB21vbml0b3KUfZQojAhib29rbWFya5SJjAdoYW5kbGVklIiMBnBlcmlvZJRLeIwKc3Vic2NyaWJlZJSIjAh2ZWxvY2l0eZSJdYwPcmVzcG9uc2VUaW1lb3V0lEsCjAxzdGFyQGNvbW1lbnSUjCgwIGZvciBnZW5lc2lzLCAxIGZvciBub3csIDIgZm9yIGJvb2ttYXJrlIwFc3RhcnSUSwKMDHN1YnNjcmlwdGlvbpR9lChoGX2UKIwIQGNvbW1lbnSUXZQojE5KdXN0IGJlY2F1c2Ugd2Ugc3Vic2NyaWJlIGRvZXNuJ3QgbWVhbiB0aGUgc2VydmVyIGlzIHNlbmRpbmcuIE5vciBkb2VzIGl0IG1lYW6UjDh3ZSBhcmUgd3JpdGluZyB0aGUgcmVjb3JkcyBlaXRoZXIuIFNlZSBoYW5kbGVyLnJlY29yZHNbXZRljBFhcmNoaXZlVGltZXN0YW1wc5SIjA5ldmVudEV4dHJhRGF0YZSIjAhleHRlbmRlZJSIjBFpbXBhY3RFdmVudEFsZXJ0c5SIaCeIaCiIjApwYWNrZXREYXRhlIh1jAdzZXJ2ZXJzlF2UfZQojARob3N0lIwacGFydG5lci1mbWMuY3N0YS5jaXNjby5jb22UjA5wa2NzMTJGaWxlcGF0aJSMDWNsaWVudC5wa2NzMTKUjARwb3J0lE1uIIwLdGxzQGNvbW1lbnSUjBxWYWxpZCB2YWx1ZXMgYXJlIDEuMCBhbmQgMS4ylIwKdGxzVmVyc2lvbpRHP/MzMzMzMzN1YXWMD3dvcmtlclByb2Nlc3Nlc5RLAXUu'
+2023-03-07 14:00:11,684 Diagnostics  INFO     Check certificate
+2023-03-07 14:00:11,684 Diagnostics  INFO     Creating connection
+2023-03-07 14:00:11,685 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 14:00:11,685 Connection   INFO     Using TLS v1.2
+2023-03-07 14:00:13,264 Diagnostics  INFO     Creating request message
+2023-03-07 14:00:13,264 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-03-07 14:00:13,265 Diagnostics  INFO     Sending request message
+2023-03-07 14:00:13,265 Diagnostics  INFO     Receiving response message
+2023-03-07 14:00:13,277 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-03-07 14:00:13,278 Diagnostics  INFO     Streaming info response
+2023-03-07 14:00:13,279 Diagnostics  INFO     Connection successful
+2023-03-07 14:00:13,279 Monitor      INFO     Starting Monitor.
+2023-03-07 14:00:13,290 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 14:00:13,290 Connection   INFO     Using TLS v1.2
+2023-03-07 14:00:13,296 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-03-07 14:00:13,805 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 14:00:13,805 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677529131)
+2023-03-07 14:00:13,805 Receiver     INFO     EventStreamRequestMessage: b'000100020000000863fd102b48900061'
+2023-03-07 14:00:13,805 SingleWorker INFO     Starting process.
+2023-03-07 14:00:13,816 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 14:00:13,816 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677529131)
+2023-03-07 14:00:13,816 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006163fd102b000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-03-07 14:00:14,332 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat
+2023-03-07 14:00:14,333 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat" does not exist. Using default values
+2023-03-07 14:00:14,374 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-03-07 14:00:14,469 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 14:00:33,773 Controller   INFO     Stopping...
+2023-03-07 14:00:34,355 SingleWorker INFO     Stop message received
+2023-03-07 14:00:34,708 SingleWorker INFO     Exiting
+2023-03-07 14:00:34,713 Controller   INFO     Process 72241 (Process-1) exit code: 0
+2023-03-07 14:00:34,713 Monitor      INFO     Stopping Monitor.
+2023-03-07 14:00:34,823 Controller   INFO     Goodbye
+2023-03-07 14:49:16,158 Controller   INFO     eNcore version: development
+2023-03-07 14:49:16,159 Controller   INFO     Python version: 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+2023-03-07 14:49:16,160 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-03-07 14:49:16,160 Controller   INFO     Starting client (pid=72518).
+2023-03-07 14:49:16,161 Controller   INFO     Sha256: d61c37b244f3e61074463bcbf59503f93bad342f6ef4a4776507e4ed75a0aaa9
+2023-03-07 14:49:16,161 Controller   INFO     Processes: 1
+2023-03-07 14:49:16,161 Controller   INFO     Settings: b'gASV7AUAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsKjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjBZhd3Mtc2VjdXJpdHktZGF0YS1sYWtllIwJYWNjb3VudElklIoGLN+6ToAAjAZyZWdpb26UjAl1cy1lYXN0LTKUjAdtYXhMb2dzlE0QJ4wGcm90YXRllIh1jAN1cmmUjCRyZWxmaWxlOi8vL2RhdGEvb2NzZi9lbmNvcmUuezB9Lmpzb26UdXVhjAdyZWNvcmRzlH2UKIwLY29ubmVjdGlvbnOUiIwEY29yZZSIjAxleGNsQGNvbW1lbnSUXZQojEhUaGVzZSByZWNvcmRzIHdpbGwgYmUgZXhjbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZSAob3ZlcnJpZGVzICdpbmNsdWRlJymUjDNlLmcuIHRvIGV4Y2x1ZGUgZmxvdyBhbmQgSVBTIGV2ZW50cyB1c2UgWyA3MSwgNDAwIF2UZYwHZXhjbHVkZZRdlChLAk2QAUt9ZYwLaW5jQGNvbW1lbnSUjDJUaGVzZSByZWNvcmRzIHdpbGwgYmUgaW5jbHVkZWQgcmVnYXJkbGVzcyBvZiBhYm92ZZSMB2luY2x1ZGWUXZSMCWludHJ1c2lvbpSIjAhtZXRhZGF0YZSIjAdwYWNrZXRzlIiMA3JuYZSIjANydWGUiHV1jA5wYWNrZXRFbmNvZGluZ5SMBWFzY2lplIwHbG9nZ2luZ5R9lCiMCGZpbGVwYXRolIwNZXN0cmVhbWVyLmxvZ5SMBmZvcm1hdJSMMyUoYXNjdGltZSlzICUobmFtZSktMTJzICUobGV2ZWxuYW1lKS04cyAlKG1lc3NhZ2Upc5SMC2xldkBjb21tZW50lIxETGV2ZWxzIGluY2x1ZGUgRkFUQUwsIEVSUk9SLCBXQVJOSU5HLCBJTkZPLCBERUJVRywgVkVSQk9TRSBhbmQgVFJBQ0WUjAVsZXZlbJSMBElORk+UjAZzdGRPdXSUiHWMB21vbml0b3KUfZQojAhib29rbWFya5SJjAdoYW5kbGVklIiMBnBlcmlvZJRLeIwKc3Vic2NyaWJlZJSIjAh2ZWxvY2l0eZSJdYwPcmVzcG9uc2VUaW1lb3V0lEsCjAxzdGFyQGNvbW1lbnSUjCgwIGZvciBnZW5lc2lzLCAxIGZvciBub3csIDIgZm9yIGJvb2ttYXJrlIwFc3RhcnSUSwKMDHN1YnNjcmlwdGlvbpR9lChoGX2UKIwIQGNvbW1lbnSUXZQojE5KdXN0IGJlY2F1c2Ugd2Ugc3Vic2NyaWJlIGRvZXNuJ3QgbWVhbiB0aGUgc2VydmVyIGlzIHNlbmRpbmcuIE5vciBkb2VzIGl0IG1lYW6UjDh3ZSBhcmUgd3JpdGluZyB0aGUgcmVjb3JkcyBlaXRoZXIuIFNlZSBoYW5kbGVyLnJlY29yZHNbXZRljBFhcmNoaXZlVGltZXN0YW1wc5SIjA5ldmVudEV4dHJhRGF0YZSIjAhleHRlbmRlZJSIjBFpbXBhY3RFdmVudEFsZXJ0c5SIaCeIaCiIjApwYWNrZXREYXRhlIh1jAdzZXJ2ZXJzlF2UfZQojARob3N0lIwacGFydG5lci1mbWMuY3N0YS5jaXNjby5jb22UjA5wa2NzMTJGaWxlcGF0aJSMDWNsaWVudC5wa2NzMTKUjARwb3J0lE1uIIwLdGxzQGNvbW1lbnSUjBxWYWxpZCB2YWx1ZXMgYXJlIDEuMCBhbmQgMS4ylIwKdGxzVmVyc2lvbpRHP/MzMzMzMzN1YXWMD3dvcmtlclByb2Nlc3Nlc5RLAXUu'
+2023-03-07 14:49:16,162 Diagnostics  INFO     Check certificate
+2023-03-07 14:49:16,162 Diagnostics  INFO     Creating connection
+2023-03-07 14:49:16,162 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 14:49:16,162 Connection   INFO     Using TLS v1.2
+2023-03-07 14:49:16,287 Diagnostics  INFO     Creating request message
+2023-03-07 14:49:16,287 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-03-07 14:49:16,288 Diagnostics  INFO     Sending request message
+2023-03-07 14:49:16,288 Diagnostics  INFO     Receiving response message
+2023-03-07 14:49:16,305 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-03-07 14:49:16,305 Diagnostics  INFO     Streaming info response
+2023-03-07 14:49:16,306 Diagnostics  INFO     Connection successful
+2023-03-07 14:49:16,312 Monitor      INFO     Starting Monitor.
+2023-03-07 14:49:16,317 Connection   INFO     Connecting to partner-fmc.csta.cisco.com:8302
+2023-03-07 14:49:16,318 Connection   INFO     Using TLS v1.2
+2023-03-07 14:49:16,318 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-03-07 14:49:16,375 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 14:49:16,375 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677530330)
+2023-03-07 14:49:16,375 Receiver     INFO     EventStreamRequestMessage: b'000100020000000863fd14da48900061'
+2023-03-07 14:49:16,375 SingleWorker INFO     Starting process.
+2023-03-07 14:49:16,391 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 14:49:16,392 Settings     INFO     Timestamp: Start = 2 (Bookmark = 1677530330)
+2023-03-07 14:49:16,392 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006163fd14da000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-03-07 14:49:16,776 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat
+2023-03-07 14:49:16,776 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_cache.dat" does not exist. Using default values
+2023-03-07 14:49:16,818 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-03-07 14:49:16,912 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/partner-fmc.csta.cisco.com-8302_bookmark.dat.
+2023-03-07 14:49:55,532 Controller   INFO     Stopping...
+2023-03-07 14:49:55,631 SingleWorker INFO     Stop message received
+2023-03-07 14:49:55,798 SingleWorker INFO     Exiting
+2023-03-07 14:49:55,804 Controller   INFO     Process 72524 (Process-1) exit code: 0
+2023-03-07 14:49:55,804 Monitor      INFO     Stopping Monitor.
+2023-03-07 14:49:55,888 Controller   INFO     Goodbye

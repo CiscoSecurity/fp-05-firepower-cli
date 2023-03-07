@@ -1,0 +1,182 @@
+.header {
+    display: flex;
+    height: $header-height;
+    padding: $header-padding;
+    width: 100%;
+    min-width: $header-min-width;
+    align-items: center;
+    background: $header-bg-color;
+    box-shadow: $default-box-shadow;
+    z-index: 1030;
+    overflow: visible;
+    &__logo {
+        display: block;
+        margin: $header__logo-margin;
+        &:hover {
+            text-decoration: none;
+        }
+        &:focus {
+            box-shadow: $base-box-shadow;
+            text-decoration: none;
+        }
+        .icon-cisco {
+            display: block;
+            font-size: $header__logo-font-size;
+            line-height: 1;
+            &:before {
+                color: $header__logo-color;
+            }
+        }
+    }
+    &__navigation {
+        display: flex;
+        align-self: flex-end;
+        flex: 1;
+        .tab-group {
+            margin: 0;
+            &__tab {
+                padding-bottom: ($header-height - $h2-font-size) * 0.5 - 1;
+                .icon {
+                    font-size: $header-triangle-icon-font-size;
+                    font-weight: $font-weight-xbold;
+                    margin: $header-triangle-icon-margin;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    &__title {
+        max-width: 400px;
+        margin: 0 50px 0 0;
+        &:focus {
+            box-shadow: $base-box-shadow;
+        }
+        a,
+        a:visited,
+        a:hover,
+        a:focus,
+        a:active {
+            color: $base-color;
+            text-decoration: none;
+        }
+        h1,
+        h2 {
+            margin: 0;
+            font-weight: 200;
+        }
+    }
+    &__toolbar {
+        font-size: $header__toolbar-font-size;
+        display: inline-flex;
+    }
+    &__icon {
+        @include btn-icon();
+        height: $header__icon-size;
+        width: $header__icon-size;
+        &:focus {
+            box-shadow: $base-box-shadow;
+            text-decoration: none;
+        }
+    }
+    .dropdown {
+        &__menu {
+            $top: ($header-height - $h2-font-size) * 0.5;
+            top: calc(100% + #{$top});
+            left: $header-dropdown-left;
+        }
+    }
+
+    &__bar {
+        margin: 0 10px;
+        height: $header__bar-height;
+        width: $header__bar-width;
+        background-color: $header__bar-color;
+    }
+
+    &--type-secure {
+        padding: 0 20px;
+
+        .header__logo {
+            width: $secure-header-secure-logo-width;
+            height: $secure-header-secure-logo-height;
+            margin: 0 10px 0 0;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .header__logo-access {
+            background-image: $header-logo-access-bg;
+        }
+        .header__logo-any-connect-secure-mobility-client {
+            background-image: $header-logo-any-connect-secure-mobility-client-bg;
+        }
+        .header__logo-cisco-secure-email-cloud {
+            background-image: $header-logo-cisco-secure-email-cloud-bg;
+        }
+        .header__logo-cisco-umbrella {
+            background-image: $header-logo-cisco-umbrella-bg;
+        }
+        .header__logo-cloudlock {
+            background-image: $header-logo-cloudlock-bg;
+        }
+        .header__logo-email-and-web-manager {
+            background-image: $header-logo-email-and-web-manager-bg;
+        }
+        .header__logo-email {
+            background-image: $header-logo-email-bg;
+        }
+        .header__logo-endpoint {
+            background-image: $header-logo-endpoint-bg;
+        }
+        .header__logo-firewall {
+            background-image: $header-logo-firewall-bg;
+        }
+        .header__logo-ise {
+            background-image: $header-logo-ise-bg;
+        }
+        .header__logo-secure-cloud-analytics {
+            background-image: $header-logo-secure-cloud-analytics-bg;
+        }
+        .header__logo-secure-malware-analytics {
+            background-image: $header-logo-secure-malware-analytics-bg;
+        }
+        .header__logo-secure-network-analytics {
+            background-image: $header-logo-secure-network-analytics-bg;
+        }
+        .header__logo-security-analytics-and-logging {
+            background-image: $header-logo-security-analytics-and-logging-bg;
+        }
+        .header__logo-web-appliance {
+            background-image: $header-logo-web-appliance-bg;
+        }
+        .header__logo-workload {
+            background-image: $header-logo-workload-bg;
+        }
+
+        .header__secure-logo {
+            background-image: $secure-header-secure-logo-bg;
+            width: $secure-header-cisco-secure-logo-width;
+            height: $secure-header-cisco-secure-logo-height;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .product-name {
+            font-size: $header-product-name-font-size;
+            line-height: $header-product-name-line-height;
+            font-weight: 200;
+        }
+
+        .variant-name {
+            font-size: $header-variant-name-font-size;
+            line-height: $header-variant-name-line-height;
+            color: $secure-header-variant-color;
+        }
+
+        .header__title {
+            margin: 0 40px 0 0;
+        }
+    }
+}
