@@ -39,6 +39,7 @@ FIELD_MAPPING = {
         View.APP_PROTO: 'app_proto',
         View.ARCHIVE_FILE_STATUS: 'archive_file_status',
         View.BLOCKED: 'blocked',
+        View.BLOCKED_REASON_ID: 'blocked_reason_id',
         View.BYTES_RECEIVED: 'bytes_received',
         View.BYTES_TRANSMITTED: 'bytes_transmitted',
         View.CLASSIFICATION_DESCRIPTION: 'class_desc',
