@@ -299,8 +299,18 @@ Resources:
             sudo pip install pandas
             
             sudo pip install boto3
+
+            sudo pip install fastapi
+
+            sudo pip install "uvicorn[standard]"
+
+            sudo pip install python-multipart
             
             sudo pip3 install boto3
+
+            sudo apt -y install npm
+
+            sudo npm install && npm run build
 
             # Install AWS CLI
             
@@ -315,6 +325,16 @@ Resources:
             # git clone eNcore client
             
             sudo git clone -b ocsf https://github.com/CiscoSecurity/fp-05-firepower-cli.git /encore
+            
+            cd /encore/fastapi
+
+            sudo uvicorn main:app --reload --host 0.0.0.0 --port 8282
+
+            cd /encore/encoregui
+
+            npm install react-router-dom
+
+            sudo npm start
             
             cd /encore
 
