@@ -674,10 +674,6 @@ class View( object ):
                 [ Cache.BLOCKED, record['blocked']] )
 
             self.__addValueIfAvailable(
-                View.BLOCKED_REASON,
-                [ Cache.BLOCKED_REASON, record['blockedReasonId']] )
-
-            self.__addValueIfAvailable(
                 View.IP_PROTOCOL,
                 [ Cache.IP_PROTOCOLS, record['ipProtocol']] )
 
