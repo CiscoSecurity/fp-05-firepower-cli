@@ -174,8 +174,6 @@ class Binary( object ):
             
         return offset
 
-
-
     @staticmethod
     def _blockDefinition( key ):
         if key is None:
@@ -532,7 +530,25 @@ class Binary( object ):
                 else :
                     attributes = RECORDS[ 1071 ][ 'attributes' ]
 
-                    self.logger.error( 'Unsupported Record/Block Type: Record={0} BlockType={1}'.format( recordType, blockType ) )
+                    self.logger.error( 'Unsupported Record Block Type: Record={0} BlockType={1} - using legacy definition'.format( recordType, blockSubType ) )
+
+            elif recordType == 125: 
+
+                blockSubType = struct.unpack(
+                                '>' + TYPE_UINT32,
+                                data[ 16 : 20 ] )[ 0 ] 
+
+                
+                self.logger.log(logging.TRACE, 'malware subtype {0}'.format(blockSubType))
+
+                if blockSubType == 60 :
+                    attributes = RECORDS[ 125 ]['attributes']
+                elif blockSubType == 80 :
+                    attributes = RECORDS[ 1251 ]['attributes']
+                else :
+                    attributes = RECORDS[ 125 ][ 'attributes' ]
+
+                    self.logger.error( 'Unsupported Record Block Type: Record={0} BlockType={1} - using legacy definition Block 60'.format( recordType, blockSubType ) )
 
             elif recordType == 400 :
                 blockSubType = struct.unpack(
@@ -673,10 +689,6 @@ class Binary( object ):
 
         expectedLength = offset + length
         actualLength = len( source['data'] )
-
-#        if self.logger.isEnabledFor( logging.TRACE ):
-#            self.logger.log(logging.TRACE, '_errorMessage : recordType={0} actualLength={1}:expectedLength={2}'.format(
-#                        recordType, actualLength, expectedLength))
 
         if expectedLength != actualLength:
             raise ParsingException(

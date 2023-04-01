@@ -121,6 +121,7 @@ class Cache( object ):
         APPLICATION_PROTOCOLS: 'app_protos',
         ATTRIBS: 'attribs',
         BLOCKED: 'blocked',
+        BLOCKED_REASON: 'blockedReasonId',
         CLASSIFICATIONS: 'classifications',
         CLIENT_APPLICATIONS: 'client_apps',
         CLOUDS: 'clouds',

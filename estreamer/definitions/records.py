@@ -841,6 +841,12 @@ RECORDS = {
         'attributes': [ { 'block': BLOCK_MALWARE_EVENT_60 }],
         'category': u'MALWARE EVENT' },
 
+    # 125 - FMC 7.0+
+    RECORD_MALWARE_EVENT_V70: {	
+        'name': u'Malware Event Record',
+        'attributes': [ { 'block': BLOCK_MALWARE_EVENT_80 }],
+        'category': u'MALWARE EVENT' },
+
     # 127
     METADATA_FIREAMP_CLOUD_NAME: {
         'name': u'Cisco AMP Cloud Name Metadata',
