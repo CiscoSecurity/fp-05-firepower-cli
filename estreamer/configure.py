@@ -130,7 +130,7 @@ class Configure( object ):
 
         parser.add_argument(
             '--output',
-            help = 'splunk | cef | cef2 | json')
+            help = 'splunk | cef | cef2 | json | netwitness')
 
         parser.add_argument(
             '--bookmark',
@@ -233,6 +233,22 @@ class Configure( object ):
                     }
                 }
             ])
+
+        if output == 'netwitness':
+            self._set( Configure.JSON_PATH_OUTPUT, [
+                {
+                    "adapter": "netwitness",
+                    "enabled": True,
+                    "stream": {
+                        "options": {
+                            "maxLogs": 10000,
+                            "rotate": True
+                        },
+                        "uri": "relfile:///data/netwitness/encore.{0}.json"
+                    }
+                }
+            ])
+
 
         if output == 'cef':
             self._set( Configure.JSON_PATH_OUTPUT, [
