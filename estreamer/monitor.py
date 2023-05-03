@@ -66,8 +66,7 @@ class Monitor( object ):
         self.lastCount = count
 
         return velocity, rate
-
-
+    
 
     def __tick( self ):
         try:
@@ -88,10 +87,27 @@ class Monitor( object ):
                     message += ' average rate {0} ev/sec; '.format(status['cumulative_rate'])
 
                 if self.settings.monitor.bookmark:
-                    message += ' bookmark {0};'.format(
-                        estreamer.common.convert.toIso8601( status['bookmark'] ))
+
+                     if status['bookmark'] == 0:
+                        bookmark = estreamer.Bookmark( self.settings.bookmarkFilepath() )
+                        timeInt = bookmark.read()
+                        message += ' bookmark {0};'.format(estreamer.common.convert.toIso8601( timeInt ) )
+                     else :
+                        message += ' bookmark {0};'.format(estreamer.common.convert.toIso8601( status['bookmark'] ))
 
                 self.logger.info( message )
+
+        except estreamer.UnsupportedTimestampException:
+            # This is a workaround for the time being. Occasionally, on stopping
+            # the controlling process pipe communications collides with the monitor
+            # and messages are garbled. Investigate
+            self.logger.info('Running (no process data available)')
+
+        except estreamer.EncoreException as ex:
+            self.logger.error(ex)
+
+        except Exception as ex:
+            self.logger.exception(ex)
 
         except estreamer.UnsupportedTimestampException:
             # This is a workaround for the time being. Occasionally, on stopping
