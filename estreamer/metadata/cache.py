@@ -121,7 +121,6 @@ class Cache( object ):
         APPLICATION_PROTOCOLS: 'app_protos',
         ATTRIBS: 'attribs',
         BLOCKED: 'blocked',
-        BLOCKED_REASON: 'blockedReasonId',
         CLASSIFICATIONS: 'classifications',
         CLIENT_APPLICATIONS: 'client_apps',
         CLOUDS: 'clouds',
@@ -780,7 +779,6 @@ class Cache( object ):
             },
         
             Cache.BLOCKED_REASON: {
-                0: 'Undefined',
                 1: 'Interface in Passive or Tap mode',
                 2: 'Intrusion Policy in \"Detection\" Inspection Mode',
                 3: 'Network Analysis Policy in \"Detection\" Inspection Mode',
