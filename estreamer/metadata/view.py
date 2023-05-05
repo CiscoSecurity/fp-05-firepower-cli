@@ -1,11 +1,16 @@
-
+"""
+The cache module contains a class to manage and maintain the stream
+of metadata from eStreamer
+"""
 #********************************************************************
-#      File:    view.py
+#      File:    cache.py
 #      Author:  Sam Strachan
 #
 #      Description:
-#       metadata.View contains all logic to do with adding additional
-#       metadata to a given record.
+#       metadata.Cache() saves a copy of all metadata which flows
+#       through the client. The metadata is then used by the View
+#       class to supplement non-metadata records with more human
+#       readable data
 #
 #      Copyright (c) 2017 by Cisco Systems, Inc.
 #
@@ -17,1303 +22,1547 @@
 #
 #*********************************************************************/
 
-import datetime
-import re
-import binascii
+#pylint: disable=C0302
+import pickle
+import os
+import estreamer.common
 import estreamer.crossprocesslogging
 import estreamer.definitions as definitions
-from estreamer.adapters.binary import Binary
-from estreamer.common import Flatdict
-from estreamer.common import Packet
-from estreamer.metadata.cache import Cache
+import estreamer.metadata
 
-class View( object ):
+class Cache( object ):
     """
-    The view class adds derived, computed and cached metadata to the
-    incoming wire record
+    Class to manage and maintain the stream of metadata from
+    eStreamer. In time this will also serialize and deserialize
+    itself to and from disk
     """
-    OUTPUT_KEY = '@computed'
-
-    ACTION = 'action'
-    AGENT_USER = 'agentUser'
-    APP_PROTO = 'applicationProtocol'
-    ARCHIVE_FILE_STATUS = 'archiveFileStatus'
+    ACCESS_CONTROL_POLICIES = 'acPols'
+    APPLICATION_PROTOCOLS = 'appProtocols'
+    ATTRIBS = 'attributes'
     BLOCKED = 'blocked'
     BLOCKED_REASON = 'blockedReasonId'
-    BYTES_RECEIVED = 'bytesReceived'
-    BYTES_TRANSMITTED = 'bytesTransmitted'
-    CLASSIFICATION_DESCRIPTION = 'classificationDescription'
-    CLASSIFICATION_NAME = 'classificationName'
-    CLIENT_APP = 'clientApplication'
-    CLIENT_IP = 'clientIp'
-    CLIENT_OS = 'clientOS'
-    CLOUD = 'cloud'
-    CONNECTION_DURATION = 'connectionDuration'
-    CORRELATION_RULE = 'correlationRule'
-    CORRELATION_POLICY = 'correlationPolicy'
-    COUNTRY_CODE = 'countryCode'
-    DATA = 'data'
-    DESCRIPTION = 'description'
-    DESTINATION_APP_PROTO = 'destinationApplicationProtocol'
-    DESTINATION_IP = 'destinationIp'
-    DESTINATION_IP_COUNTRY = 'destinationIpCountry'
-    DESTINATION_CRITICALITY = 'destinationCriticality'
-    DESTINATION_HOSTTYPE = 'destinationHostType'
-    DESTINATION_OS_NAME = 'destinationOperatingSystemName'
-    DESTINATION_OS_VENDOR = 'destinationOperatingSystemVendor'
-    DESTINATION_OS_VERSION = 'destinationOperatingSystemVersion'
-    DESTINATION_USER = 'destinationUser'
-    DETECTOR = 'detector'
-    DETECTION = 'detection'
-    DETECTION_NAME = 'detectionName'
-    DEVICE_ID = 'deviceId'
-    DIRECTION = 'direction'
-    DISPOSITION = 'disposition'
-    DNS_RECORD_NAME = 'dnsRecordName'
-    DNS_RECORD_DESCRIPTION = 'dnsRecordDescription'
-    DNS_RESPONSE_NAME = 'dnsResponseName'
-    DNS_RESPONSE_DESCRIPTION = 'dnsResponseDescription'
-    DOMAIN = 'domain'
-    DURATION = 'connectionDuration'
-    END_PORT = 'endPort'
+    CLASSIFICATIONS = 'classifications'
+    CLIENT_APPLICATIONS = 'clientApps'
+    CLOUDS = 'clouds'
+    CORRELATION_CRITICALITY = 'correlationCriticality'
+    CORRELATION_EVENT_TYPES = 'correlationEventTypes'
+    CORRELATION_HOST_TYPE = 'correlationHostTypes'
+    CORRELATION_RULES = 'correlationRules'
+    DEVICES = 'devices'
+    DNS_RECORDS = 'dnsRecords'
+    DNS_RESPONSES = 'dnsResponses'
+    DIRECTIONS = 'directions'
+    DISPOSITIONS = 'dispositions'
     ENDPOINT_PROFILE_ID = 'endpointProfileId'
-    EVENT_DESC = 'eventDescription'
-    EVENT_SEC = 'eventSecond'
-    EVENT_TYPE = 'eventType'
-    EVENT_USEC = 'eventMicrosecond'
-    EVENT_TIMESTAMP = 'eventDateTime'
-    FILE_ACTION = 'fileAction'
-    FILE_ANALYSIS_STATUS = 'fileAnalysisStatus'
-    FILE_POLICY = 'filePolicy'
-    FILE_STORAGE_STATUS = 'fileStorageStatus'
-    FILE_SANDBOX_STATUS = 'fileSandboxStatus'
-    FILE_TYPE = 'fileType'
-    FW_POLICY = 'firewallPolicy'
-    FW_RULE = 'firewallRule'
-    FW_RULE_ACTION = 'firewallRuleAction'
-    FW_RULE_REASON = 'firewallRuleReason'
-    HOST_IP_ADDR = 'hostIpAddr'
-    IDS_POLICY = 'idsPolicy'
-    IFACE_INGRESS = 'ingressInterface'
-    IFACE_EGRESS = 'egressInterface'
+    FILE_ACTIONS = 'fileActions'
+    FILE_ARCHIVE_STATUS = 'archiveFileStatus'
+    FILE_DISPOSITIONS = 'fileDispositions'
+    FILE_SANDBOXES = 'fileSandboxes'
+    FILE_SHAS = 'fileShas'
+    FILE_STATIC_ANALYSES = 'fileStaticAnalyses'
+    FILE_STORAGES = 'fileStorages'
+    FILE_TYPES = 'fileTypes'
+    FIREAMP_DETECTORS = 'fireampDetectors'
+    FIREAMP_TYPES = 'fireampTypes'
+    FIREAMP_SUBTYPES = 'fireampSubtypes'
+    FIREWALL_RULE_ACTIONS = 'firewallRuleActions'
+    FIREWALL_RULE_REASONS = 'firewallRuleReasons'
+    FW_RULES = 'firewallRules'
+    GEOLOCATIONS = 'geolocations'
+    ICMP_TYPES = 'icmpTypes'
+    ICMP_CODES = 'icmpCodes'
+    IDS_RULES = 'idsRules'
+    IDS_RULES_RENDERED = 'idsRulesRendered'
     IMPACT = 'impact'
-    IMPACT_DESCRIPTION = 'impactDescription'
-    INDEX = 'index'
-    IOC_CATEGORY = 'iocCategory'
-    IP_PROTOCOL = 'transportProtocol'
-    LOGIN_TYPE = 'loginType'
-    MALWARE_ANALYSIS_STATUS = 'malwareAnalysisStatus'
-    MALWARE_EVENT_TYPE = 'malwareEventType'
-    MALWARE_EVENT_SUBTYPE = 'malwareEventSubtype'
-    MONITOR_RULE = 'monitorRule{0}'
-    MSG = 'message'
-    NET_PROTO = 'networkProtocol'
-    NETWORK_ANALYSIS_POLICY = 'networkAnalysisPolicy'
-    ORIGINAL_CLIENT_SRC_IP = 'originalSrcIP'
+    INTERFACES = 'interfaces'
+    IOC = 'ioc'
+    IP_PROTOCOLS = 'ipProtocols'
+    MALWARE_EVENT_TYPES = 'malwareEventTypes'
+    MALWARE_ANALYSIS_STATUS = 'malwareAnalysis'
+    NET_PROTOS = 'networkProtocols'
+    NETMAP_DOMAINS = 'netmapDomains'
+    ORIGINAL_SRC_IP = 'originalSrcIp'
+    OS_FINGERPRINTS = 'osFingerprints'
     PACKET_DATA = 'packet'
     PACKET_DATA_FULL = 'originalPacket'
-    PARENT_DETECTION = 'parentDetection'
-    PRIORITY = 'priority'
-    PROTOCOL = 'protocol'
-    REALM = 'realm'
-    REC_TYPE_CATEGORY = 'recordTypeCategory'
-    REC_TYPE_DESCRIPTION = 'recordTypeDescription'
-    REC_TYPE_SIMPLE = 'recordTypeCategory'
-    RENDERED_ID = 'renderedId'
-    RETRO_DISPOSITION = 'retroDisposition'
-    SEC_INTEL_EVENT = 'securityIntelligenceEvent'
-    SEC_INTEL_IP = 'securityIntelligenceIp'
-    SEC_INTEL_LIST1 = 'securityIntelligenceList1'
-    SEC_INTEL_LIST2 = 'securityIntelligenceList2'
-    SEC_INTEL_POLICY = 'securityIntelligencePolicy'
-    SEC_ZONE_INGRESS = 'ingressSecurityZone'
-    SEC_ZONE_EGRESS = 'egressSecurityZone'
-    SECURITY_GROUP = 'securityGroup'
-    SECURITY_GROUP_ID = 'securityGroupId'
-    SENSOR = 'sensor'
-    SINKHOLE = 'sinkhole'
-    SOURCE = 'source'
-    SOURCE_APP_PROTO = 'sourceApplicationProtocol'
-    SOURCE_IP = 'sourceIp'
-    SOURCE_IP_COUNTRY = 'sourceIpCountry'
-    SOURCE_CRITICALITY = 'sourceCriticality'
-    SOURCE_HOSTTYPE = 'sourceHostType'
-    SOURCE_TYPE = 'sourceType'
-    SOURCE_OS_NAME = 'sourceOperatingSystemName'
-    SOURCE_OS_VENDOR = 'sourceOperatingSystemVendor'
-    SOURCE_OS_VERSION = 'sourceOperatingSystemVersion'
-    SOURCE_USER = 'sourceUser'
-    SPERO_DISPOSITION = 'speroDisposition'
-    SSL_ACTUAL_ACTION = 'sslActualAction'
-    SSL_CIPHER_SUITE = 'sslCipherSuite'
-    SSL_EXPECTED_ACTION = 'sslExpectedAction'
+    PAYLOADS = 'payloads'
+    POLICIES = 'policies'
+    PRIORITIES = 'priorities'
+    REALMS = 'realms'
+    SECURITY_GROUPS = 'securityGroup'
+    SECURITY_ZONES = 'securityZones'
+    SI_LISTS_GENERAL = 'siGeneral'
+    SI_LISTS_DISCOVERY = 'siDiscovery'
+    SI_SRC_DESTS = 'siSrcDests'
+    SINKHOLES = 'sinkholes'
+    SOURCE_APPLICATIONS = 'sourceApps'
+    SOURCE_DETECTORS = 'sourceDetectors'
+    SOURCE_TYPES = 'sourceTypes'
+    SSL_ACTIONS = 'sslActions'
+    SSL_CIPHER_SUITES = 'sslCipherSuite'
+    SSL_FLOWS_STATUSES = 'sslFlowStatuses'
     SSL_FLOW_FLAGS = 'sslFlowFlags'
     SSL_FLOW_MESSAGES = 'sslFlowMessages'
-    SSL_FLOW_STATUS = 'sslFlowStatus'
-    SSL_SERVER_CERT_STATUS = 'sslServerCertificateStatus'
-    SSL_URL_CATEGORY = 'sslUrlCategory'
-    SSL_VERSION = 'sslVersion'
-    START_PORT = 'startPort'
-    SUBTYPE = 'subtype'
-    TYPE = 'type'
-    UNHANDLED = 'unhandled'
-    URL_CATEGORY = 'urlCategory'
-    URL_REPUTATION = 'urlReputation'
-    USER = 'user'
-    USER_AUTH_TYPE = 'userAuthType'
-    USER_ID = 'userId'
-    USER_LOGIN = 'userLogin'
-    VPN_CONNECTION_PROFILE = 'vpnConnectionProfile'
-    VPN_POLICY = 'groupPolicy'
-    VPN_PROFILE = 'vpnConnectionProfile'
-    VPN_SESSION = 'vpnSession'
-    VPN_TYPE = 'vpnType'
-    WEB_APP = 'webApplication'
-    XFF_HTTP_URI = 'xffUri'
-    XFF_TYPE = 'xffType'
+    SSL_CERT_STATUSES = 'sslCertStatuses'
+    SSL_URL_CATEGORIES = 'sslUrlCategories'
+    SSL_VERSIONS = 'sslVersions'
+    SYSTEM_USERS = 'systemUsers'
+    URL_REPUTATIONS = 'urlReputations'
+    URL_CATEGORIES = 'urlCategories'
+    USER_AUTH_TYPES = 'userAuthTypes'
+    USER_PROTOCOLS = 'userProtocols'
+    USERS = 'users'
+    VPN_TYPES = 'vpnTypes'
+    XDATA_TYPES = 'xdataTypes'
+    XFF_TYPES = 'xffTypes'
 
-
-    AUTOMAP = {
-        # 2
-        definitions.RECORD_PACKET: [
-
-        ],
-
-        # 13
-        definitions.RECORD_RNA_NEW_NET_PROTOCOL: [
-            {
-                'cache': Cache.NET_PROTOS,
-                'id': 'networkProtocol',
-                'view': NET_PROTO
-            }
-        ],
-
-        # 14
-        definitions.RECORD_RNA_NEW_XPORT_PROTOCOL: [
-            {
-                'cache': Cache.IP_PROTOCOLS,
-                'id': 'transportProtocol',
-                'view': IP_PROTOCOL
-            }
-        ],
-
-        # 15
-        definitions.RECORD_RNA_NEW_CLIENT_APP: [
-            {
-                'cache': Cache.CLIENT_APPLICATIONS,
-                'id': ['client', 'id'],
-                'view': CLIENT_APP
-            }, {
-                'cache': Cache.APPLICATION_PROTOCOLS,
-                'id': ['client', 'applicationProto'],
-                'view': APP_PROTO
-            }
-        ],
-
-        # 35
-        definitions.RECORD_RNA_CHANGE_CLIENT_APP_TIMEOUT: [
-            {
-                'cache': Cache.CLIENT_APPLICATIONS,
-                'id': ['client', 'id'],
-                'view': CLIENT_APP
-            }, {
-                'cache': Cache.APPLICATION_PROTOCOLS,
-                'id': ['client', 'applicationProto'],
-                'view': APP_PROTO
-            }
-        ],
-
-        # 62
-        definitions.RECORD_USER: [
-            {
-                'cache': Cache.USER_PROTOCOLS,
-                'id': 'protocol',
-                'view': PROTOCOL
-            }
-        ],
-
-        # 71
-        definitions.RECORD_RNA_CONNECTION_STATISTICS: [
-
-        ],
-
-        # 95
-        definitions.RUA_EVENT_CHANGE_USER_LOGIN: [
-
-            # These need to be added for version 6.0
-            # , {
-            #     'cache': Cache.REALMS,
-            #     'id': ['user', 'realmId'],
-            #     'view': REALM
-            # }, {
-            #     'cache': Cache.SECURITY_GROUPS,
-            #     'id': ['user', 'securityGroupId'],
-            #     'view': SECURITY_GROUP
-            # }
-        ]
+    # Incase we need to map from the old perl metadata somehow
+    mapping = {
+        APPLICATION_PROTOCOLS: 'app_protos',
+        ATTRIBS: 'attribs',
+        BLOCKED: 'blocked',
+        CLASSIFICATIONS: 'classifications',
+        CLIENT_APPLICATIONS: 'client_apps',
+        CLOUDS: 'clouds',
+        CORRELATION_CRITICALITY: 'corr_criticallity',
+        CORRELATION_EVENT_TYPES: 'corr_event_types',
+        CORRELATION_HOST_TYPE: 'corr_host_type',
+        CORRELATION_RULES: 'corr_rules',
+        DEVICES: 'devices',
+        DIRECTIONS: 'directions',
+        FILE_ACTIONS: 'file_actions',
+        FILE_DISPOSITIONS: 'file_dispositions',
+        FILE_SANDBOXES: 'file_sandboxes',
+        FILE_SHAS: 'file_shas',
+        FILE_STORAGES: 'file_storages',
+        FILE_TYPES: 'file_types',
+        FIREAMP_DETECTORS: 'fireamp_detectors',
+        FIREAMP_TYPES: 'fireamp_types',
+        FIREAMP_SUBTYPES: 'fireamp_subtypes',
+        FIREWALL_RULE_ACTIONS: 'fw_rule_actions',
+        FIREWALL_RULE_REASONS: 'fw_rule_reasons',
+        FW_RULES: 'fw_rules',
+        GEOLOCATIONS: 'geolocations',
+        ICMP_TYPES: 'icmp_types',
+        ICMP_CODES: 'icmp_codes',
+        IDS_RULES: 'ids_rules',
+        INTERFACES: 'interfaces',
+        IP_PROTOCOLS: 'ip_protos',
+        MALWARE_EVENT_TYPES: 'malware_event_types',
+        NET_PROTOS: 'net_protos',
+        OS_FINGERPRINTS: 'os_fingerprints',
+        PACKET_DATA: 'packet',
+        PACKET_DATA_FULL: 'originalPacket',
+        PAYLOADS: 'payloads',
+        POLICIES: 'policies',
+        PRIORITIES: 'priorities',
+        SECURITY_ZONES: 'security_zones',
+        SI_SRC_DESTS: 'si_src_dests',
+        SOURCE_APPLICATIONS: 'source_apps',
+        SOURCE_DETECTORS: 'source_detectors',
+        SOURCE_TYPES: 'source_types',
+        SYSTEM_USERS: 'system_users',
+        URL_REPUTATIONS: 'url_reputations',
+        URL_CATEGORIES: 'url_categories',
+        USERS: 'users',
+        XDATA_TYPES: 'xdata_types'
     }
 
-    def __init__( self, cache, record, settings ):
-        self.cache = cache
-        self.record = record
-        self.settings = settings
+    AUTOMAP = {
+
+        # 2
+        definitions.RECORD_PACKET: {
+            'cache': PACKET_DATA,
+            'id': 'id',
+            'value': 'name' },
+
+        # 4
+        definitions.RECORD_PRIORITY: {
+            'cache': PRIORITIES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 55
+        definitions.METADATA_RNA_CLIENT_APPLICATION: {
+            'cache': CLIENT_APPLICATIONS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 59
+        definitions.METADATA_RNA_NETWORK_PROTOCOL: {
+            'cache': NET_PROTOS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 60
+        definitions.METADATA_RNA_ATTRIBUTE: {
+            'cache': ATTRIBS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 62
+        definitions.RECORD_USER: {
+            'cache': SYSTEM_USERS,
+            'id': 'id',
+            'value': 'name.data' },
+
+        # 63
+        definitions.METADATA_RNA_SERVICE: {
+            'cache': APPLICATION_PROTOCOLS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 69
+        definitions.METADATA_CORRELATION_POLICY: {
+            'cache': POLICIES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 90
+        definitions.METADATA_RNA_SOURCE_TYPE: {
+            'cache': SOURCE_TYPES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 91
+        definitions.METADATA_RNA_SOURCE_APP: {
+            'cache': SOURCE_APPLICATIONS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 96
+        definitions.METADATA_RNA_SOURCE_DETECTOR: {
+            'cache': SOURCE_DETECTORS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 98
+        definitions.RECORD_RUA_USER: {
+            'cache': USERS,
+            'id': 'id',
+            'value': 'username' },
+
+        # 109
+        definitions.RECORD_RNA_WEB_APPLICATION_PAYLOAD: {
+            'cache': PAYLOADS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 111
+        definitions.METADATA_INTRUSION_EXTRA_DATA: {
+            'cache': XDATA_TYPES,
+            'id': 'type',
+            'value': 'name.data' },
+
+        # 115
+        definitions.METADATA_SECURITY_ZONE_NAME: {
+            'cache': SECURITY_ZONES,
+            'id': 'uuid',
+            'value': 'name.data' },
+
+        # 116
+        definitions.METADATA_INTERFACE_NAME: {
+            'cache': INTERFACES,
+            'id': 'uuid',
+            'value': 'name.data' },
+
+        # 118
+        definitions.METADATA_INTRUSION_POLICY_NAME: {
+            'cache': POLICIES,
+            'id': 'uuid',
+            'value': 'name.data' },
+
+        # 120
+        definitions.METADATA_ACCESS_CONTROL_RULE_ACTION: {
+            'cache': FIREWALL_RULE_ACTIONS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 121
+        definitions.METADATA_URL_CATEGORY: {
+            'cache': URL_CATEGORIES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 122
+        definitions.METADATA_URL_REPUTATION: {
+            'cache': URL_REPUTATIONS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 123
+        definitions.METADATA_SENSOR: {
+            'cache': DEVICES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 124
+        definitions.METADATA_ACCESS_CONTROL_POLICY_RULE_REASON: {
+            'cache': FIREWALL_RULE_REASONS,
+            'id': 'id',
+            'value': 'description.data' },
+
+        # 127
+        definitions.METADATA_FIREAMP_CLOUD_NAME: {
+            'cache': CLOUDS,
+            'id': 'uuid',
+            'value': 'name.data' },
+
+        # 128
+        definitions.METADATA_FIREAMP_EVENT_TYPE: {
+            'cache': MALWARE_EVENT_TYPES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 129
+        definitions.METADATA_FIREAMP_EVENT_SUBTYPE: {
+            'cache': FIREAMP_SUBTYPES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 130
+        definitions.METADATA_FIREAMP_DETECTOR_TYPE: {
+            'cache': FIREAMP_DETECTORS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 131
+        definitions.METADATA_FIREAMP_FILE_TYPE: {
+            'cache': FILE_TYPES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 270
+        definitions.METADATA_ICMP_CODE: {
+            'cache': ICMP_CODES,
+            'id': 'code',
+            'value': 'description.data' },
+
+        # 281
+        definitions.METADATA_SECURITY_INTELLIGENCE_SRCDEST: {
+            'cache': SI_SRC_DESTS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 282
+        definitions.METADATA_SECURITY_INTELLIGENCE_CATEGORY_GENERAL: {
+            'cache': SI_LISTS_GENERAL,
+            'id': 'id',
+            'value': 'name.data' },
+
+        # 300
+        definitions.METADATA_REALM: {
+            'cache': REALMS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 302
+        definitions.METADATA_SECURITY_GROUP: {
+            'cache': SECURITY_GROUPS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 322
+        definitions.METADATA_SINKHOLE: {
+            'cache': SINKHOLES,
+            'id': 'uuid',
+            'value': 'name.data' },
+
+        # 350
+        definitions.METADATA_NETMAP_DOMAIN: {
+            'cache': NETMAP_DOMAINS,
+            'id': 'uuid',
+            'value': 'name.data' },
+
+        # 510
+        definitions.METADATA_FILELOG_FILE_TYPE: {
+            'cache': FILE_TYPES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 511
+        definitions.METADATA_FILELOG_SHA: {
+            'cache': FILE_SHAS,
+            'id': 'shaHash',
+            'value': 'fileName.data' },
+
+        # 515
+        definitions.METADATA_FILELOG_STORAGE: {
+            'cache': FILE_STORAGES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 516
+        definitions.METADATA_FILELOG_SANDBOX: {
+            'cache': FILE_SANDBOXES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 517
+        definitions.METADATA_FILELOG_SPERO: {
+            'cache': FILE_DISPOSITIONS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 518
+        definitions.METADATA_FILELOG_ARCHIVE: {
+            'cache': FILE_ARCHIVE_STATUS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 519
+        definitions.METADATA_FILELOG_STATIC_ANALYSIS: {
+            'cache': FILE_STATIC_ANALYSES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 520
+        definitions.METADATA_GEOLOCATION: {
+            'cache': GEOLOCATIONS,
+            'id': 'countryCode',
+            'value': 'country.data' },
+
+        # 530
+        definitions.METADATA_FILE_POLICY_NAME: {
+            'cache': POLICIES,
+            'id': 'uuid',
+            'value': 'name.data' },
+
+        # 602
+        definitions.METADATA_SSL_CIPHER_SUITE: {
+            'cache': SSL_CIPHER_SUITES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 604
+        definitions.METADATA_SSL_VERSION: {
+            'cache': SSL_VERSIONS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 605
+        definitions.METADATA_SSL_SERVER_CERTIFICATE_STATUS: {
+            'cache': SSL_CERT_STATUSES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 606
+        definitions.METADATA_SSL_ACTUAL_ACTION: {
+            'cache': SSL_ACTIONS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 607
+        definitions.METADATA_SSL_EXPECTED_ACTION: {
+            'cache': SSL_ACTIONS,
+            'id': 'id',
+            'value': 'name' },
+
+        # 608
+        definitions.METADATA_SSL_FLOW_STATUS: {
+            'cache': SSL_FLOWS_STATUSES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 613
+        definitions.METADATA_SSL_URL_CATEGORY: {
+            'cache': SSL_URL_CATEGORIES,
+            'id': 'id',
+            'value': 'name' },
+
+        # 700
+        definitions.METADATA_RECORD_NETWORK_ANALYSIS_POLICY: {
+            'cache': POLICIES,
+            'id': 'uuid',
+            'value': 'name.data' }
+    }
+
+
+
+    def __init__( self, filepath ):
+        self.filepath = filepath
+        self.logger = estreamer.crossprocesslogging.getLogger(
+            self.__class__.__name__ )
         self.data = {}
-        self.logger = estreamer.crossprocesslogging.getLogger( __name__ )
-
-    def __addValue( self, key, value ):
-        if value:
-            self.data[ key ] = value
-
-    def __addValueIfAvailable( self, key, cacheKeys ):
-        value = self.cache.get( cacheKeys )
-        if value:
-            self.data[ key ] = value
-
-    def __automap( self, record ):
-        recordTypeId = record['recordType']
-        if recordTypeId in View.AUTOMAP:
-            mappings = View.AUTOMAP[ recordTypeId ]
-            for mapping in mappings:
-                if isinstance( mapping['id'], list ):
-                    value = record
-                    for key in mapping['id']:
-                        value = value[key]
-
-                    if not isinstance( value, dict ):
-                        self.__addValueIfAvailable(
-                            mapping['view'],
-                            [ mapping['cache'], value ] )
-
-                elif mapping['id'] in record:
-                    self.__addValueIfAvailable(
-                        mapping['view'],
-                        [ mapping['cache'], record[ mapping['id'] ]] )
-
-                else:
-                    msg = 'Record (Type={0}) does not have "{1}" attribute'.format(
-                        recordTypeId,
-                        mapping['id'])
-
-                    self.logger.warning( msg )
-
-    def __isHex(self, s) :
-        hex_digits = set("0123456789abcdef")
-        for char in s:
-            if not (char in hex_digits):
-                return False
-        return True
-    
-    def __convertIPv6(self, extraData) :
-                            
-        h1 = extraData[0:4].decode('utf-8')
-        h2 = extraData[4:8].decode('utf-8')
-        h3 = extraData[8:12].decode('utf-8')
-        h4 = extraData[12:16].decode('utf-8')
-        h5 = extraData[16:20].decode('utf-8')
-        h6 = extraData[20:24].decode('utf-8')
-        h7 = extraData[24:28].decode('utf-8')
-        h8 = extraData[28:32].decode('utf-8')
-        ipv6 = h1 + ':' + h2 + ':' + h3 + ':' + h4 + ':' + h5 + ':' + h6 + ':' + h7 +  ':' + h8
-             
-        return ipv6
-
-    def create( self ):
-        """Creates a dictionary with all appropriate record decorations"""
-        if 'recordType' not in self.record:
-            return {}
-
-        # This method is long. There are possible some things which could be done to
-        # make it a bit shorter, but not that much. And it probably wouldn't help all
-        # that much anyway. But there are rules:
-        #  * the source record stays untouched. DO NOT change it at all. If the calling
-        #    method does so, then fine. But not here.
-        #  * all data gets written to self.data
-        #  * all references to self.data are through CONSTANTS - no strings
-        #  * record types are in ascending numerical order and commented with that number
-
-        record = self.record
-        recordTypeId = record['recordType']
-
-        self.data[ View.REC_TYPE_SIMPLE ] = definitions.RECORDS[recordTypeId]['category']
-        self.data[ View.REC_TYPE_DESCRIPTION ] = definitions.RECORDS[recordTypeId]['name']
-
-        # Take care of automatic lookups here
-        self.__automap( record )
-
-        # Now deal with all the other special cases
-
-        if recordTypeId == definitions.RECORD_PACKET :
-
-            packet = record['packetData']
-            packetEncoding = self.settings.subscribePacketEncoding
-            if isinstance(packet, (bytes, bytearray)) : 
-
-                if self.settings.subscribePacketEncoding : 
-
-                    packetEncoding = self.settings.subscribePacketEncoding
-
-                    if packetEncoding == 'ascii' :
-
-                        binData = binascii.unhexlify( packet )
-                        p = Packet(binData)
-                        packet = p.getPayloadAsAscii()
-
-                    elif packetEncoding == 'utf-8' :
-
-                        binData = binascii.unhexlify( packet )
-                        p = Packet(binData)
-                        packet = p.getPayloadAsUtf8()
-                    else :
-                        binData = binascii.unhexlify( packet )
-                        p = Packet(binData)
-                        packet = p.getPayloadAsHex()
-
-                if self.settings.subscribeIncludeOriginalPacket :
-                    self.__addValue(View.PACKET_DATA_FULL,record['packetData'].decode('utf-8')) 
-
-                self.__addValue(View.PACKET_DATA, packet)
-
-        elif recordTypeId == definitions.RECORD_INTRUSION_IMPACT_ALERT:
-            # 9
-            impact = record['description']['data']
-            # Gets '23' from '[Impact: 23]'
-            match = re.search(r'\[Impact:\s(.+?)\]', impact)
-            if match != None:
-                self.data[ View.DESCRIPTION ] = match.group(1)
-            else:
-                self.data[ View.DESCRIPTION ] = impact.replace('"', "'")
-
-            self.data[ View.IMPACT ] = Binary.getImpact( record['impact'])
-
-
-        elif recordTypeId == definitions.METADATA_CORRELATION_POLICY:
-            # 69
-            self.__addValueIfAvailable(
-                View.CORRELATION_RULE,
-                [ Cache.CORRELATION_RULES, record['id'], 'name'] )
-
-        elif recordTypeId == definitions.RECORD_RNA_CONNECTION_STATISTICS:
-            # 71
-            self.__addValueIfAvailable(
-                View.IP_PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['protocol']] )
-
-            self.__addValueIfAvailable(
-                View.WEB_APP,
-                [ Cache.PAYLOADS, record['webApplicationId']] )
-
-            self.__addValueIfAvailable(
-                View.CLIENT_APP,
-                [
-                    Cache.CLIENT_APPLICATIONS,
-                    record['clientApplicationId']] )
-
-            self.__addValueIfAvailable(
-                View.APP_PROTO,
-                [ Cache.APPLICATION_PROTOCOLS, record['applicationId']] )
-
-            self.__addValueIfAvailable(
-                View.SEC_INTEL_IP,
-                [
-                    Cache.SI_SRC_DESTS,
-                    record['securityIntelligenceSourceDestination']] )
-
-            if record['securityIntelligenceSourceDestination'] == 0:
-                self.data[ View.SEC_INTEL_EVENT ] = 'No'
-            else:
-                self.data[ View.SEC_INTEL_EVENT ] = 'Yes'
-
-            self.__addValueIfAvailable( View.SEC_INTEL_LIST1, [
-                Cache.SI_LISTS_DISCOVERY,
-                record['securityIntelligenceList1'],
-                record['policyRevision']] )
-
-            self.__addValueIfAvailable( View.SEC_INTEL_LIST2, [
-                Cache.SI_LISTS_DISCOVERY,
-                record['securityIntelligenceList2'],
-                record['policyRevision']] )
-
-            self.__addValueIfAvailable(
-                View.URL_CATEGORY,
-                [ Cache.URL_CATEGORIES, record['urlCategory']] )
-
-            self.__addValueIfAvailable(
-                View.URL_REPUTATION,
-                [ Cache.URL_REPUTATIONS, record['urlReputation']] )
-
-            self.__addValueIfAvailable(
-                View.FW_RULE,
-                [ Cache.FW_RULES, record['policyRevision'], record['ruleId']] )
-
-            self.__addValueIfAvailable(
-                View.FW_RULE_ACTION,
-                [ Cache.FIREWALL_RULE_ACTIONS, record['ruleAction']] )
-
-            self.__addValueIfAvailable(
-                View.FW_RULE_REASON,
-                [ Cache.FIREWALL_RULE_REASONS, record['ruleReason']] )
-
-            self.__addValueIfAvailable(
-                View.FW_POLICY,
-                [ Cache.ACCESS_CONTROL_POLICIES, record['deviceId'], record['policyRevision']] )
-
-            self.__addValueIfAvailable(
-                View.IFACE_INGRESS,
-                [ Cache.INTERFACES, record['ingressInterface']] )
-
-            self.__addValueIfAvailable(
-                View.IFACE_EGRESS,
-                [ Cache.INTERFACES, record['egressInterface']] )
-
-            self.__addValueIfAvailable(
-                View.SEC_ZONE_INGRESS,
-                [ Cache.SECURITY_ZONES, record['ingressZone']] )
-
-            self.__addValueIfAvailable(
-                View.SEC_ZONE_EGRESS,
-                [ Cache.SECURITY_ZONES, record['egressZone']] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['initiatorCountry']] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['responderCountry']] )
-
-            self.__addValueIfAvailable(
-                View.USER,
-                [ Cache.USERS, record['userId']] )
-
-            self.__addValueIfAvailable(
-                View.DNS_RECORD_NAME,
-                [ Cache.DNS_RECORDS, record['dnsRecordType'], 'name' ] )
-
-            self.__addValueIfAvailable(
-                View.DNS_RECORD_DESCRIPTION,
-                [ Cache.DNS_RECORDS, record['dnsRecordType'], 'description' ] )
-
-            self.__addValueIfAvailable(
-                View.DNS_RESPONSE_NAME,
-                [ Cache.DNS_RESPONSES, record['dnsResponseType'], 'name' ] )
-
-            self.__addValueIfAvailable(
-                View.DNS_RESPONSE_DESCRIPTION,
-                [
-                    Cache.DNS_RESPONSES,
-                    record['dnsResponseType'],
-                    'description' ] )
-
-            self.__addValueIfAvailable(
-                View.SINKHOLE,
-                [ Cache.SINKHOLES, record['sinkholeUuid']] )
-
-            self.__addValueIfAvailable(
-                View.IOC_CATEGORY,
-                [ Cache.IOC, record['iocNumber'], 'category' ] )
-
-            self.__addValueIfAvailable(
-                View.SSL_ACTUAL_ACTION,
-                [ Cache.SSL_ACTIONS, record['sslActualAction']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_EXPECTED_ACTION,
-                [ Cache.SSL_ACTIONS, record['sslExpectedAction']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_FLOW_FLAGS,
-                [ Cache.SSL_FLOW_FLAGS, record['sslFlowFlags']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_FLOW_MESSAGES,
-                [ Cache.SSL_FLOW_MESSAGES, record['sslFlowMessages']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_FLOW_STATUS,
-                [ Cache.SSL_FLOWS_STATUSES, record['sslFlowStatus']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_SERVER_CERT_STATUS,
-                [
-                    Cache.SSL_CERT_STATUSES,
-                    record['sslServerCertificateStatus']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_CIPHER_SUITE,
-                [ Cache.SSL_CIPHER_SUITES, record['sslCipherSuite']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_VERSION,
-                [ Cache.SSL_VERSIONS, record['sslVersion']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_URL_CATEGORY,
-                [ Cache.SSL_URL_CATEGORIES, record['sslUrlCategory']] )
-
-            for index in range(1, 8):
-                inputField = 'monitorRule{0}'.format( index )
-                outputField = View.MONITOR_RULE.format( index )
-                value = record[ inputField ]
-
-                if value == 0:
-                    self.data[ outputField ] = 'N/A'
-
-                self.__addValueIfAvailable(
-                    outputField,
-                    [
-                        Cache.FW_RULES,
-                        record['policyRevision'],
-                        value] )
-
-        elif recordTypeId == definitions.RECORD_RUA_USER:
-            # 98
-            self.__addValueIfAvailable(
-                View.IP_PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['protocol']] )
-
-        elif recordTypeId == definitions.RECORD_RNA_NEW_OS:
-            # 101
-            self.__addValueIfAvailable(
-                View.SOURCE_TYPE,
-                [ Cache.SOURCE_TYPES, record['osfingerprint']['sourceType']] )
-
-        elif recordTypeId == definitions.RECORD_RNA_CHANGE_IDENTITY_TIMEOUT:
-            # 103
-            self.__addValueIfAvailable(
-                View.SOURCE_TYPE,
-                [ Cache.SOURCE_TYPES, record['identity']['sourceType']] )
-
-            self.__addValueIfAvailable(
-                View.IP_PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['identity']['protocol']] )
-
-        elif recordTypeId == definitions.RECORD_RNA_CHANGE_CLIENT_APP_UPDATE:
-            # 107
-            self.__addValueIfAvailable(
-                View.APP_PROTO,
-                [ Cache.APPLICATION_PROTOCOLS, record['client']['applicationProto']] )
-            
-
-        elif recordTypeId == definitions.RECORD_INTRUSION_EXTRA_DATA:
-            # 110
-           if record['blob']['data'] :
-
-                extraData = record['blob']['data']
-
-                if record['type'] == 2 :
-
-                    if( extraData[0:20]==b'00000000000000000000' ) : #ipv4
-                        d1 = str(int(extraData[24:26].decode('utf-8'),16))
-                        d2 = str(int(extraData[26:28].decode('utf-8'),16))
-                        d3 = str(int(extraData[28:30].decode('utf-8'),16))
-                        d4 = str(int(extraData[30:32].decode('utf-8'),16))
-                        ipv4 = d1 + '.' + d2 + '.' + d3 + '.' + d4
-                        self.__addValue( View.ORIGINAL_CLIENT_SRC_IP, ipv4)
-                 
-                    else :
-                        if len(extraData) > 32 :
-                            h1 = extraData[0:4].decode('utf-8')
-                            h2 = extraData[4:8].decode('utf-8')
-                            h3 = extraData[8:12].decode('utf-8')
-                            h4 = extraData[12:16].decode('utf-8')
-                            h5 = extraData[16:20].decode('utf-8')
-                            h6 = extraData[20:24].decode('utf-8')
-                            h7 = extraData[24:28].decode('utf-8')
-                            h8 = extraData[28:32].decode('utf-8')
-                            ipv6 = h1 + ':' + h2 + ':' + h3 + ':' + h4 + ':' + h5 + ':' + h6 + ':' + h7 +  ':' + h8
-
-                            self.__addValue( View.ORIGINAL_CLIENT_SRC_IP, ipv6)
-
-                elif record['type'] == 9 :
-                    self.__addValue (View.XFF_HTTP_URI, extraData)
-
-                self.__addValueIfAvailable(
-                    View.XFF_TYPE, 
-                    [ Cache.XFF_TYPES, record['type']] )         
- 
-        elif recordTypeId == definitions.RECORD_CORRELATION_EVENT:
-            # 112
-            self.__addValueIfAvailable(
-                View.EVENT_TYPE,
-                [ Cache.CORRELATION_EVENT_TYPES, record['eventType']] )
-
-            self.__addValueIfAvailable(
-                View.MSG,
-                [ Cache.IDS_RULES, record['signatureGeneratorId'], record['signatureId'] ] )
-
-            self.__addValueIfAvailable(
-                View.CORRELATION_RULE,
-                [ Cache.CORRELATION_RULES, record['ruleId'], 'name'] )
-
-            self.__addValueIfAvailable(
-                View.CORRELATION_POLICY,
-                [ Cache.POLICIES, record['policyId']] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_CRITICALITY,
-                [ Cache.CORRELATION_CRITICALITY, record['sourceCriticality']] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_CRITICALITY,
-                [ Cache.CORRELATION_CRITICALITY, record['destinationCriticality']] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_HOSTTYPE,
-                [ Cache.CORRELATION_HOST_TYPE, record['sourceHostType']] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_HOSTTYPE,
-                [ Cache.CORRELATION_HOST_TYPE, record['destinationHostType']] )
-
-            self.__addValueIfAvailable(
-                View.PRIORITY,
-                [ Cache.PRIORITIES, record['priority']] )
-
-            self.__addValueIfAvailable(
-                View.BLOCKED,
-                [ Cache.BLOCKED, record['blocked']] )
-
-            self.__addValueIfAvailable(
-                View.IP_PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['ipProtocol']] )
-
-            self.__addValueIfAvailable(
-                View.NET_PROTO,
-                [ Cache.NET_PROTOS, record['networkProtocol']] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_APP_PROTO,
-                [ Cache.APPLICATION_PROTOCOLS, record['destinationServerId']] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_APP_PROTO,
-                [ Cache.APPLICATION_PROTOCOLS, record['sourceServerId']] )
-
-            self.__addValueIfAvailable(
-                View.IFACE_INGRESS,
-                [ Cache.INTERFACES, record['ingressIntefaceUuid']] )
-
-            self.__addValueIfAvailable(
-                View.IFACE_EGRESS,
-                [ Cache.INTERFACES, record['egressIntefaceUuid']] )
-
-            self.__addValueIfAvailable(
-                View.SEC_ZONE_INGRESS,
-                [ Cache.SECURITY_ZONES, record['ingressZoneUuid']] )
-
-            self.__addValueIfAvailable(
-                View.SEC_ZONE_EGRESS,
-                [ Cache.SECURITY_ZONES, record['egressZoneUuid']] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_OS_NAME,
-                [ Cache.OS_FINGERPRINTS, record['sourceOperatingSystemFingerprintUuid'], 'os'] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_OS_VENDOR,
-                [
-                    Cache.OS_FINGERPRINTS,
-                    record['sourceOperatingSystemFingerprintUuid'],
-                    'vendor'] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_OS_VERSION,
-                [ Cache.OS_FINGERPRINTS, record['sourceOperatingSystemFingerprintUuid'], 'ver'] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_OS_NAME,
-                [
-                    Cache.OS_FINGERPRINTS,
-                    record['destinationOperatingSystemFingerprintUuid'],
-                    'os'] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_OS_VENDOR,
-                [
-                    Cache.OS_FINGERPRINTS,
-                    record['destinationOperatingSystemFingerprintUuid'],
-                    'vendor'] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_OS_VERSION,
-                [
-                    Cache.OS_FINGERPRINTS,
-                    record['destinationOperatingSystemFingerprintUuid'],
-                    'ver'] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['sourceCountry']] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['destinationCountry']] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_USER,
-                [ Cache.USERS, record['sourceUserId']] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_USER,
-                [ Cache.USERS, record['destinationUserId']] )
-
-            self.__addValueIfAvailable(
-                View.SEC_INTEL_POLICY,
-                [ Cache.SI_LISTS_GENERAL, record['securityIntelligenceUuid']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_ACTUAL_ACTION,
-                [ Cache.SSL_ACTIONS, record['sslActualAction']] )
-
-            self.__addValueIfAvailable(
-                View.SSL_FLOW_STATUS,
-                [ Cache.SSL_FLOWS_STATUSES, record['sslFlowStatus']] )
-
-            self.__addValueIfAvailable(
-                View.URL_REPUTATION,
-                [ Cache.URL_REPUTATIONS, record['urlReputation']] )
-
-            self.__addValueIfAvailable(
-                View.URL_CATEGORY,
-                [ Cache.URL_CATEGORIES, record['urlCategory']] )
-
-            if 'eventImpactFlags' in record:
-                self.data[ View.IMPACT ] = Binary.getImpact( record['eventImpactFlags'] )
-
-            # Don't know why, but this exists
-            self.data[ View.DESCRIPTION ] = ''
-
-            # Let's "fix" the IP fields for consistency
-            if 'sourceIpv6Address' in record \
-                    and record['sourceIp'] == '0.0.0.0' \
-                    and record['sourceIpv6Address'] != '::':
-                self.data[ View.SOURCE_IP ] = record['sourceIpv6Address']
-
-            if 'destinationIpv6Address' in record \
-                    and record['destinationIp'] == '0.0.0.0' \
-                    and record['destinationIpv6Address'] != '::':
-                self.data[ View.DESTINATION_IP ] = record['destinationIpv6Address']
-
-        elif recordTypeId == definitions.METADATA_ACCESS_CONTROL_RULE_ID:
-            # 119
-            # This may need to use the uuid instead in which case
-            # add an additional mapping (see policy_uuid below)
-            # This used to be "revision"
-            if 'ruleId' in record:
-                self.__addValueIfAvailable(
-                    View.FW_POLICY,
-                    ['policies', record['ruleId']] )
-
-        elif recordTypeId == definitions.RECORD_MALWARE_EVENT:
-            # 125
-
-            for key in record :
-                if isinstance(record[key], (bytes, bytearray)) :
-                     value = record[key].decode('utf-8')
-                     record[key] = value
-
-            self.__addValueIfAvailable(
-                View.CLOUD,
-                [ Cache.CLOUDS, record['cloudUuid']] )
-
-            self.__addValueIfAvailable(
-                View.MALWARE_EVENT_TYPE,
-                [ Cache.MALWARE_EVENT_TYPES, record['eventTypeId']] )
-
-            self.__addValueIfAvailable(
-                View.MALWARE_EVENT_SUBTYPE,
-                [ Cache.FIREAMP_SUBTYPES, record['eventSubtypeId']] )
-
-            self.__addValueIfAvailable(
-                View.FILE_ACTION,
-                [ Cache.FILE_ACTIONS, record['action']] )
-
-            if record['detectionName']['data'] == '':
-                self.__addValueIfAvailable(
-                    View.DETECTION_NAME,
-                    [ Cache.FILE_SHAS, record['fileShaHash']['data']] )
-
-            self.__addValueIfAvailable(
-                View.PARENT_DETECTION,
-                [ Cache.FILE_SHAS, record['parentShaHash']['data']] )
-
-            self.__addValueIfAvailable(
-                View.TYPE,
-                [ Cache.FIREAMP_TYPES, record['eventTypeId']] )
-
-            self.__addValueIfAvailable(
-                View.SUBTYPE,
-                [ Cache.FIREAMP_SUBTYPES, record['eventSubtypeId']] )
-
-            self.__addValueIfAvailable(
-                View.DETECTOR,
-                [ Cache.FIREAMP_DETECTORS, record['detectorId']] )
-
-            self.__addValueIfAvailable(
-                View.IP_PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['protocol']] )
-
-            self.__addValueIfAvailable(
-                View.DISPOSITION,
-                [ Cache.FILE_DISPOSITIONS, record['disposition']] )
-
-            self.__addValueIfAvailable(
-                View.RETRO_DISPOSITION,
-                [ Cache.FILE_DISPOSITIONS, record['retroDisposition']] )
-
-            self.__addValueIfAvailable(
-                View.FILE_TYPE,
-                [ Cache.FILE_TYPES, record['fileType']] )
-
-            self.__addValueIfAvailable(
-                View.WEB_APP,
-                [ Cache.PAYLOADS, record['webApplicationId']] )
-
-            self.__addValueIfAvailable(
-                View.CLIENT_APP,
-                [ Cache.CLIENT_APPLICATIONS, record['clientApplicationId']] )
-
-            self.__addValueIfAvailable(
-                View.APP_PROTO,
-                [ Cache.APPLICATION_PROTOCOLS, record['applicationId']] )
-
-            self.__addValueIfAvailable(
-                View.FILE_POLICY,
-                [ Cache.POLICIES, record['accessControlPolicyUuid']] )
-
-            self.__addValueIfAvailable(
-                View.DIRECTION,
-                [ Cache.DIRECTIONS, record['direction']] )
-
-            self.__addValueIfAvailable(
-                View.SOURCE_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['sourceCountry']] )
-
-            self.__addValueIfAvailable(
-                View.DESTINATION_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['destinationCountry']] )
-
-            self.__addValueIfAvailable(
-                View.AGENT_USER,
-                [ Cache.USERS, record['userId']] )
-
-            self.__addValueIfAvailable(
-                View.USER,
-                [ Cache.USERS, record['user']['data']] )
-
-            self.__addValueIfAvailable(
-                View.IOC_CATEGORY,
-                [ Cache.IOC, record['iocNumber'], 'category'] )
-
-            self.__addValueIfAvailable(
-                View.SSL_ACTUAL_ACTION,
-                [ Cache.SSL_ACTIONS, record['sslActualAction'] ] )
-
-            self.__addValueIfAvailable(
-                View.SSL_FLOW_STATUS,
-                [ Cache.SSL_FLOWS_STATUSES, record['sslFlowStatus'] ] )
+
+
+
+    def set( self, keys, value ):
+        """Sets the value for the key array and ensures that all
+        necessary keys exist along the way"""
+        data = self.data
+        for index, key in enumerate( keys ):
+            if index == len( keys ) - 1:
+                data[key] = value
+            elif key not in data:
+                data[key] = {}
+            data = data[key]
+
+
+
+    def get( self, keys ):
+        """Gets the value for the given key array and returns None
+        if there is no key"""
+        data = self.data
+        try:
+            for key in keys:
+                data = data[key]
+            return data
+        except (TypeError, AttributeError, KeyError):
+            return None
+
+
+
+    def has( self, keys ):
+        """Returns whether or not the given key array exists"""
+        data = self.data
+        try:
+            for key in keys:
+                data = data[key]
+            return True
+        except (TypeError, AttributeError, KeyError):
+            return False
+
+
+
+    def save( self ):
+        """Saves current cache to disk"""
+        self.logger.info('Saving cache to {0}'.format( self.filepath ))
+        with open( self.filepath, 'wb' ) as cacheFile:
+            pickle.dump( self.data, cacheFile )
+
+
+
+    def load( self ):
+        """Loads cache from disk"""
+        # Default value
+        self.data = Cache.__default()
+
+        self.logger.info('Loading cache from {0}'.format(self.filepath ))
+        if not os.path.exists( self.filepath ):
+            self.logger.info('Cache file "{0}" does not exist. Using default values'.format(
+                self.filepath) )
+            return
+
+
+        try:
+            with open( self.filepath, 'rb' ) as cacheFile:
+                data = pickle.load( cacheFile )
+                estreamer.common.extend( self.data, data )
+
+        except (pickle.UnpicklingError, EOFError) as ex:
+            self.logger.warning(
+                'Unable to make sense of cache file "{0}" ({1}). Using default settings'.format(
+                    self.filepath, ex) )
+
+            self.data = Cache.__default()
+
+
+
+    @staticmethod
+    def __default():
+        return {
+
+            Cache.DEVICES: {
+                0: 'Defense Center'
+            },
+
+            Cache.SECURITY_ZONES: {
+                '00000000-0000-0000-0000-000000000000': 'N/A'
+            },
+
+            Cache.INTERFACES: {
+                '00000000-0000-0000-0000-000000000000': 'N/A'
+            },
+
+            Cache.CORRELATION_EVENT_TYPES: {
+                '0': 'Unknown',
+                '1': 'Intrusion Event',
+                '2': 'Host Discovery',
+                '3': 'User Activity',
+                '4': 'Whitelist',
+                '5': 'Malware Event'
+            },
+
+            Cache.CORRELATION_HOST_TYPE: {
+                0: 'Host',
+                1: 'Router',
+                2: 'Bridge'
+            },
+
+            Cache.CORRELATION_CRITICALITY: {
+                0: 'None',
+                1: 'Low',
+                2: 'Medium',
+                3: 'High'
+            },
+
+            Cache.USERS: {
+                0: 'Unknown'
+            },
+
+            Cache.IP_PROTOCOLS: {
+                0: 'Unknown',
+                1: 'ICMP',
+                2: 'IGMP',
+                3: 'GGP',
+                4: 'IPv4',
+                5: 'ST',
+                6: 'TCP',
+                7: 'CBT',
+                8: 'EGP',
+                9: 'IGP',
+                10: 'BBN-RCC-MON',
+                11: 'NVP-II',
+                12: 'PUP',
+                13: 'ARGUS',
+                14: 'EMCON',
+                15: 'XNET',
+                16: 'CHAOS',
+                17: 'UDP',
+                18: 'MUX',
+                19: 'DCN-MEAS',
+                20: 'HMP',
+                21: 'PRM',
+                22: 'XNS-IDP',
+                23: 'TRUNK-1',
+                24: 'TRUNK-2',
+                25: 'LEAF-1',
+                26: 'LEAF-2',
+                27: 'RDP',
+                28: 'IRTP',
+                29: 'ISO-TP4',
+                30: 'NETBLT',
+                31: 'MFE-NSP',
+                32: 'MERIT-INP',
+                33: 'DCCP',
+                34: '3PC',
+                35: 'IDPR',
+                36: 'XTP',
+                37: 'DDP',
+                38: 'IDPR-CMTP',
+                39: 'TP++',
+                40: 'IL',
+                41: 'IPv6',
+                42: 'SDRP',
+                43: 'IPv6-Route',
+                44: 'IPv6-Frag',
+                45: 'IDRP',
+                46: 'RSVP',
+                47: 'GRE',
+                48: 'MHRP',
+                49: 'BNA',
+                50: 'ESP',
+                51: 'AH',
+                52: 'I-NLSP',
+                53: 'SWIPE',
+                54: 'NARP',
+                55: 'MOBILE',
+                56: 'TLSP',
+                57: 'SKIP',
+                58: 'IPv6-ICMP',
+                59: 'IPv6-NoNxt',
+                60: 'IPv6-Opts',
+                62: 'CFTP',
+                64: 'SAT-EXPAK',
+                65: 'KRYPTOLAN',
+                66: 'RVD',
+                67: 'IPPC',
+                69: 'SAT-MON',
+                70: 'VISA',
+                71: 'IPCV',
+                72: 'CPNX',
+                73: 'CPHB',
+                74: 'WSN',
+                75: 'PVP',
+                76: 'BR-SAT-MON',
+                77: 'SUN-ND',
+                78: 'WB-MON',
+                79: 'WB-EXPAK',
+                80: 'ISO-IP',
+                81: 'VMTP',
+                82: 'SECURE-VMTP',
+                83: 'VINES',
+                # 84: 'TTP', # Removed as duplicate - and last always wins
+                # http://stackoverflow.com/a/39678945
+                84: 'IPTM',
+                85: 'NSFNET-IGP',
+                86: 'DGP',
+                87: 'TCF',
+                88: 'EIGRP',
+                89: 'OSPF',
+                90: 'Sprite-RPC',
+                91: 'LARP',
+                92: 'MTP',
+                93: 'AX.25',
+                94: 'IPIP',
+                95: 'MICP',
+                96: 'SCC-SP',
+                97: 'ETHERIP',
+                98: 'ENCAP',
+                100: 'GMTP',
+                101: 'IFMP',
+                102: 'PNNI',
+                103: 'PIM',
+                104: 'ARIS',
+                105: 'SCPS',
+                106: 'QNX',
+                107: 'A/N',
+                108: 'IPComp',
+                109: 'SNP',
+                110: 'Compaq-Peer',
+                111: 'IPX-in-IP',
+                112: 'VRRP',
+                113: 'PGM',
+                115: 'L2TP',
+                116: 'DDX',
+                117: 'IATP',
+                118: 'STP',
+                119: 'SRP',
+                120: 'UTI',
+                121: 'SMP',
+                122: 'SM',
+                123: 'PTP',
+                124: 'IS-IS over IPv4',
+                125: 'FIRE',
+                126: 'CRTP',
+                127: 'CRUDP',
+                128: 'SSCOPMCE',
+                129: 'IPLT',
+                130: 'SPS',
+                131: 'PIPE',
+                132: 'SCTP',
+                133: 'FC',
+                134: 'RSVP-E2E-IGNORE',
+                135: 'Mobility Header',
+                136: 'UDPLite',
+                137: 'MPLS-in-IP',
+                138: 'manet',
+                139: 'HIP',
+                140: 'Shim6',
+                141: 'WESP',
+                142: 'ROHC'
+            },
+
+            Cache.APPLICATION_PROTOCOLS: {
+                0: 'Unknown'
+            },
+
+            Cache.CLIENT_APPLICATIONS: {
+                0: 'Unknown'
+            },
+
+            Cache.SOURCE_APPLICATIONS: {
+                0: 'Unknown'
+            },
+
+            Cache.PAYLOADS: {
+                0: 'Unknown'
+            },
+
+            Cache.BLOCKED: {
+                0: 'No',
+                1: 'Yes',
+                2: 'Would',
+                3: 'Partially Dropped',
+                4: 'Block',
+                5: 'Would be Blocked',
+                6: 'Partial Block',
+                7: 'Drop',
+                8: 'Would Drop',
+                9: 'Reject',
+                10: 'Would be Rejected',
+                11: 'Rejected',
+                12: 'Would be Rejected',
+                13: 'Rewrite',
+                14: 'Would be Rewritten'
+            },
         
-        elif recordTypeId == definitions.RECORD_NEW_VPN_LOGIN:
-            #170
-            if 'items' in record['userLogin']['vpnSession'] :
-                if len(record['userLogin']['vpnSession']['items']) > 0 :
-
-                    vpnSession = record['userLogin']['vpnSession']['items'][0]
-
-                    #if 'index' in vpnSession
-                    #    self.__addValue( View.INDEX, vpnSession['index']  )
-                    if 'index' in vpnSession:
-                        self.__addValue( View.INDEX, vpnSession['index'] )
-
-                    if 'bytesReceived' in vpnSession :
-                        self.__addValue(
-                            View.BYTES_RECEIVED, vpnSession['bytesReceived'] )
-
-                    if 'bytesTransmitted' in vpnSession :
-                        self.__addValue(
-                            View.BYTES_TRANSMITTED, vpnSession['bytesTransmitted'] )
-
-                    if 'countryCode' in vpnSession :
-                        self.__addValue(
-                            View.COUNTRY_CODE, vpnSession['countryCode'] )
-
-                    if 'connectionDuration' in vpnSession :
-                        self.__addValue(
-                            View.DURATION, vpnSession['connectionDuration'] )
-
-                    if 'clientOS' in vpnSession :
-                        self.__addValue(
-                            View.CLIENT_OS, vpnSession['clientOS']['data']  )
-
-                    if 'clientIP' in vpnSession :
-
-                        ipv4 = self.__convertIPv6(vpnSession['clientIP'])
-
-                        self.__addValue(
-                            View.CLIENT_IP, ipv4 )
-
-                    if 'clientApplication' in vpnSession :
-                        self.__addValue(
-                            View.CLIENT_APP, vpnSession['clientApplication']['data']  )
-
-                    if 'groupPolicy' in vpnSession :
-                        self.__addValue(
-                            View.VPN_POLICY, vpnSession['groupPolicy']['data']  )
-
-                    self.__addValueIfAvailable(
-                        View.VPN_TYPE,
-                            [ Cache.VPN_TYPES, vpnSession['vpnType'] ] )
-
-            self.__addValueIfAvailable(
-                View.USER_AUTH_TYPE,
-                [ Cache.USER_AUTH_TYPES, record['userLogin']['authType']] )
-
-            self.__addValueIfAvailable(
-                View.PROTOCOL,
-                [ Cache.USER_PROTOCOLS, record['userLogin']['protocol']] )
-
-
-        elif recordTypeId == definitions.RECORD_NEW_VPN_LOGOFF:
-            #171
-            if 'items' in record['userLogoff']['vpnSession'] :
-                if len(record['userLogoff']['vpnSession']['items']) > 0 :
-
-                    vpnSession = record['userLogoff']['vpnSession']['items'][0] 
-
-                    if 'index' in vpnSession :
-                        self.__addValue(
-                            View.INDEX, vpnSession['index']  )
-
-                    if 'countryCode' in vpnSession :
-                        self.__addValue(
-                            View.COUNTRY_CODE, vpnSession['countryCode'] )
-
-                    if 'connectionDuration' in vpnSession :
-                        self.__addValue(
-                            View.DURATION, vpnSession['connectionDuration'] )
-
-                    if 'clientOS' in vpnSession :
-                        self.__addValue(
-                            View.CLIENT_OS, vpnSession['clientOS']['data']  )
-
-                    if 'bytesReceived' in vpnSession :
-                        self.__addValue(
-                            View.BYTES_RECEIVED, vpnSession['bytesReceived'] )
-
-                    if 'bytesTransmitted' in vpnSession :
-                        self.__addValue(
-                            View.BYTES_TRANSMITTED, vpnSession['bytesTransmitted'] )
-
-                    if 'clientIP' in vpnSession :
-                        ipv4 = self.__convertIPv6(vpnSession['clientIP'])
-
-                        self.__addValue(
-                            View.CLIENT_IP, ipv4 )
-
-                    if 'clientApplication' in vpnSession :
-                        self.__addValue(
-                            View.CLIENT_APP, vpnSession['clientApplication']['data']  )
-
-                    if 'groupPolicy' in vpnSession :
-                        self.__addValue(
-                            View.VPN_POLICY, vpnSession['groupPolicy']['data']  )
-   
-                        self.__addValueIfAvailable(
-                            View.VPN_TYPE,
-                            [ Cache.VPN_TYPES, vpnSession['vpnType'] ] )
-
-            self.__addValueIfAvailable(
-                View.USER_AUTH_TYPE,
-                [ Cache.USER_AUTH_TYPES, record['userLogoff']['authType'] ] )
-
-            self.__addValueIfAvailable(
-                View.PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['userLogoff']['protocol']] )
-
-        elif recordTypeId == definitions.METADATA_ICMP_TYPE:
-            # 260
-            self.__addValueIfAvailable(
-                View.IP_PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['protocol']] )
-
-        elif recordTypeId == definitions.METADATA_ICMP_CODE:
-            # 270
-            self.__addValueIfAvailable(
-                View.IP_PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['protocol']] )
-
-        elif recordTypeId == definitions.METADATA_SECURITY_INTELLIGENCE_CATEGORY_DISCOVERY:
-            # 280
-            self.__addValueIfAvailable(
-                View.FW_POLICY,
-                [ Cache.POLICIES, record['accessControlPolicyUuid']] )
-
-        elif recordTypeId == definitions.RECORD_INTRUSION_EVENT:
-            # 400
-            self.__addValueIfAvailable(
-                View.MSG,
-                [ Cache.IDS_RULES, record['generatorId'], record['ruleId']] )
-
-            self.__addValueIfAvailable(
-                View.RENDERED_ID,
-                [ Cache.IDS_RULES_RENDERED, record['generatorId'], record['ruleId']] )
-
-            self.__addValueIfAvailable(
-                View.CLASSIFICATION_DESCRIPTION,
-                [ Cache.CLASSIFICATIONS, record['classificationId'], 'desc'] )
-
-            self.__addValueIfAvailable(
-                View.CLASSIFICATION_NAME,
-                [ Cache.CLASSIFICATIONS, record['classificationId'], 'name'] )
-
-            self.__addValueIfAvailable(
-                View.IDS_POLICY,
-                [ Cache.POLICIES, record['policyUuid']] )
-
-            self.__addValueIfAvailable(
-                View.FW_RULE,
-                [ Cache.FW_RULES,
-                record['accessControlPolicyUuid'],
-                record['accessControlRuleId']] )
-
-            self.__addValueIfAvailable( View.FW_POLICY, [
-                Cache.ACCESS_CONTROL_POLICIES,
-                record['deviceId'],
-                record['accessControlPolicyUuid']] )
-
-            self.__addValueIfAvailable(
-                View.PRIORITY,
-                [ Cache.PRIORITIES, record['priorityId']] )
-
-            self.__addValueIfAvailable(
-                View.BLOCKED,
-                [ Cache.BLOCKED, record['blocked']] )
-
-            self.__addValueIfAvailable(
-                View.BLOCKED_REASON,
-                [ Cache.BLOCKED_REASON, record['blockedReasonId']] )
+            Cache.BLOCKED_REASON: {
+                1: 'Interface in Passive or Tap mode',
+                2: 'Intrusion Policy in \"Detection\" Inspection Mode',
+                3: 'Network Analysis Policy in \"Detection\" Inspection Mode',
+                4: 'Connection Timed Out',
+                5: 'Connection Closed (0x01)',
+                6: 'Connection Closed (0x02)',
+                7: 'Connection Closed (0x04)'
+            },
             
-            self.__addValueIfAvailable(
-                View.IP_PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['ipProtocolId']] )
+            Cache.GEOLOCATIONS: {
+                0: 'unknown'
+            },
 
-            self.__addValueIfAvailable(
-                View.WEB_APP,
-                [ Cache.PAYLOADS, record['webApplicationId']] )
+            Cache.FIREWALL_RULE_REASONS: {
+                0: 'N/A',
+                1: 'IP Block',
+                2: 'IP Monitor',
+                4: 'User Bypass',
+                8: 'File Monitor',
+                16: 'File Block',
+                32: 'Intrusion Monitor',
+                64: 'Intrusion Block',
+                128: 'File Resume Block',
+                256: 'File Resume Allow',
+                512: 'File Custom Detection'
+            },
 
-            self.__addValueIfAvailable(
-                View.CLIENT_APP,
-                [ Cache.CLIENT_APPLICATIONS, record['clientApplicationId']] )
+            Cache.OS_FINGERPRINTS: {
+                '00000000-0000-0000-0000-000000000000': {
+                    'os': 'Unknown',
+                    'vendor': 'Unknown',
+                    'ver': 'Unknown'
+                }
+            },
 
-            self.__addValueIfAvailable(
-                View.APP_PROTO,
-                [ Cache.APPLICATION_PROTOCOLS, record['applicationId']] )
+            Cache.FILE_SHAS: {
+                '0000000000000000000000000000000000000000000000000000000000000000': 'Unknown'
+            },
 
-            self.__addValueIfAvailable(
-                View.IFACE_INGRESS,
-                [ Cache.INTERFACES, record['interfaceIngressUuid']] )
+            Cache.URL_REPUTATIONS: {
+                0: 'Unknown'
+            },
 
-            self.__addValueIfAvailable(
-                View.IFACE_EGRESS,
-                [ Cache.INTERFACES, record['interfaceEgressUuid']] )
+            Cache.URL_CATEGORIES: {
+                0: 'Unknown'
+            },
 
-            self.__addValueIfAvailable(
-                View.SEC_ZONE_INGRESS,
-                [ Cache.SECURITY_ZONES, record['securityZoneIngressUuid']] )
+            Cache.SOURCE_DETECTORS: {
+                0: 'Unknown'
+            },
 
-            self.__addValueIfAvailable(
-                View.SEC_ZONE_EGRESS,
-                [ Cache.SECURITY_ZONES, record['securityZoneEgressUuid']] )
+            Cache.SOURCE_TYPES: {
+                0: 'RNA'
+            },
 
-            self.__addValueIfAvailable(
-                View.SOURCE_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['sourceCountry']] )
+            Cache.MALWARE_EVENT_TYPES: {
+                0: 'Unknown'
+            },
 
-            self.__addValueIfAvailable(
-                View.DESTINATION_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['destinationCountry']] )
+            Cache.FILE_TYPES: {
+                0: 'Unknown'
+            },
 
-            self.__addValueIfAvailable(
-                View.USER,
-                [ Cache.USERS, record['userId']] )
+            Cache.DIRECTIONS: {
+                0: 'Unknown',
+                1: 'Download',
+                2: 'Upload',
+            },
 
-            self.__addValueIfAvailable(
-                View.IOC_CATEGORY,
-                [ Cache.IOC, record['iocNumber'], 'category'] )
+            Cache.DISPOSITIONS: {
+                0: 'N/A',
+                1: 'Clean',
+                2: 'Unknown',
+                3: 'Malware',
+                4: 'Unavailable',
+                5: 'Custom signature'
+            },
+            
+            Cache.FILE_ACTIONS: {
+                0: 'N/A',
+                1: 'Detect',
+                2: 'Block',
+                3: 'Malware Cloud Lookup',
+                4: 'Malware Block',
+                5: 'Malware Whitelist',
+                6: 'Cloud Lookup Timeout',
+                7: 'Custom Detection',
+                8: 'Custom Detection Block',
+                9: 'Archive Block (Depth Exceeded)',
+                10: 'Archive Block (Encrypted)',
+                11: 'Archive Block (Failed To Inspect)'
+            },
 
-            self.__addValueIfAvailable(
-                View.SSL_ACTUAL_ACTION,
-                [ Cache.SSL_ACTIONS, record['sslActualAction'] ] )
+            Cache.FILE_DISPOSITIONS: {
+                0: 'N/A',
+                1: 'Clean',
+                2: 'Unknown',
+                3: 'Malware',
+                4: 'Unavailable',
+                5: 'Custom signature'
+            },
 
-            self.__addValueIfAvailable(
-                View.SSL_FLOW_STATUS,
-                [ Cache.SSL_FLOWS_STATUSES, record['sslFlowStatus'] ] )
+            Cache.CLOUDS: {
+                '00000000-0000-0000-0000-000000000000': 'N/A'
+            },
 
-            self.data[ View.IMPACT ] = Binary.getImpact( record['impactFlags'] )
+            Cache.FIREAMP_DETECTORS: {
+                0: 'RNA'
+            },
 
-            self.__addValueIfAvailable(
-                View.IMPACT_DESCRIPTION,
-                [ Cache.IMPACT, record['impact'] ] )
+            Cache.FIREAMP_TYPES: {
+                0: 'N/A',
+                1: 'Threat Detected in Network File Transfer',
+                2: 'Threat Detected in Network File Transfer (Retrospective)',
+                553648143: 'Threat Quarantined',
+                553648145: 'Threat Detected in Exclusion',
+                553648146: 'Cloud Recall Restore from Quarantine Started',
+                553648147: 'Cloud Recall Quarantine Started',
+                553648149: 'Quarantined Item Restored',
+                553648150: 'Quarantine Restore Started',
+                553648154: 'Cloud Recall Restore from Quarantine',
+                553648155: 'Cloud Recall Quarantine',
+                553648168: 'Blocked Execution',
+                554696714: 'Scan Started',
+                554696715: 'Scan Completed, No Detections',
+                1090519054: 'Threat Detected',
+                1091567628: 'Scan Completed With Detections',
+                2164260880: 'Quarantine Failure',
+                2164260884: 'Quarantine Restore Failed',
+                2164260892: 'Cloud Recall Restore from Quarantine Failed',
+                2164260893: 'Cloud Recall Quarantine Attempt Failed',
+                2165309453: 'Scan Failed'
+            },
 
-            self.__addValueIfAvailable(
-                View.NETWORK_ANALYSIS_POLICY,
-                [ Cache.POLICIES, record['networkAnalysisPolicyUuid'] ] )
+            Cache.FIREAMP_SUBTYPES: {
+                0: 'N/A',
+                1: 'Create',
+                2: 'Execute',
+                4: 'Scan',
+                22: 'Move'
+            },
 
-        elif recordTypeId == definitions.RECORD_FILELOG_EVENT or \
-             recordTypeId == definitions.RECORD_FILELOG_MALWARE_EVENT:
-            # 500 or 502
+            Cache.SI_SRC_DESTS: {
+                0: 'N/A'
+            },
 
-            for key in record :
-                if isinstance(record[key], (bytes, bytearray)) :
-                     value = record[key].decode('utf-8')
-                     record[key] = value
+            Cache.FILE_STORAGES: {
+                0: 'N/A',
+                1: 'File Stored',
+                2: 'File Stored',
+                3: 'Unable to Store File',
+                4: 'Unable to Store File',
+                5: 'Unable to Store File',
+                6: 'Unable to Store File',
+                7: 'Unable to Store File',
+                8: 'File Size is Too Large',
+                9: 'File Size is Too Small',
+                10: 'Unable to Store File',
+                11: 'File Not Stored, Disposition Unavailable'
+            },
 
-            self.__addValueIfAvailable(
-                View.FILE_POLICY,
-                [ Cache.POLICIES, record['accessControlPolicyUuid']] )
+            Cache.FILE_SANDBOXES: {
+                0: 'File not sent for Analysis',
+                1: 'Sent for Analysis',
+                2: 'Sent for Analysis',
+                4: 'Sent for Analysis',
+                5: 'Failed to Send',
+                6: 'Failed to Send',
+                7: 'Failed to Send',
+                8: 'Failed to Send',
+                9: 'File Size is Too Small',
+                10: 'File Size is Too Large',
+                11: 'Sent for Analysis',
+                12: 'Analysis Complete',
+                13: 'Failure (Network Issue)',
+                14: 'Failure (Rate Limit)',
+                15: 'Failure (File Too Large)',
+                16: 'Failure (File Read Error)',
+                17: 'Failure (Internal Library Error)',
+                19: 'File Not Sent Disposition Unavailable',
+                20: 'Failure (Cannot Run File)',
+                21: 'Failure (Analysis Timeout)',
+                22: 'Sent for Analysis',
+                23: 'File Transmit File Capacity Handled',
+                #... File capacity handled (stored on the sensor) because file could
+                # not be submitted to the sandbox for analysis',
+                25: 'File Transmit Server Limited Exceeded Capacity Handled',
+                #... - File capacity handled due to rate limiting on server',
+                26: 'Communication Failure',
+                # - File capacity handled due to cloud connectivity failure',
+                27: 'Not Sent - File not sent due to configuration',
+                28: 'Preclass No Match',
+                # - File not sent for dynamic analysis since pre-classification didn't
+                # find any embedded or suspicious object in the file',
+                29: 'Transmit Sent Sandbox Private Cloud',
+                # - File sent to the private cloud for dynamic analysis',
+                30: 'Transmit Not Send Sendbox Private Cloud'
+                    # - File not sent to the private cloud for analysis
+            },
 
-            self.__addValueIfAvailable(
-                View.FILE_ACTION,
-                [ Cache.FILE_ACTIONS, record['action']] )
+            Cache.SSL_ACTIONS: {
+                0: 'Unknown',
+                1: 'Do Not Decrypt',
+                2: 'Block',
+                3: 'Block With Reset',
+                4: 'Decrypt (Known Key)',
+                5: 'Decrypt (Replace Key)',
+                6: 'Decrypt (Resign)'
+            },
 
-            self.__addValueIfAvailable(
-                View.DETECTION,
-                [ Cache.FILE_SHAS, record[ 'shaHash' ]] )
+            Cache.SSL_FLOWS_STATUSES: {
+                0: 'Unknown',
+                1: 'No Match',
+                2: 'Success',
+                3: 'Uncached Session',
+                4: 'Unknown Cipher Suite',
+                5: 'Unsupported Cipher Suite',
+                6: 'Unsupported SSL Version',
+                7: 'SSL Compression Used',
+                8: 'Session Undecryptable in Passive Mode',
+                9: 'Handshake Error',
+                10: 'Decryption Error',
+                11: 'Pending Server Name Category Lookup',
+                12: 'Pending Common Name Category Lookup',
+                13: 'Internal Error',
+                14: 'Network Parameters Unavailable',
+                15: 'Invalid Server Certificate Handle',
+                16: 'Server Certificate Fingerprint Unavailable',
+                17: 'Cannot Cache Subject DN',
+                18: 'Cannot Cache Issuer DN',
+                19: 'Unknown SSL Version',
+                20: 'External Certificate List Unavailable',
+                21: 'External Certificate Fingerprint Unavailable',
+                22: 'Internal Certificate List Invalid',
+                23: 'Internal Certificate List Unavailable',
+                24: 'Internal Certificate Unavailable',
+                25: 'Internal Certificate Fingerprint Unavailable',
+                26: 'Server Certificate Validation Unavailable' ,
+                27: 'Server Certificate Validation Failure',
+                28: 'Invalid Action'
+            },
 
-            self.__addValueIfAvailable(
-                View.IP_PROTOCOL,
-                [ Cache.IP_PROTOCOLS, record['protocol']] )
+            Cache.IMPACT: {
+                1: 'Red (vulnerable)',
+                2: 'Orange (potentially vulnerable)',
+                3: 'Yellow (currently not vulnerable)',
+                4: 'Blue (unknown target)',
+                5: 'Gray (unknown impact)'
+            },
 
-            self.__addValueIfAvailable(
-                View.DISPOSITION,
-                [ Cache.DISPOSITIONS, record['disposition']] )
+            Cache.MALWARE_ANALYSIS_STATUS: {
+                0: 'File not analyzed',
+                1: 'Analysis done',
+                2: 'Analysis failed',
+                3: 'Manual analysis request'
+            },
 
-            self.__addValueIfAvailable(
-                View.SPERO_DISPOSITION,
-                [ Cache.FILE_DISPOSITIONS, record['speroDisposition']] )
+            Cache.FILE_ARCHIVE_STATUS: {
+                0: 'N/A - File is not being inspected as an archive',
+                1: 'Pending - Archive is being inspected',
+                2: 'Extracted - Successfully inspected without any problems',
+                3: 'Failed - Failed to inspect, insufficient system resources',
+                4: 'Depth Exceeded - Successful, but archive exceeded the nested inspection depth',
+                5: 'Encrypted - Partially Successful',
+                6: 'Not Inspectable - Partially Successful, File is possibly Malformed or Corrupt'
+            },
 
-            self.__addValueIfAvailable(
-                View.FILE_STORAGE_STATUS,
-                [ Cache.FILE_STORAGES, record['fileStorageStatus']] )
+            # This comes from:
+            # http://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4
+            Cache.SSL_CIPHER_SUITES: {
+                0: 'TLS_NULL_WITH_NULL_NULL',
+                1: 'TLS_RSA_WITH_NULL_MD5',
+                2: 'TLS_RSA_WITH_NULL_SHA',
+                3: 'TLS_RSA_EXPORT_WITH_RC4_40_MD5',
+                4: 'TLS_RSA_WITH_RC4_128_MD5',
+                5: 'TLS_RSA_WITH_RC4_128_SHA',
+                6: 'TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5',
+                7: 'TLS_RSA_WITH_IDEA_CBC_SHA',
+                8: 'TLS_RSA_EXPORT_WITH_DES40_CBC_SHA',
+                9: 'TLS_RSA_WITH_DES_CBC_SHA',
+                10: 'TLS_RSA_WITH_3DES_EDE_CBC_SHA',
+                11: 'TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA',
+                12: 'TLS_DH_DSS_WITH_DES_CBC_SHA',
+                13: 'TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA',
+                14: 'TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA',
+                15: 'TLS_DH_RSA_WITH_DES_CBC_SHA',
+                16: 'TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA',
+                17: 'TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA',
+                18: 'TLS_DHE_DSS_WITH_DES_CBC_SHA',
+                19: 'TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA',
+                20: 'TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA',
+                21: 'TLS_DHE_RSA_WITH_DES_CBC_SHA',
+                22: 'TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA',
+                23: 'TLS_DH_anon_EXPORT_WITH_RC4_40_MD5',
+                24: 'TLS_DH_anon_WITH_RC4_128_MD5',
+                25: 'TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA',
+                26: 'TLS_DH_anon_WITH_DES_CBC_SHA',
+                27: 'TLS_DH_anon_WITH_3DES_EDE_CBC_SHA',
+                28: 'Reserved to avoid conflicts with SSLv3',
+                30: 'TLS_KRB5_WITH_DES_CBC_SHA',
+                31: 'TLS_KRB5_WITH_3DES_EDE_CBC_SHA',
+                32: 'TLS_KRB5_WITH_RC4_128_SHA',
+                33: 'TLS_KRB5_WITH_IDEA_CBC_SHA',
+                34: 'TLS_KRB5_WITH_DES_CBC_MD5',
+                35: 'TLS_KRB5_WITH_3DES_EDE_CBC_MD5',
+                36: 'TLS_KRB5_WITH_RC4_128_MD5',
+                37: 'TLS_KRB5_WITH_IDEA_CBC_MD5',
+                38: 'TLS_KRB5_EXPORT_WITH_DES_CBC_40_SHA',
+                39: 'TLS_KRB5_EXPORT_WITH_RC2_CBC_40_SHA',
+                40: 'TLS_KRB5_EXPORT_WITH_RC4_40_SHA',
+                41: 'TLS_KRB5_EXPORT_WITH_DES_CBC_40_MD5',
+                42: 'TLS_KRB5_EXPORT_WITH_RC2_CBC_40_MD5',
+                43: 'TLS_KRB5_EXPORT_WITH_RC4_40_MD5',
+                44: 'TLS_PSK_WITH_NULL_SHA',
+                45: 'TLS_DHE_PSK_WITH_NULL_SHA',
+                46: 'TLS_RSA_PSK_WITH_NULL_SHA',
+                47: 'TLS_RSA_WITH_AES_128_CBC_SHA',
+                48: 'TLS_DH_DSS_WITH_AES_128_CBC_SHA',
+                49: 'TLS_DH_RSA_WITH_AES_128_CBC_SHA',
+                50: 'TLS_DHE_DSS_WITH_AES_128_CBC_SHA',
+                51: 'TLS_DHE_RSA_WITH_AES_128_CBC_SHA',
+                52: 'TLS_DH_anon_WITH_AES_128_CBC_SHA',
+                53: 'TLS_RSA_WITH_AES_256_CBC_SHA',
+                54: 'TLS_DH_DSS_WITH_AES_256_CBC_SHA',
+                55: 'TLS_DH_RSA_WITH_AES_256_CBC_SHA',
+                56: 'TLS_DHE_DSS_WITH_AES_256_CBC_SHA',
+                57: 'TLS_DHE_RSA_WITH_AES_256_CBC_SHA',
+                58: 'TLS_DH_anon_WITH_AES_256_CBC_SHA',
+                59: 'TLS_RSA_WITH_NULL_SHA256',
+                60: 'TLS_RSA_WITH_AES_128_CBC_SHA256',
+                61: 'TLS_RSA_WITH_AES_256_CBC_SHA256',
+                62: 'TLS_DH_DSS_WITH_AES_128_CBC_SHA256',
+                63: 'TLS_DH_RSA_WITH_AES_128_CBC_SHA256',
+                64: 'TLS_DHE_DSS_WITH_AES_128_CBC_SHA256',
+                65: 'TLS_RSA_WITH_CAMELLIA_128_CBC_SHA',
+                66: 'TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA',
+                67: 'TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA',
+                68: 'TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA',
+                69: 'TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA',
+                70: 'TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA',
+                103: 'TLS_DHE_RSA_WITH_AES_128_CBC_SHA256',
+                104: 'TLS_DH_DSS_WITH_AES_256_CBC_SHA256',
+                105: 'TLS_DH_RSA_WITH_AES_256_CBC_SHA256',
+                106: 'TLS_DHE_DSS_WITH_AES_256_CBC_SHA256',
+                107: 'TLS_DHE_RSA_WITH_AES_256_CBC_SHA256',
+                108: 'TLS_DH_anon_WITH_AES_128_CBC_SHA256',
+                109: 'TLS_DH_anon_WITH_AES_256_CBC_SHA256',
+                132: 'TLS_RSA_WITH_CAMELLIA_256_CBC_SHA',
+                133: 'TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA',
+                134: 'TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA',
+                135: 'TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA',
+                136: 'TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA',
+                137: 'TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA',
+                138: 'TLS_PSK_WITH_RC4_128_SHA',
+                139: 'TLS_PSK_WITH_3DES_EDE_CBC_SHA',
+                140: 'TLS_PSK_WITH_AES_128_CBC_SHA',
+                141: 'TLS_PSK_WITH_AES_256_CBC_SHA',
+                142: 'TLS_DHE_PSK_WITH_RC4_128_SHA',
+                143: 'TLS_DHE_PSK_WITH_3DES_EDE_CBC_SHA',
+                144: 'TLS_DHE_PSK_WITH_AES_128_CBC_SHA',
+                145: 'TLS_DHE_PSK_WITH_AES_256_CBC_SHA',
+                146: 'TLS_RSA_PSK_WITH_RC4_128_SHA',
+                147: 'TLS_RSA_PSK_WITH_3DES_EDE_CBC_SHA',
+                148: 'TLS_RSA_PSK_WITH_AES_128_CBC_SHA',
+                149: 'TLS_RSA_PSK_WITH_AES_256_CBC_SHA',
+                150: 'TLS_RSA_WITH_SEED_CBC_SHA',
+                151: 'TLS_DH_DSS_WITH_SEED_CBC_SHA',
+                152: 'TLS_DH_RSA_WITH_SEED_CBC_SHA',
+                153: 'TLS_DHE_DSS_WITH_SEED_CBC_SHA',
+                154: 'TLS_DHE_RSA_WITH_SEED_CBC_SHA',
+                155: 'TLS_DH_anon_WITH_SEED_CBC_SHA',
+                156: 'TLS_RSA_WITH_AES_128_GCM_SHA256',
+                157: 'TLS_RSA_WITH_AES_256_GCM_SHA384',
+                158: 'TLS_DHE_RSA_WITH_AES_128_GCM_SHA256',
+                159: 'TLS_DHE_RSA_WITH_AES_256_GCM_SHA384',
+                160: 'TLS_DH_RSA_WITH_AES_128_GCM_SHA256',
+                161: 'TLS_DH_RSA_WITH_AES_256_GCM_SHA384',
+                162: 'TLS_DHE_DSS_WITH_AES_128_GCM_SHA256',
+                163: 'TLS_DHE_DSS_WITH_AES_256_GCM_SHA384',
+                164: 'TLS_DH_DSS_WITH_AES_128_GCM_SHA256',
+                165: 'TLS_DH_DSS_WITH_AES_256_GCM_SHA384',
+                166: 'TLS_DH_anon_WITH_AES_128_GCM_SHA256',
+                167: 'TLS_DH_anon_WITH_AES_256_GCM_SHA384',
+                168: 'TLS_PSK_WITH_AES_128_GCM_SHA256',
+                169: 'TLS_PSK_WITH_AES_256_GCM_SHA384',
+                170: 'TLS_DHE_PSK_WITH_AES_128_GCM_SHA256',
+                171: 'TLS_DHE_PSK_WITH_AES_256_GCM_SHA384',
+                172: 'TLS_RSA_PSK_WITH_AES_128_GCM_SHA256',
+                173: 'TLS_RSA_PSK_WITH_AES_256_GCM_SHA384',
+                174: 'TLS_PSK_WITH_AES_128_CBC_SHA256',
+                175: 'TLS_PSK_WITH_AES_256_CBC_SHA384',
+                176: 'TLS_PSK_WITH_NULL_SHA256',
+                177: 'TLS_PSK_WITH_NULL_SHA384',
+                178: 'TLS_DHE_PSK_WITH_AES_128_CBC_SHA256',
+                179: 'TLS_DHE_PSK_WITH_AES_256_CBC_SHA384',
+                180: 'TLS_DHE_PSK_WITH_NULL_SHA256',
+                181: 'TLS_DHE_PSK_WITH_NULL_SHA384',
+                182: 'TLS_RSA_PSK_WITH_AES_128_CBC_SHA256',
+                183: 'TLS_RSA_PSK_WITH_AES_256_CBC_SHA384',
+                184: 'TLS_RSA_PSK_WITH_NULL_SHA256',
+                185: 'TLS_RSA_PSK_WITH_NULL_SHA384',
+                186: 'TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256',
+                187: 'TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA256',
+                188: 'TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA256',
+                189: 'TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA256',
+                190: 'TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256',
+                191: 'TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256',
+                192: 'TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256',
+                193: 'TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA256',
+                194: 'TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA256',
+                195: 'TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA256',
+                196: 'TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256',
+                197: 'TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256',
+                255: 'TLS_EMPTY_RENEGOTIATION_INFO_SCSV',
+                22016: 'TLS_FALLBACK_SCSV',
+                49153: 'TLS_ECDH_ECDSA_WITH_NULL_SHA',
+                49154: 'TLS_ECDH_ECDSA_WITH_RC4_128_SHA',
+                49155: 'TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA',
+                49156: 'TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA',
+                49157: 'TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA',
+                49158: 'TLS_ECDHE_ECDSA_WITH_NULL_SHA',
+                49159: 'TLS_ECDHE_ECDSA_WITH_RC4_128_SHA',
+                49160: 'TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA',
+                49161: 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA',
+                49162: 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA',
+                49163: 'TLS_ECDH_RSA_WITH_NULL_SHA',
+                49164: 'TLS_ECDH_RSA_WITH_RC4_128_SHA',
+                49165: 'TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA',
+                49166: 'TLS_ECDH_RSA_WITH_AES_128_CBC_SHA',
+                49167: 'TLS_ECDH_RSA_WITH_AES_256_CBC_SHA',
+                49168: 'TLS_ECDHE_RSA_WITH_NULL_SHA',
+                49169: 'TLS_ECDHE_RSA_WITH_RC4_128_SHA',
+                49170: 'TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA',
+                49171: 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA',
+                49172: 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA',
+                49173: 'TLS_ECDH_anon_WITH_NULL_SHA',
+                49174: 'TLS_ECDH_anon_WITH_RC4_128_SHA',
+                49175: 'TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA',
+                49176: 'TLS_ECDH_anon_WITH_AES_128_CBC_SHA',
+                49177: 'TLS_ECDH_anon_WITH_AES_256_CBC_SHA',
+                49178: 'TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA',
+                49179: 'TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA',
+                49180: 'TLS_SRP_SHA_DSS_WITH_3DES_EDE_CBC_SHA',
+                49181: 'TLS_SRP_SHA_WITH_AES_128_CBC_SHA',
+                49182: 'TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA',
+                49183: 'TLS_SRP_SHA_DSS_WITH_AES_128_CBC_SHA',
+                49184: 'TLS_SRP_SHA_WITH_AES_256_CBC_SHA',
+                49185: 'TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA',
+                49186: 'TLS_SRP_SHA_DSS_WITH_AES_256_CBC_SHA',
+                49187: 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256',
+                49188: 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384',
+                49189: 'TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256',
+                49190: 'TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384',
+                49191: 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256',
+                49192: 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384',
+                49193: 'TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256',
+                49194: 'TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384',
+                49195: 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256',
+                49196: 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384',
+                49197: 'TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256',
+                49198: 'TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384',
+                49199: 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256',
+                49200: 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384',
+                49201: 'TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256',
+                49202: 'TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384',
+                49203: 'TLS_ECDHE_PSK_WITH_RC4_128_SHA',
+                49204: 'TLS_ECDHE_PSK_WITH_3DES_EDE_CBC_SHA',
+                49205: 'TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA',
+                49206: 'TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA',
+                49207: 'TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA256',
+                49208: 'TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA384',
+                49209: 'TLS_ECDHE_PSK_WITH_NULL_SHA',
+                49210: 'TLS_ECDHE_PSK_WITH_NULL_SHA256',
+                49211: 'TLS_ECDHE_PSK_WITH_NULL_SHA384',
+                49212: 'TLS_RSA_WITH_ARIA_128_CBC_SHA256',
+                49213: 'TLS_RSA_WITH_ARIA_256_CBC_SHA384',
+                49214: 'TLS_DH_DSS_WITH_ARIA_128_CBC_SHA256',
+                49215: 'TLS_DH_DSS_WITH_ARIA_256_CBC_SHA384',
+                49216: 'TLS_DH_RSA_WITH_ARIA_128_CBC_SHA256',
+                49217: 'TLS_DH_RSA_WITH_ARIA_256_CBC_SHA384',
+                49218: 'TLS_DHE_DSS_WITH_ARIA_128_CBC_SHA256',
+                49219: 'TLS_DHE_DSS_WITH_ARIA_256_CBC_SHA384',
+                49220: 'TLS_DHE_RSA_WITH_ARIA_128_CBC_SHA256',
+                49221: 'TLS_DHE_RSA_WITH_ARIA_256_CBC_SHA384',
+                49222: 'TLS_DH_anon_WITH_ARIA_128_CBC_SHA256',
+                49223: 'TLS_DH_anon_WITH_ARIA_256_CBC_SHA384',
+                49224: 'TLS_ECDHE_ECDSA_WITH_ARIA_128_CBC_SHA256',
+                49225: 'TLS_ECDHE_ECDSA_WITH_ARIA_256_CBC_SHA384',
+                49226: 'TLS_ECDH_ECDSA_WITH_ARIA_128_CBC_SHA256',
+                49227: 'TLS_ECDH_ECDSA_WITH_ARIA_256_CBC_SHA384',
+                49228: 'TLS_ECDHE_RSA_WITH_ARIA_128_CBC_SHA256',
+                49229: 'TLS_ECDHE_RSA_WITH_ARIA_256_CBC_SHA384',
+                49230: 'TLS_ECDH_RSA_WITH_ARIA_128_CBC_SHA256',
+                49231: 'TLS_ECDH_RSA_WITH_ARIA_256_CBC_SHA384',
+                49232: 'TLS_RSA_WITH_ARIA_128_GCM_SHA256',
+                49233: 'TLS_RSA_WITH_ARIA_256_GCM_SHA384',
+                49234: 'TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256',
+                49235: 'TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384',
+                49236: 'TLS_DH_RSA_WITH_ARIA_128_GCM_SHA256',
+                49237: 'TLS_DH_RSA_WITH_ARIA_256_GCM_SHA384',
+                49238: 'TLS_DHE_DSS_WITH_ARIA_128_GCM_SHA256',
+                49239: 'TLS_DHE_DSS_WITH_ARIA_256_GCM_SHA384',
+                49240: 'TLS_DH_DSS_WITH_ARIA_128_GCM_SHA256',
+                49241: 'TLS_DH_DSS_WITH_ARIA_256_GCM_SHA384',
+                49242: 'TLS_DH_anon_WITH_ARIA_128_GCM_SHA256',
+                49243: 'TLS_DH_anon_WITH_ARIA_256_GCM_SHA384',
+                49244: 'TLS_ECDHE_ECDSA_WITH_ARIA_128_GCM_SHA256',
+                49245: 'TLS_ECDHE_ECDSA_WITH_ARIA_256_GCM_SHA384',
+                49246: 'TLS_ECDH_ECDSA_WITH_ARIA_128_GCM_SHA256',
+                49247: 'TLS_ECDH_ECDSA_WITH_ARIA_256_GCM_SHA384',
+                49248: 'TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256',
+                49249: 'TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384',
+                49250: 'TLS_ECDH_RSA_WITH_ARIA_128_GCM_SHA256',
+                49251: 'TLS_ECDH_RSA_WITH_ARIA_256_GCM_SHA384',
+                49252: 'TLS_PSK_WITH_ARIA_128_CBC_SHA256',
+                49253: 'TLS_PSK_WITH_ARIA_256_CBC_SHA384',
+                49254: 'TLS_DHE_PSK_WITH_ARIA_128_CBC_SHA256',
+                49255: 'TLS_DHE_PSK_WITH_ARIA_256_CBC_SHA384',
+                49256: 'TLS_RSA_PSK_WITH_ARIA_128_CBC_SHA256',
+                49257: 'TLS_RSA_PSK_WITH_ARIA_256_CBC_SHA384',
+                49258: 'TLS_PSK_WITH_ARIA_128_GCM_SHA256',
+                49259: 'TLS_PSK_WITH_ARIA_256_GCM_SHA384',
+                49260: 'TLS_DHE_PSK_WITH_ARIA_128_GCM_SHA256',
+                49261: 'TLS_DHE_PSK_WITH_ARIA_256_GCM_SHA384',
+                49262: 'TLS_RSA_PSK_WITH_ARIA_128_GCM_SHA256',
+                49263: 'TLS_RSA_PSK_WITH_ARIA_256_GCM_SHA384',
+                49264: 'TLS_ECDHE_PSK_WITH_ARIA_128_CBC_SHA256',
+                49265: 'TLS_ECDHE_PSK_WITH_ARIA_256_CBC_SHA384',
+                49266: 'TLS_ECDHE_ECDSA_WITH_CAMELLIA_128_CBC_SHA256',
+                49267: 'TLS_ECDHE_ECDSA_WITH_CAMELLIA_256_CBC_SHA384',
+                49268: 'TLS_ECDH_ECDSA_WITH_CAMELLIA_128_CBC_SHA256',
+                49269: 'TLS_ECDH_ECDSA_WITH_CAMELLIA_256_CBC_SHA384',
+                49270: 'TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256',
+                49271: 'TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384',
+                49272: 'TLS_ECDH_RSA_WITH_CAMELLIA_128_CBC_SHA256',
+                49273: 'TLS_ECDH_RSA_WITH_CAMELLIA_256_CBC_SHA384',
+                49274: 'TLS_RSA_WITH_CAMELLIA_128_GCM_SHA256',
+                49275: 'TLS_RSA_WITH_CAMELLIA_256_GCM_SHA384',
+                49276: 'TLS_DHE_RSA_WITH_CAMELLIA_128_GCM_SHA256',
+                49277: 'TLS_DHE_RSA_WITH_CAMELLIA_256_GCM_SHA384',
+                49278: 'TLS_DH_RSA_WITH_CAMELLIA_128_GCM_SHA256',
+                49279: 'TLS_DH_RSA_WITH_CAMELLIA_256_GCM_SHA384',
+                49280: 'TLS_DHE_DSS_WITH_CAMELLIA_128_GCM_SHA256',
+                49281: 'TLS_DHE_DSS_WITH_CAMELLIA_256_GCM_SHA384',
+                49282: 'TLS_DH_DSS_WITH_CAMELLIA_128_GCM_SHA256',
+                49283: 'TLS_DH_DSS_WITH_CAMELLIA_256_GCM_SHA384',
+                49284: 'TLS_DH_anon_WITH_CAMELLIA_128_GCM_SHA256',
+                49285: 'TLS_DH_anon_WITH_CAMELLIA_256_GCM_SHA384',
+                49286: 'TLS_ECDHE_ECDSA_WITH_CAMELLIA_128_GCM_SHA256',
+                49287: 'TLS_ECDHE_ECDSA_WITH_CAMELLIA_256_GCM_SHA384',
+                49288: 'TLS_ECDH_ECDSA_WITH_CAMELLIA_128_GCM_SHA256',
+                49289: 'TLS_ECDH_ECDSA_WITH_CAMELLIA_256_GCM_SHA384',
+                49290: 'TLS_ECDHE_RSA_WITH_CAMELLIA_128_GCM_SHA256',
+                49291: 'TLS_ECDHE_RSA_WITH_CAMELLIA_256_GCM_SHA384',
+                49292: 'TLS_ECDH_RSA_WITH_CAMELLIA_128_GCM_SHA256',
+                49293: 'TLS_ECDH_RSA_WITH_CAMELLIA_256_GCM_SHA384',
+                49294: 'TLS_PSK_WITH_CAMELLIA_128_GCM_SHA256',
+                49295: 'TLS_PSK_WITH_CAMELLIA_256_GCM_SHA384',
+                49296: 'TLS_DHE_PSK_WITH_CAMELLIA_128_GCM_SHA256',
+                49297: 'TLS_DHE_PSK_WITH_CAMELLIA_256_GCM_SHA384',
+                49298: 'TLS_RSA_PSK_WITH_CAMELLIA_128_GCM_SHA256',
+                49299: 'TLS_RSA_PSK_WITH_CAMELLIA_256_GCM_SHA384',
+                49300: 'TLS_PSK_WITH_CAMELLIA_128_CBC_SHA256',
+                49301: 'TLS_PSK_WITH_CAMELLIA_256_CBC_SHA384',
+                49302: 'TLS_DHE_PSK_WITH_CAMELLIA_128_CBC_SHA256',
+                49303: 'TLS_DHE_PSK_WITH_CAMELLIA_256_CBC_SHA384',
+                49304: 'TLS_RSA_PSK_WITH_CAMELLIA_128_CBC_SHA256',
+                49305: 'TLS_RSA_PSK_WITH_CAMELLIA_256_CBC_SHA384',
+                49306: 'TLS_ECDHE_PSK_WITH_CAMELLIA_128_CBC_SHA256',
+                49307: 'TLS_ECDHE_PSK_WITH_CAMELLIA_256_CBC_SHA384',
+                49308: 'TLS_RSA_WITH_AES_128_CCM',
+                49309: 'TLS_RSA_WITH_AES_256_CCM',
+                49310: 'TLS_DHE_RSA_WITH_AES_128_CCM',
+                49311: 'TLS_DHE_RSA_WITH_AES_256_CCM',
+                49312: 'TLS_RSA_WITH_AES_128_CCM_8',
+                49313: 'TLS_RSA_WITH_AES_256_CCM_8',
+                49314: 'TLS_DHE_RSA_WITH_AES_128_CCM_8',
+                49315: 'TLS_DHE_RSA_WITH_AES_256_CCM_8',
+                49316: 'TLS_PSK_WITH_AES_128_CCM',
+                49317: 'TLS_PSK_WITH_AES_256_CCM',
+                49318: 'TLS_DHE_PSK_WITH_AES_128_CCM',
+                49319: 'TLS_DHE_PSK_WITH_AES_256_CCM',
+                49320: 'TLS_PSK_WITH_AES_128_CCM_8',
+                49321: 'TLS_PSK_WITH_AES_256_CCM_8',
+                49322: 'TLS_PSK_DHE_WITH_AES_128_CCM_8',
+                49323: 'TLS_PSK_DHE_WITH_AES_256_CCM_8',
+                49324: 'TLS_ECDHE_ECDSA_WITH_AES_128_CCM',
+                49325: 'TLS_ECDHE_ECDSA_WITH_AES_256_CCM',
+                49326: 'TLS_ECDHE_ECDSA_WITH_AES_128_CCM_8',
+                49327: 'TLS_ECDHE_ECDSA_WITH_AES_256_CCM_8',
+                52392: 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256',
+                52393: 'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256',
+                52394: 'TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256',
+                52395: 'TLS_PSK_WITH_CHACHA20_POLY1305_SHA256',
+                52396: 'TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256',
+                52397: 'TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256',
+                52398: 'TLS_RSA_PSK_WITH_CHACHA20_POLY1305_SHA256'
+            },
 
-            self.__addValueIfAvailable(
-                View.FILE_ANALYSIS_STATUS,
-                [ Cache.FILE_STATIC_ANALYSES, record['fileAnalysisStatus']] )
+            Cache.SSL_FLOW_FLAGS: {
+                1: 'NSE_FLOW_VALID',
+                2: 'NSE_FLOW_INITIALIZED',
+                4: 'NSE_FLOW_INTERCEPT'
+            },
 
-            self.__addValueIfAvailable(
-                View.FILE_TYPE,
-                [ Cache.FILE_TYPES, record['fileTypeId']] )
+            Cache.SSL_FLOW_MESSAGES: {
+                0x00000001: 'NSE_MT__HELLO_REQUEST',
+                0x00000002: 'NSE_MT__CLIENT_ALERT',
+                0x00000004: 'NSE_MT__SERVER_ALERT',
+                0x00000008: 'NSE_MT__CLIENT_HELLO',
+                0x00000010: 'NSE_MT__SERVER_HELLO',
+                0x00000020: 'NSE_MT__SERVER_CERTIFICATE',
+                0x00000040: 'NSE_MT__SERVER_KEY_EXCHANGE',
+                0x00000080: 'NSE_MT__CERTIFICATE_REQUEST',
+                0x00000100: 'NSE_MT__SERVER_HELLO_DONE',
+                0x00000200: 'NSE_MT__CLIENT_CERTIFICATE',
+                0x00000400: 'NSE_MT__CLIENT_KEY_EXCHANGE',
+                0x00000800: 'NSE_MT__CERTIFICATE_VERIFY',
+                0x00001000: 'NSE_MT__CLIENT_CHANGE_CIPHER_SPEC',
+                0x00002000: 'NSE_MT__CLIENT_FINISHED',
+                0x00004000: 'NSE_MT__SERVER_CHANGE_CIPHER_SPEC',
+                0x00008000: 'NSE_MT__SERVER_FINISHED',
+                0x00010000: 'NSE_MT__NEW_SESSION_TICKET',
+                0x00020000: 'NSE_MT__HANDSHAKE_OTHER',
+                0x00040000: 'NSE_MT__APP_DATA_FROM_CLIENT',
+                0x00080000: 'NSE_MT__APP_DATA_FROM_SERVER'
+            },
 
-            self.__addValueIfAvailable(
-                View.WEB_APP,
-                [ Cache.PAYLOADS, record['webApplicationId']] )
+            Cache.SSL_CERT_STATUSES: {
+                0: 'Not checked - The server certificate status was not evaluated.',
+                1: 'Unknown - The server certificate status could not be determined.',
+                2: 'Valid - The server certificate is valid.',
+                4: 'Self-signed - The server certificate is self-signed.',
+                16: 'Invalid Issuer - The server certificate has an invalid issuer.',
+                32: 'Invalid Signature - The server certificate has an invalid signature.',
+                64: 'Expired - The server certificate is expired.',
+                128: 'Not valid yet - The server certificate is not yet valid.',
+                256: 'Revoked - The server certificate has been revoked.'
+            },
+            
+            Cache.USER_AUTH_TYPES: {
+                0: 'No Authorization Required',
+                1: 'Passive Authentication, AD Agent, or ISE Session',
+                2: 'Captive Portal Successfull Authenication',
+                3: 'Captive Portal Guest Authenication',
+                4: 'Captive Portal Failed Authenication',
+                5: 'VPN Authorized Authenication'
+            },
+            
+            Cache.USER_PROTOCOLS: {
+                165: 'FTP',
+                426: 'SIP',
+                547: 'AOL Instant Messenger',
+                683: 'IMAP',
+                710: 'LDAP',
+                767: 'NTP',
+                773: 'Oracle Database',
+                788: 'POP3',
+                1755: 'MDNS'
+            },
 
-            self.__addValueIfAvailable(
-                View.CLIENT_APP,
-                [ Cache.CLIENT_APPLICATIONS, record['clientApplicationId']] )
+            Cache.VPN_TYPES: {
+                0: 'Unknown',
+                1: 'Cisco IKEv1 Client',
+                2: 'AnyConnect IKEv1 Client',
+                3: 'AnyConnect SSL',
+                4: 'WebVPN Clientless',
+                5: 'Site to Site IKEv2',
+                6: 'Site to Site IKEv2',
+                7: 'Generic IKEv2 RA Client'
+            },
 
-            self.__addValueIfAvailable(
-                View.APP_PROTO,
-                [ Cache.APPLICATION_PROTOCOLS, record['applicationId']] )
+            Cache.XFF_TYPES: {
+                2: 'XFF Client (Ipv6)',
+                9: 'HTTP URI'
+            }
+        }
 
-            self.__addValueIfAvailable(
-                View.DIRECTION,
-                [ Cache.DIRECTIONS, record['direction']] )
 
-            self.__addValueIfAvailable(
-                View.SOURCE_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['sourceCountry']] )
 
-            self.__addValueIfAvailable(
-                View.DESTINATION_IP_COUNTRY,
-                [ Cache.GEOLOCATIONS, record['destinationCountry']] )
+    def store( self, source ):
+        """
+        update() takes an incoming wire record and if appropriate
+        takes the metadata from it and adds it to this class.
+        """
+        if 'recordType' not in source:
+            return
 
-            self.__addValueIfAvailable(
-                View.USER,
-                [ Cache.USERS, record['userId']] )
+        try:
+            record = estreamer.common.Flatdict( source )
+            recordTypeId = record['recordType']
 
-            self.__addValueIfAvailable(
-                View.SSL_ACTUAL_ACTION,
-                [ Cache.SSL_ACTIONS, record['sslActualAction'] ] )
+            # In most general cases, this will do. However, some records are more complex
+            # and will be dealth with below
+            if recordTypeId in Cache.AUTOMAP:
+                mapping = Cache.AUTOMAP[recordTypeId]
 
-            self.__addValueIfAvailable(
-                View.SSL_FLOW_STATUS,
-                [ Cache.SSL_FLOWS_STATUSES, record['sslFlowStatus'] ] )
+                try:
+                    self.set([ mapping['cache'], record[ mapping['id'] ] ], record[ mapping['value'] ] )
+                except TypeError:
+                    self.logger.warning('Invalid mapping type (str) must use integer "rec_type: {0} index: {1} value: {2} record: {3}"'.
+                            format(recordTypeId, mapping['cache'], mapping['id'], mapping['value'] , record) ) 
 
-            self.__addValueIfAvailable(
-                View.MALWARE_ANALYSIS_STATUS,
-                [ Cache.MALWARE_ANALYSIS_STATUS, record['localMalwareAnalysisStatus'] ] )
+            # Now we do the special cases which need to update complex objects
+            if recordTypeId == definitions.METADATA_RNA_FINGERPRINT:
+                # 54
+                self.set( [ Cache.OS_FINGERPRINTS, record['uuid']], {
+                    'os': record['name'],
+                    'vendor': record['vendor'],
+                    'ver': record['version'] })
 
-            self.__addValueIfAvailable(
-                View.ARCHIVE_FILE_STATUS,
-                [ Cache.FILE_ARCHIVE_STATUS, record['archiveFileStatus'] ] )
+            elif recordTypeId == definitions.METADATA_RULE_MESSAGE:
+                # 66
+                self.set(
+                    [ Cache.IDS_RULES, record['generatorId'], record['ruleId']],
+                    record['message'])
 
-        elif recordTypeId == definitions.METADATA_FILELOG_SHA:
-            # 511
-            for key in record :
-                if isinstance(record[key], (bytes, bytearray)) :
-                     value = record[key].decode('utf-8')
-                     record[key] = value
+                self.set(
+                    [ Cache.IDS_RULES_RENDERED, record['generatorId'], record['ruleId']],
+                    record['signatureId'])
 
-            self.__addValueIfAvailable(
-                View.DISPOSITION,
-                [ Cache.FILE_DISPOSITIONS, record['disposition']] )
+            elif recordTypeId == definitions.METADATA_CLASSIFICATION:
+                # 67
+                self.set([ Cache.CLASSIFICATIONS, record['id'] ], {
+                    'name': record['name'],
+                    'desc': record['description'] })
 
-        # Now do the general cases
-        if 'sensorId' in record:
-            self.data[ View.SENSOR ] = self.cache.get([ Cache.DEVICES, record['sensorId']])
+            elif recordTypeId == definitions.METADATA_CORRELATION_RULE:
+                # 70
+                self.set([ Cache.CORRELATION_RULES, record['id']], {
+                    'name': record['name'],
+                    'desc': record['description'],
+                    'type': record['eventType'] })
 
-        if 'deviceId' in record:
-            self.data[ View.SENSOR ] = self.cache.get([ Cache.DEVICES, record['deviceId']])
+            elif recordTypeId == definitions.METADATA_ACCESS_CONTROL_POLICY_NAME:
+                # 117 - This is all but deprecated now. Leave for the time being
+                self.set([ Cache.POLICIES, record['uuid']], record['name.data'])
 
-        if 'eventType' in record:
-            eventType = record['eventType']
+                # # Add the default action rule
+                self.set([ Cache.FW_RULES, record['uuid'], '0'], 'Default Action')
 
-            if 'eventSubtype' in record:
-                eventSubtype = record['eventSubtype']
-                if eventType in definitions.RNA_TYPE_NAMES and \
-                   eventSubtype in definitions.RNA_TYPE_NAMES[ eventType ]:
-                    self.data[ View.EVENT_DESC ] = \
-                        definitions.RNA_TYPE_NAMES[ eventType ][ eventSubtype ]
+            elif recordTypeId == definitions.METADATA_ACCESS_CONTROL_RULE_ID:
+                # 119
+                self.set(
+                    [ Cache.FW_RULES, record['uuid'], record['id'] ], record['name.data'])
 
-        if 'sourceId' in record:
-            # None of these are mapped from RNA records
-            self.__addValueIfAvailable(
-                View.SOURCE,
-                [ Cache.SOURCE_APPLICATIONS, record['sourceId'] ] )
+            elif recordTypeId == definitions.METADATA_ACCESS_CONTROL_POLICY or \
+                recordTypeId == definitions.METADATA_PREFILTER_POLICY or \
+                recordTypeId == definitions.METADATA_TUNNEL_OR_PREFILTER_RULE:
+                # 145,6,7 - This is used to link to the sensor and supersedes 117
+                self.set(
+                    [ Cache.ACCESS_CONTROL_POLICIES, record['sensorId'], record['uuid']],
+                    record['name.data'])
 
-        eventSec = 0
-        eventUsec = 0
+            elif recordTypeId == definitions.METADATA_IOC_NAME:
+                # 161
+                self.set([ Cache.IOC, record['id'] ], {
+                    'category': record['category.data'],
+                    'eventType': record['eventType.data'] })
 
-        # See if we can find the timestamps
-        if 'eventSecond' in record:
-            eventSec = record['eventSecond']
-            if 'eventMicrosecond' in record:
-                eventUsec = record['eventMicrosecond']
+            elif recordTypeId == definitions.METADATA_ICMP_TYPE:
+                # 260
+                self.set(
+                    [ Cache.ICMP_TYPES, record['protocol'], record['type'] ],
+                    record['description.data'])
 
-        elif 'fileEventTimestamp' in record:
-            eventSec = record['fileEventTimestamp']
+            elif recordTypeId == definitions.METADATA_SECURITY_INTELLIGENCE_CATEGORY_DISCOVERY:
+                # 280
+                self.set(
+                    [ Cache.SI_LISTS_DISCOVERY, record['id'], record['accessControlPolicyUuid'] ],
+                    record['name.data'])
 
-        elif 'triggerEventSecond' in record:
-            eventSec = record['triggerEventSecond']
-            if 'triggerEventMicrosecond' in record:
-                eventUsec = record['triggerEventMicrosecond']
+            elif recordTypeId == definitions.METADATA_DNS_RECORD:
+                # 320
+                self.set([ Cache.DNS_RECORDS, record['id'] ], {
+                    'name': record['name.data'],
+                    'description': record['description.data'] })
 
-        elif 'timestamp' in record:
-            eventSec = record['timestamp']
+            elif recordTypeId == definitions.METADATA_DNS_RESPONSE:
+                # 321
+                self.set([ Cache.DNS_RESPONSES, record['id'] ], {
+                    'name': record['name.data'],
+                    'description': record['description.data'] })
 
-        # If not timestamp exists, let's try the archive timestamp
-        if eventSec == 0:
-            eventSec = record['archiveTimestamp']
-
-        # Push the timestamp fields in where applicable
-        if eventSec > 0:
-            self.data[ View.EVENT_SEC ] = eventSec
-            timestamp = eventSec + ( eventUsec / 1000000.0 )
-            eventDateTime = datetime.datetime.fromtimestamp( timestamp )
-            self.data[ View.EVENT_TIMESTAMP ] = eventDateTime.isoformat()
-
-        if eventUsec > 0:
-            self.data[ View.EVENT_USEC ] = eventUsec
-
-        return self.data
+        except KeyError as ex:
+            msg = 'Metadata key ({0}) missing on object ({1}). Ignoring'.format( ex, str( source ) )
+            self.logger.debug( msg )
