@@ -1,5 +1,11 @@
 [![Gitter chat](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg)](https://gitter.im/CiscoSecurity/Lobby "Gitter chat")
 
+#Update Friday, June 2nd, 2023
+A New Cloud Formation script will be posted Monday, June 5th, 2023 for Cisco Live which includes the latest updates including:
+  * UI Management portal to view event activity and monitor data between Firepower and AWS Security Lake
+  * Support for additional event types, including Malware and IDS Events
+  * Enhanced Automation script to capture additional parameters to automate FMC connectivity
+
 # License
 
 Copyright (c) 2021 by Cisco Systems, Inc.
