@@ -40,7 +40,7 @@ https://www.cisco.com/c/en/us/td/docs/security/firepower/70/api/eNcore/eNcore_Op
 
 * Upload ./eNcoreCloudFormation.yaml to AWS Cloud Formation
   - Configure the FMC IP
-  - Server size (defaults to t1.medium)
+  - Server size (defaults to t4.large)
   - S3 Bucket - this is the s3 path that will host paritioned data, the /ext/SOURCE_NAME needs to be provided in addition to the root s3 bucket location (ex. us-east-2-accountid/ex/MYSOURCE)
   - AWS Account Id
 
