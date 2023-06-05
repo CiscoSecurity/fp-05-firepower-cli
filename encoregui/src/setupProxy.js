@@ -25,4 +25,12 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+
+  app.use(
+    '/api/modifyfile/',
+    createProxyMiddleware({
+      target: 'http://127.0.0.1:8282',
+      changeOrigin: true,
+    })
+  );
 }

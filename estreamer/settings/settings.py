@@ -42,7 +42,8 @@ class Settings( object ):
         self._streams = None
         self._cache = None
         self._bookmark = None
-
+        self._eventRate = None
+        self._s3Response = None
         self.osname = os.name
         self.store = jsonSettings
 
@@ -186,29 +187,31 @@ class Settings( object ):
         return self.instanceFilename('pkcs.cert')
 
 
-
     def bookmarkFilepath( self ):
         """Returns the name of the bookmark file"""
         return self.instanceFilename('bookmark.dat')
-
 
 
     def cacheFilepath( self ):
         """Returns the name of the cache file"""
         return self.instanceFilename('cache.dat')
 
+    def s3ResponseFilepath( self ):
+        """Returns the name of the data rate file"""
+        return self.instanceFilename('s3.dat')
 
+    def eventRateFilepath( self ):
+        """Returns the name of the data rate file"""
+        return self.instanceFilename('rate.dat')
 
     def statusFilepath( self ):
         """Returns the name of the status file"""
         return self.instanceFilename('status.dat')
 
 
-
     def pidFilepath( self ):
         """Returns the name of the pid file"""
         return self.instanceFilename('proc.pid')
-
 
 
     def requestFlags( self ):
@@ -305,7 +308,19 @@ class Settings( object ):
             self._cache.load()
 
         return self._cache
+   
+    def s3Response ( self ): 
+        if self._s3Response is None: 
+            self._s3Response = estreamer.S3Response( self.s3ResponseFilepath() )
 
+        return self._s3Response
+
+
+    def eventRate ( self ): 
+        if self._eventRate is None: 
+            self._eventRate = estreamer.EventRate( self.eventRateFilepath() )
+
+        return self._eventRate
 
 
     def bookmark( self ):

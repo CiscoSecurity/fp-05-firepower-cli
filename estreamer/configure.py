@@ -300,6 +300,9 @@ class Configure( object ):
         elif print_ == 'statusFile':
             print( estreamer.Settings.create( self.filepath ).statusFilepath() )
 
+        elif print_ == 'rateFile': 
+            print( estreamer.Settings.create( self.filepath ).rateFilepath() )
+
         elif print_ == 'pidFile':
             print( estreamer.Settings.create( self.filepath ).pidFilepath() )
 

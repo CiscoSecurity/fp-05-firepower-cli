@@ -1,12 +1,5 @@
 [![Gitter chat](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg)](https://gitter.im/CiscoSecurity/Lobby "Gitter chat")
 
-# Update Friday, June 2nd, 2023 - Please read
-A New Cloud Formation script and code based will be posted Monday, June 5th, 2023 - 5pm EST for Cisco Live to support the AWS Security Lake GA, which includes the following:
-  * UI Management portal to view event activity and monitor data between Firepower and AWS Security Lake
-  * Support for additional event types, including Malware and IDS Events
-  * Enhanced Automation script to capture additional parameters to automate FMC connectivity
-  * More details see the quick 5min Official YouTube demo -  https://www.youtube.com/watch?v=scag-Ez4teE
-
 # License
 
 Copyright (c) 2021 by Cisco Systems, Inc.
@@ -47,7 +40,7 @@ https://www.cisco.com/c/en/us/td/docs/security/firepower/70/api/eNcore/eNcore_Op
 
 * Upload ./eNcoreCloudFormation.yaml to AWS Cloud Formation
   - Configure the FMC IP
-  - Server size (defaults to t4.large)
+  - Server size (defaults to t1.medium)
   - S3 Bucket - this is the s3 path that will host paritioned data, the /ext/SOURCE_NAME needs to be provided in addition to the root s3 bucket location (ex. us-east-2-accountid/ex/MYSOURCE)
   - AWS Account Id
 

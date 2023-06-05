@@ -132,15 +132,20 @@ class NetworkActivity( object ):
         #todo: add checks for null data
         self.activity_name = NetworkActivity.activityMap( data['firewallRuleAction'] )
         self.activity_id = NetworkActivity.activityMapId( data['firewallRuleAction'] ) #todo
-        self.app_name = data['@computed.clientApplication']
+        self.app_name = data['@computed.clientApplication'] if data['@computed.clientApplication'] is not None else "N/A"
         self.category_name = "Network Activity"
         self.category_uid = 4
         self.class_name = "Network Activity"
         self.class_uid = 4001
         self.count = data['connectionCounter']
-        self.duration = int(data['lastPacketTimestamp'])  - int(data['firstPacketTimestamp'] ) if int(data['lastPacketTimestamp']) != 0 else 0
-        self.end_time = int(data['lastPacketTimestamp']) * 1000
-        self.time = int(data['firstPacketTimestamp']) * 1000
+
+        lastPacketTime = int(data['lastPacketTimestamp']) if data['lastPacketTimestamp'] is not None else 0
+        firstPacketTime = int(data['firstPacketTimestamp']) if data['firstPacketTimestamp'] is not None else 0
+        self.duration = lastPacketTime - firstPacketTime
+
+#        self.duration = int(data['lastPacketTimestamp'])  - int(data['firstPacketTimestamp'] ) if int(data['lastPacketTimestamp']) != 0 else 0
+        self.end_time = lastPacketTime * 1000
+        self.time = firstPacketTime * 1000
         self.message = str(data['recordTypeDescription'] != "")
 #        self.observables = ""
 #        self.profiles = []
@@ -150,7 +155,8 @@ class NetworkActivity( object ):
 #        self.ref_time = str(data['firstPacketTimestamp'] * 1000)
         self.severity = "Unknown" #todo is there a mapping for connection events?
         self.severity_id = 0 #todo
-        self.start_time = data['firstPacketTimestamp'] * 1000
+
+        self.start_time = firstPacketTime
         self.status = NetworkActivity.statusMap( data['@computed.sslFlowStatus'] )  #todo what statuses are available for generic connection events
         self.status_code = str(NetworkActivity.statusMapId ( data['@computed.sslFlowStatus'] )) #is there an equivalent ssl network class we should use?
 #        self.status_detail = ""

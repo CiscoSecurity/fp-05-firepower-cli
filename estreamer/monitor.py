@@ -18,8 +18,10 @@
 #*********************************************************************/
 
 from __future__ import absolute_import
+import sys, traceback
 import threading
 import time
+import traceback
 import estreamer.definitions as definitions
 import estreamer.crossprocesslogging as logging
 import estreamer
@@ -66,8 +68,7 @@ class Monitor( object ):
         self.lastCount = count
 
         return velocity, rate
-
-
+    
 
     def __tick( self ):
         try:
@@ -75,8 +76,7 @@ class Monitor( object ):
 
             self.client.saveState( status['state'] )
 
-            if self.settings.monitor.details:
-                self.logger.info( str(status) )
+            self.client.saveEventRate ( status )
 
             if self.logger.isEnabledFor( logging.INFO ):
                 message = '{0}.'.format( status['state']['description'] )
@@ -88,8 +88,13 @@ class Monitor( object ):
                     message += ' average rate {0} ev/sec; '.format(status['cumulative_rate'])
 
                 if self.settings.monitor.bookmark:
-                    message += ' bookmark {0};'.format(
-                        estreamer.common.convert.toIso8601( status['bookmark'] ))
+
+                     if status['bookmark'] == 0:
+                        bookmark = estreamer.Bookmark( self.settings.bookmarkFilepath() )
+                        timeInt = bookmark.read()
+                        message += ' bookmark {0};'.format(estreamer.common.convert.toIso8601( timeInt ) )
+                     else :
+                        message += ' bookmark {0};'.format(estreamer.common.convert.toIso8601( status['bookmark'] ))
 
                 self.logger.info( message )
 
@@ -98,12 +103,30 @@ class Monitor( object ):
             # the controlling process pipe communications collides with the monitor
             # and messages are garbled. Investigate
             self.logger.info('Running (no process data available)')
+            self.logger.error( sys.exc_info() )
+
 
         except estreamer.EncoreException as ex:
-            self.logger.error(ex)
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __tick: {0} trace: {1}'.format( ex, stack))
 
         except Exception as ex:
-            self.logger.exception(ex)
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __tick: {0} trace: {1}'.format( ex, stack))
+
+        except estreamer.UnsupportedTimestampException:
+            # This is a workaround for the time being. Occasionally, on stopping
+            # the controlling process pipe communications collides with the monitor
+            # and messages are garbled. Investigate
+            self.logger.info('Running (no process data available)')
+
+        except estreamer.EncoreException as ex:
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __tick: {0} trace: {1}'.format( ex, stack))
+
+        except Exception as ex:
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __tick: {0} trace: {1}'.format( ex, stack))
 
 
 
@@ -126,7 +149,8 @@ class Monitor( object ):
                     time.sleep( 0.25 )
 
         except Exception as ex:
-            self.logger.error('Monitor __start: {0}'.format( ex ))
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __start: {0} trace: {1}'.format( ex, stack))
             self.state = definitions.STATE_ERROR
 
 

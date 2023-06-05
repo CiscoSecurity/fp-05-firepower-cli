@@ -50,10 +50,13 @@ def create( settingsStream ):
         if 'region' in settingsStream.options:
             region = settingsStream.options['region']
 
+        if 'awssource' in settingsStream.options:
+            awssource = settingsStream.options['awssource']
+
         if 'accountId' in settingsStream.options:
             accountId = settingsStream.options['accountId']
 
-        stream = FileStream( uri.path, maxLogs, rotate, s3, region, accountId, uri.file )
+        stream = FileStream( uri.path, maxLogs, rotate, s3, region, awssource, accountId, uri.file )
         return stream
 
     elif uri.scheme == 'udp':

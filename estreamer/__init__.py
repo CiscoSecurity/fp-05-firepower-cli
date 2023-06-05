@@ -24,6 +24,8 @@ from estreamer.exception import ConnectionClosedException
 from estreamer.exception import UnsupportedTimestampException
 from estreamer.exception import MessageErrorException
 from estreamer.bookmark import Bookmark
+from estreamer.s3response import S3Response
+from estreamer.eventrate import EventRate
 from estreamer.connection import Connection
 from estreamer.crypto import Crypto
 from estreamer.settings import Settings

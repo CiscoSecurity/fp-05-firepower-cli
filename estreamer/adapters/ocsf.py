@@ -104,6 +104,7 @@ def __ipv4( ipAddress ):
     return ''
 
 def __networkType ( data ) :
+    #print(data)
     networkObj = NetworkActivity( data )
     members = [attr for attr in vars(networkObj) if not callable(getattr(networkObj, attr)) and not attr.startswith("__")]
 
@@ -170,6 +171,34 @@ MAPPING = {
         },
     },
 
+    #400
+    definitions.RECORD_INTRUSION_EVENT: {
+
+        'network': lambda rec : __networkType(rec) ,
+
+        'lambdas': {
+            'dst_endpoint': lambda rec : __nonEmptyValues ( vars ( NetworkEndpoint ( rec, rec['responderIpAddress'], rec['responderPort']) ) ),
+            'metadata': lambda rec : __nonEmptyValues(vars( Metadata(rec) ) ),
+            'src_endpoint': lambda rec : __nonEmptyValues ( vars ( NetworkEndpoint ( rec, rec['initiatorIpAddress'], rec['initiatorPort']) ) )
+        },
+
+        'fields': {
+            'protocol': 'proto',
+            'clientApplicationId': 'app_id',
+            'connectionCounter': 'count', 
+            'lastPacketTimestamp': '', 
+            'initiatorTransmittedBytes': 'bytesOut',
+            'responderTransmittedBytes': 'bytesIn',
+            'userId': 'user',
+            'applicationId': 'app',
+            'securityIntelligenceList1': 'sec_intel_events',
+        },
+
+        'viewdata': {
+            View.PROTOCOL: 'proto'
+        },
+    },
+
 }
 
 
@@ -216,6 +245,9 @@ class Ocsf( object ):
         value = value.replace('\\\"', '"')
         value = value.replace('\"{', '{')
         value = value.replace('}\"', '}')
+
+        #json formatting for ocsf
+        value = value.replace("'", '"')
 
         return value
 

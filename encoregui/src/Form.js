@@ -49,7 +49,7 @@ class Form extends React.Component {
   }
   handleSubmit(event) {
     const formData = new FormData();
-    formData.append("file", this.state.file);
+
     try {
       axios({
         method: "post",
@@ -113,7 +113,7 @@ class Form extends React.Component {
                   <input type="file" onChange={this.handleChange} />
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
                   Password &nbsp; &nbsp;
-                  <input type="password" />
+                  <input  type="password" />
                 </label>
               </div>
               <div class="form-group__text">
@@ -130,36 +130,6 @@ class Form extends React.Component {
               </div>
               <input type="submit" class="btn btn--primary" value="Submit" />
             </form>
-          </div>
-          <div>
-            <div class="col-md-12">
-              <div class="panel">
-                <div class="table-admins">
-                  <h3>Output Types</h3>
-                  <table class="table">
-                    <thead>
-                      <tr class="table__header-row">
-                        <th class="table__header-cell">Output Type</th>
-                        <th class="table__header-cell">Local Path</th>
-                        <th class="table__header-cell">S3 Bucket</th>
-                        <th class="table__header-cell">Status</th>
-                        <th class="table__header-cell">Bookmark</th>
-                        <th class="table__header-cell">Action</th>
-                      </tr>
-                    </thead>
-                     <tbody>
-                       <tr class="table__row">
-                       <td class="table__cell">{this.props.data.adapter}</td>
-                       <td class="table__cell">{this.props.data.uri}</td>
-                       <td class="table__cell">{this.props.data.s3}</td>
-                       <td class="table__cell">{this.state.status}</td>
-                       <td class="table__cell">{this.state.lastWritten}</td>
-                       <td class="table__cell"><button class="btn btn--primary" onClick={this.handleStart}>Start</button><button class="btn btn--secondary" onClick={this.handleStop}>Stop</button></td></tr>
-                     </tbody>
-                   </table>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </body>

@@ -2,13 +2,17 @@ import './App.css';
 import axios from 'axios';
 import {useState, useEffect} from 'react'
 import Form from './Form.js'
+import Monitor from './Monitor.js'
+import Config from './Config.js'
 import Header from './Header.js'
 import FormHeader from './FormHeader.js'
+import DataLake from './DataLake.js'
 import SideBar from './SideBar.js'
 import Outputters from './Outputters.js'
 import './cisco-atomic-ui.scss';
 import {
   BrowserRouter as Router,
+  Routes,
   Switch,
   Route,
   Link
@@ -46,37 +50,17 @@ function App() {
       }).catch(err => console.log(err))
       }, [])
 
-  console.log(s3)
   return (
-	<body class="atomic-ui-root">
-	<div class="demo-page">
-	    <Header />
-          <div class="container-fluid">
-	    <div class="row semi-flexible">
-              <div><SideBar /></div>
-              <div>
-                <div class="col-md-12 content-container">
-                  <div class="content">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div><h2 class="content__title">Application Steps</h2></div>
-                        <div><FormHeader /></div>
-                      </div> 
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="panel user-profile">
-                          <div><h2 class="content__title">Configuration Information</h2></div>
-                          <Form data={s3}/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-	      </div>
-            </div>
-          </div>
-	</div>
+        <body class="atomic-ui-root">
+        <Router>
+          <Routes>
+            <Route path ="/">
+              <Route path ="/ocsf" element={<DataLake data={s3}/>}/>
+              <Route path ="/monitor" element={<Monitor data={s3}/>}/>
+              <Route path ="/config" element={<Config data={s3}/>}/>
+            </Route>
+          </Routes>
+        </Router> 
 	</body>
   );
 }

@@ -30,6 +30,7 @@ import math
 import multiprocessing
 import platform
 import sys
+from pathlib import Path
 
 import estreamer
 import estreamer.crossprocesslogging
@@ -273,6 +274,7 @@ class Controller( object ):
     def status( self ):
         """Returns an object describing the client status"""
         duration = datetime.datetime.now() - self.startTime
+
         status = {
             'start': self.startTime.isoformat(),
             'now': datetime.datetime.now().isoformat(),
@@ -328,17 +330,46 @@ class Controller( object ):
             status['cumulative_rate'] = round(
                 status['events'] / duration.total_seconds(), 2)
 
+        self.logger.info( 'Controller:  Process Status Check Complete')
         return status
 
 
-
-    def saveState( self, state ):
+    def saveState( self, state):
         """Saves the status to disk"""
-        with io.open( self.settings.statusFilepath(), 'w' ) as statusFile:
-            json.dump( {
-                'state': state
-            }, statusFile )
+        try:
+            with io.open( self.settings.statusFilepath(), 'w' ) as statusFile:
+                json.dump( {
+                    'state': state
+                }, statusFile )
 
+        except Exception as ex:
+            self.logger.info('Filo I/O Error - Attemping to save status to disk')
+            self.logger.exception( ex )
+
+    def saveEventRate( self, event):
+        """Saves the status to disk"""
+        try:
+
+            #if not empty then append to file
+            #account for last element double }}
+            path =  self.settings.eventRateFilepath()
+            append = True if os.stat('s3responses.dat').st_size == 0 else False
+
+            with io.open( self.settings.eventRateFilepath(), 'a+' ) as eventFile:
+                if append :
+                    eventFile.write(',')
+
+                json.dump( { event['now']: {
+                    'start': event['start'],
+                    'end': event['now'],
+                    'duration': event['duration'],
+                    'cumulative_rate': event['cumulative_rate'],
+                    'count': event['events'],
+                }}, eventFile )
+
+        except Exception as ex:
+            self.logger.info('Filo I/O Error - Attemping to save status to disk')
+            self.logger.exception( ex )
 
 
     def __stop( self ):
@@ -374,7 +405,7 @@ class Controller( object ):
             self.monitor.stop()
             self.logger.info( 'Goodbye' )
             self.state = definitions.STATE_STOPPED
-            self.saveState( self.status()['state'] )
+            self.saveState( self.status()['state'])
 
 
 

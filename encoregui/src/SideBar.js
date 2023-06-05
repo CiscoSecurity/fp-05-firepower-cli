@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 
 class SideBar extends React.Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class SideBar extends React.Component {
 
   render() {
     return (
-      <div class="sidebar-container">
+      <div class="sidebar-container" >
           <div class="sidebar sidebar--bg-gray">
             <div class="sidebar__header">
               <div class="sidebar__title">Monitoring</div>
@@ -18,17 +19,14 @@ class SideBar extends React.Component {
             <ul>
               <li tabindex="0" class="sidebar__item"><a class="sidebar__link">Live Dashboard</a></li>
               <li class="sidebar__drawer sidebar__drawer--opened">
-                <a tabindex="0" class="sidebar__link"><span class="icon icon-chevron-down"></span>Secure Firewall</a>
+                <a tabindex="0" class="sidebar__link"><span class="icon icon-chevron-down"></span>AWS Security Data Lake</a>
                 <ul>
-                  <li tabindex="0" class="sidebar__item"><a class="sidebar__link">Application Status</a></li>
-                  <li tabindex="0" class="sidebar__item sidebar__item--selected"><a class="sidebar__link">Configuration</a></li>
+                  <li tabindex="0" class="sidebar__item"><a class="sidebar__link" href="/config">Configuration</a></li>
+                  <li tabindex="0" class="sidebar__item"><a class="sidebar__link" href="/monitor">Monitoring</a></li>
                   <li class="sidebar__drawer sidebar__drawer--opened">
-                    <a tabindex="0" class="sidebar__link"><span class="icon icon-chevron-down"></span>SIEM integrations</a>
+                    <a tabindex="0" class="sidebar__link"><span class="icon icon-chevron-down"></span>Security Lake Sources</a>
                     <ul>
-                      <li tabindex="0" class="sidebar__item"><a class="sidebar__link">OCSF (json)</a></li>
-                      <li tabindex="0" class="sidebar__item"><a class="sidebar__link">AWS Data Lake</a></li>
-                      <li tabindex="0" class="sidebar__item"><a class="sidebar__link">Splunk</a></li>
-                      <li tabindex="0" class="sidebar__item"><a class="sidebar__link">Sentinel</a></li>
+                      <li tabindex="0" class="sidebar__item sidebar__item--selected"><a class="sidebar__link" href="/ocsf">Manage Output to S3</a></li>
                     </ul>
                   </li>
                 </ul>
