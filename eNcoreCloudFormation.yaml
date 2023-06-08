@@ -15,25 +15,46 @@ Parameters:
     Type: AWS::EC2::KeyPair::KeyName
     Description: >-
       Name of an existing EC2 KeyPair to enable SSH access to the instance
-  InstanceType:
+  InstanceType:    
     Description: EC2 instance type
     Type: String
     Default: t2.medium
     AllowedValues: 
       - t2.medium
       - t2.large
-      - c3.large
-      - c5.xlarge
       - c5.2xlarge
-      - c5.large
   amazonSecurityLakeBucketForCiscoFirewallURI:
     Description: Bucket URI for amazon Security Lake Bucket for Cisco Firewall
     Type: String
-    Default: s3://aws-security-data-lake-us-west-2-141548511100/aws/
+    Default: s3://enter-your-security-lake-bucket-here/
+  amazonSecurityLakeAPIKey:
+    Description: API Key that is permitted to write to the Amazon Security Data Lake, this will be stored under the 'SecurityLake' profile
+    Type: String
+    Default: None
+  amazonSecurityLakeAPISecret:
+    Description: API Secret for the Security Data Lake Key
+    Type: String
+    Default: None
+  ec2APIKey:
+    Description: API Key for this Amazon ec2 instance, this will under the profile 'ec2Instance'
+    Type: String
+    Default: None
+  ec2APISecret:
+    Description: API Secret for this Amazon ec2 instance
+    Type: String
+    Default: None
   fmcIP:
     Description: Public IP address of FMC Instance
     Type: String
-    Default: 1.2.3.4
+    Default: 1.2.3.4				
+  CertificateFile:
+    Type: String
+    Default: s3://encorecertbucket/client.pkcs12
+    Description: s3 url Location of the certificate file
+  CertificatePassword:
+    Type: String
+    Description: Password for the client certificate
+    NoEcho: true  # Prevent the password from being displayed during stack creation/update
   
 Mappings:
   AWSAMIRegionMap:
@@ -97,8 +118,13 @@ Mappings:
 #      OS: Ubuntu
 #Conditions: 
 #  TwoAZs:  !Equals [ !Ref AZCount, 2 ]
-
 Resources:
+  CertificatePasswordSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: CertificatePassword
+      Description: Certificate Password Secret
+      SecretString: !Ref CertificatePassword
 #--------------------------------VPC-------------------------------------------------------------
   VPC:
     Type: AWS::EC2::VPC
@@ -269,6 +295,39 @@ Resources:
     Properties:
       VpcId: !Ref 'VPC'
       InternetGatewayId: !Ref 'InternetGateway'
+#-----------------------------------------Instance Role-----------------------------
+  EC2InstanceAccessRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: EC2InstanceAccessRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: EC2InstancePolicy 
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                Resource: '*'
+              - Effect: Allow
+                Action:
+                  - secretsmanager:GetSecretValue
+                Resource: '*'
+
+  InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles:
+        - !Ref EC2InstanceAccessRole
 #------------------ EC2 ------------------------------------------------------------
   eNcoreInstance:
     Type: AWS::EC2::Instance
@@ -279,6 +338,7 @@ Resources:
           - Fn::GetAZs: ""
       ImageId: !FindInMap [AWSAMIRegionMap, !Ref "AWS::Region", US2204HVM]
       InstanceType: !Ref InstanceType
+      IamInstanceProfile: !Ref InstanceProfile
       KeyName: !Ref KeyName
       UserData: 
         Fn::Base64:
@@ -299,8 +359,22 @@ Resources:
             sudo pip install pandas
             
             sudo pip install boto3
+
+            sudo pip install fastapi
+			
+            pip install supervisor
+
+            sudo pip install "uvicorn[standard]"
+
+            sudo pip install "uvicorn[standard]" gunicorn
+
+            sudo pip install python-multipart
             
             sudo pip3 install boto3
+
+            sudo apt -y install npm
+
+            sudo npm install && npm run build
 
             # Install AWS CLI
             
@@ -315,7 +389,63 @@ Resources:
             # git clone eNcore client
             
             sudo git clone -b ocsf https://github.com/CiscoSecurity/fp-05-firepower-cli.git /encore
+
+            aws s3 cp ${CertificateFile} /tmp/my-object
+
+            echo "cert file contents:"
+
+            cat /tmp/my-object
+
+            cd /encore/encoregui
+
+            npm install react-router-dom
+            sudo npm install
+			
+            sudo mkdir  ~/.aws
+			
+            sudo touch ~/.aws/credentials
+			
+            cat >~/.aws/credentials << 'EOF'
+            [SecurityLake]
+            aws_access_key_id = ${amazonSecurityLakeAPIKey}
+            aws_secret_access_key = ${amazonSecurityLakeAPISecret}
+            [ec2Instance]
+            aws_access_key_id = ${ec2APIKey}
+            aws_secret_access_key = ${ec2APISecret}
+            [default]
+            aws_access_key_id = ${amazonSecurityLakeAPIKey}
+            aws_secret_access_key = ${amazonSecurityLakeAPISecret}
+            EOF
+
+            cd /etc/
+			
+            cat >supervisord.conf <<'EOF'
+            [supervisord]
+            logfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)
+            logfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)
+            logfile_backups=10           ; (num of main logfile rotation backups;default 10)
+            loglevel=info                ; (log level;default info; others: debug,warn,trace)
+            pidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+            nodaemon=true               ; (start in foreground if true;default false)
+            minfds=1024                  ; (min. avail startup file descriptors;default 1024)
+            minprocs=200                 ; (min. avail process descriptors;default 200)
+
+            [program:encoreapi]
+            user=root
+            command=sudo bash /encore/fp-05-firepower-cli/apiserver.sh
+
+            autostart=true
+            autorestart=true
+            stdout_logfile=/ocsf/fp-05-firepower-cli/guicorn.log
+            stderr_logfile=/ocsf/fp-05-firepower-cli/guicorn.err.log
             
+            [program:encoreui]
+            directory=/ocsf/fp-05-firepower-cli/encoregui
+            command=sudo npm start
+            stdout_logfile=/ocsf/fp-05-firepower-cli/ui_errors.log
+            stderr_logfile=/ocsf/fp-05-firepower-cli/ui_errors.err.log			
+            EOF
+
             cd /encore
 
             cat >estreamer.conf <<'EOF'
@@ -334,6 +464,8 @@ Resources:
                                     "s3": "${amazonSecurityLakeBucketForCiscoFirewallURI}",
                                     "region": "${AWS::Region}",
                                     "accountId": "${AWS::AccountId}",
+                                    "awssource": "CISCOFIREWALL",
+                                    "awsBufferRate": 60,
                                     "maxLogs": 10000,
                                     "rotate": true
                                 },
@@ -348,7 +480,7 @@ Resources:
                             "These records will be excluded regardless of above (overrides 'include')",
                             "e.g. to exclude flow and IPS events use [ 71, 400 ]"
                         ],
-                        "exclude": [2],
+                        "exclude": [2,400,125],
                         "inc@comment": "These records will be included regardless of above",
                         "include": [],
                         "intrusion": true,

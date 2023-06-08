@@ -340,7 +340,7 @@ class Controller( object ):
             with io.open( self.settings.statusFilepath(), 'w' ) as statusFile:
                 json.dump( {
                     'state': state
-                }, statusFile )
+                }, statusFile , ensure_ascii=False)
 
         except Exception as ex:
             self.logger.info('Filo I/O Error - Attemping to save status to disk')
@@ -353,19 +353,19 @@ class Controller( object ):
             #if not empty then append to file
             #account for last element double }}
             path =  self.settings.eventRateFilepath()
-            append = True if os.stat('s3responses.dat').st_size == 0 else False
+            path =  '/ocsf/fp-05-firepower-cli/rates.dat'
 
-            with io.open( self.settings.eventRateFilepath(), 'a+' ) as eventFile:
-                if append :
-                    eventFile.write(',')
+            with io.open( path, 'a+' ) as eventFile:
 
                 json.dump( { event['now']: {
                     'start': event['start'],
                     'end': event['now'],
                     'duration': event['duration'],
                     'cumulative_rate': event['cumulative_rate'],
-                    'count': event['events'],
-                }}, eventFile )
+                    'count': event['events']
+                }}, eventFile, ensure_ascii=False)
+                eventFile.write("\n")
+
 
         except Exception as ex:
             self.logger.info('Filo I/O Error - Attemping to save status to disk')

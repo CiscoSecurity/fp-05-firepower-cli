@@ -21,6 +21,7 @@ from __future__ import absolute_import
 import argparse
 import binascii
 import getpass
+import json
 import os
 import sys
 import time
@@ -41,6 +42,8 @@ import estreamer.definitions as definitions
 import estreamer.message
 import estreamer.crossprocesslogging
 import estreamer.pipeline
+import boto3
+from botocore.exceptions import ClientError
 
 class Diagnostics( object ):
     """Diagnostics class helps find out what's going on"""
@@ -48,6 +51,26 @@ class Diagnostics( object ):
         self.settings = settings
         self.logger = estreamer.crossprocesslogging.getLogger( self.__class__.__name__ )
 
+
+    def get_secret(self):
+
+        secret_name = self.settings.ec2CertificatePasswordName
+
+        # Create a Secrets Manager client
+        session = boto3.session.Session(profile_name='ec2Instance')
+        region_name = self.settings.region
+        client = session.client(service_name='secretsmanager', region_name=region_name)
+
+        try:
+            get_secret_value_response = client.get_secret_value(SecretId=secret_name)
+        except ClientError as e:
+         # For a list of exceptions thrown, see
+          # https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+            raise e
+
+        ## Decrypts secret using the associated KMS key.
+        secret = json.loads(get_secret_value_response['SecretString'])
+        return secret.get(secret_name)
 
 
     def execute( self ):
@@ -66,11 +89,16 @@ class Diagnostics( object ):
             # Wait half a second for logs to be written otherwise password prompt gets lost
             time.sleep( definitions.TIME_PAUSE )
 
-            try:
-                password = getpass.getpass( prompt = definitions.STRING_PASSWORD_PROMPT )
+            # Retrieve Password from Amazon Secrets
+            if (self.settings.ec2Region is not None) :
+               password = self.get_secret()
 
-            except EOFError:
-                raise estreamer.EncoreException( definitions.STRING_PASSWORD_STDIN_EOF )
+            else :
+                try:
+                    password = getpass.getpass( prompt = definitions.STRING_PASSWORD_PROMPT )
+  
+                except EOFError:
+                    raise estreamer.EncoreException( definitions.STRING_PASSWORD_STDIN_EOF )
 
             try:
                 estreamer.Crypto.create( settings = self.settings, password = password )

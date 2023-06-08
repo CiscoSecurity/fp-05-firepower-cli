@@ -1,0 +1,13 @@
+[2023-06-08 04:31:51 +0000] [385951] [ERROR] Connection in use: ('0.0.0.0', 8282)
+[2023-06-08 04:31:51 +0000] [385951] [ERROR] Retrying in 1 second.
+[2023-06-08 04:31:52 +0000] [385951] [ERROR] Connection in use: ('0.0.0.0', 8282)
+[2023-06-08 04:31:52 +0000] [385951] [ERROR] Retrying in 1 second.
+[2023-06-08 04:31:53 +0000] [385951] [ERROR] Connection in use: ('0.0.0.0', 8282)
+[2023-06-08 04:31:53 +0000] [385951] [ERROR] Retrying in 1 second.
+[2023-06-08 04:31:54 +0000] [385951] [ERROR] Connection in use: ('0.0.0.0', 8282)
+[2023-06-08 04:31:54 +0000] [385951] [ERROR] Retrying in 1 second.
+[2023-06-08 04:31:55 +0000] [385951] [ERROR] Connection in use: ('0.0.0.0', 8282)
+[2023-06-08 04:31:55 +0000] [385951] [ERROR] Retrying in 1 second.
+[2023-06-08 04:31:56 +0000] [385951] [ERROR] Can't connect to ('0.0.0.0', 8282)
+[2023-06-08 04:31:58 +0000] [385984] [ERROR] Connection in use: ('0.0.0.0', 8282)
+[2023-06-08 04:31:58 +0000] [385984] [ERROR] Retrying in 1 second.

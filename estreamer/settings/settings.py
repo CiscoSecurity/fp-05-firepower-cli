@@ -73,6 +73,9 @@ class Settings( object ):
         self.tlsVersion = server['tlsVersion']
         self.pkcs12Filepath = server['pkcs12Filepath']
 
+        if 'ec2CertificatePasswordName' in jsonSettings:
+            self.ec2CertificatePasswordName = jsonSettings['ec2CertificatePasswordName']
+
         self.connectTimeout = jsonSettings['connectTimeout']
         self.responseTimeout = jsonSettings['responseTimeout']
         self.start = jsonSettings['start']
@@ -84,12 +87,14 @@ class Settings( object ):
         if 'alwaysAttemptToContinue' in jsonSettings:
             self.alwaysAttemptToContinue = jsonSettings['alwaysAttemptToContinue']
 
+        if 'ec2Region' in jsonSettings:
+            self.ec2Region = jsonSettings['ec2Region']
+
         if 'enabled' in jsonSettings:
             self.enabled = jsonSettings['enabled']
 
         if 'conditions' in jsonSettings:
             self.conditions = jsonSettings['conditions']
-
 
         if 'monitor' in jsonSettings:
             self.monitor = MonitorSettings( jsonSettings['monitor'] )
@@ -167,20 +172,14 @@ class Settings( object ):
             except ValueError:
                 raise estreamer.ParsingException('Invalid JSON in settings file')
 
-
-
     def instanceFilename( self, name ):
         """Returns a file name specific to this configuration instance. Typically
         this will prefix the host and port to the filename"""
         return os.path.abspath( '{0}-{1}_{2}'.format( self.host, self.port, name ) )
 
-
-
     def privateKeyFilepath( self ):
         """Returns the private key filepath"""
         return self.instanceFilename('pkcs.key')
-
-
 
     def publicKeyFilepath( self ):
         """Returns the public key filepath"""

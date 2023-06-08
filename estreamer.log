@@ -7184,3 +7184,1150 @@
 2023-06-02 19:42:33,876 Monitor      INFO     Stopping Monitor.
 2023-06-02 19:42:34,073 Controller   INFO     Goodbye
 2023-06-02 19:42:34,074 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:26:13,953 Diagnostics  INFO     Check certificate
+2023-06-06 03:26:13,954 Diagnostics  INFO     Creating connection
+2023-06-06 03:26:13,954 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 03:26:13,955 Connection   INFO     Using TLS v1.2
+2023-06-06 03:26:15,787 Diagnostics  INFO     Creating request message
+2023-06-06 03:26:15,787 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 03:26:15,788 Diagnostics  INFO     Sending request message
+2023-06-06 03:26:15,788 Diagnostics  INFO     Receiving response message
+2023-06-06 03:26:15,797 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 03:26:15,798 Diagnostics  INFO     Streaming info response
+2023-06-06 03:26:15,798 Diagnostics  INFO     Connection successful
+2023-06-06 03:32:30,992 Controller   INFO     eNcore version: development
+2023-06-06 03:32:30,993 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 03:32:30,993 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 03:32:30,994 Controller   INFO     Starting client (pid=362057).
+2023-06-06 03:32:30,994 Controller   INFO     Sha256: 9f13b0a3a57bd93a02b84057fa6b58fb12f40525b44001ad04905bd055b18533
+2023-06-06 03:32:30,994 Controller   INFO     Processes: 1
+2023-06-06 03:32:30,994 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 03:32:30,994 Diagnostics  INFO     Check certificate
+2023-06-06 03:32:30,994 Diagnostics  INFO     Creating connection
+2023-06-06 03:32:30,994 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 03:32:31,016 Connection   INFO     Using TLS v1.2
+2023-06-06 03:32:31,069 Diagnostics  INFO     Creating request message
+2023-06-06 03:32:31,069 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 03:32:31,069 Diagnostics  INFO     Sending request message
+2023-06-06 03:32:31,069 Diagnostics  INFO     Receiving response message
+2023-06-06 03:32:31,082 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 03:32:31,084 Diagnostics  INFO     Streaming info response
+2023-06-06 03:32:31,085 Diagnostics  INFO     Connection successful
+2023-06-06 03:32:31,085 Monitor      INFO     Starting Monitor.
+2023-06-06 03:32:31,113 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 03:32:31,115 Connection   INFO     Using TLS v1.2
+2023-06-06 03:32:31,115 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:32:31,116 Controller   INFO     Filo I/O Error - Attemping to save status to disk
+2023-06-06 03:32:31,116 Monitor      ERROR    Monitor __tick: 'FileNotFoundError' object has no attribute 'message' trace: Traceback (most recent call last):\n  File "/ocsf/fp-05-firepower-cli/estreamer/controller.py", line 356, in saveEventRate\n    append = True if os.stat('eventrate.dat').st_size == 0 else False\nFileNotFoundError: [Errno 2] No such file or directory: 'eventrate.dat'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File "/ocsf/fp-05-firepower-cli/estreamer/monitor.py", line 79, in __tick\n    self.client.saveEventRate ( status )\n  File "/ocsf/fp-05-firepower-cli/estreamer/controller.py", line 370, in saveEventRate\n    self.logger.exception( ex )\n  File "/ocsf/fp-05-firepower-cli/estreamer/crossprocesslogging/baseClient.py", line 106, in exception\n    data = self.__serialise( data, True )\n  File "/ocsf/fp-05-firepower-cli/estreamer/crossprocesslogging/baseClient.py", line 35, in __serialise\n    message = data.__class__.__name__ + ': ' + data.message\nAttributeError: 'FileNotFoundError' object has no attribute 'message'\n
+2023-06-06 03:32:31,199 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 03:32:31,199 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 03:32:31,199 SingleWorker INFO     Starting process.
+2023-06-06 03:32:31,220 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 03:32:31,220 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 03:32:32,556 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 03:32:32,556 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 03:32:32,723 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 03:32:33,073 FileStream   INFO     Initializing File Stream
+2023-06-06 03:32:33,074 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 03:34:24,950 Controller   INFO     eNcore version: development
+2023-06-06 03:34:24,950 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 03:34:24,950 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 03:34:24,950 Controller   INFO     Starting client (pid=362123).
+2023-06-06 03:34:24,950 Controller   INFO     Sha256: 91a3a083b378a38dab550b7b4ef46381a8695be2cd8053d7f941b118ee8476ab
+2023-06-06 03:34:24,951 Controller   INFO     Processes: 1
+2023-06-06 03:34:24,951 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 03:34:24,951 Diagnostics  INFO     Check certificate
+2023-06-06 03:34:24,951 Diagnostics  INFO     Creating connection
+2023-06-06 03:34:24,951 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 03:34:24,951 Connection   INFO     Using TLS v1.2
+2023-06-06 03:34:24,987 Diagnostics  INFO     Creating request message
+2023-06-06 03:34:24,988 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 03:34:24,988 Diagnostics  INFO     Sending request message
+2023-06-06 03:34:24,988 Diagnostics  INFO     Receiving response message
+2023-06-06 03:34:25,004 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 03:34:25,006 Diagnostics  INFO     Streaming info response
+2023-06-06 03:34:25,006 Diagnostics  INFO     Connection successful
+2023-06-06 03:34:25,024 Monitor      INFO     Starting Monitor.
+2023-06-06 03:34:25,024 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:34:25,043 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 03:34:25,044 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 03:34:25,045 Connection   INFO     Using TLS v1.2
+2023-06-06 03:34:25,157 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 03:34:25,158 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 03:34:25,158 SingleWorker INFO     Starting process.
+2023-06-06 03:34:25,174 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 03:34:25,174 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 03:34:25,711 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 03:34:25,712 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 03:34:25,860 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 03:34:26,215 FileStream   INFO     Initializing File Stream
+2023-06-06 03:34:26,216 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 03:35:25,751 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:17:38
+2023-06-06 03:35:29,413 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'E1MVSKVTM446HNG3', 'HostId': '+wS7xTITDK6tNZMqI+PeRuVIR8B7uhjdxRoYxHHCrgz+LWBXS8og1CDUOpaSOpu/OheeOuAdezk=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '+wS7xTITDK6tNZMqI+PeRuVIR8B7uhjdxRoYxHHCrgz+LWBXS8og1CDUOpaSOpu/OheeOuAdezk=', 'x-amz-request-id': 'E1MVSKVTM446HNG3', 'date': 'Tue, 06 Jun 2023 03:35:30 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"df0334f41c962cff7e230d44cb414fb3"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"df0334f41c962cff7e230d44cb414fb3"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 03:35:55,029 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:35:55,029 Monitor      INFO     Running. 61095 handled; average rate 678.17 ev/sec; 
+2023-06-06 03:39:29,172 Controller   INFO     eNcore version: development
+2023-06-06 03:39:29,173 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 03:39:29,174 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 03:39:29,174 Controller   INFO     Starting client (pid=362182).
+2023-06-06 03:39:29,175 Controller   INFO     Sha256: 91a3a083b378a38dab550b7b4ef46381a8695be2cd8053d7f941b118ee8476ab
+2023-06-06 03:39:29,175 Controller   INFO     Processes: 1
+2023-06-06 03:39:29,175 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 03:39:29,176 Diagnostics  INFO     Check certificate
+2023-06-06 03:39:29,176 Diagnostics  INFO     Creating connection
+2023-06-06 03:39:29,185 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 03:39:29,185 Connection   INFO     Using TLS v1.2
+2023-06-06 03:39:29,232 Diagnostics  INFO     Creating request message
+2023-06-06 03:39:29,232 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 03:39:29,233 Diagnostics  INFO     Sending request message
+2023-06-06 03:39:29,233 Diagnostics  INFO     Receiving response message
+2023-06-06 03:39:29,239 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 03:39:29,239 Diagnostics  INFO     Streaming info response
+2023-06-06 03:39:29,239 Diagnostics  INFO     Connection successful
+2023-06-06 03:39:29,262 Monitor      INFO     Starting Monitor.
+2023-06-06 03:39:29,263 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:39:29,278 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 03:39:29,298 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 03:39:29,298 Connection   INFO     Using TLS v1.2
+2023-06-06 03:41:59,004 Controller   INFO     eNcore version: development
+2023-06-06 03:41:59,005 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 03:41:59,005 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 03:41:59,005 Controller   INFO     Starting client (pid=362303).
+2023-06-06 03:41:59,006 Controller   INFO     Sha256: 3e8cbb60c66079c5e857777e33cc0604139dc55407d18ad3c64e209789fb80e4
+2023-06-06 03:41:59,006 Controller   INFO     Processes: 1
+2023-06-06 03:41:59,006 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 03:41:59,006 Diagnostics  INFO     Check certificate
+2023-06-06 03:41:59,006 Diagnostics  INFO     Creating connection
+2023-06-06 03:41:59,007 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 03:41:59,007 Connection   INFO     Using TLS v1.2
+2023-06-06 03:41:59,432 Diagnostics  INFO     Creating request message
+2023-06-06 03:41:59,433 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 03:41:59,433 Diagnostics  INFO     Sending request message
+2023-06-06 03:41:59,433 Diagnostics  INFO     Receiving response message
+2023-06-06 03:41:59,445 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 03:41:59,448 Diagnostics  INFO     Streaming info response
+2023-06-06 03:41:59,449 Diagnostics  INFO     Connection successful
+2023-06-06 03:41:59,449 Monitor      INFO     Starting Monitor.
+2023-06-06 03:41:59,450 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:41:59,450 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 03:41:59,451 Connection   INFO     Using TLS v1.2
+2023-06-06 03:41:59,451 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 03:41:59,499 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 03:41:59,499 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 03:41:59,499 SingleWorker INFO     Starting process.
+2023-06-06 03:41:59,505 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 03:41:59,505 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 03:41:59,867 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 03:41:59,868 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 03:41:59,913 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 03:42:00,009 FileStream   INFO     Initializing File Stream
+2023-06-06 03:42:00,009 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 03:42:59,894 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:34:31
+2023-06-06 03:43:11,853 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '42DWXQDFNQS14MGF', 'HostId': 't5nmTl2nyHPL3J86e0+bW0isQxyXfkJgyYDNUeWmnZ2XkDQ0iOHnJc9kFtAT/fpHwu8Se0ZZYpE=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 't5nmTl2nyHPL3J86e0+bW0isQxyXfkJgyYDNUeWmnZ2XkDQ0iOHnJc9kFtAT/fpHwu8Se0ZZYpE=', 'x-amz-request-id': '42DWXQDFNQS14MGF', 'date': 'Tue, 06 Jun 2023 03:43:12 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"d39cb8986b650eb97b4e06795d33e665"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"d39cb8986b650eb97b4e06795d33e665"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 03:43:29,667 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:43:29,668 Monitor      INFO     Running. 51207 handled; average rate 564.96 ev/sec; 
+2023-06-06 03:44:11,648 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:43:13
+2023-06-06 03:44:19,601 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'YZ24QCSJM2NN5J3B', 'HostId': 'NmuIEuR9J7yvF9DyXt5fMn+lGGvrUgMiIa1xJcqp6SFJOHYEy/EG8PIr8vUZrRkqIenhE2uPxGgHaHK1nPlsJQ==', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'NmuIEuR9J7yvF9DyXt5fMn+lGGvrUgMiIa1xJcqp6SFJOHYEy/EG8PIr8vUZrRkqIenhE2uPxGgHaHK1nPlsJQ==', 'x-amz-request-id': 'YZ24QCSJM2NN5J3B', 'date': 'Tue, 06 Jun 2023 03:44:20 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"46c3b057ea13aa2a366dcf772ef512cd"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"46c3b057ea13aa2a366dcf772ef512cd"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 03:44:59,712 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:44:59,712 Monitor      INFO     Running. 90378 handled; average rate 500.21 ev/sec; 
+2023-06-06 03:45:19,461 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 13:40:58
+2023-06-06 03:45:23,498 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '4QABRXBMV0FW3XJY', 'HostId': '1CZ+PJ+xGSmcDLVlXP7G7G8xcyTdG7ZYBFWXzn1yleLL1eqyL/Js3J1k+FSygyj9NUsn1vQLnvE=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '1CZ+PJ+xGSmcDLVlXP7G7G8xcyTdG7ZYBFWXzn1yleLL1eqyL/Js3J1k+FSygyj9NUsn1vQLnvE=', 'x-amz-request-id': '4QABRXBMV0FW3XJY', 'date': 'Tue, 06 Jun 2023 03:45:24 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"32fb7621f7e27868b271a1fc2b4e74ba"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"32fb7621f7e27868b271a1fc2b4e74ba"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 03:46:23,419 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 15:46:51
+2023-06-06 03:46:31,283 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '6KNKWBFPRH7QCZY6', 'HostId': '4WOcfNrrm+/1fKW+3du0l7plOhf0Aeq1fX7dz4MWFDgpWiC9GruHrRL4bJX8O44DOjdDKdL/Y8Y=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '4WOcfNrrm+/1fKW+3du0l7plOhf0Aeq1fX7dz4MWFDgpWiC9GruHrRL4bJX8O44DOjdDKdL/Y8Y=', 'x-amz-request-id': '6KNKWBFPRH7QCZY6', 'date': 'Tue, 06 Jun 2023 03:46:31 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"6de6a0f907b9b6398aff501e169cd090"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"6de6a0f907b9b6398aff501e169cd090"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 03:46:31,485 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:46:31,486 Monitor      INFO     Running. 172981 handled; average rate 639.25 ev/sec; 
+2023-06-06 03:47:31,127 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 16:35:04
+2023-06-06 03:47:39,376 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'AXQ39D4WZNB1X45R', 'HostId': 'Ii2K16MpRs0XHzYYXUEzQpn2IBMHwve+xJ8w1cu1fJg2K+NEaYLZLRKwKT1vqX8SfEU0kg9zt4g=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'Ii2K16MpRs0XHzYYXUEzQpn2IBMHwve+xJ8w1cu1fJg2K+NEaYLZLRKwKT1vqX8SfEU0kg9zt4g=', 'x-amz-request-id': 'AXQ39D4WZNB1X45R', 'date': 'Tue, 06 Jun 2023 03:47:40 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"73f828a38019ef27fc1af5c5a035bf21"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"73f828a38019ef27fc1af5c5a035bf21"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 03:47:59,513 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 03:47:59,513 Monitor      INFO     Running. 212600 handled; average rate 589.77 ev/sec; 
+2023-06-06 04:03:22,230 Controller   INFO     eNcore version: development
+2023-06-06 04:03:22,230 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 04:03:22,230 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 04:03:22,230 Controller   INFO     Starting client (pid=362433).
+2023-06-06 04:03:22,230 Controller   INFO     Sha256: 3e8cbb60c66079c5e857777e33cc0604139dc55407d18ad3c64e209789fb80e4
+2023-06-06 04:03:22,231 Controller   INFO     Processes: 1
+2023-06-06 04:03:22,231 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 04:03:22,231 Diagnostics  INFO     Check certificate
+2023-06-06 04:03:22,231 Diagnostics  INFO     Creating connection
+2023-06-06 04:03:22,253 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:03:22,253 Connection   INFO     Using TLS v1.2
+2023-06-06 04:03:22,284 Diagnostics  INFO     Creating request message
+2023-06-06 04:03:22,285 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 04:03:22,285 Diagnostics  INFO     Sending request message
+2023-06-06 04:03:22,285 Diagnostics  INFO     Receiving response message
+2023-06-06 04:03:22,290 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 04:03:22,291 Diagnostics  INFO     Streaming info response
+2023-06-06 04:03:22,291 Diagnostics  INFO     Connection successful
+2023-06-06 04:03:22,313 Monitor      INFO     Starting Monitor.
+2023-06-06 04:03:22,313 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:03:22,313 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 04:03:22,330 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:03:22,330 Connection   INFO     Using TLS v1.2
+2023-06-06 04:03:22,386 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:03:22,387 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 04:03:22,387 SingleWorker INFO     Starting process.
+2023-06-06 04:03:22,398 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:03:22,398 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 04:03:22,986 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 04:03:22,986 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 04:03:23,098 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 04:03:23,322 FileStream   INFO     Initializing File Stream
+2023-06-06 04:03:23,322 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 04:04:23,032 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:09:42
+2023-06-06 04:04:30,536 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'BNNHMNEA8A5HW4D8', 'HostId': '2l9X3fk3p8fQre03Paa0MtmhtfzsTwMw3y/jIiw+jDSUFgjFMVUaXRd2G0T/ilmZyV3C0n6WNmphM9NwznONEA==', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '2l9X3fk3p8fQre03Paa0MtmhtfzsTwMw3y/jIiw+jDSUFgjFMVUaXRd2G0T/ilmZyV3C0n6WNmphM9NwznONEA==', 'x-amz-request-id': 'BNNHMNEA8A5HW4D8', 'date': 'Tue, 06 Jun 2023 04:04:31 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"fdc989030e9fab0993e0c44670fa48bd"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"fdc989030e9fab0993e0c44670fa48bd"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:04:52,397 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:04:52,398 Monitor      INFO     Running. 38709 handled; average rate 429.5 ev/sec; 
+2023-06-06 04:05:30,405 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 12:39:39
+2023-06-06 04:05:35,277 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '6KJ5DP6EG3R8YNJH', 'HostId': 'rfKdMWn1sspSTr+4xvHkQC/ulTE+oxV5m23YB0Ft3mMfMWtXu8EK1TIWDATjDhzSZRVE5CiOGR4=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'rfKdMWn1sspSTr+4xvHkQC/ulTE+oxV5m23YB0Ft3mMfMWtXu8EK1TIWDATjDhzSZRVE5CiOGR4=', 'x-amz-request-id': '6KJ5DP6EG3R8YNJH', 'date': 'Tue, 06 Jun 2023 04:05:36 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"cf54ae67027b23919ebcc44870d58737"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"cf54ae67027b23919ebcc44870d58737"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:06:22,549 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:06:22,550 Monitor      INFO     Running. 120698 handled; average rate 669.39 ev/sec; 
+2023-06-06 04:08:07,997 Controller   INFO     eNcore version: development
+2023-06-06 04:08:07,998 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 04:08:07,998 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 04:08:07,998 Controller   INFO     Starting client (pid=362507).
+2023-06-06 04:08:07,999 Controller   INFO     Sha256: 6cee18b6d8d6531e54d11d76ce6788cd2f457af7eaee2ccf3e7e81a64978c854
+2023-06-06 04:08:07,999 Controller   INFO     Processes: 1
+2023-06-06 04:08:08,016 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 04:08:08,017 Diagnostics  INFO     Check certificate
+2023-06-06 04:08:08,017 Diagnostics  INFO     Creating connection
+2023-06-06 04:08:08,017 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:08:08,017 Connection   INFO     Using TLS v1.2
+2023-06-06 04:08:08,126 Diagnostics  INFO     Creating request message
+2023-06-06 04:08:08,126 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 04:08:08,127 Diagnostics  INFO     Sending request message
+2023-06-06 04:08:08,127 Diagnostics  INFO     Receiving response message
+2023-06-06 04:08:08,140 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 04:08:08,142 Diagnostics  INFO     Streaming info response
+2023-06-06 04:08:08,142 Diagnostics  INFO     Connection successful
+2023-06-06 04:08:08,142 Monitor      INFO     Starting Monitor.
+2023-06-06 04:08:08,143 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:08:08,166 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 04:08:08,166 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:08:08,167 Connection   INFO     Using TLS v1.2
+2023-06-06 04:08:40,514 Controller   INFO     eNcore version: development
+2023-06-06 04:08:40,515 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 04:08:40,516 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 04:08:40,516 Controller   INFO     Starting client (pid=362580).
+2023-06-06 04:08:40,516 Controller   INFO     Sha256: 6cee18b6d8d6531e54d11d76ce6788cd2f457af7eaee2ccf3e7e81a64978c854
+2023-06-06 04:08:40,516 Controller   INFO     Processes: 1
+2023-06-06 04:08:40,516 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 04:08:40,516 Diagnostics  INFO     Check certificate
+2023-06-06 04:08:40,517 Diagnostics  INFO     Creating connection
+2023-06-06 04:08:40,517 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:08:40,517 Connection   INFO     Using TLS v1.2
+2023-06-06 04:08:40,969 Diagnostics  INFO     Creating request message
+2023-06-06 04:08:40,969 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 04:08:40,969 Diagnostics  INFO     Sending request message
+2023-06-06 04:08:40,969 Diagnostics  INFO     Receiving response message
+2023-06-06 04:08:40,975 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 04:08:40,975 Diagnostics  INFO     Streaming info response
+2023-06-06 04:08:40,975 Diagnostics  INFO     Connection successful
+2023-06-06 04:08:41,028 Monitor      INFO     Starting Monitor.
+2023-06-06 04:08:41,030 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:08:41,030 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:08:41,030 Connection   INFO     Using TLS v1.2
+2023-06-06 04:08:41,031 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 04:08:41,089 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:08:41,090 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 04:08:41,090 SingleWorker INFO     Starting process.
+2023-06-06 04:08:41,095 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:08:41,096 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 04:08:43,010 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 04:08:43,010 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 04:08:43,122 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 04:08:43,364 FileStream   INFO     Initializing File Stream
+2023-06-06 04:08:43,365 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 04:09:43,050 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:09:54
+2023-06-06 04:09:50,870 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'PRYQMFWY636MGSSN', 'HostId': '6lbxLrIQ0nPh/4B/JzkHBAPVu1ejQNqzRyprKP8JzmUfZtHjKW9femAPZN+eyjXR4Phe6F75Fmg=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '6lbxLrIQ0nPh/4B/JzkHBAPVu1ejQNqzRyprKP8JzmUfZtHjKW9femAPZN+eyjXR4Phe6F75Fmg=', 'x-amz-request-id': 'PRYQMFWY636MGSSN', 'date': 'Tue, 06 Jun 2023 04:09:51 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"ddd643d433ae9ebb2153c0d3d2236e1a"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"ddd643d433ae9ebb2153c0d3d2236e1a"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:10:11,230 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:10:11,230 Monitor      INFO     Running. 40093 handled; average rate 441.96 ev/sec; 
+2023-06-06 04:10:50,710 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 12:50:11
+2023-06-06 04:10:57,167 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '42QCJXKS3S75011Q', 'HostId': 'YQ6ZmP0Z9/lTeE9ywVUZdrmvhnM9DQFpZLTb4/EZ/Xk/eCuhHwb+FnuFWiyVk0jw7kjuGCDFz2A=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'YQ6ZmP0Z9/lTeE9ywVUZdrmvhnM9DQFpZLTb4/EZ/Xk/eCuhHwb+FnuFWiyVk0jw7kjuGCDFz2A=', 'x-amz-request-id': '42QCJXKS3S75011Q', 'date': 'Tue, 06 Jun 2023 04:10:57 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"f7d986dbf54694a5b296c7e9425c703a"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"f7d986dbf54694a5b296c7e9425c703a"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:11:41,135 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:11:41,135 Monitor      INFO     Running. 127974 handled; average rate 708.57 ev/sec; 
+2023-06-06 04:19:04,884 Controller   INFO     eNcore version: development
+2023-06-06 04:19:04,884 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 04:19:04,884 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 04:19:04,885 Controller   INFO     Starting client (pid=362732).
+2023-06-06 04:19:04,885 Controller   INFO     Sha256: f93b2b007c9034d012cdf0dffbba9ffbc502b02bd7a369b2a040758dcba4c614
+2023-06-06 04:19:04,885 Controller   INFO     Processes: 1
+2023-06-06 04:19:04,885 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 04:19:04,886 Diagnostics  INFO     Check certificate
+2023-06-06 04:19:04,886 Diagnostics  INFO     Creating connection
+2023-06-06 04:19:04,886 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:19:04,886 Connection   INFO     Using TLS v1.2
+2023-06-06 04:19:04,937 Diagnostics  INFO     Creating request message
+2023-06-06 04:19:04,937 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 04:19:04,937 Diagnostics  INFO     Sending request message
+2023-06-06 04:19:04,938 Diagnostics  INFO     Receiving response message
+2023-06-06 04:19:04,947 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 04:19:04,948 Diagnostics  INFO     Streaming info response
+2023-06-06 04:19:04,962 Diagnostics  INFO     Connection successful
+2023-06-06 04:19:04,963 Monitor      INFO     Starting Monitor.
+2023-06-06 04:19:04,964 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:19:04,964 Controller   INFO     Filo I/O Error - Attemping to save status to disk
+2023-06-06 04:19:04,965 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:19:04,985 Connection   INFO     Using TLS v1.2
+2023-06-06 04:19:04,986 Monitor      ERROR    Monitor __tick: 'ValueError' object has no attribute 'message' trace: Traceback (most recent call last):\n  File "/ocsf/fp-05-firepower-cli/estreamer/controller.py", line 367, in saveEventRate\n    eventFile.write('\n')\nValueError: I/O operation on closed file.\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File "/ocsf/fp-05-firepower-cli/estreamer/monitor.py", line 79, in __tick\n    self.client.saveEventRate ( status )\n  File "/ocsf/fp-05-firepower-cli/estreamer/controller.py", line 371, in saveEventRate\n    self.logger.exception( ex )\n  File "/ocsf/fp-05-firepower-cli/estreamer/crossprocesslogging/baseClient.py", line 106, in exception\n    data = self.__serialise( data, True )\n  File "/ocsf/fp-05-firepower-cli/estreamer/crossprocesslogging/baseClient.py", line 35, in __serialise\n    message = data.__class__.__name__ + ': ' + data.message\nAttributeError: 'ValueError' object has no attribute 'message'\n
+2023-06-06 04:19:05,025 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:19:05,025 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 04:19:05,026 SingleWorker INFO     Starting process.
+2023-06-06 04:19:05,031 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:19:05,031 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 04:19:05,492 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 04:19:05,493 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 04:19:05,616 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 04:19:05,826 FileStream   INFO     Initializing File Stream
+2023-06-06 04:19:05,831 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 04:20:41,860 Controller   INFO     eNcore version: development
+2023-06-06 04:20:41,860 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 04:20:41,861 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 04:20:41,861 Controller   INFO     Starting client (pid=362808).
+2023-06-06 04:20:41,861 Controller   INFO     Sha256: 57612b62207e85d4c752e7352319f89ab0df41f9b2c8f130a623cff2bdc153d8
+2023-06-06 04:20:41,861 Controller   INFO     Processes: 1
+2023-06-06 04:20:41,862 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 04:20:41,862 Diagnostics  INFO     Check certificate
+2023-06-06 04:20:41,862 Diagnostics  INFO     Creating connection
+2023-06-06 04:20:41,863 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:20:41,863 Connection   INFO     Using TLS v1.2
+2023-06-06 04:20:41,905 Diagnostics  INFO     Creating request message
+2023-06-06 04:20:41,905 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 04:20:41,905 Diagnostics  INFO     Sending request message
+2023-06-06 04:20:41,905 Diagnostics  INFO     Receiving response message
+2023-06-06 04:20:41,918 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 04:20:41,919 Diagnostics  INFO     Streaming info response
+2023-06-06 04:20:41,920 Diagnostics  INFO     Connection successful
+2023-06-06 04:20:41,920 Monitor      INFO     Starting Monitor.
+2023-06-06 04:20:41,920 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:20:41,926 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 04:20:41,932 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:20:41,932 Connection   INFO     Using TLS v1.2
+2023-06-06 04:21:00,739 Controller   INFO     eNcore version: development
+2023-06-06 04:21:00,740 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 04:21:00,740 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 04:21:00,741 Controller   INFO     Starting client (pid=362875).
+2023-06-06 04:21:00,741 Controller   INFO     Sha256: 57612b62207e85d4c752e7352319f89ab0df41f9b2c8f130a623cff2bdc153d8
+2023-06-06 04:21:00,741 Controller   INFO     Processes: 1
+2023-06-06 04:21:00,742 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 04:21:00,742 Diagnostics  INFO     Check certificate
+2023-06-06 04:21:00,742 Diagnostics  INFO     Creating connection
+2023-06-06 04:21:00,742 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:21:00,742 Connection   INFO     Using TLS v1.2
+2023-06-06 04:21:00,784 Diagnostics  INFO     Creating request message
+2023-06-06 04:21:00,784 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 04:21:00,784 Diagnostics  INFO     Sending request message
+2023-06-06 04:21:00,784 Diagnostics  INFO     Receiving response message
+2023-06-06 04:21:00,790 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 04:21:00,790 Diagnostics  INFO     Streaming info response
+2023-06-06 04:21:00,796 Diagnostics  INFO     Connection successful
+2023-06-06 04:21:00,797 Monitor      INFO     Starting Monitor.
+2023-06-06 04:21:00,797 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:21:00,803 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 04:21:00,809 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:21:00,810 Connection   INFO     Using TLS v1.2
+2023-06-06 04:21:00,847 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:21:00,847 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 04:21:00,847 SingleWorker INFO     Starting process.
+2023-06-06 04:21:00,858 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:21:00,858 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 04:21:01,620 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 04:21:01,621 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 04:22:39,941 Monitor      ERROR    Monitor __tick: ProxyProcess[name=worker].request(status) timeout trace: Traceback (most recent call last):\n  File "/ocsf/fp-05-firepower-cli/estreamer/monitor.py", line 75, in __tick\n    status = self.client.status()\n  File "/ocsf/fp-05-firepower-cli/estreamer/controller.py", line 302, in status\n    if proxy.request( 'status' )['state'] == definitions.STATE_ERROR:\n  File "/ocsf/fp-05-firepower-cli/estreamer/baseproc.py", line 382, in request\n    raise estreamer.TimeoutException(\nestreamer.exception.TimeoutException: ProxyProcess[name=worker].request(status) timeout\n
+2023-06-06 04:24:09,824 Monitor      ERROR    Monitor __tick: ProxyProcess[name=worker].request(status) timeout trace: Traceback (most recent call last):\n  File "/ocsf/fp-05-firepower-cli/estreamer/monitor.py", line 75, in __tick\n    status = self.client.status()\n  File "/ocsf/fp-05-firepower-cli/estreamer/controller.py", line 302, in status\n    if proxy.request( 'status' )['state'] == definitions.STATE_ERROR:\n  File "/ocsf/fp-05-firepower-cli/estreamer/baseproc.py", line 382, in request\n    raise estreamer.TimeoutException(\nestreamer.exception.TimeoutException: ProxyProcess[name=worker].request(status) timeout\n
+2023-06-06 04:31:27,151 Controller   INFO     eNcore version: development
+2023-06-06 04:31:27,152 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 04:31:27,152 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 04:31:27,152 Controller   INFO     Starting client (pid=362990).
+2023-06-06 04:31:27,152 Controller   INFO     Sha256: 651dc1834b1d6e3769c0d8594eb6c61492c2785f8bd458bc9591f84e04b43c55
+2023-06-06 04:31:27,153 Controller   INFO     Processes: 1
+2023-06-06 04:31:27,153 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 04:31:27,153 Diagnostics  INFO     Check certificate
+2023-06-06 04:31:27,153 Diagnostics  INFO     Creating connection
+2023-06-06 04:31:27,154 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:31:27,154 Connection   INFO     Using TLS v1.2
+2023-06-06 04:31:27,827 Diagnostics  INFO     Creating request message
+2023-06-06 04:31:27,828 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 04:31:27,828 Diagnostics  INFO     Sending request message
+2023-06-06 04:31:27,828 Diagnostics  INFO     Receiving response message
+2023-06-06 04:31:27,847 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 04:31:27,849 Diagnostics  INFO     Streaming info response
+2023-06-06 04:31:27,851 Diagnostics  INFO     Connection successful
+2023-06-06 04:31:27,852 Monitor      INFO     Starting Monitor.
+2023-06-06 04:31:27,852 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:31:27,853 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:31:27,853 Connection   INFO     Using TLS v1.2
+2023-06-06 04:31:27,853 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 04:31:28,388 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:31:28,388 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 04:31:28,388 SingleWorker INFO     Starting process.
+2023-06-06 04:31:28,394 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:31:28,394 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 04:31:28,798 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 04:31:28,799 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 04:31:28,842 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 04:31:28,934 FileStream   INFO     Initializing File Stream
+2023-06-06 04:31:28,934 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 04:32:28,825 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 10:57:31
+2023-06-06 04:32:43,808 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'M6JPSETSNBYW5SAM', 'HostId': 'BNgUORck7r7oXS2iykrbhJwNk2uimL1ewN4P3hgCTOBSQ2kaZzF5v2mhfEERupuK4J7PXN2ZIcw=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'BNgUORck7r7oXS2iykrbhJwNk2uimL1ewN4P3hgCTOBSQ2kaZzF5v2mhfEERupuK4J7PXN2ZIcw=', 'x-amz-request-id': 'M6JPSETSNBYW5SAM', 'date': 'Tue, 06 Jun 2023 04:32:44 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"36a0d550bdc6a57fc4d803f8e5407443"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"36a0d550bdc6a57fc4d803f8e5407443"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:32:58,082 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:32:58,082 Monitor      INFO     Running. 58739 handled; average rate 646.23 ev/sec; 
+2023-06-06 04:33:43,525 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 12:59:54
+2023-06-06 04:33:51,769 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'CF0CCR4RBKDV2W11', 'HostId': 'Qg47fL1gDeHpuEB9zWsb/MFBL2bcEeILQ0G1yVWkYFCvdzZja8B14oq+/a94ySNGeTfkj3AuEME=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'Qg47fL1gDeHpuEB9zWsb/MFBL2bcEeILQ0G1yVWkYFCvdzZja8B14oq+/a94ySNGeTfkj3AuEME=', 'x-amz-request-id': 'CF0CCR4RBKDV2W11', 'date': 'Tue, 06 Jun 2023 04:33:52 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"389d39ce92b6ea2a3821b4e5b8913dce"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"389d39ce92b6ea2a3821b4e5b8913dce"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:34:27,912 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:34:27,912 Monitor      INFO     Running. 95713 handled; average rate 529.64 ev/sec; 
+2023-06-06 04:34:51,634 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 13:40:09
+2023-06-06 04:34:59,595 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'D8F1JNETSP3QB29V', 'HostId': 'kfHVQz+sQEOhWsuCascit0n96RXzcV4XOCCDVLxjWBbanTdr4dU0im3ffhmLpjA140zc1O6500TWfBhDqUuCY1t+0rQeCTS0/jj2Y61dfAs=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'kfHVQz+sQEOhWsuCascit0n96RXzcV4XOCCDVLxjWBbanTdr4dU0im3ffhmLpjA140zc1O6500TWfBhDqUuCY1t+0rQeCTS0/jj2Y61dfAs=', 'x-amz-request-id': 'D8F1JNETSP3QB29V', 'date': 'Tue, 06 Jun 2023 04:35:00 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"b6069ac500aae94eb3b65348f046e6da"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"b6069ac500aae94eb3b65348f046e6da"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:35:57,904 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:35:57,904 Monitor      INFO     Running. 163130 handled; average rate 602.54 ev/sec; 
+2023-06-06 04:35:59,439 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 15:18:41
+2023-06-06 04:36:06,396 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'DS9A7HKJN5BWV17N', 'HostId': 'I1F0j9GtEqQbB/G2zecipzOjFyYBTtn0w3QKriHE+ggtk4oJCOkz1FFyG8OV9XFvvw46fjcsq2Y=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'I1F0j9GtEqQbB/G2zecipzOjFyYBTtn0w3QKriHE+ggtk4oJCOkz1FFyG8OV9XFvvw46fjcsq2Y=', 'x-amz-request-id': 'DS9A7HKJN5BWV17N', 'date': 'Tue, 06 Jun 2023 04:36:07 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"2b6f9913fd0b3b26a0fbc8363ff76594"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"2b6f9913fd0b3b26a0fbc8363ff76594"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:37:06,278 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 15:55:56
+2023-06-06 04:37:19,173 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'FNRPSK6FVVBYB553', 'HostId': 'V+C0tFBG0LIERuRbqvvOu1I4lhZDIUpkXRjpGvxA4jgUqrg0x24H01v/MR8VPFK6/Euc1sBxLeY=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'V+C0tFBG0LIERuRbqvvOu1I4lhZDIUpkXRjpGvxA4jgUqrg0x24H01v/MR8VPFK6/Euc1sBxLeY=', 'x-amz-request-id': 'FNRPSK6FVVBYB553', 'date': 'Tue, 06 Jun 2023 04:37:19 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"a5449f0daadd67ef8141d1a869c38e4b"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"a5449f0daadd67ef8141d1a869c38e4b"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:37:27,937 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:37:27,937 Monitor      INFO     Running. 212769 handled; average rate 589.8 ev/sec; 
+2023-06-06 04:38:18,936 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 18:24:20
+2023-06-06 04:38:26,616 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '2ZQDXHN52JNZY18M', 'HostId': 'eYZ1A07FMGUJoGltRwtwglaVlyf8iOqa3dljad4t/AXDMqgPaHqC8m3S43zAqgN0M+jzyopym64kSsLO9afz1Q==', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'eYZ1A07FMGUJoGltRwtwglaVlyf8iOqa3dljad4t/AXDMqgPaHqC8m3S43zAqgN0M+jzyopym64kSsLO9afz1Q==', 'x-amz-request-id': '2ZQDXHN52JNZY18M', 'date': 'Tue, 06 Jun 2023 04:38:27 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"9245c3c6de602d6382435472579ad71b"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"9245c3c6de602d6382435472579ad71b"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:38:58,058 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:38:58,058 Monitor      INFO     Running. 249507 handled; average rate 553.41 ev/sec; 
+2023-06-06 04:39:26,481 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 19:03:44
+2023-06-06 04:39:34,172 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'F66EX4CTTNYP8K3R', 'HostId': '+3Hmo/yyy7QfECjv+K+Nmrzku34RwKFcXeopHx+kKDXfxSbPTbsKM3QHZohU01W2VrkYO2kTo4U=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '+3Hmo/yyy7QfECjv+K+Nmrzku34RwKFcXeopHx+kKDXfxSbPTbsKM3QHZohU01W2VrkYO2kTo4U=', 'x-amz-request-id': 'F66EX4CTTNYP8K3R', 'date': 'Tue, 06 Jun 2023 04:39:34 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"b13e04670fafc6fc5ba8f6e462c0ff9b"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"b13e04670fafc6fc5ba8f6e462c0ff9b"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:40:28,046 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:40:28,046 Monitor      INFO     Running. 299562 handled; average rate 553.85 ev/sec; 
+2023-06-06 04:40:34,018 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 19:28:43
+2023-06-06 04:40:39,447 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'C8B57N5VXS50XQGT', 'HostId': 'OLsvLoggscw7PHHtAhJqllCVz6nz1GSXeT5Uu1sGraQ7IuD0ILttc/dPevMU4OAWPGfvETHvt1A=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'OLsvLoggscw7PHHtAhJqllCVz6nz1GSXeT5Uu1sGraQ7IuD0ILttc/dPevMU4OAWPGfvETHvt1A=', 'x-amz-request-id': 'C8B57N5VXS50XQGT', 'date': 'Tue, 06 Jun 2023 04:40:40 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"1a4dd699ccbf22cf336a3fb86a9b9a45"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"1a4dd699ccbf22cf336a3fb86a9b9a45"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:41:39,347 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 19:48:57
+2023-06-06 04:41:57,783 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '72MSJBWBGVQ03MC1', 'HostId': 'Okne/8qa4tluGy7pzDqZ4WBYk3r3ZvEx7AVS1nKRLbj874rdRO2rXT1d+tP+5s/J5mR5fugEYq8=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'Okne/8qa4tluGy7pzDqZ4WBYk3r3ZvEx7AVS1nKRLbj874rdRO2rXT1d+tP+5s/J5mR5fugEYq8=', 'x-amz-request-id': '72MSJBWBGVQ03MC1', 'date': 'Tue, 06 Jun 2023 04:41:58 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"671ae49753501bcbb91102fcf7196773"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"671ae49753501bcbb91102fcf7196773"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:41:58,223 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:41:58,223 Monitor      INFO     Running. 368443 handled; average rate 584.08 ev/sec; 
+2023-06-06 04:42:57,393 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 21:10:47
+2023-06-06 04:43:05,189 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '8EX2X6J2TDX5ZAX6', 'HostId': 'z4fF67hl1V8oNE7I6vAzVhw309nJlMQlnm5PfJPm18Ag0/EAlwv8EAjbi4haODwT8ZRm+qjkCO0=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'z4fF67hl1V8oNE7I6vAzVhw309nJlMQlnm5PfJPm18Ag0/EAlwv8EAjbi4haODwT8ZRm+qjkCO0=', 'x-amz-request-id': '8EX2X6J2TDX5ZAX6', 'date': 'Tue, 06 Jun 2023 04:43:05 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"771218fb0617f3b162e881a9f7993922"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"771218fb0617f3b162e881a9f7993922"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:43:28,007 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:43:28,007 Monitor      INFO     Running. 405903 handled; average rate 563.11 ev/sec; 
+2023-06-06 04:44:05,054 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 23:13:27
+2023-06-06 04:44:12,803 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'CWCHTWD6F8S6E0NX', 'HostId': 'fsvacuNbtKxp8D6d3bvrVwNsCVLwCzh2cgZwOvxhsS4uO8dhk7j2wY9y4OPYLkxvPkIQorywtXlWDvkJ9LOobQ==', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'fsvacuNbtKxp8D6d3bvrVwNsCVLwCzh2cgZwOvxhsS4uO8dhk7j2wY9y4OPYLkxvPkIQorywtXlWDvkJ9LOobQ==', 'x-amz-request-id': 'CWCHTWD6F8S6E0NX', 'date': 'Tue, 06 Jun 2023 04:44:13 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"eea3abeb343d0e5965e18521d6ba7dd5"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"eea3abeb343d0e5965e18521d6ba7dd5"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:44:57,998 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:44:57,999 Monitor      INFO     Running. 443378 handled; average rate 546.82 ev/sec; 
+2023-06-06 04:45:12,673 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4222023/2023-04-22 00:06:27
+2023-06-06 04:45:16,053 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'HBSXZX6F8SG6KX2F', 'HostId': 'I4gsm9D2cHEUieOYTIkjH6ZkLgMYOhq/LFXsbq+RthsMMXuQVz0D9csGZhIKoz432wkGCtaftSSC8PFqusXLRWjhQNzWoLYa', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'I4gsm9D2cHEUieOYTIkjH6ZkLgMYOhq/LFXsbq+RthsMMXuQVz0D9csGZhIKoz432wkGCtaftSSC8PFqusXLRWjhQNzWoLYa', 'x-amz-request-id': 'HBSXZX6F8SG6KX2F', 'date': 'Tue, 06 Jun 2023 04:45:16 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"102cb851f07b5f92247611de3a349e24"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"102cb851f07b5f92247611de3a349e24"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:46:15,991 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4222023/2023-04-22 00:33:42
+2023-06-06 04:46:23,390 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '9WV7VTYEQJ1TXE8R', 'HostId': 'ZOS8Qql6SN28N6qzQow0RRHgTVCDXFHAt4fOPNTeaSF4vCOl3dfQ2hRaHLp8R+DrhyAaJW26LO67Zu1uSRJY5XMkRVmkpjFq', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'ZOS8Qql6SN28N6qzQow0RRHgTVCDXFHAt4fOPNTeaSF4vCOl3dfQ2hRaHLp8R+DrhyAaJW26LO67Zu1uSRJY5XMkRVmkpjFq', 'x-amz-request-id': '9WV7VTYEQJ1TXE8R', 'date': 'Tue, 06 Jun 2023 04:46:24 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"25260c5d53a14e232d6f5f9e1f537f31"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"25260c5d53a14e232d6f5f9e1f537f31"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:46:27,912 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:46:27,912 Monitor      INFO     Running. 522157 handled; average rate 579.69 ev/sec; 
+2023-06-06 04:47:23,236 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4222023/2023-04-22 02:17:38
+2023-06-06 04:47:33,122 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '9XZJ49AK4ZANKER5', 'HostId': 'btq9G5a9ImiUejqaDauHZE/KWH7uH5050XyWYhq/8F0M6X2G3gzRLMaKbL+hHVTgKEEdq/RNYno=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'btq9G5a9ImiUejqaDauHZE/KWH7uH5050XyWYhq/8F0M6X2G3gzRLMaKbL+hHVTgKEEdq/RNYno=', 'x-amz-request-id': '9XZJ49AK4ZANKER5', 'date': 'Tue, 06 Jun 2023 04:47:33 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"2a125950898524907152f4bef61182c6"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"2a125950898524907152f4bef61182c6"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:47:57,972 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:47:57,973 Monitor      INFO     Running. 561273 handled; average rate 566.5 ev/sec; 
+2023-06-06 04:48:32,946 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4222023/2023-04-22 02:06:25
+2023-06-06 04:48:40,834 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '537N6N4ZEBZCR62D', 'HostId': 'tNp4ccXIaGSj/vfUesehPCtXOdyedr5KDbiQdy1LkT3y35vZerWR32DUSGXFfarfQQz5okLPAwlKdJmUXNc57YUfz+hQUtWm', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'tNp4ccXIaGSj/vfUesehPCtXOdyedr5KDbiQdy1LkT3y35vZerWR32DUSGXFfarfQQz5okLPAwlKdJmUXNc57YUfz+hQUtWm', 'x-amz-request-id': '537N6N4ZEBZCR62D', 'date': 'Tue, 06 Jun 2023 04:48:41 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"39230c4ec0805f0d982d6e147c5b7695"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"39230c4ec0805f0d982d6e147c5b7695"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:49:28,040 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:49:28,040 Monitor      INFO     Running. 598790 handled; average rate 553.99 ev/sec; 
+2023-06-06 04:49:40,664 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4222023/2023-04-22 04:16:08
+2023-06-06 04:49:48,395 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '1DMCYY8CPW49ATV3', 'HostId': 'gi4PXeKWOCUCdxV0OYi6yJDbum0fKz6lsDF+yME6J2qV1x+0m40JC0erMm+NaQNgQzGx29hORlo=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'gi4PXeKWOCUCdxV0OYi6yJDbum0fKz6lsDF+yME6J2qV1x+0m40JC0erMm+NaQNgQzGx29hORlo=', 'x-amz-request-id': '1DMCYY8CPW49ATV3', 'date': 'Tue, 06 Jun 2023 04:49:49 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"f8077ab241ac276429d76305ed53ef7d"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"f8077ab241ac276429d76305ed53ef7d"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:50:48,245 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4222023/2023-04-22 05:53:38
+2023-06-06 04:50:54,623 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '7YXKGAGM5Y2PD82F', 'HostId': 'FIZcTIoPwMSp+/0UllrHm647AK8+njZr8leKb+m5xVsQHUNc1sIg5whP/lgxpy/c2h0TmUdCuwk=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'FIZcTIoPwMSp+/0UllrHm647AK8+njZr8leKb+m5xVsQHUNc1sIg5whP/lgxpy/c2h0TmUdCuwk=', 'x-amz-request-id': '7YXKGAGM5Y2PD82F', 'date': 'Tue, 06 Jun 2023 04:50:55 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"0c56fd8dd96724d8063001179f542102"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"0c56fd8dd96724d8063001179f542102"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 04:50:57,980 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:50:57,980 Monitor      INFO     Running. 661289 handled; average rate 564.81 ev/sec; 
+2023-06-06 04:58:06,819 Controller   INFO     eNcore version: development
+2023-06-06 04:58:06,819 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 04:58:06,820 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 04:58:06,820 Controller   INFO     Starting client (pid=363230).
+2023-06-06 04:58:06,820 Controller   INFO     Sha256: 54602c783326921f5cfd0b1f60fae76dc6c0975bfcffd7d357c7dfa062266814
+2023-06-06 04:58:06,820 Controller   INFO     Processes: 1
+2023-06-06 04:58:06,821 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 04:58:06,821 Diagnostics  INFO     Check certificate
+2023-06-06 04:58:06,821 Diagnostics  INFO     Creating connection
+2023-06-06 04:58:06,821 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:58:06,821 Connection   INFO     Using TLS v1.2
+2023-06-06 04:58:06,884 Diagnostics  INFO     Creating request message
+2023-06-06 04:58:06,884 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 04:58:06,884 Diagnostics  INFO     Sending request message
+2023-06-06 04:58:06,885 Diagnostics  INFO     Receiving response message
+2023-06-06 04:58:06,895 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 04:58:06,896 Diagnostics  INFO     Streaming info response
+2023-06-06 04:58:06,902 Diagnostics  INFO     Connection successful
+2023-06-06 04:58:06,923 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 04:58:06,924 Connection   INFO     Using TLS v1.2
+2023-06-06 04:58:06,925 Monitor      INFO     Starting Monitor.
+2023-06-06 04:58:06,925 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 04:58:06,926 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 04:58:07,004 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:58:07,004 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 04:58:07,004 SingleWorker INFO     Starting process.
+2023-06-06 04:58:07,020 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 04:58:07,020 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 04:58:07,511 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 04:58:07,511 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 04:58:07,624 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 04:59:46,102 Monitor      ERROR    Monitor __tick: ProxyProcess[name=worker].request(status) timeout trace: Traceback (most recent call last):\n  File "/ocsf/fp-05-firepower-cli/estreamer/monitor.py", line 75, in __tick\n    status = self.client.status()\n  File "/ocsf/fp-05-firepower-cli/estreamer/controller.py", line 302, in status\n    if proxy.request( 'status' )['state'] == definitions.STATE_ERROR:\n  File "/ocsf/fp-05-firepower-cli/estreamer/baseproc.py", line 382, in request\n    raise estreamer.TimeoutException(\nestreamer.exception.TimeoutException: ProxyProcess[name=worker].request(status) timeout\n
+2023-06-06 05:04:50,019 Controller   INFO     eNcore version: development
+2023-06-06 05:04:50,020 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 05:04:50,026 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 05:04:50,026 Controller   INFO     Starting client (pid=363286).
+2023-06-06 05:04:50,027 Controller   INFO     Sha256: 651dc1834b1d6e3769c0d8594eb6c61492c2785f8bd458bc9591f84e04b43c55
+2023-06-06 05:04:50,027 Controller   INFO     Processes: 1
+2023-06-06 05:04:50,027 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 05:04:50,027 Diagnostics  INFO     Check certificate
+2023-06-06 05:04:50,027 Diagnostics  INFO     Creating connection
+2023-06-06 05:04:50,027 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:04:50,028 Connection   INFO     Using TLS v1.2
+2023-06-06 05:04:50,085 Diagnostics  INFO     Creating request message
+2023-06-06 05:04:50,085 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 05:04:50,085 Diagnostics  INFO     Sending request message
+2023-06-06 05:04:50,086 Diagnostics  INFO     Receiving response message
+2023-06-06 05:04:50,110 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 05:04:50,125 Diagnostics  INFO     Streaming info response
+2023-06-06 05:04:50,125 Diagnostics  INFO     Connection successful
+2023-06-06 05:04:50,126 Monitor      INFO     Starting Monitor.
+2023-06-06 05:04:50,126 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:04:50,126 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:04:50,149 Connection   INFO     Using TLS v1.2
+2023-06-06 05:04:50,150 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 05:04:50,214 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:04:50,214 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 05:04:50,214 SingleWorker INFO     Starting process.
+2023-06-06 05:04:50,225 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:04:50,225 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 05:04:50,570 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 05:04:50,571 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 05:04:50,684 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 05:04:50,907 FileStream   INFO     Initializing File Stream
+2023-06-06 05:04:50,923 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 05:05:50,603 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 12:02:38
+2023-06-06 05:12:54,996 Diagnostics  INFO     Check certificate
+2023-06-06 05:12:54,996 Diagnostics  INFO     Creating connection
+2023-06-06 05:12:54,996 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:12:54,997 Connection   INFO     Using TLS v1.2
+2023-06-06 05:12:55,052 Diagnostics  INFO     Creating request message
+2023-06-06 05:12:55,052 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 05:12:55,052 Diagnostics  INFO     Sending request message
+2023-06-06 05:12:55,052 Diagnostics  INFO     Receiving response message
+2023-06-06 05:12:55,061 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 05:12:55,062 Diagnostics  INFO     Streaming info response
+2023-06-06 05:12:55,062 Diagnostics  INFO     Connection successful
+2023-06-06 05:13:09,191 Controller   INFO     eNcore version: development
+2023-06-06 05:13:09,192 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 05:13:09,192 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 05:13:09,192 Controller   INFO     Starting client (pid=363429).
+2023-06-06 05:13:09,193 Controller   INFO     Sha256: 8c7b319515c3eb5ef601c664d97f50e06f13a90665fe02424ccf2ab8af9ef348
+2023-06-06 05:13:09,193 Controller   INFO     Processes: 1
+2023-06-06 05:13:09,193 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 05:13:09,193 Diagnostics  INFO     Check certificate
+2023-06-06 05:13:09,193 Diagnostics  INFO     Creating connection
+2023-06-06 05:13:09,194 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:13:09,194 Connection   INFO     Using TLS v1.2
+2023-06-06 05:13:09,247 Diagnostics  INFO     Creating request message
+2023-06-06 05:13:09,248 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 05:13:09,248 Diagnostics  INFO     Sending request message
+2023-06-06 05:13:09,248 Diagnostics  INFO     Receiving response message
+2023-06-06 05:13:09,260 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 05:13:09,277 Diagnostics  INFO     Streaming info response
+2023-06-06 05:13:09,277 Diagnostics  INFO     Connection successful
+2023-06-06 05:13:09,277 Monitor      INFO     Starting Monitor.
+2023-06-06 05:13:09,278 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:13:09,278 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:13:09,278 Connection   INFO     Using TLS v1.2
+2023-06-06 05:13:09,278 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 05:13:28,777 Controller   INFO     eNcore version: development
+2023-06-06 05:13:28,778 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 05:13:28,778 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 05:13:28,778 Controller   INFO     Starting client (pid=363469).
+2023-06-06 05:13:28,779 Controller   INFO     Sha256: 8c7b319515c3eb5ef601c664d97f50e06f13a90665fe02424ccf2ab8af9ef348
+2023-06-06 05:13:28,779 Controller   INFO     Processes: 1
+2023-06-06 05:13:28,779 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 05:13:28,779 Diagnostics  INFO     Check certificate
+2023-06-06 05:13:28,779 Diagnostics  INFO     Creating connection
+2023-06-06 05:13:28,779 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:13:28,780 Connection   INFO     Using TLS v1.2
+2023-06-06 05:13:28,837 Diagnostics  INFO     Creating request message
+2023-06-06 05:13:28,837 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 05:13:28,837 Diagnostics  INFO     Sending request message
+2023-06-06 05:13:28,837 Diagnostics  INFO     Receiving response message
+2023-06-06 05:13:28,843 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 05:13:28,843 Diagnostics  INFO     Streaming info response
+2023-06-06 05:13:28,843 Diagnostics  INFO     Connection successful
+2023-06-06 05:13:28,858 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:13:28,859 Connection   INFO     Using TLS v1.2
+2023-06-06 05:13:28,859 Monitor      INFO     Starting Monitor.
+2023-06-06 05:13:28,860 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:13:28,890 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 05:13:28,944 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:13:28,944 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 05:13:28,945 SingleWorker INFO     Starting process.
+2023-06-06 05:13:28,955 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:13:28,955 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 05:13:29,518 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 05:13:29,519 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 05:13:29,635 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 05:13:29,872 FileStream   INFO     Initializing File Stream
+2023-06-06 05:13:29,888 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 05:14:29,552 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:07:55
+2023-06-06 05:14:37,052 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'CN8ZPCKBAJJ90A3X', 'HostId': '4UGX3cP73DSWfiBxXLvsFL+kB9orNhtEjYTjwtBwhRekX9xiLZrn+gBiEMUpXYYp4G+/oc1sPl0=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '4UGX3cP73DSWfiBxXLvsFL+kB9orNhtEjYTjwtBwhRekX9xiLZrn+gBiEMUpXYYp4G+/oc1sPl0=', 'x-amz-request-id': 'CN8ZPCKBAJJ90A3X', 'date': 'Tue, 06 Jun 2023 05:14:37 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"d24ff9d179503d9c109eb3ee17287363"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"d24ff9d179503d9c109eb3ee17287363"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 05:14:58,913 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:14:58,914 Monitor      INFO     Running. 37371 handled; average rate 414.66 ev/sec; 
+2023-06-06 05:15:23,949 Controller   INFO     eNcore version: development
+2023-06-06 05:15:23,949 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 05:15:23,950 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 05:15:23,950 Controller   INFO     Starting client (pid=363515).
+2023-06-06 05:15:23,950 Controller   INFO     Sha256: 8c7b319515c3eb5ef601c664d97f50e06f13a90665fe02424ccf2ab8af9ef348
+2023-06-06 05:15:23,950 Controller   INFO     Processes: 1
+2023-06-06 05:15:23,950 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 05:15:23,951 Diagnostics  INFO     Check certificate
+2023-06-06 05:15:23,951 Diagnostics  INFO     Creating connection
+2023-06-06 05:15:23,951 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:15:23,952 Connection   INFO     Using TLS v1.2
+2023-06-06 05:15:23,994 Diagnostics  INFO     Creating request message
+2023-06-06 05:15:23,994 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 05:15:23,994 Diagnostics  INFO     Sending request message
+2023-06-06 05:15:23,994 Diagnostics  INFO     Receiving response message
+2023-06-06 05:15:24,004 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 05:15:24,006 Diagnostics  INFO     Streaming info response
+2023-06-06 05:15:24,007 Diagnostics  INFO     Connection successful
+2023-06-06 05:15:24,007 Monitor      INFO     Starting Monitor.
+2023-06-06 05:15:24,007 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:15:24,013 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 05:15:24,018 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:15:24,019 Connection   INFO     Using TLS v1.2
+2023-06-06 05:15:24,055 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:15:24,055 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 05:15:24,055 SingleWorker INFO     Starting process.
+2023-06-06 05:15:24,066 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:15:24,066 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 05:15:24,408 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 05:15:24,409 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 05:15:24,453 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 05:15:24,539 FileStream   INFO     Initializing File Stream
+2023-06-06 05:15:24,544 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 05:16:24,425 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 12:30:47
+2023-06-06 05:16:31,608 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'XQ4MTY7VFX6DJW4V', 'HostId': 'fFVf8Lk3qD06rn+pA9p212xCYrBoUrfxb2QRDVBEGijM6gJxJngyP8bVsN76Es8UnDdoLr8Tkxg=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'fFVf8Lk3qD06rn+pA9p212xCYrBoUrfxb2QRDVBEGijM6gJxJngyP8bVsN76Es8UnDdoLr8Tkxg=', 'x-amz-request-id': 'XQ4MTY7VFX6DJW4V', 'date': 'Tue, 06 Jun 2023 05:16:32 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"35ad64505c90cb73ecd3834e105785a9"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"35ad64505c90cb73ecd3834e105785a9"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 05:16:54,193 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:16:54,193 Monitor      INFO     Running. 81587 handled; average rate 904.33 ev/sec; 
+2023-06-06 05:17:31,470 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 13:31:44
+2023-06-06 05:17:40,732 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'SKRAYV0SV6ERZ15C', 'HostId': 'iJKcxBEis15arWoPxBKS86lEd1T5X9cVCVU912RjzmmXR7Q7MoNGrUysSLVFehLaOlvSDHdZg8P/vL2YSQaMTf7wuBq1nfxkx3v+ThZRvwM=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'iJKcxBEis15arWoPxBKS86lEd1T5X9cVCVU912RjzmmXR7Q7MoNGrUysSLVFehLaOlvSDHdZg8P/vL2YSQaMTf7wuBq1nfxkx3v+ThZRvwM=', 'x-amz-request-id': 'SKRAYV0SV6ERZ15C', 'date': 'Tue, 06 Jun 2023 05:17:41 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"07cf990697fc6703f6384d6beda2d667"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"07cf990697fc6703f6384d6beda2d667"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 05:18:24,209 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:18:24,209 Monitor      INFO     Running. 119188 handled; average rate 661.28 ev/sec; 
+2023-06-06 05:20:09,327 Controller   INFO     eNcore version: development
+2023-06-06 05:20:09,327 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 05:20:09,328 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 05:20:09,328 Controller   INFO     Starting client (pid=363609).
+2023-06-06 05:20:09,328 Controller   INFO     Sha256: 2081b5321e1ae7f867c761c50dd390947ce531de1fd2d9805b6632edac95cad1
+2023-06-06 05:20:09,329 Controller   INFO     Processes: 1
+2023-06-06 05:20:09,329 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 05:20:09,329 Diagnostics  INFO     Check certificate
+2023-06-06 05:20:09,330 Diagnostics  INFO     Creating connection
+2023-06-06 05:20:09,330 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:20:09,330 Connection   INFO     Using TLS v1.2
+2023-06-06 05:20:09,787 Diagnostics  INFO     Creating request message
+2023-06-06 05:20:09,787 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 05:20:09,788 Diagnostics  INFO     Sending request message
+2023-06-06 05:20:09,788 Diagnostics  INFO     Receiving response message
+2023-06-06 05:20:09,800 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 05:20:09,801 Diagnostics  INFO     Streaming info response
+2023-06-06 05:20:09,802 Diagnostics  INFO     Connection successful
+2023-06-06 05:20:09,803 Monitor      INFO     Starting Monitor.
+2023-06-06 05:20:09,803 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:20:09,809 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 05:20:09,819 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:20:09,819 Connection   INFO     Using TLS v1.2
+2023-06-06 05:20:40,061 Controller   INFO     eNcore version: development
+2023-06-06 05:20:40,061 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 05:20:40,062 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 05:20:40,062 Controller   INFO     Starting client (pid=363685).
+2023-06-06 05:20:40,062 Controller   INFO     Sha256: 2081b5321e1ae7f867c761c50dd390947ce531de1fd2d9805b6632edac95cad1
+2023-06-06 05:20:40,063 Controller   INFO     Processes: 1
+2023-06-06 05:20:40,063 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 05:20:40,064 Diagnostics  INFO     Check certificate
+2023-06-06 05:20:40,064 Diagnostics  INFO     Creating connection
+2023-06-06 05:20:40,064 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:20:40,065 Connection   INFO     Using TLS v1.2
+2023-06-06 05:20:40,106 Diagnostics  INFO     Creating request message
+2023-06-06 05:20:40,107 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 05:20:40,107 Diagnostics  INFO     Sending request message
+2023-06-06 05:20:40,107 Diagnostics  INFO     Receiving response message
+2023-06-06 05:20:40,118 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 05:20:40,119 Diagnostics  INFO     Streaming info response
+2023-06-06 05:20:40,120 Diagnostics  INFO     Connection successful
+2023-06-06 05:20:40,120 Monitor      INFO     Starting Monitor.
+2023-06-06 05:20:40,120 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:20:40,125 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 05:20:40,131 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:20:40,131 Connection   INFO     Using TLS v1.2
+2023-06-06 05:20:40,167 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:20:40,168 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 05:20:40,168 SingleWorker INFO     Starting process.
+2023-06-06 05:20:40,178 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:20:40,178 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 05:20:40,541 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 05:20:40,542 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 05:20:40,584 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 05:20:40,677 FileStream   INFO     Initializing File Stream
+2023-06-06 05:20:40,678 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 05:21:40,565 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:29:11
+2023-06-06 05:21:54,479 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'CNY514Z8Y2HG82KC', 'HostId': 'b/31fFpXMMftkC8xHfqikSVisa0Nvke1vV/ieBcSjKT4Aygf7E/hJ7frmVNni8kd57ZFjkqDA/M=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'b/31fFpXMMftkC8xHfqikSVisa0Nvke1vV/ieBcSjKT4Aygf7E/hJ7frmVNni8kd57ZFjkqDA/M=', 'x-amz-request-id': 'CNY514Z8Y2HG82KC', 'date': 'Tue, 06 Jun 2023 05:21:54 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"603e44b465b814614db27d8b364c6c4a"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"603e44b465b814614db27d8b364c6c4a"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 05:22:10,353 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:22:10,353 Monitor      INFO     Running. 72814 handled; average rate 806.81 ev/sec; 
+2023-06-06 05:22:54,078 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 12:21:28
+2023-06-06 05:23:01,738 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'QVZ5NXSECGFQXADA', 'HostId': 'a9Cl579LN7qPOUkw6ppv4Tj0lgg/04z4aWrx1w4ZtJeG5XMYuZxMl2n6wNC8YUDbKrA890JCJzRKTZLd3l1mzbCwCZAy0Fhll4Tk7kMIvrg=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'a9Cl579LN7qPOUkw6ppv4Tj0lgg/04z4aWrx1w4ZtJeG5XMYuZxMl2n6wNC8YUDbKrA890JCJzRKTZLd3l1mzbCwCZAy0Fhll4Tk7kMIvrg=', 'x-amz-request-id': 'QVZ5NXSECGFQXADA', 'date': 'Tue, 06 Jun 2023 05:23:02 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"a9730d09b3fb0fd32564862a072804f9"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"a9730d09b3fb0fd32564862a072804f9"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 05:25:12,106 Controller   INFO     eNcore version: development
+2023-06-06 05:25:12,106 Controller   INFO     Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+2023-06-06 05:25:12,107 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 05:25:12,107 Controller   INFO     Starting client (pid=363764).
+2023-06-06 05:25:12,107 Controller   INFO     Sha256: d844d641edad17b6d94ba77f15c0d0e78271b281b6f05b867572a421c0be9ccf
+2023-06-06 05:25:12,107 Controller   INFO     Processes: 1
+2023-06-06 05:25:12,107 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 05:25:12,108 Diagnostics  INFO     Check certificate
+2023-06-06 05:25:12,108 Diagnostics  INFO     Creating connection
+2023-06-06 05:25:12,108 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:25:12,109 Connection   INFO     Using TLS v1.2
+2023-06-06 05:25:12,389 Diagnostics  INFO     Creating request message
+2023-06-06 05:25:12,389 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 05:25:12,390 Diagnostics  INFO     Sending request message
+2023-06-06 05:25:12,390 Diagnostics  INFO     Receiving response message
+2023-06-06 05:25:12,405 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 05:25:12,406 Diagnostics  INFO     Streaming info response
+2023-06-06 05:25:12,407 Diagnostics  INFO     Connection successful
+2023-06-06 05:25:12,417 Monitor      INFO     Starting Monitor.
+2023-06-06 05:25:12,424 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:25:12,425 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 05:25:12,425 Connection   INFO     Using TLS v1.2
+2023-06-06 05:25:12,425 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 05:25:12,456 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:25:12,456 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 05:25:12,457 SingleWorker INFO     Starting process.
+2023-06-06 05:25:12,467 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 05:25:12,467 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 05:25:12,820 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 05:25:12,821 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 05:25:12,862 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 05:25:12,956 FileStream   INFO     Initializing File Stream
+2023-06-06 05:25:12,962 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 05:26:12,832 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 12:29:37
+2023-06-06 05:26:20,124 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'A50RMDGJJQGRFDA9', 'HostId': 'Ds21XM3ooGBSVOrKVQt/ZyQITcXHMXNpN0N/5KzsCDbxifpt+8+nIaBhoJf5t5xmKvbJvK5UotM=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'Ds21XM3ooGBSVOrKVQt/ZyQITcXHMXNpN0N/5KzsCDbxifpt+8+nIaBhoJf5t5xmKvbJvK5UotM=', 'x-amz-request-id': 'A50RMDGJJQGRFDA9', 'date': 'Tue, 06 Jun 2023 05:26:20 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"efb5646d3ee968cb2f69d92551365c44"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"efb5646d3ee968cb2f69d92551365c44"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 05:26:42,578 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:26:42,578 Monitor      INFO     Running. 83883 handled; average rate 927.4 ev/sec; 
+2023-06-06 05:27:19,994 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 13:33:42
+2023-06-06 05:27:29,869 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'BWSXYCNH02XR9EMH', 'HostId': '6+GISQ7SwlBG4guaydFIjIw8iQcgbmZyCzoPmioKyNHEeMH+XP9aJguDOjIX7A5mKu3tXGbSZjY=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '6+GISQ7SwlBG4guaydFIjIw8iQcgbmZyCzoPmioKyNHEeMH+XP9aJguDOjIX7A5mKu3tXGbSZjY=', 'x-amz-request-id': 'BWSXYCNH02XR9EMH', 'date': 'Tue, 06 Jun 2023 05:27:30 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"065768f7b4386ee140853153feed7d04"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"065768f7b4386ee140853153feed7d04"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 05:28:12,638 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 05:28:12,638 Monitor      INFO     Running. 120221 handled; average rate 666.01 ev/sec; 
+2023-06-06 08:43:36,329 Controller   INFO     Stopping...
+2023-06-06 08:43:36,329 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 13:14:15
+2023-06-06 08:43:36,357 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 13:36:57
+2023-06-06 08:43:36,358 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 08:43:36,363 Monitor      INFO     Stopping. 0 handled; average rate 0 ev/sec; 
+2023-06-06 08:43:36,512 Controller   INFO     Stopping...
+2023-06-06 08:43:38,748 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'V4DDE9A59QP5PEHG', 'HostId': 'MpsAdGbNuvClwLbDl3HXlYxVfti+ANH2E5DoqS9/DXg/BfuAo1G4Hq4VRoqlgr+q4YIuYJ9KGhp6jx3Yc4/KKQ==', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'MpsAdGbNuvClwLbDl3HXlYxVfti+ANH2E5DoqS9/DXg/BfuAo1G4Hq4VRoqlgr+q4YIuYJ9KGhp6jx3Yc4/KKQ==', 'x-amz-request-id': 'V4DDE9A59QP5PEHG', 'date': 'Tue, 06 Jun 2023 08:43:39 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"ac20266575dd1f56c91ea5e4aca110d1"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"ac20266575dd1f56c91ea5e4aca110d1"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 08:43:38,855 SingleWorker INFO     Stop message received
+2023-06-06 08:43:38,855 Monitor      ERROR    Monitor __tick: string indices must be integers trace: Traceback (most recent call last):\n  File "/ocsf/fp-05-firepower-cli/estreamer/monitor.py", line 75, in __tick\n    status = self.client.status()\n  File "/ocsf/fp-05-firepower-cli/estreamer/controller.py", line 302, in status\n    if proxy.request( 'status' )['state'] == definitions.STATE_ERROR:\nTypeError: string indices must be integers\n
+2023-06-06 08:43:38,886 SingleWorker INFO     Exiting
+2023-06-06 08:43:39,006 Controller   INFO     Process 363693 (Process-1) exit code: 0
+2023-06-06 08:43:39,006 Monitor      INFO     Stopping Monitor.
+2023-06-06 08:43:39,104 Controller   INFO     Goodbye
+2023-06-06 08:43:39,105 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 08:43:43,594 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'WTDNYTWMZKXTTXA2', 'HostId': 'pimfndTgoWm4rir+L1sdlncufdBQIlr0BYHZN6DAYZUrcxO8Km2tnb19IsIlU//jAtGaklUvq+a6m8jgndx2yg==', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'pimfndTgoWm4rir+L1sdlncufdBQIlr0BYHZN6DAYZUrcxO8Km2tnb19IsIlU//jAtGaklUvq+a6m8jgndx2yg==', 'x-amz-request-id': 'WTDNYTWMZKXTTXA2', 'date': 'Tue, 06 Jun 2023 08:43:44 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"ee1c9bd15b2fa8b2cecbac9636c82bca"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"ee1c9bd15b2fa8b2cecbac9636c82bca"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 08:43:43,744 SingleWorker INFO     Stop message received
+2023-06-06 08:43:43,770 SingleWorker INFO     Exiting
+2023-06-06 08:43:43,853 Controller   INFO     Process 363772 (Process-1) exit code: 0
+2023-06-06 08:43:43,853 Monitor      INFO     Stopping Monitor.
+2023-06-06 08:43:43,915 Controller   INFO     Goodbye
+2023-06-06 08:43:43,916 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 17:35:24,789 Controller   INFO     eNcore version: development
+2023-06-06 17:35:24,790 Controller   INFO     Python version: 3.10.6 (main, May 29 2023, 11:10:38) [GCC 11.3.0]
+2023-06-06 17:35:24,790 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 17:35:24,790 Controller   INFO     Starting client (pid=368442).
+2023-06-06 17:35:24,791 Controller   INFO     Sha256: dc2d8bd0b1a4f87a32c40185ee3f8b8f3979eb4d7a026db1c85608d709768b67
+2023-06-06 17:35:24,791 Controller   INFO     Processes: 1
+2023-06-06 17:35:24,791 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 17:35:24,792 Diagnostics  INFO     Check certificate
+2023-06-06 17:35:24,792 Diagnostics  INFO     Creating connection
+2023-06-06 17:35:24,792 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 17:35:24,792 Connection   INFO     Using TLS v1.2
+2023-06-06 17:35:25,425 Diagnostics  INFO     Creating request message
+2023-06-06 17:35:25,425 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 17:35:25,426 Diagnostics  INFO     Sending request message
+2023-06-06 17:35:25,426 Diagnostics  INFO     Receiving response message
+2023-06-06 17:35:25,438 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 17:35:25,449 Diagnostics  INFO     Streaming info response
+2023-06-06 17:35:25,451 Diagnostics  INFO     Connection successful
+2023-06-06 17:35:25,451 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 17:35:25,452 Connection   INFO     Using TLS v1.2
+2023-06-06 17:35:25,452 Monitor      INFO     Starting Monitor.
+2023-06-06 17:35:25,452 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 17:35:25,452 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 17:35:25,966 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 17:35:25,966 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 17:35:25,967 SingleWorker INFO     Starting process.
+2023-06-06 17:35:25,973 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 17:35:25,973 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 17:35:26,470 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 17:35:26,470 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 17:35:26,512 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 17:35:26,600 FileStream   INFO     Initializing File Stream
+2023-06-06 17:35:26,606 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 17:36:26,487 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 12:28:30
+2023-06-06 17:36:33,422 FileStream   INFO     Filo I/O Error - Attemping to save status to disk
+2023-06-06 17:38:37,457 Controller   INFO     eNcore version: development
+2023-06-06 17:38:37,457 Controller   INFO     Python version: 3.10.6 (main, May 29 2023, 11:10:38) [GCC 11.3.0]
+2023-06-06 17:38:37,463 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-06 17:38:37,463 Controller   INFO     Starting client (pid=368513).
+2023-06-06 17:38:37,463 Controller   INFO     Sha256: 4eab33d1ff8d0c7db9a8cbaaae64d0d8f8b2a16fdc0203d7b66096d94d2adf55
+2023-06-06 17:38:37,463 Controller   INFO     Processes: 1
+2023-06-06 17:38:37,463 Controller   INFO     Settings: b'gASVMAYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAdlbmFibGVklIiMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaAKIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaBx9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgqiGgriIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-06 17:38:37,464 Diagnostics  INFO     Check certificate
+2023-06-06 17:38:37,464 Diagnostics  INFO     Creating connection
+2023-06-06 17:38:37,464 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 17:38:37,464 Connection   INFO     Using TLS v1.2
+2023-06-06 17:38:37,516 Diagnostics  INFO     Creating request message
+2023-06-06 17:38:37,517 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-06 17:38:37,517 Diagnostics  INFO     Sending request message
+2023-06-06 17:38:37,517 Diagnostics  INFO     Receiving response message
+2023-06-06 17:38:37,529 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-06 17:38:37,542 Diagnostics  INFO     Streaming info response
+2023-06-06 17:38:37,545 Diagnostics  INFO     Connection successful
+2023-06-06 17:38:37,545 Monitor      INFO     Starting Monitor.
+2023-06-06 17:38:37,554 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 17:38:37,555 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-06 17:38:37,556 Connection   INFO     Using TLS v1.2
+2023-06-06 17:38:37,556 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-06 17:38:37,608 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 17:38:37,609 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-06 17:38:37,609 SingleWorker INFO     Starting process.
+2023-06-06 17:38:37,615 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-06 17:38:37,615 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-06 17:38:37,968 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-06 17:38:37,968 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-06 17:38:38,068 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-06 17:38:38,298 FileStream   INFO     Initializing File Stream
+2023-06-06 17:38:38,299 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-06 17:39:38,000 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:08:16
+2023-06-06 17:39:45,605 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '3QMQ69E5C88JSBP2', 'HostId': 'EOHff45ez71VTgd6II7wCnAsoAsaHflUt4iHf0MUxYVeZ8/i0N0O/FjGtA7bLbLvAE3erYPa0BQ=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'EOHff45ez71VTgd6II7wCnAsoAsaHflUt4iHf0MUxYVeZ8/i0N0O/FjGtA7bLbLvAE3erYPa0BQ=', 'x-amz-request-id': '3QMQ69E5C88JSBP2', 'date': 'Tue, 06 Jun 2023 17:39:46 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"c8ee3726bb13fb5e0c3805829f4333b5"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"c8ee3726bb13fb5e0c3805829f4333b5"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 17:40:07,553 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 17:40:07,553 Monitor      INFO     Running. 40202 handled; average rate 446.22 ev/sec; 
+2023-06-06 17:40:45,473 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 12:50:47
+2023-06-06 17:40:51,307 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '15KPMGVEEM96S48P', 'HostId': 'CH5+e5oDzPKHPzfp56WN6s4f9nUqwfmAJQTZvM5y25xGwTnPgoWlLmg3KyYe1f6tGTzwBpIsW1I=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'CH5+e5oDzPKHPzfp56WN6s4f9nUqwfmAJQTZvM5y25xGwTnPgoWlLmg3KyYe1f6tGTzwBpIsW1I=', 'x-amz-request-id': '15KPMGVEEM96S48P', 'date': 'Tue, 06 Jun 2023 17:40:51 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"791c0b19028564ae25e5d55bd48da6fb"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"791c0b19028564ae25e5d55bd48da6fb"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 17:41:37,720 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 17:41:37,720 Monitor      INFO     Running. 128691 handled; average rate 714.05 ev/sec; 
+2023-06-06 17:41:51,196 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 14:29:28
+2023-06-06 17:42:06,104 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'GC3F3G9K9V8CG11D', 'HostId': 'vlXh/zsh40DLozHwClOPJYDpd/DCK5sn7fOYkOGZn4e6g8sTF1TpE+45okSkq0xbr+fU4FLvm+k=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'vlXh/zsh40DLozHwClOPJYDpd/DCK5sn7fOYkOGZn4e6g8sTF1TpE+45okSkq0xbr+fU4FLvm+k=', 'x-amz-request-id': 'GC3F3G9K9V8CG11D', 'date': 'Tue, 06 Jun 2023 17:42:06 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"fe1bcff08ba9b872fde02995f5c221f6"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"fe1bcff08ba9b872fde02995f5c221f6"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 17:43:05,824 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 15:20:13
+2023-06-06 17:43:13,602 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'HFQA43ZG532DZA29', 'HostId': 'JvomteFEFcZsgrLFSi8bOnVz89LcOdy9lD0KWe8GbOvvcQssNh00vPb3PxWm+6EefDoG5v0lsQs=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'JvomteFEFcZsgrLFSi8bOnVz89LcOdy9lD0KWe8GbOvvcQssNh00vPb3PxWm+6EefDoG5v0lsQs=', 'x-amz-request-id': 'HFQA43ZG532DZA29', 'date': 'Tue, 06 Jun 2023 17:43:14 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"8034e2b41b35633bc3d8ce6a97aba4dd"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"8034e2b41b35633bc3d8ce6a97aba4dd"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 17:43:13,784 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 17:43:13,784 Monitor      INFO     Running. 163210 handled; average rate 603.92 ev/sec; 
+2023-06-06 17:44:13,463 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 16:23:29
+2023-06-06 17:44:21,268 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'BJ2NP65BPB8TH058', 'HostId': '+golzvskDTbkJF3DtdaExdCMCs5bANeB9lwyuaifChaX3i8ZHiQYzONyAzRMDOYTDILCO6Bt1eY=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '+golzvskDTbkJF3DtdaExdCMCs5bANeB9lwyuaifChaX3i8ZHiQYzONyAzRMDOYTDILCO6Bt1eY=', 'x-amz-request-id': 'BJ2NP65BPB8TH058', 'date': 'Tue, 06 Jun 2023 17:44:21 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"299db2e6d6379cb4b623b27a5a9ced4f"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"299db2e6d6379cb4b623b27a5a9ced4f"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 17:44:37,601 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 17:44:37,601 Monitor      INFO     Running. 199236 handled; average rate 553.26 ev/sec; 
+2023-06-06 17:45:21,302 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 16:48:01
+2023-06-06 17:45:25,566 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '7Y8N086ZP6ZX1RBT', 'HostId': 'DtwjWqV4RALq+THpNQk1J24TmWL1M7Apg1voJVpq+XWz25SW99BbxpmouS+V/X+G8VQAxA42nY0=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'DtwjWqV4RALq+THpNQk1J24TmWL1M7Apg1voJVpq+XWz25SW99BbxpmouS+V/X+G8VQAxA42nY0=', 'x-amz-request-id': '7Y8N086ZP6ZX1RBT', 'date': 'Tue, 06 Jun 2023 17:45:26 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"216f420b1920d0ef455ea181e0fee721"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"216f420b1920d0ef455ea181e0fee721"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 17:46:07,774 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 17:46:07,774 Monitor      INFO     Running. 276156 handled; average rate 613.25 ev/sec; 
+2023-06-06 17:46:25,482 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 19:23:54
+2023-06-06 17:46:37,883 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '9DEKST1HWVAGR538', 'HostId': 'zVz6H52d00GKWpwW2KJomEMM6r2ocgP5Gb1VaF1s35AfHynTeMFJbOfGFlqOTGPExC7RzD2c5Jk=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'zVz6H52d00GKWpwW2KJomEMM6r2ocgP5Gb1VaF1s35AfHynTeMFJbOfGFlqOTGPExC7RzD2c5Jk=', 'x-amz-request-id': '9DEKST1HWVAGR538', 'date': 'Tue, 06 Jun 2023 17:46:38 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"88e0010ac4ff69799c0ec6b265f1744b"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"88e0010ac4ff69799c0ec6b265f1744b"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 17:47:37,508 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 19:36:44
+2023-06-06 17:47:45,316 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '0YM6MCWXGZ25DHHT', 'HostId': 'dkJjXkVbvt2OSPsWp6pN0kkcSwld0zJhiH0LJ9kJF4hdwivB+4b05B6bTHw+VoV/ItlswcPMcQg=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'dkJjXkVbvt2OSPsWp6pN0kkcSwld0zJhiH0LJ9kJF4hdwivB+4b05B6bTHw+VoV/ItlswcPMcQg=', 'x-amz-request-id': '0YM6MCWXGZ25DHHT', 'date': 'Tue, 06 Jun 2023 17:47:46 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"ce865630dc0efb08a6b35e21c0680b6a"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"ce865630dc0efb08a6b35e21c0680b6a"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 17:47:45,523 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 17:47:45,524 Monitor      INFO     Running. 325153 handled; average rate 601.82 ev/sec; 
+2023-06-06 17:48:45,197 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 19:48:46
+2023-06-06 17:48:52,949 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '03ED3PSVE2CQC82X', 'HostId': '6sjENlaNPlvdwCJkseY8t4duRJSjEaPTr3Wz9YrRyEBeeepFA9GUcHn+XDNTJOVuFY3H78fUW/w=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '6sjENlaNPlvdwCJkseY8t4duRJSjEaPTr3Wz9YrRyEBeeepFA9GUcHn+XDNTJOVuFY3H78fUW/w=', 'x-amz-request-id': '03ED3PSVE2CQC82X', 'date': 'Tue, 06 Jun 2023 17:48:53 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"8cdda61786ae7958fc0036c6b0bece08"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"8cdda61786ae7958fc0036c6b0bece08"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 20:33:24,079 Controller   INFO     Stopping...
+2023-06-06 20:33:24,079 Controller   INFO     Process 368450 (Process-1) exit code: 1
+2023-06-06 20:33:24,079 Monitor      INFO     Stopping Monitor.
+2023-06-06 20:33:24,079 Controller   INFO     Stopping...
+2023-06-06 20:33:24,110 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 19:39:07
+2023-06-06 20:33:24,168 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 20:33:24,168 Monitor      INFO     Stopping. 0 handled; average rate 0 ev/sec; 
+2023-06-06 20:33:24,323 Controller   INFO     Goodbye
+2023-06-06 20:33:24,323 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-06 20:33:25,271 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'FV5P2Y9JWDKQCK9G', 'HostId': 'm0o+7e12r6rVqkldKzsQdw/t5n6xgXLdG+nnMGgsaJSsIhEeRNhDkAq8XNcjQ4mVX5QmybzISVw=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'm0o+7e12r6rVqkldKzsQdw/t5n6xgXLdG+nnMGgsaJSsIhEeRNhDkAq8XNcjQ4mVX5QmybzISVw=', 'x-amz-request-id': 'FV5P2Y9JWDKQCK9G', 'date': 'Tue, 06 Jun 2023 20:33:26 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"fb51115e30d5890d191eb57524602e25"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"fb51115e30d5890d191eb57524602e25"', 'ServerSideEncryption': 'AES256'}
+2023-06-06 20:33:25,297 SingleWorker INFO     Stop message received
+2023-06-06 20:33:25,318 SingleWorker INFO     Exiting
+2023-06-06 20:33:25,427 Controller   INFO     Process 368521 (Process-1) exit code: 0
+2023-06-06 20:33:25,427 Monitor      INFO     Stopping Monitor.
+2023-06-06 20:33:25,671 Controller   INFO     Goodbye
+2023-06-06 20:33:25,671 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-08 02:14:06,906 Diagnostics  INFO     Check certificate
+2023-06-08 02:14:06,907 Diagnostics  INFO     Creating connection
+2023-06-08 02:14:06,907 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 02:14:06,907 Connection   INFO     Using TLS v1.2
+2023-06-08 02:14:08,466 Diagnostics  INFO     Creating request message
+2023-06-08 02:14:08,466 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 02:14:08,466 Diagnostics  INFO     Sending request message
+2023-06-08 02:14:08,467 Diagnostics  INFO     Receiving response message
+2023-06-08 02:14:08,476 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 02:14:08,476 Diagnostics  INFO     Streaming info response
+2023-06-08 02:14:08,476 Diagnostics  INFO     Connection successful
+2023-06-08 02:15:49,458 Diagnostics  INFO     Check certificate
+2023-06-08 02:15:49,459 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:16:53,589 Diagnostics  INFO     Check certificate
+2023-06-08 02:16:53,590 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:17:22,390 Diagnostics  INFO     Check certificate
+2023-06-08 02:17:22,390 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:17:48,063 Diagnostics  INFO     Check certificate
+2023-06-08 02:17:48,063 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:17:48,590 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:21:52,994 Diagnostics  INFO     Check certificate
+2023-06-08 02:21:52,995 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:26:39,920 Diagnostics  INFO     Check certificate
+2023-06-08 02:26:39,920 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:26:40,435 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:30:10,321 Diagnostics  INFO     Check certificate
+2023-06-08 02:30:10,321 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:30:10,836 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:35:33,476 Diagnostics  INFO     Check certificate
+2023-06-08 02:35:33,476 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:35:33,991 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:36:43,734 Diagnostics  INFO     Check certificate
+2023-06-08 02:36:43,734 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:36:44,249 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:38:02,684 Diagnostics  INFO     Check certificate
+2023-06-08 02:38:02,685 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:38:03,212 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:47:24,868 Diagnostics  INFO     Check certificate
+2023-06-08 02:47:24,868 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:47:25,383 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:47:50,094 Diagnostics  INFO     Check certificate
+2023-06-08 02:47:50,094 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:47:50,618 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:50:18,860 Diagnostics  INFO     Check certificate
+2023-06-08 02:50:18,860 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:50:19,375 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:52:04,422 Diagnostics  INFO     Check certificate
+2023-06-08 02:52:04,422 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:52:04,937 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:55:19,787 Diagnostics  INFO     Check certificate
+2023-06-08 02:55:19,787 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:55:20,302 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:55:59,023 Diagnostics  INFO     Check certificate
+2023-06-08 02:55:59,023 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:56:01,851 Diagnostics  INFO     Creating connection
+2023-06-08 02:56:01,851 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 02:56:01,851 Connection   INFO     Using TLS v1.2
+2023-06-08 02:56:01,898 Diagnostics  INFO     Creating request message
+2023-06-08 02:56:01,898 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 02:56:01,898 Diagnostics  INFO     Sending request message
+2023-06-08 02:56:01,899 Diagnostics  INFO     Receiving response message
+2023-06-08 02:56:01,908 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 02:56:01,908 Diagnostics  INFO     Streaming info response
+2023-06-08 02:56:01,908 Diagnostics  INFO     Connection successful
+2023-06-08 02:57:13,715 Diagnostics  INFO     Check certificate
+2023-06-08 02:57:13,716 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:57:14,231 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:57:14,416 Diagnostics  INFO     {"FMCCertificatePassword":"password"}
+2023-06-08 02:57:46,881 Diagnostics  INFO     Check certificate
+2023-06-08 02:57:46,881 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:57:47,408 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:57:47,743 Diagnostics  INFO     {"FMCCertificatePassword":"password"}
+2023-06-08 02:58:19,019 Diagnostics  INFO     Check certificate
+2023-06-08 02:58:19,019 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:58:19,546 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:59:40,397 Diagnostics  INFO     Check certificate
+2023-06-08 02:59:40,397 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 02:59:40,924 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 02:59:41,297 Diagnostics  INFO     {"FMCCertificatePassword":"password"}
+2023-06-08 03:00:30,683 Diagnostics  INFO     Check certificate
+2023-06-08 03:00:30,683 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 03:00:31,198 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 03:00:54,758 Diagnostics  INFO     Check certificate
+2023-06-08 03:00:54,758 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 03:00:55,273 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 03:00:55,453 Diagnostics  INFO     {'FMCCertificatePassword': 'password'}
+2023-06-08 03:01:39,648 Diagnostics  INFO     Check certificate
+2023-06-08 03:01:39,648 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 03:01:40,163 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 03:04:13,094 Diagnostics  INFO     Check certificate
+2023-06-08 03:04:13,094 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 03:04:13,617 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 03:05:12,556 Diagnostics  INFO     Check certificate
+2023-06-08 03:05:12,556 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 03:05:13,071 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 03:05:13,248 Diagnostics  INFO     password
+2023-06-08 03:05:50,244 Diagnostics  INFO     Check certificate
+2023-06-08 03:05:50,245 Diagnostics  INFO     PKCS12 file needs processing
+2023-06-08 03:05:50,759 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 03:05:50,945 Diagnostics  INFO     Creating connection
+2023-06-08 03:05:50,946 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 03:05:50,946 Connection   INFO     Using TLS v1.2
+2023-06-08 03:05:50,993 Diagnostics  INFO     Creating request message
+2023-06-08 03:05:50,994 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 03:05:50,994 Diagnostics  INFO     Sending request message
+2023-06-08 03:05:50,994 Diagnostics  INFO     Receiving response message
+2023-06-08 03:05:51,004 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 03:05:51,004 Diagnostics  INFO     Streaming info response
+2023-06-08 03:05:51,004 Diagnostics  INFO     Connection successful
+2023-06-08 03:18:55,681 Diagnostics  INFO     Check certificate
+2023-06-08 03:18:55,681 Diagnostics  INFO     <estreamer.settings.settings.Settings object at 0x7f9986eb37f0>
+2023-06-08 03:18:55,681 Diagnostics  INFO     Creating connection
+2023-06-08 03:18:55,681 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 03:18:55,682 Connection   INFO     Using TLS v1.2
+2023-06-08 03:18:57,353 Diagnostics  INFO     Creating request message
+2023-06-08 03:18:57,353 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 03:18:57,354 Diagnostics  INFO     Sending request message
+2023-06-08 03:18:57,354 Diagnostics  INFO     Receiving response message
+2023-06-08 03:18:57,363 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 03:18:57,363 Diagnostics  INFO     Streaming info response
+2023-06-08 03:18:57,363 Diagnostics  INFO     Connection successful
+2023-06-08 03:19:39,652 Diagnostics  INFO     Check certificate
+2023-06-08 03:33:56,536 Diagnostics  INFO     Check certificate
+2023-06-08 03:34:22,214 Diagnostics  INFO     Check certificate
+2023-06-08 03:34:22,215 Diagnostics  INFO     Creating connection
+2023-06-08 03:34:22,227 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 03:34:22,227 Connection   INFO     Using TLS v1.2
+2023-06-08 03:34:22,659 Diagnostics  INFO     Creating request message
+2023-06-08 03:34:22,659 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 03:34:22,659 Diagnostics  INFO     Sending request message
+2023-06-08 03:34:22,659 Diagnostics  INFO     Receiving response message
+2023-06-08 03:34:22,685 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 03:34:22,685 Diagnostics  INFO     Streaming info response
+2023-06-08 03:34:22,685 Diagnostics  INFO     Connection successful
+2023-06-08 04:40:41,923 Configure    ERROR    Invalid JSON in settings file
+2023-06-08 04:40:42,754 Configure    ERROR    Invalid JSON in settings file
+2023-06-08 04:41:47,991 Diagnostics  INFO     Check certificate
+2023-06-08 04:41:47,991 Diagnostics  INFO     Creating connection
+2023-06-08 04:41:47,991 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 04:41:47,991 Connection   INFO     Using TLS v1.2
+2023-06-08 04:41:48,034 Diagnostics  INFO     Creating request message
+2023-06-08 04:41:48,035 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 04:41:48,035 Diagnostics  INFO     Sending request message
+2023-06-08 04:41:48,035 Diagnostics  INFO     Receiving response message
+2023-06-08 04:41:48,045 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 04:41:48,045 Diagnostics  INFO     Streaming info response
+2023-06-08 04:41:48,045 Diagnostics  INFO     Connection successful
+2023-06-08 04:41:55,902 Diagnostics  INFO     Check certificate
+2023-06-08 04:41:55,903 Diagnostics  INFO     Creating connection
+2023-06-08 04:41:55,903 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 04:41:55,903 Connection   INFO     Using TLS v1.2
+2023-06-08 04:41:55,944 Diagnostics  INFO     Creating request message
+2023-06-08 04:41:55,944 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 04:41:55,944 Diagnostics  INFO     Sending request message
+2023-06-08 04:41:55,945 Diagnostics  INFO     Receiving response message
+2023-06-08 04:41:55,954 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 04:41:55,954 Diagnostics  INFO     Streaming info response
+2023-06-08 04:41:55,954 Diagnostics  INFO     Connection successful
+2023-06-08 04:42:15,896 Controller   INFO     eNcore version: development
+2023-06-08 04:42:15,896 Controller   INFO     Python version: 3.10.6 (main, May 29 2023, 11:10:38) [GCC 11.3.0]
+2023-06-08 04:42:15,896 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-08 04:42:15,896 Controller   INFO     Starting client (pid=386223).
+2023-06-08 04:42:15,896 Controller   INFO     Sha256: 4d1a310ad34dbca9409fb49380646ae294dbec1bed8cc831e644e84a1b552324
+2023-06-08 04:42:15,896 Controller   INFO     Processes: 1
+2023-06-08 04:42:15,897 Controller   INFO     Settings: b'gASVnwYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAd2ZXJzaW9ulIwUc2VjdXJpdHktbGFrZS12MS4wLjCUjAdlbmFibGVklIiMCWVjMlJlZ2lvbpSMCXVzLWVhc3QtMZSMGmVjMkNlcnRpZmljYXRlUGFzc3dvcmROYW1llIwWRk1DQ2VydGlmaWNhdGVQYXNzd29yZJSMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaASIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaCJ9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgwiGgxiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-08 04:42:15,897 Diagnostics  INFO     Check certificate
+2023-06-08 04:42:15,897 Diagnostics  INFO     Creating connection
+2023-06-08 04:42:15,897 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 04:42:15,897 Connection   INFO     Using TLS v1.2
+2023-06-08 04:42:15,938 Diagnostics  INFO     Creating request message
+2023-06-08 04:42:15,939 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 04:42:15,939 Diagnostics  INFO     Sending request message
+2023-06-08 04:42:15,939 Diagnostics  INFO     Receiving response message
+2023-06-08 04:42:15,951 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 04:42:15,954 Diagnostics  INFO     Streaming info response
+2023-06-08 04:42:15,954 Diagnostics  INFO     Connection successful
+2023-06-08 04:42:15,954 Monitor      INFO     Starting Monitor.
+2023-06-08 04:42:15,959 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-08 04:42:15,960 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-08 04:42:15,960 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 04:42:15,960 Connection   INFO     Using TLS v1.2
+2023-06-08 04:42:16,002 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-08 04:42:16,003 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-08 04:42:16,003 SingleWorker INFO     Starting process.
+2023-06-08 04:42:16,013 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-08 04:42:16,014 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-08 04:42:17,891 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-08 04:42:17,892 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-08 04:42:17,937 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 04:42:18,027 FileStream   INFO     Initializing File Stream
+2023-06-08 04:42:18,032 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-08 04:43:17,916 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:20:01
+2023-06-08 04:43:26,888 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '8AJPG63JF70BHZCS', 'HostId': 'TvxE4BQPCIiiryzZQlQ1JIJB66sO/UFMfTnoARTw/BysgLEWFz5bjE7LZgAagJsPZ5WTDGsYHW0=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'TvxE4BQPCIiiryzZQlQ1JIJB66sO/UFMfTnoARTw/BysgLEWFz5bjE7LZgAagJsPZ5WTDGsYHW0=', 'x-amz-request-id': '8AJPG63JF70BHZCS', 'date': 'Thu, 08 Jun 2023 04:43:27 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"2e56084d684f8e304189bd1d48a6847f"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"2e56084d684f8e304189bd1d48a6847f"', 'ServerSideEncryption': 'AES256'}
+2023-06-08 04:43:46,225 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-08 04:43:46,226 Monitor      INFO     Running. 42630 handled; average rate 472.16 ev/sec; 
+2023-06-08 04:44:26,718 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:12:20
+2023-06-08 04:44:37,266 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'PQSHAFBVX40F6ACN', 'HostId': 'Ttstv4YqP4IX5SL48oT1oZ6OklsIKk8/7On4YEOS5BPGE2dlXqZxzzLvN0jYIHsTr6ZHG37zYvU=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'Ttstv4YqP4IX5SL48oT1oZ6OklsIKk8/7On4YEOS5BPGE2dlXqZxzzLvN0jYIHsTr6ZHG37zYvU=', 'x-amz-request-id': 'PQSHAFBVX40F6ACN', 'date': 'Thu, 08 Jun 2023 04:44:37 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"1a12a26a7d4e4b169386624465cea626"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"1a12a26a7d4e4b169386624465cea626"', 'ServerSideEncryption': 'AES256'}
+2023-06-08 04:44:39,907 Controller   INFO     eNcore version: development
+2023-06-08 04:44:39,908 Controller   INFO     Python version: 3.10.6 (main, May 29 2023, 11:10:38) [GCC 11.3.0]
+2023-06-08 04:44:39,908 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-08 04:44:39,908 Controller   INFO     Starting client (pid=386380).
+2023-06-08 04:44:39,908 Controller   INFO     Sha256: 4d1a310ad34dbca9409fb49380646ae294dbec1bed8cc831e644e84a1b552324
+2023-06-08 04:44:39,908 Controller   INFO     Processes: 1
+2023-06-08 04:44:39,908 Controller   INFO     Settings: b'gASVnwYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAd2ZXJzaW9ulIwUc2VjdXJpdHktbGFrZS12MS4wLjCUjAdlbmFibGVklIiMCWVjMlJlZ2lvbpSMCXVzLWVhc3QtMZSMGmVjMkNlcnRpZmljYXRlUGFzc3dvcmROYW1llIwWRk1DQ2VydGlmaWNhdGVQYXNzd29yZJSMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaASIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaCJ9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgwiGgxiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-08 04:44:39,908 Diagnostics  INFO     Check certificate
+2023-06-08 04:44:39,909 Diagnostics  INFO     Creating connection
+2023-06-08 04:44:39,909 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 04:44:39,909 Connection   INFO     Using TLS v1.2
+2023-06-08 04:44:39,940 Diagnostics  INFO     Creating request message
+2023-06-08 04:44:39,941 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 04:44:39,941 Diagnostics  INFO     Sending request message
+2023-06-08 04:44:39,942 Diagnostics  INFO     Receiving response message
+2023-06-08 04:44:39,961 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 04:44:39,963 Diagnostics  INFO     Streaming info response
+2023-06-08 04:44:39,989 Diagnostics  INFO     Connection successful
+2023-06-08 04:44:39,990 Monitor      INFO     Starting Monitor.
+2023-06-08 04:44:39,990 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-08 04:44:39,991 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 04:44:39,991 Connection   INFO     Using TLS v1.2
+2023-06-08 04:44:39,992 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-08 04:44:40,083 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-08 04:44:40,084 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-08 04:44:40,085 SingleWorker INFO     Starting process.
+2023-06-08 04:44:40,095 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-08 04:44:40,096 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-08 04:44:40,600 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-08 04:44:40,601 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-08 04:44:40,757 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 04:44:41,092 FileStream   INFO     Initializing File Stream
+2023-06-08 04:44:41,093 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-08 04:45:15,981 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-08 04:45:15,981 Monitor      INFO     Running. 79667 handled; average rate 442.41 ev/sec; 
+2023-06-08 04:45:37,012 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 13:36:51
+2023-06-08 04:45:40,627 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 11:44:26
+2023-06-08 04:45:42,191 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '4JNCV1FVNE7Q4KSD', 'HostId': 'T+xsexm14L2i2JHAFkBkgAleTWIURjuGoubrWYVBWxTwcQP36C/sm0QJTTSbu+lwBeE+5AjJkbA=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'T+xsexm14L2i2JHAFkBkgAleTWIURjuGoubrWYVBWxTwcQP36C/sm0QJTTSbu+lwBeE+5AjJkbA=', 'x-amz-request-id': '4JNCV1FVNE7Q4KSD', 'date': 'Thu, 08 Jun 2023 04:45:42 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"9058bf99cdd3dd6e3da7e60ae8227705"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"9058bf99cdd3dd6e3da7e60ae8227705"', 'ServerSideEncryption': 'AES256'}
+2023-06-08 04:45:45,780 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '73B2Z7XHD6FZV3J9', 'HostId': '33cP7G7Ou1GwU8wdg1xfEM2Br48jSgtp18x2fZoi2mpk5ig3ZSjAFN3xGWyf5svU+3+svEnGoE4dR5p1uFTeXRTH8eVQ4zkO', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '33cP7G7Ou1GwU8wdg1xfEM2Br48jSgtp18x2fZoi2mpk5ig3ZSjAFN3xGWyf5svU+3+svEnGoE4dR5p1uFTeXRTH8eVQ4zkO', 'x-amz-request-id': '73B2Z7XHD6FZV3J9', 'date': 'Thu, 08 Jun 2023 04:45:46 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"18314878a8317ca29966ad38336e79f3"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"18314878a8317ca29966ad38336e79f3"', 'ServerSideEncryption': 'AES256'}
+2023-06-08 04:46:10,586 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-08 04:46:10,587 Monitor      INFO     Running. 66732 handled; average rate 739.27 ev/sec; 
+2023-06-08 04:46:42,095 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 14:42:04
+2023-06-08 04:46:53,318 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '6T8527ZKSRY59M4Q', 'HostId': 'qiviiOgXl9r+GRwJr6ULW7f68H/uokPPSDwppk78OEJ2rMhc+62zluwy7HnnRQNbb0hT0dicTRg=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'qiviiOgXl9r+GRwJr6ULW7f68H/uokPPSDwppk78OEJ2rMhc+62zluwy7HnnRQNbb0hT0dicTRg=', 'x-amz-request-id': '6T8527ZKSRY59M4Q', 'date': 'Thu, 08 Jun 2023 04:46:53 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"3f4d6ef798eeb4d747234ee6d09c6f82"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"3f4d6ef798eeb4d747234ee6d09c6f82"', 'ServerSideEncryption': 'AES256'}
+2023-06-08 04:46:53,606 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-08 04:46:53,606 Monitor      INFO     Running. 142078 handled; average rate 525.87 ev/sec; 
+2023-06-08 04:47:53,086 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 15:39:30
+2023-06-08 04:48:01,004 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': '0MKD6Q8KMGDJ0YTF', 'HostId': '4McZgRNvh3GUU0c0O35R1qw/Yg6mgUWR5e8pcGxqxInKdHoklgJjbUacXeU4MBhc7L2EROuLo4U=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': '4McZgRNvh3GUU0c0O35R1qw/Yg6mgUWR5e8pcGxqxInKdHoklgJjbUacXeU4MBhc7L2EROuLo4U=', 'x-amz-request-id': '0MKD6Q8KMGDJ0YTF', 'date': 'Thu, 08 Jun 2023 04:48:01 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"64d681844f1c872551b86e21246cf076"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"64d681844f1c872551b86e21246cf076"', 'ServerSideEncryption': 'AES256'}
+2023-06-08 04:48:16,169 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-08 04:48:16,169 Monitor      INFO     Running. 177600 handled; average rate 493.02 ev/sec; 
+2023-06-08 04:49:00,848 FileStream   INFO     Writing to S3 with partition - aws-security-data-lake-us-east-1-s7sknnet2nomb95iaegz0s4yqrpo26ext/SECUREFIREWALL/region=us-east-1/accountId=105677417881/eventDay=4212023/2023-04-21 16:35:59
+2023-06-08 04:49:08,831 FileStream   INFO     Sent to S3 with response: {'ResponseMetadata': {'RequestId': 'DF96D17GM1VQCGSE', 'HostId': 'ZysCm1gEB+i6spzapPCAkYQECZKk5WeYnom8lxyPwtDT5qp99a9cLPuNqyOcUFBE3bXCwA/yKmU=', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amz-id-2': 'ZysCm1gEB+i6spzapPCAkYQECZKk5WeYnom8lxyPwtDT5qp99a9cLPuNqyOcUFBE3bXCwA/yKmU=', 'x-amz-request-id': 'DF96D17GM1VQCGSE', 'date': 'Thu, 08 Jun 2023 04:49:09 GMT', 'x-amz-server-side-encryption': 'AES256', 'etag': '"0d4738777ea1ca3baa01782765bef2a8"', 'server': 'AmazonS3', 'content-length': '0'}, 'RetryAttempts': 0}, 'ETag': '"0d4738777ea1ca3baa01782765bef2a8"', 'ServerSideEncryption': 'AES256'}
+2023-06-08 04:52:27,851 Controller   INFO     eNcore version: development
+2023-06-08 04:52:27,851 Controller   INFO     Python version: 3.10.6 (main, May 29 2023, 11:10:38) [GCC 11.3.0]
+2023-06-08 04:52:27,851 Controller   INFO     Platform version: Linux-5.15.0-1030-aws-x86_64-with-glibc2.35
+2023-06-08 04:52:27,852 Controller   INFO     Starting client (pid=386526).
+2023-06-08 04:52:27,852 Controller   INFO     Sha256: 4d1a310ad34dbca9409fb49380646ae294dbec1bed8cc831e644e84a1b552324
+2023-06-08 04:52:27,852 Controller   INFO     Processes: 1
+2023-06-08 04:52:27,852 Controller   INFO     Settings: b'gASVnwYAAAAAAAB9lCiMDmNvbm5lY3RUaW1lb3V0lEsPjAd2ZXJzaW9ulIwUc2VjdXJpdHktbGFrZS12MS4wLjCUjAdlbmFibGVklIiMCWVjMlJlZ2lvbpSMCXVzLWVhc3QtMZSMGmVjMkNlcnRpZmljYXRlUGFzc3dvcmROYW1llIwWRk1DQ2VydGlmaWNhdGVQYXNzd29yZJSMB2hhbmRsZXKUfZQojA5vdXRwdXRAY29tbWVudJSMMklmIHlvdSBkaXNhYmxlIGFsbCBvdXRwdXR0ZXJzIGl0IGJlaGF2ZXMgYXMgYSBzaW5rlIwKb3V0cHV0dGVyc5RdlH2UKIwHYWRhcHRlcpSMBG9jc2aUaASIjAZzdHJlYW2UfZQojAdvcHRpb25zlH2UKIwCczOUjD9hd3Mtc2VjdXJpdHktZGF0YS1sYWtlLXVzLWVhc3QtMS1zN3Nrbm5ldDJub21iOTVpYWVnejBzNHlxcnBvMjaUjAlhY2NvdW50SWSUjAwxMDU2Nzc0MTc4ODGUjAZyZWdpb26UjAl1cy1lYXN0LTGUjAlhd3Nzb3VyY2WUjA5TRUNVUkVGSVJFV0FMTJSMDWF3c0J1ZmZlclJhdGWUSzyMBnJvdGF0ZZSIdYwDdXJplIwkcmVsZmlsZTovLy9kYXRhL29jc2YvZW5jb3JlLnswfS5qc29ulHV1YYwHcmVjb3Jkc5R9lCiMC2Nvbm5lY3Rpb25zlIiMBGNvcmWUiIwMZXhjbEBjb21tZW50lF2UKIxIVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGV4Y2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmUgKG92ZXJyaWRlcyAnaW5jbHVkZScplIwzZS5nLiB0byBleGNsdWRlIGZsb3cgYW5kIElQUyBldmVudHMgdXNlIFsgNzEsIDQwMCBdlGWMB2V4Y2x1ZGWUXZQoSwJLfU2QAWWMC2luY0Bjb21tZW50lIwyVGhlc2UgcmVjb3JkcyB3aWxsIGJlIGluY2x1ZGVkIHJlZ2FyZGxlc3Mgb2YgYWJvdmWUjAdpbmNsdWRllF2UjAlpbnRydXNpb26UiIwIbWV0YWRhdGGUiIwHcGFja2V0c5SIjANybmGUiIwDcnVhlIh1dYwOcGFja2V0RW5jb2RpbmeUjAVhc2NpaZSMB2xvZ2dpbmeUfZQojAhmaWxlcGF0aJSMDWVzdHJlYW1lci5sb2eUjAZmb3JtYXSUjDMlKGFzY3RpbWUpcyAlKG5hbWUpLTEycyAlKGxldmVsbmFtZSktOHMgJShtZXNzYWdlKXOUjAtsZXZAY29tbWVudJSMRExldmVscyBpbmNsdWRlIEZBVEFMLCBFUlJPUiwgV0FSTklORywgSU5GTywgREVCVUcsIFZFUkJPU0UgYW5kIFRSQUNFlIwFbGV2ZWyUjARJTkZPlIwGc3RkT3V0lIh1jAdtb25pdG9ylH2UKIwIYm9va21hcmuUiYwHaGFuZGxlZJSIjAZwZXJpb2SUS1qMCnN1YnNjcmliZWSUiIwIdmVsb2NpdHmUiHWMD3Jlc3BvbnNlVGltZW91dJRLBIwMc3RhckBjb21tZW50lIwoMCBmb3IgZ2VuZXNpcywgMSBmb3Igbm93LCAyIGZvciBib29rbWFya5SMBXN0YXJ0lEsAjAxzdWJzY3JpcHRpb26UfZQoaCJ9lCiMCEBjb21tZW50lF2UKIxOSnVzdCBiZWNhdXNlIHdlIHN1YnNjcmliZSBkb2Vzbid0IG1lYW4gdGhlIHNlcnZlciBpcyBzZW5kaW5nLiBOb3IgZG9lcyBpdCBtZWFulIw4d2UgYXJlIHdyaXRpbmcgdGhlIHJlY29yZHMgZWl0aGVyLiBTZWUgaGFuZGxlci5yZWNvcmRzW12UZYwRYXJjaGl2ZVRpbWVzdGFtcHOUiIwOZXZlbnRFeHRyYURhdGGUiIwIZXh0ZW5kZWSUiIwRaW1wYWN0RXZlbnRBbGVydHOUiGgwiGgxiIwKcGFja2V0RGF0YZSIdYwHc2VydmVyc5RdlH2UKIwEaG9zdJSMDDY0LjEwMC4xMC41OZSMDnBrY3MxMkZpbGVwYXRolIwNY2xpZW50LnBrY3MxMpSMBHBvcnSUTW4gjAt0bHNAY29tbWVudJSMHFZhbGlkIHZhbHVlcyBhcmUgMS4wIGFuZCAxLjKUjAp0bHNWZXJzaW9ulEc/8zMzMzMzM3VhdYwPd29ya2VyUHJvY2Vzc2VzlEsBdS4='
+2023-06-08 04:52:27,852 Diagnostics  INFO     Check certificate
+2023-06-08 04:52:27,852 Diagnostics  INFO     Creating connection
+2023-06-08 04:52:27,852 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 04:52:27,852 Connection   INFO     Using TLS v1.2
+2023-06-08 04:52:27,894 Diagnostics  INFO     Creating request message
+2023-06-08 04:52:27,894 Diagnostics  INFO     Request message=b'0001000200000008ffffffff48900061'
+2023-06-08 04:52:27,894 Diagnostics  INFO     Sending request message
+2023-06-08 04:52:27,894 Diagnostics  INFO     Receiving response message
+2023-06-08 04:52:27,907 Diagnostics  INFO     Response message=b'gASVZwAAAAAAAAB9lCiMB3ZlcnNpb26USwGMC21lc3NhZ2VUeXBllE0DCIwGbGVuZ3RolEswjARkYXRhlEMwAAATiQAAAAgAAAAAAAAAAAAAE4gAAAAIAAAAAAAAAAAAABoLAAAACAAAAAAAAAAAlHUu'
+2023-06-08 04:52:27,908 Diagnostics  INFO     Streaming info response
+2023-06-08 04:52:27,909 Diagnostics  INFO     Connection successful
+2023-06-08 04:52:27,909 Monitor      INFO     Starting Monitor.
+2023-06-08 04:52:27,910 Controller   INFO     Controller:  Process Status Check Complete
+2023-06-08 04:52:27,916 Monitor      INFO     Starting. 0 handled; average rate 0 ev/sec; 
+2023-06-08 04:52:27,922 Connection   INFO     Connecting to 64.100.10.59:8302
+2023-06-08 04:52:27,922 Connection   INFO     Using TLS v1.2
+2023-06-08 04:52:27,959 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-08 04:52:27,959 Receiver     INFO     EventStreamRequestMessage: b'00010002000000080000000048900061'
+2023-06-08 04:52:27,959 SingleWorker INFO     Starting process.
+2023-06-08 04:52:27,969 Settings     INFO     Timestamp: Start = 0 (Oldest data available)
+2023-06-08 04:52:27,970 Receiver     INFO     StreamingRequestMessage: b'000108010000003800001a0b000000384890006100000000000b000c000400150009001f000b003d001100470007005b000800650007006f0002008300000000'
+2023-06-08 04:52:28,317 Cache        INFO     Loading cache from /ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat
+2023-06-08 04:52:28,317 Cache        INFO     Cache file "/ocsf/fp-05-firepower-cli/64.100.10.59-8302_cache.dat" does not exist. Using default values
+2023-06-08 04:52:28,359 botocore.credentials INFO     Found credentials in shared credentials file: ~/.aws/credentials
+2023-06-08 04:52:28,452 FileStream   INFO     Initializing File Stream
+2023-06-08 04:52:28,452 Bookmark     INFO     Opening bookmark file /ocsf/fp-05-firepower-cli/64.100.10.59-8302_bookmark.dat.
+2023-06-08 04:52:51,887 Controller   INFO     Stopping...
+2023-06-08 04:52:51,887 SingleWorker INFO     Stop message received
+2023-06-08 04:52:51,940 SingleWorker INFO     Exiting
+2023-06-08 04:52:51,982 Controller   INFO     Process 386535 (Process-1) exit code: 0
+2023-06-08 04:52:51,982 Monitor      INFO     Stopping Monitor.
+2023-06-08 04:52:51,993 Controller   INFO     Goodbye
+2023-06-08 04:52:51,993 Controller   INFO     Controller:  Process Status Check Complete

@@ -28,6 +28,7 @@ import boto3
 import uuid
 import sys
 
+import urllib.parse
 import pyarrow.parquet as pq
 import pandas as pd
 import json as json1
@@ -48,6 +49,7 @@ class FileStream( Base ):
         self.encoding = encoding
         self.currtime = None 
         self.prevtime = time.time()
+        self.eventtime = None
         self.size = 0
         self.s3 = boto3.resource('s3')
         self.awssource = awssource
@@ -108,31 +110,20 @@ class FileStream( Base ):
 
             path =  '/ocsf/fp-05-firepower-cli/s3responses.dat'
 
-            append = True if os.stat(path).st_size == 0 else False
+            with io.open( path, 'a+', encoding='utf-8') as s3File:
 
-            with io.open( path, 'w+', encoding='utf-8') as s3File:
-
-                if(append) :
-                    s3File.seek(-1, os.SEEK_END)
-                    filehandle.truncate()
-                    s3File.write(',')
-                else :
-                   s3File.write('{')
-
-                self.logger.info(result)
-
-                json1.dump( { result['ResponseMetadata']['RequestId'] : {
+                json1.dump(  { result['ResponseMetadata']['RequestId'] : {
                     'HostId': result['ResponseMetadata']['HostId'],
                     'RequestId': result['ResponseMetadata']['RequestId'],
                     'Filename': filename.split("/")[-1],
-                    'S3Parition': filename,
+                    'S3Uri': "s3://"+self.bucket+"/"+filename,
+                    'ObjectUrl': "https://" + urllib.parse.quote_plus(self.bucket+ "/" + filename),
                     'HTTPStatus': str(result['ResponseMetadata']['HTTPStatusCode']),
                     'Transmitted': result['ResponseMetadata']['HTTPHeaders']['date'],
                     'Server': result['ResponseMetadata']['HTTPHeaders']['server'],
-                    'eTag': str(result['ResponseMetadata']['HTTPHeaders']['etag']).strip('\"') }}
-                , s3File)
-                 
-                s3File.write('}')
+                    'eTag': str(result['ResponseMetadata']['HTTPHeaders']['etag']).strip('\"') } }
+                , s3File, ensure_ascii=False)
+                s3File.write("\n")
 
 
         except Exception as ex:
@@ -164,11 +155,10 @@ class FileStream( Base ):
 #                aws_data =[{"unmapped": {"proto": 17, "app_id": 0, "count": 29502, "bytesOut": 42, "bytesIn": 0, "user": 9999997, "app": 0, "sec_intel_events": 0}, "dst_endpoint": {"ip": "192.168.0.255", "port": 31257}, "metadata": {"profiles": [], "product": {"name": "Secure Firewall", "version": "7.1", "vendor_name": "Cisco"}, "sequence": 0, "version": "1.0.0"}, "src_endpoint": {"ip": "10.1.80.89", "port": 44046}, "tls": {"client_ciphers": ["TLS_NULL_WITH_NULL_NULL"], "server_ciphers": ["Not Checked"], "version": "Unknown"}, "activity_name": "Unknown", "activity_id": 0, "app_name": "Unknown", "category_name": "Network Activity", "category_uid": 4, "class_name": "Network Activity", "class_uid": 4001, "count": 29502, "duration": 0, "end_time": 1677523290000, "time": 1677523290000, "message": "True", "severity": "Unknown", "severity_id": 0, "start_time": 1677523290000, "status": "Unknown", "status_code": "0", "status_id": 0, "timezone_offset": 0, "type_uid": 400100, "type_name": "Network Activity: Unknown"},{"unmapped": {"proto": 17, "app_id": 0, "count": 29502, "bytesOut": 42, "bytesIn": 0, "user": 9999997, "app": 0, "sec_intel_events": 0}, "dst_endpoint": {"ip": "192.168.0.255", "port": 31257}, "metadata": {"profiles": [], "product": {"name": "Secure Firewall", "version": "7.1", "vendor_name": "Cisco"}, "sequence": 0, "version": "1.0.0"}, "src_endpoint": {"ip": "10.1.80.89", "port": 44046}, "tls": {"client_ciphers": ["TLS_NULL_WITH_NULL_NULL"], "server_ciphers": ["Not Checked"], "version": "Unknown"}, "activity_name": "Unknown", "activity_id": 0, "app_name": "Unknown", "category_name": "Network Activity", "category_uid": 4, "class_name": "Network Activity", "class_uid": 4001, "count": 29502, "duration": 0, "end_time": 1677523290000, "time": 1677523290000, "message": "True", "severity": "Unknown", "severity_id": 0, "start_time": 1677523290000, "status": "Unknown", "status_code": "0", "status_id": 0, "timezone_offset": 0, "type_uid": 400100, "type_name": "Network Activity: Unknown"}]
                 df = pd.json_normalize(data, max_level=0)
                 df.to_parquet(out_buffer, index=False, compression='gzip')
-#               modified to new security lake s3://
-#                object = self.s3.Object(self.bucket, filename)
                 object = self.s3.Object(self.bucket, filename)
                 result = object.put(Body=out_buffer.getvalue())
                 self._saveS3Response(filename, result)
+
                 self.logger.info("Sent to S3 with response: {0}".format(result))
 
         self.lines = 0
@@ -194,6 +184,16 @@ class FileStream( Base ):
             if 'start_time' in jdata : 
                 epoch = int(jdata['start_time'])
                 self.currtime = datetime.datetime.fromtimestamp(epoch)
+
+                # change paritions if the event time differs
+#                if self.eventtime is not None: 
+#                    if( (self.eventtime.year != self.eventtime.year) or (self.eventime.month != self.currtime.month) or (self.eventtime.day != self.currtime.day)) :
+#                       self.eventtime = None
+#                       time_buffer = 60
+#                    else :
+#                       self.eventtime = self.currtime
+#                else :
+#                    self.eventime = self.currtime
 
                 time_buffer = time.time() - self.prevtime
 

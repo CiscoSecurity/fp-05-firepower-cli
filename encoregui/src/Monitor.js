@@ -48,8 +48,8 @@ class Monitor extends React.Component {
           <div >
            <div >
             <div class="col-md-12 content-container" style={{ width: '200px', 'left': '0',position:'absolute' }} ><SideBar/></div>
-            <div style={{ width: '1200px','right': '270px',position:'absolute' }} ><S3ActivityGraph/></div>
-	    <div class="col-md-12 content-container" style={{ width: '1200px',top: '350px','right': '270px',position:'absolute' }} >
+            <div style={{ width: '1450px',top: '80px','right': '20px',position:'absolute' }} ><S3ActivityGraph/></div>
+	    <div class="col-md-12 content-container" style={{ width: '1450px',top: '350px','right': '20px',position:'absolute' }} >
 	      <div class="content" >
                   <div class="col-md-12" >
                     <div class="panel">
@@ -75,7 +75,7 @@ class Monitor extends React.Component {
                                    <td class="table__cell">{response.Filename}</td>
                                    <td class="table__cell">{response.Transmitted}</td> 
                                    <td class="table__cell">{response.eTag}</td>
-                                   <td class="table__cell"><span class="icon-link"></span></td>
+                                   <td class="table__cell"><a href={response.ObjectUrl} target="_blank"><span class="icon-link"></span></a></td>
                                  </tr>
                              ))}
                            </tbody>

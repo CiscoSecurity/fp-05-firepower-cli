@@ -4,6 +4,7 @@ from fastapi import FastAPI, File, UploadFile, Form
 from pydantic import BaseModel
 from typing import List
 import shutil
+import utils
 import json
 import subprocess
 import datetime
@@ -26,20 +27,34 @@ def read_root():
 
 @app.post("/api/execute/")
 def execute():
+    output = subprocess.run('bash ./encore.sh start', capture_output=True, text=True, cwd="../", shell=True)
+    return output
+#    subprocess.Popen('python3 ./estreamer/service.py ./estreamer.conf', shell=True, cwd="../")
 
-    subprocess.Popen('python3 ./estreamer/service.py ./estreamer.conf', shell=True, cwd="../")
+@app.post("/api/test/")
+def test():
+
+    output = subprocess.run('python3 ./estreamer/diagnostics.py ./estreamer.conf', capture_output=True, text=True, cwd="../", shell=True)
+    return output
 
 @app.post("/api/executestop/")
 def executestop():
 
-    subprocess.Popen('bash encore.sh stop', shell=True, cwd="../")
+    output = subprocess.run('bash ./encore.sh stop', capture_output=True, text=True, cwd="../", shell=True)
+    return output
+#    subprocess.Popen('bash ../encore.sh stop', shell=True, cwd="../")
 
 @app.get("/api/lastwritten/")
 def get_lastwritten():
 
-    data = "N/A"
+    with open("../estreamer.conf") as f :
+      data = json.loads(f.read())
+
+    hostname = data["subscription"]["servers"][0]["host"]
+    bookmark = '../{0}-8302_bookmark.dat'.format(hostname)
+
     try: 
-      with open('../partner-fmc.csta.cisco.com-8302_bookmark.dat', 'r') as reader:
+      with open(bookmark, 'r') as reader:
           data = reader.readlines()
           data = data[0]
           data = data[6:16]
@@ -52,9 +67,13 @@ def get_lastwritten():
 @app.get("/api/status/")
 def get_status():
 
-    data = "Inactive"
-    #this needs to change to the proper .dat filename, read value from config if possible
-    with open("../partner-fmc.csta.cisco.com-8302_status.dat") as f :
+    with open("../estreamer.conf") as f :
+      data = json.loads(f.read())
+
+    hostname = data["subscription"]["servers"][0]["host"]
+    status = '../{0}-8302_status.dat'.format(hostname)
+
+    with open(status) as f :
         data = json.load(f)
 
     return data
@@ -62,26 +81,50 @@ def get_status():
 @app.get("/api/awsresponse/")
 def read_awsresponse():
 
-    #must change to configured value
-    fmcServer = "partner-fmc.csta.cisco.com"
-    rateFile = "{0}-8302_response.dat".format(fmcServer)
-    rateFile = "s3responses.dat"
+    #todo: change to configured value
+    rateFile = "../s3responses.dat"
 
-    with open("../{0}".format(rateFile)) as f :
-        data = json.load(f)
+    data = [json.loads(line)
+        for line in open(rateFile, 'r', encoding='utf-8')]
 
-    return data
+    events = [];
+
+    for index, k in enumerate(data):
+
+       for v in k.values() :
+
+           events.append(v)
+
+    return events
 
 @app.get("/api/datarate/")
 def read_datarate():
 
-    fmcServer = "partner-fmc.csta.cisco.com"
-    rateFile = "{0}-8302_rate.dat".format(fmcServer)
+    rateFile = "../rates.dat"
 
-    with open("../{0}".format(rateFile)) as f :
-        data = json.load(f)
+    data = [json.loads(line)
+        for line in open(rateFile, 'r', encoding='utf-8')]
 
-    return data
+    rates = [];
+
+    for index, k in enumerate(data):
+       event_rate = {}
+       for key in k.keys() :
+           event_rate['monitor'] = key
+
+       for v in k.values() :
+           event_rate.update(v)
+
+       event_rate['diff'] = 0
+
+       if index != 0 :
+           delta = event_rate['count'] - rates[index-1]['count']
+           if delta > 0 : event_rate['diff'] = delta 
+
+       rates.append(event_rate)
+
+
+    return rates
 
 @app.get("/api/loadconfig/")
 def read_config():
