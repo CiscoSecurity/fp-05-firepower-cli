@@ -104,10 +104,12 @@ class Monitor( object ):
             self.logger.info('Running (no process data available)')
 
         except estreamer.EncoreException as ex:
-            self.logger.error(ex)
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __tick: {0} trace: {1}'.format( ex, stack))
 
         except Exception as ex:
-            self.logger.exception(ex)
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __tick: {0} trace: {1}'.format( ex, stack))
 
         except estreamer.UnsupportedTimestampException:
             # This is a workaround for the time being. Occasionally, on stopping
@@ -116,10 +118,12 @@ class Monitor( object ):
             self.logger.info('Running (no process data available)')
 
         except estreamer.EncoreException as ex:
-            self.logger.error(ex)
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __tick: {0} trace: {1}'.format( ex, stack))
 
         except Exception as ex:
-            self.logger.exception(ex)
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __tick: {0} trace: {1}'.format( ex, stack))
 
 
 
@@ -142,7 +146,8 @@ class Monitor( object ):
                     time.sleep( 0.25 )
 
         except Exception as ex:
-            self.logger.error('Monitor __start: {0}'.format( ex ))
+            stack = traceback.format_exc()
+            self.logger.error('Monitor __start: {0} trace: {1}'.format( ex, stack))
             self.state = definitions.STATE_ERROR
 
 
