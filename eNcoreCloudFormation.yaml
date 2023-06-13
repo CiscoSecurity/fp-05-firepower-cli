@@ -436,14 +436,14 @@ Resources:
 
             autostart=true
             autorestart=true
-            stdout_logfile=/ocsf/fp-05-firepower-cli/guicorn.log
-            stderr_logfile=/ocsf/fp-05-firepower-cli/guicorn.err.log
+            stdout_logfile=/encore/fp-05-firepower-cli/guicorn.log
+            stderr_logfile=/encore/fp-05-firepower-cli/guicorn.err.log
             
             [program:encoreui]
-            directory=/ocsf/fp-05-firepower-cli/encoregui
+            directory=/encore/fp-05-firepower-cli/encoregui
             command=sudo npm start
-            stdout_logfile=/ocsf/fp-05-firepower-cli/ui_errors.log
-            stderr_logfile=/ocsf/fp-05-firepower-cli/ui_errors.err.log			
+            stdout_logfile=/encore/fp-05-firepower-cli/ui_errors.log
+            stderr_logfile=/encore/fp-05-firepower-cli/ui_errors.err.log			
             EOF
 
             cd /encore
