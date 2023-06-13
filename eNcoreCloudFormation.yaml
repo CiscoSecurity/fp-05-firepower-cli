@@ -361,7 +361,7 @@ Resources:
             sudo pip install boto3
 
             sudo pip install fastapi
-			
+
             pip install supervisor
 
             sudo pip install "uvicorn[standard]"
@@ -400,11 +400,11 @@ Resources:
 
             npm install react-router-dom
             sudo npm install
-			
+
             sudo mkdir  ~/.aws
-			
+
             sudo touch ~/.aws/credentials
-			
+
             cat >~/.aws/credentials << 'EOF'
             [SecurityLake]
             aws_access_key_id = ${amazonSecurityLakeAPIKey}
@@ -418,7 +418,7 @@ Resources:
             EOF
 
             cd /etc/
-			
+
             cat >supervisord.conf <<'EOF'
             [supervisord]
             logfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)
