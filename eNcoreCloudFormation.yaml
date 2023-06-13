@@ -432,18 +432,18 @@ Resources:
 
             [program:encoreapi]
             user=root
-            command=sudo bash /encore/fp-05-firepower-cli/apiserver.sh
+            command=sudo bash /encore/apiserver.sh
 
             autostart=true
             autorestart=true
-            stdout_logfile=/encore/fp-05-firepower-cli/guicorn.log
-            stderr_logfile=/encore/fp-05-firepower-cli/guicorn.err.log
+            stdout_logfile=/encore/fastapi/guicorn.log
+            stderr_logfile=/encore/fastapi/guicorn.err.log
             
             [program:encoreui]
-            directory=/encore/fp-05-firepower-cli/encoregui
+            directory=/encore/encoregui
             command=sudo npm start
-            stdout_logfile=/encore/fp-05-firepower-cli/ui_errors.log
-            stderr_logfile=/encore/fp-05-firepower-cli/ui_errors.err.log			
+            stdout_logfile=/encore/encoregui/ui_errors.log
+            stderr_logfile=/encore/encoregui/ui_errors.err.log			
             EOF
 
             cd /encore
