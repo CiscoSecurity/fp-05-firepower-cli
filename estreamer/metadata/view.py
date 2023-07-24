@@ -1089,9 +1089,12 @@ class View( object ):
                 View.BLOCKED,
                 [ Cache.BLOCKED, record['blocked']] )
 
-            self.__addValueIfAvailable(
-                View.BLOCKED_REASON,
-                [ Cache.BLOCKED_REASON, record['blockedReasonId']] )
+            # It is possible to get limited blocked reason dispositions on FMC 6.x, so we need to check
+            if 'blockedReasonId' in record :
+
+                self.__addValueIfAvailable(
+                    View.BLOCKED_REASON,
+                    [ Cache.BLOCKED_REASON, record['blockedReasonId']] )
             
             self.__addValueIfAvailable(
                 View.IP_PROTOCOL,
