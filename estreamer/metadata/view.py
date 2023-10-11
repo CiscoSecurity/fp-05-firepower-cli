@@ -481,9 +481,9 @@ class View( object ):
                 View.DESTINATION_IP_COUNTRY,
                 [ Cache.GEOLOCATIONS, record['responderCountry']] )
 
-            self.__addValueIfAvailable(
-                View.USER,
-                [ Cache.USERS, record['userId']] )
+#            self.__addValueIfAvailable(
+#                View.USER_ID,
+#                [ Cache.USERS, record['userId']] )
 
             self.__addValueIfAvailable(
                 View.DNS_RECORD_NAME,
@@ -897,9 +897,9 @@ class View( object ):
                 View.AGENT_USER,
                 [ Cache.USERS, record['userId']] )
 
-            self.__addValueIfAvailable(
-                View.USER,
-                [ Cache.USERS, record['user']['data']] )
+#            self.__addValueIfAvailable(
+#                View.USER,
+#                [ Cache.USERS, record['userId']['data']] )
 
             self.__addValueIfAvailable(
                 View.IOC_CATEGORY,
@@ -1136,9 +1136,12 @@ class View( object ):
                 View.DESTINATION_IP_COUNTRY,
                 [ Cache.GEOLOCATIONS, record['destinationCountry']] )
 
-            self.__addValueIfAvailable(
-                View.USER,
-                [ Cache.USERS, record['userId']] )
+
+            if 'user' in record :
+                if 'data' in record['user'] :
+                    self.__addValueIfAvailable(
+                        View.USER,
+                        [ Cache.USERS, record['user']['data']] )
 
             self.__addValueIfAvailable(
                 View.IOC_CATEGORY,
@@ -1230,10 +1233,6 @@ class View( object ):
             self.__addValueIfAvailable(
                 View.DESTINATION_IP_COUNTRY,
                 [ Cache.GEOLOCATIONS, record['destinationCountry']] )
-
-            self.__addValueIfAvailable(
-                View.USER,
-                [ Cache.USERS, record['userId']] )
 
             self.__addValueIfAvailable(
                 View.SSL_ACTUAL_ACTION,
