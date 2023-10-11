@@ -532,6 +532,9 @@ class Binary( object ):
 
                     self.logger.error( 'Unsupported Record Block Type: Record={0} BlockType={1} - using legacy definition'.format( recordType, blockSubType ) )
 
+            elif recordType == 98:
+                self.logger.log(logging.TRACE, 'parsing user record type 98 : {0} message: {1} offset: {2} size: {3}'.format(record, data, offset, len(data)))
+
             elif recordType == 125: 
 
                 blockSubType = struct.unpack(
