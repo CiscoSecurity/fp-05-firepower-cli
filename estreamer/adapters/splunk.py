@@ -637,7 +637,7 @@ FIELD_MAPPING = {
         'clientUrl.data': u'url',
         'connectionCounter': u'connection_id',
         'destinationAutonomousSystem': u'dest_autonomous_system',
-        'destIpDynamicAttributes': u'dest_ip_dynamic_attributes',
+        'destIpDynamicAttributes.data': u'dest_ip_dynamic_attributes',
         'destinationMask': u'dest_mask',
         'destinationSecurityGroupTag': u'destination_security_group_tag',
         'destinationSecurityGroupTagType': u'destination_security_group_tag_type',
@@ -650,7 +650,9 @@ FIELD_MAPPING = {
         'dnsResponseType': u'dns_resp_id',
         'dnsTtl': u'dns_ttl',
         'egressInterface': u'iface_egress',
-        'egressVRFName': u'egress_vrf_name',
+        'egressVRFName.blockLength': u'',
+        'egressVRFName.blockType': u'',
+        'egressVRFName.data': u'egress_vrf_name',
         'egressZone': u'sec_zone_egress',
         'endpointProfileId': u'',
         'fileEventCount': u'file_count',
@@ -668,7 +670,9 @@ FIELD_MAPPING = {
         'initiatorPort': u'src_port',
         'initiatorTransmittedBytes': u'src_bytes',
         'initiatorTransmittedPackets': u'src_pkts',
-        'ingressVRFName': u'ingress_vrf_name',
+        'ingressVRFName.data': u'ingress_vrf_name',
+        'ingressVRFName.blockType': u'',
+        'ingressVRFName.blockLength': u'',
         'instanceId': u'instance_id',
         'intrusionEventCount': u'ips_count',
         'iocNumber': u'num_ioc',
@@ -722,7 +726,7 @@ FIELD_MAPPING = {
         'snmpOut': u'snmp_out',
         'sourceAutonomousSystem': u'src_autonomous_system',
         'sourceMask': u'src_mask',
-        'sourceIpDynamicAttributes': u'source_ip_dynamic_attributes',
+        'sourceIpDynamicAttributes.data': u'source_ip_dynamic_attributes',
         'sourceSecurityGroupTag': u'source_security_group_tag',
         'sourceSecurityGroupTagType': u'source_security_group_tag_type',
         'sourceTos': u'src_tos',
@@ -754,7 +758,7 @@ FIELD_MAPPING = {
         'userAgent.blockLength': u'',
         'userAgent.blockType': u'',
         'userAgent.data': u'user_agent',
-        'userId': u'user',
+        'userId': u'user_id',
         'vlanId': u'vlan_id',
         'webApplicationId': u'web_app',
         # discovery
@@ -1700,6 +1704,8 @@ def __selectWithNewKeys( record ):
 
     index = record['recordType']
 
+    byteStrings = ["ssl_ticket_id","ssl_session_id", "ssl_cert_fingerprint", "security_context", "ssl_policy_id", "packet"]
+
     output = {}
 
     # Map each of the fields
@@ -1709,7 +1715,13 @@ def __selectWithNewKeys( record ):
             newKey = recordMap[ key ]
             if newKey is not None and len(newKey) > 0:
                 if key in record:
-                    output[newKey] = record[key]
+#                    output[newKey] = record[key]
+
+                    attr = getattr(record[key], 'decode', None)
+                    if attr is not None:
+                        output[newKey] = record[key].decode()
+                    else :
+                        output[newKey] = record[key]
 
     # Copy the computed fields
     try:
@@ -1720,7 +1732,13 @@ def __selectWithNewKeys( record ):
             for key in source[ computedKey ]:
                 newKey = mappings[ key ]
                 if newKey is not None:
-                    output[ newKey ] = source[ computedKey ][ key ]
+
+                    attr = getattr(source[ computedKey ][ key ], 'decode', None)
+
+                    if attr is not None:
+                        output[ newKey ] = source[ computedKey ][ key ].decode()
+                    else :
+                        output[ newKey ] = source[ computedKey ][ key ]
 
     except KeyError as keyError:
 
