@@ -17,38 +17,68 @@
 #*********************************************************************/
 
 import socket
+import estreamer
+import time
+import estreamer.crossprocesslogging as logging
 from estreamer.streams.base import Base
+from estreamer.common.convert import isInt
 
 # See: # https://wiki.python.org/moin/UdpCommunication
 
 class TcpStream( Base ):
-    """Creates a UDP socket and sends messages to it"""
+    """Creates a TCP socket and sends messages to it"""
     def __init__( self, host, port, encoding = 'utf-8' ):
         self.host = host
         self.port = port
         self.encoding = encoding
         self.socket = None
+        self.logger = logging.getLogger( self.__class__.__name__ )
 
+        # If there's a problem with the host or port, fail fast.
+        if len( self.host.strip() ) == 0:
+            raise Exception('TcpStream must have a host specified.')
 
+        if not isInt( self.port ):
+            raise Exception('TcpStream must have an integer port specified.')
 
     def __connect( self ):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
-        self.socket.connect( ( self.host, self.port) )
 
+        while True :
+            try:
 
+                self.logger.debug('Connecting to {0}:{1}'.format(self.host, self.port ))
+
+                self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
+                self.socket.connect((self.host,self.port))
+                break
+
+            except OSError as ose :
+
+                self.logger.error(  "Socket Connection Error [{2}] - Cannot connect to host {0}:{1} - Retrying ...".format(self.host,self.port, ose))
+                time.sleep(2)
 
     def close( self ):
         try:
             self.socket.shutdown( socket.SHUT_RDWR )
             self.socket.close()
+            self.socket = None
 
         except AttributeError:
             pass
 
-
-
     def write( self, data ):
-        if self.socket is None:
-            self.__connect()
 
-        self.socket.send( data.encode( self.encoding ) )
+        while True :
+            if self.socket is None:
+                self.__connect()
+
+            else :
+                try:
+                    self.logger.debug('Sending {2} to {0}:{1}'.format(self.host, self.port , data))
+                    self.socket.sendall( data.encode( self.encoding ) )
+                    break
+
+                except OSError as ex: 
+                    self.logger.error("Error [{0}] writing to endpoint {1}:{2} -- Retrying...".format(ex, self.host, self.port))
+                    time.sleep(1)
+                    self.socket = None
