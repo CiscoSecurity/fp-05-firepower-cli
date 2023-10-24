@@ -19,6 +19,7 @@
 
 from __future__ import absolute_import
 import threading
+import traceback
 import time
 import estreamer.definitions as definitions
 import estreamer.crossprocesslogging as logging
