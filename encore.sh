@@ -154,8 +154,13 @@ stop() {
     fi
 }
 
-ts() {
-    tar -zcvf ../"encore-ts-$(date '+%Y-%m-%d_%H-%M-%S%z(%Z)').tar.gz" *
+archive() {
+    stop
+    filename=$(date +%Y-%m-%d_%H-%M-%S%z%Z)
+    archive=$(tar -zcvf "encore-log.tar.gz" ./estreamer.log)
+    rm estreamer.log
+    mv "encore-log.tar.gz" "encore-log-$filename.tar.gz"
+    start
 }
 
 restart() {
@@ -185,8 +190,8 @@ main() {
             foreground
             ;;
 	
-        ts)
-	        ts
+        archive)
+	        archive
 	        ;;
 	     
         setup)
