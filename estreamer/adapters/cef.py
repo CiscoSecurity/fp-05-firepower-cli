@@ -149,7 +149,7 @@ MAPPING = {
             'rt': lambda rec: rec['eventSecond'] * 1000,
             'start': lambda rec: rec['packetSecond'] * 1000,
             'deviceExternalId': lambda rec: rec['deviceId'],
-            'cs1': lambda rec: __packetData( rec['packetData'], rec['packetLength'], rec['packetEncoding'])
+            'cs1': lambda rec: __packetData( rec['packetData'], rec['packetLength'], rec['packetEncoding']),
             'packetData': lambda rec: rec['packetData']
         },
 
