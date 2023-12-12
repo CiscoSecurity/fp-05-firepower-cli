@@ -17,10 +17,13 @@
 #*********************************************************************/
 
 from __future__ import print_function
-import os
+from cryptography.hazmat.primitives import serialization
+from requests import Session
 
+import os
 import estreamer
 import estreamer.definitions as definitions
+
 
 class Crypto( object ):
     """Helper class to contain and extract certificate and key from pkcs12"""
@@ -67,23 +70,26 @@ class Crypto( object ):
             data = pkcs12File.read()
 
         try:
-            pkcs12 = OpenSSL.crypto.load_pkcs12( data, password )
-
+            #pkcs12 = OpenSSL.crypto.load_pkcs12( data, password )
+            with open("./client.pkcs12", "rb") as f:
+                (private_key,certificate,additional_certificates) = serialization.pkcs12.load_key_and_certificates(f.read(), password.encode('utf-8'))
         except OpenSSL.crypto.Error:
             raise estreamer.EncoreException(
                 'Unable to process pkcs12 file. Possibly a password problem')
 
-        certificate = pkcs12.get_certificate()
-        privateKey = pkcs12.get_privatekey()
+        key_bytes =  private_key.private_bytes(encoding=serialization.Encoding.PEM,format=serialization.PrivateFormat.PKCS8,encryption_algorithm=serialization.NoEncryption())
+        cert_bytes = certificate.public_bytes(serialization.Encoding.PEM)
+#        certificate = pkcs12.get_certificate()
+#        privateKey = pkcs12.get_privatekey()
 
         # Where type is FILETYPE_PEM or FILETYPE_ASN1 (for DER).
-        cryptoType = OpenSSL.crypto.FILETYPE_PEM
+        #cryptoType = OpenSSL.crypto.FILETYPE_PEM
 
         with open( privateKeyFilepath, 'wb+' ) as privateKeyFile:
-            privateKeyFile.write( OpenSSL.crypto.dump_privatekey( cryptoType, privateKey ) )
+            privateKeyFile.write( key_bytes )
 
         with open( certificateFilepath, 'wb+' ) as certificateFile:
-            certificateFile.write( OpenSSL.crypto.dump_certificate( cryptoType, certificate ) )
+            certificateFile.write( cert_bytes )
 
 
 
