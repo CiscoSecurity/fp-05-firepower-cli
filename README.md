@@ -1,5 +1,33 @@
 [![Gitter chat](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg)](https://gitter.im/CiscoSecurity/Lobby "Gitter chat")
 
+# End of Life (EOL)
+
+The Encore CLI project is currently EOL (Effective 7/1/2024), as alternative we have several different eventing export options for customers and partners using this code base.
+
+Alternative #1 - Splunk Customers
+
+Cisco Security Cloud App - https://splunkbase.splunk.com/app/7404
+
+The Cisco Security Cloud application offers a seamless integration experience for connecting your Cisco devices with Splunk, providing a rich and uniform interface. The application is equipped with detailed instructions to facilitate every step of the setup process and assists with monitoring to ensure that your data pipelines maintain their operational integrity.
+
+The Cisco Security Cloud app combines the concept of both TA and Splunk App into a single offering to help improve the efficiency and effectiveness of your data analysis within Splunk, providing a more powerful and comprehensive solution for your monitoring and analytics needs.
+
+As of June 5th, 2024, the application has been released as a BETA version and will receive ongoing updates, including new Cisco integrations and feature sets as the current Cisco Splunk integrations approach their end of life (EOL). The present version supports the following core application features:
+
+Baseline Core Application Features
+
+    -  Performance Monitoring, Resource Utilization and Error Handling
+    -  Data Integrity and Observability
+    -  Modular Application UX Configuration Setup 
+    -  Baseline Analytics to showcase product integration and detections
+    -  CIM 5.x coverage for bulk majority of event types in Secure Firewall, including IDS events
+    
+Alternative #2 - Non-Splunk Customers
+
+eStreamer SDK
+https://www.cisco.com/c/en/us/td/docs/security/firepower/741/api/FQE/secure_firewall_estreamer_fqe_guide_740/c_introduction_estreamer.html
+
+
 # License
 
 Copyright (c) 2017 by Cisco Systems, Inc.
