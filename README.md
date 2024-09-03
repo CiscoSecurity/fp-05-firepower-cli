@@ -24,8 +24,7 @@ Baseline Core Application Features
     
 Alternative #2 - Non-Splunk Customers
 
-eStreamer SDK
-https://www.cisco.com/c/en/us/td/docs/security/firepower/741/api/FQE/secure_firewall_estreamer_fqe_guide_740/c_introduction_estreamer.html
+eStreamer SDK - https://www.cisco.com/c/en/us/td/docs/security/firepower/741/api/FQE/secure_firewall_estreamer_fqe_guide_740/c_introduction_estreamer.html
 
 
 # License
