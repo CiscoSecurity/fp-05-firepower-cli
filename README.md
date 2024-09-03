@@ -26,6 +26,9 @@ Alternative #2 - Non-Splunk Customers
 
 eStreamer SDK - https://www.cisco.com/c/en/us/td/docs/security/firepower/741/api/FQE/secure_firewall_estreamer_fqe_guide_740/c_introduction_estreamer.html
 
+The Secure Firewall System Event Streamer (eStreamer) uses a message-oriented protocol to stream events and host profile information to your client application. Your client can request fully-qualified events from a Management Center. Only connection events, intrusion events, intrusion event packets, and file events are available as fully-qualified events.
+
+Your client application initiates the data stream by submitting request messages, which specify the data to be sent, and then controls the message flow from the Management Center or managed device after streaming begins. 
 
 # License
 
